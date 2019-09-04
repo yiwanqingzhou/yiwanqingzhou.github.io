@@ -43,8 +43,8 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
       copy_button: '复制',
@@ -55,17 +55,17 @@
   };
 </script>
 
-  <meta name="description" content="PCL类型转换 pcl::PointIndices -&amp;gt; pcl::PointIndices::Ptr  12pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr(new pcl::PointIndices(inliers));   pcl::PointIndices::Ptr -&amp;gt; pcl::PointIndices">
+  <meta name="description" content="PCL类型转换 pcl::PointIndices -&amp;gt; pcl::PointIndices::Ptr 12pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr(new pcl::PointIndices(inliers)); pcl::PointIndices::Ptr -&amp;gt; pcl::PointIndices">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pcl类型转换">
 <meta property="og:url" content="yiwanqingzhou.github.io/posts/uncategorized/pcl类型转换.html">
 <meta property="og:site_name" content="一晚清粥">
-<meta property="og:description" content="PCL类型转换 pcl::PointIndices -&amp;gt; pcl::PointIndices::Ptr  12pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr(new pcl::PointIndices(inliers));   pcl::PointIndices::Ptr -&amp;gt; pcl::PointIndices">
+<meta property="og:description" content="PCL类型转换 pcl::PointIndices -&amp;gt; pcl::PointIndices::Ptr 12pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr(new pcl::PointIndices(inliers)); pcl::PointIndices::Ptr -&amp;gt; pcl::PointIndices">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-09-04T03:33:03.639Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pcl类型转换">
-<meta name="twitter:description" content="PCL类型转换 pcl::PointIndices -&amp;gt; pcl::PointIndices::Ptr  12pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr(new pcl::PointIndices(inliers));   pcl::PointIndices::Ptr -&amp;gt; pcl::PointIndices">
+<meta name="twitter:description" content="PCL类型转换 pcl::PointIndices -&amp;gt; pcl::PointIndices::Ptr 12pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr(new pcl::PointIndices(inliers)); pcl::PointIndices::Ptr -&amp;gt; pcl::PointIndices">
   <link rel="canonical" href="yiwanqingzhou.github.io/posts/uncategorized/pcl类型转换">
 
 
@@ -168,11 +168,38 @@
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
   </ul>
 
     
 
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
 </div>
     </header>
 
@@ -244,12 +271,12 @@
       
         <h2 id="PCL类型转换"><a href="#PCL类型转换" class="headerlink" title="PCL类型转换"></a>PCL类型转换</h2><ul>
 <li>pcl::PointIndices -&gt; pcl::PointIndices::Ptr</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::<span class="function">Ptr <span class="title">inliers_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointIndices(inliers))</span></span>;</span><br></pre></td></tr></table></figure>
-
-<ul>
+</ul><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::<span class="function">Ptr <span class="title">inliers_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointIndices(inliers))</span></span>;</span><br></pre></td></tr></table></figure><ul>
 <li>pcl::PointIndices::Ptr -&gt; pcl::PointIndices</li>
-</ul>
+</ul><a id="more"></a>
+
+
+
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::Ptr inliers_ptr;</span><br><span class="line">inliers=*inliers_ptr;</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -278,8 +305,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/posts/uncategorized/Debian最小化按钮.html" rel="next" title="Debian最小化按钮">
-                  <i class="fa fa-chevron-left"></i> Debian最小化按钮
+                <a href="/posts/uncategorized/hello-world.html" rel="next" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
                 </a>
               
             </div>
@@ -350,7 +377,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -419,6 +446,8 @@
 
 
 
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
 
 
 
