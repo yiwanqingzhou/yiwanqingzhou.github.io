@@ -57,20 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="安装tweak和dconf 123sudo apt install gnome-tweak-toolsudo apt install dconf-editor dconf-editor">
+  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;PCL相关的对象与指针互换">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Debian最小化按钮">
-<meta property="og:url" content="yiwanqingzhou.github.io/posts/uncategorized/Debian最小化按钮.html">
+<meta property="og:title" content="pcl类型转换">
+<meta property="og:url" content="yiwanqingzhou.github.io/posts/uncategorized/pcl_type_transform.html">
 <meta property="og:site_name" content="一晚清粥">
-<meta property="og:description" content="安装tweak和dconf 123sudo apt install gnome-tweak-toolsudo apt install dconf-editor dconf-editor">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;PCL相关的对象与指针互换">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/posts/uncategorized/Debian最小化按钮/test.png">
-<meta property="og:updated_time" content="2020-08-21T20:05:09.799Z">
+<meta property="og:updated_time" content="2020-08-21T20:05:09.803Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Debian最小化按钮">
-<meta name="twitter:description" content="安装tweak和dconf 123sudo apt install gnome-tweak-toolsudo apt install dconf-editor dconf-editor">
-<meta name="twitter:image" content="/posts/uncategorized/Debian最小化按钮/test.png">
-  <link rel="canonical" href="yiwanqingzhou.github.io/posts/uncategorized/Debian最小化按钮">
+<meta name="twitter:title" content="pcl类型转换">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;PCL相关的对象与指针互换">
+  <link rel="canonical" href="yiwanqingzhou.github.io/posts/uncategorized/pcl_type_transform">
 
 
 <script id="page-configurations">
@@ -84,7 +82,7 @@
   };
 </script>
 
-  <title>Debian最小化按钮 | 一晚清粥</title>
+  <title>pcl类型转换 | 一晚清粥</title>
   
 
 
@@ -226,7 +224,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="yiwanqingzhou.github.io/posts/uncategorized/Debian最小化按钮.html">
+    <link itemprop="mainEntityOfPage" href="yiwanqingzhou.github.io/posts/uncategorized/pcl_type_transform.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="清粥">
@@ -238,7 +236,7 @@
       <meta itemprop="name" content="一晚清粥">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Debian最小化按钮
+        <h1 class="post-title" itemprop="name headline">pcl类型转换
 
           
         </h1>
@@ -254,7 +252,7 @@
                 
               
 
-              <time title="创建时间：2019-09-04 11:29:34" itemprop="dateCreated datePublished" datetime="2019-09-04T11:29:34+08:00">2019-09-04</time>
+              <time title="创建时间：2019-09-04 11:32:48" itemprop="dateCreated datePublished" datetime="2019-09-04T11:32:48+08:00">2019-09-04</time>
             </span>
           
             
@@ -281,20 +279,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>安装tweak和dconf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install gnome-tweak-tool</span><br><span class="line">sudo apt install dconf-editor </span><br><span class="line">dconf-editor</span><br></pre></td></tr></table></figure>
+        <div class="note info">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PCL相关的对象与指针互换</p>
+          </div>
 
 <a id="more"></a>
 
+<h5 id="pcl-PointIndices-gt-pcl-PointIndices-Ptr"><a href="#pcl-PointIndices-gt-pcl-PointIndices-Ptr" class="headerlink" title="pcl::PointIndices -&gt; pcl::PointIndices::Ptr"></a>pcl::PointIndices -&gt; pcl::PointIndices::Ptr</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::<span class="function">Ptr <span class="title">inliers_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointIndices(inliers))</span></span>;</span><br></pre></td></tr></table></figure>
 
+<h5 id="pcl-PointIndices-Ptr-gt-pcl-PointIndices"><a href="#pcl-PointIndices-Ptr-gt-pcl-PointIndices" class="headerlink" title="pcl::PointIndices::Ptr -&gt; pcl::PointIndices"></a>pcl::PointIndices::Ptr -&gt; pcl::PointIndices</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::Ptr inliers_ptr;</span><br><span class="line">inliers=*inliers_ptr;</span><br></pre></td></tr></table></figure>
 
-<p>进入路径: <code>org/gnome/desktop/wm/preferences/button-layout</code></p>
-<img src="/posts/uncategorized/Debian最小化按钮/test.png" title="Debian最小化按钮">
+<h5 id="pcl-PointCloud-gt-pcl-PointCloud-Ptr"><a href="#pcl-PointCloud-gt-pcl-PointCloud-Ptr" class="headerlink" title="pcl::PointCloud -&gt; pcl::PointCloud::Ptr"></a>pcl::PointCloud<pointt> -&gt; pcl::PointCloud<pointt>::Ptr</pointt></pointt></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud=*cloud_ptr;</span><br></pre></td></tr></table></figure>
 
+<h5 id="pcl-PointCloud-Ptr-gt-pcl-PointCloud"><a href="#pcl-PointCloud-Ptr-gt-pcl-PointCloud" class="headerlink" title="pcl::PointCloud::Ptr -&gt; pcl::PointCloud"></a>pcl::PointCloud<pointt>::Ptr -&gt; pcl::PointCloud<pointt></pointt></pointt></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud_ptr=cloud.makeShared();</span><br></pre></td></tr></table></figure>
 
-
-<p>取消选项 Use default value</p>
-<p>在 Custom value 填入 <code>appmemu:close,minimize,maximize,close</code></p>
 
     </div>
 
@@ -311,14 +309,18 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
+                <a href="/posts/uncategorized/debian_minimize_botton.html" rel="next" title="Debian最小化按钮">
+                  <i class="fa fa-chevron-left"></i> Debian最小化按钮
+                </a>
+              
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/posts/uncategorized/pcl类型转换.html" rel="prev" title="pcl类型转换">
-                  pcl类型转换 <i class="fa fa-chevron-right"></i>
+                <a href="/posts/uncategorized/clang_format.html" rel="prev" title="vscode clang format">
+                  vscode clang format <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -368,6 +370,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#pcl-PointIndices-gt-pcl-PointIndices-Ptr"><span class="nav-number">1.</span> <span class="nav-text">pcl::PointIndices -&gt; pcl::PointIndices::Ptr</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pcl-PointIndices-Ptr-gt-pcl-PointIndices"><span class="nav-number">2.</span> <span class="nav-text">pcl::PointIndices::Ptr -&gt; pcl::PointIndices</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pcl-PointCloud-gt-pcl-PointCloud-Ptr"><span class="nav-number">3.</span> <span class="nav-text">pcl::PointCloud -&gt; pcl::PointCloud::Ptr</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pcl-PointCloud-Ptr-gt-pcl-PointCloud"><span class="nav-number">4.</span> <span class="nav-text">pcl::PointCloud::Ptr -&gt; pcl::PointCloud</span></a></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
