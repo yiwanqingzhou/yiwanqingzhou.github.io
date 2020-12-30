@@ -1,36 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  <url>
-    <loc>yiwanqingzhou.github.io/posts/debian_minimize_botton.html</loc>
-    
-    <lastmod>2020-12-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>yiwanqingzhou.github.io/posts/clang_format.html</loc>
-    
-    <lastmod>2020-08-21</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>yiwanqingzhou.github.io/posts/pcl_type_transform.html</loc>
-    
-    <lastmod>2020-08-21</lastmod>
-    
-  </url>
-  
-
-  <url>
-    <loc>yiwanqingzhou.github.io</loc>
-    <lastmod>2020-12-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  
-
-  
+  {% for post in posts %}
+      
+        {{ (config.urlforgoogle+post.path) | uriencode }}
+        {% if post.updated %}
+        {{ post.updated.toISOString() }}
+        {% elif post.date %}
+        {{ post.date.toISOString() }}
+        {% endif %}
+      
+      {% endfor %}
 </urlset>
