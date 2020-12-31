@@ -2,21 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>yiwanqingzhou.github.io/posts/uncategorized/debian_minimize_botton.html</loc>
+    <loc>https://yiwanqingzhou.github.io/posts/uncategorized/debian_minimize_botton.html</loc>
     
     <lastmod>2020-12-30</lastmod>
     
   </url>
   
   <url>
-    <loc>yiwanqingzhou.github.io/posts/uncategorized/clang_format.html</loc>
+    <loc>https://yiwanqingzhou.github.io/posts/uncategorized/clang_format.html</loc>
     
     <lastmod>2020-08-21</lastmod>
     
   </url>
   
   <url>
-    <loc>yiwanqingzhou.github.io/posts/uncategorized/pcl_type_transform.html</loc>
+    <loc>https://yiwanqingzhou.github.io/posts/uncategorized/pcl_type_transform.html</loc>
     
     <lastmod>2020-08-21</lastmod>
     
@@ -24,8 +24,8 @@
   
 
   <url>
-    <loc>yiwanqingzhou.github.io</loc>
-    <lastmod>2020-12-30</lastmod>
+    <loc>https://yiwanqingzhou.github.io/</loc>
+    <lastmod>2020-12-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
