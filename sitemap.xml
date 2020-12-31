@@ -2,23 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://yiwanqingzhou.github.io/posts/uncategorized/pcl_type_transform.html</loc>
+    
+    <lastmod>2020-12-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://yiwanqingzhou.github.io/posts/uncategorized/debian_minimize_botton.html</loc>
     
-    <lastmod>2020-12-30</lastmod>
+    <lastmod>2020-12-31</lastmod>
     
   </url>
   
   <url>
     <loc>https://yiwanqingzhou.github.io/posts/uncategorized/clang_format.html</loc>
     
-    <lastmod>2020-08-21</lastmod>
+    <lastmod>2020-12-31</lastmod>
     
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/posts/uncategorized/pcl_type_transform.html</loc>
+    <loc>https://yiwanqingzhou.github.io/tags/index.html</loc>
     
-    <lastmod>2020-08-21</lastmod>
+    <lastmod>2020-12-31</lastmod>
     
   </url>
   
@@ -30,6 +37,27 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/vs-code/</loc>
+    <lastmod>2020-12-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/linux/</loc>
+    <lastmod>2020-12-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/pcl/</loc>
+    <lastmod>2020-12-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
 
   
