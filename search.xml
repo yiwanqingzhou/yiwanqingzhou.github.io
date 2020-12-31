@@ -2,24 +2,33 @@
 <search>
   <entry>
     <title><![CDATA[vscode clang format]]></title>
-    <url>%2Fposts%2Funcategorized%2Fclang_format.html</url>
+    <url>%2Fposts%2Fmemo%2Fclang_format.html</url>
     <content type="text"><![CDATA[.clang-format文件存档 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889---Language: Cpp# BasedOnStyle: LLVMAccessModifierOffset: -2AlignAfterOpenBracket: AlignAlignConsecutiveAssignments: falseAlignConsecutiveDeclarations: falseAlignEscapedNewlinesLeft: falseAlignOperands: trueAlignTrailingComments: trueAllowAllParametersOfDeclarationOnNextLine: trueAllowShortBlocksOnASingleLine: falseAllowShortCaseLabelsOnASingleLine: falseAllowShortFunctionsOnASingleLine: AllAllowShortIfStatementsOnASingleLine: falseAllowShortLoopsOnASingleLine: falseAlwaysBreakAfterDefinitionReturnType: NoneAlwaysBreakAfterReturnType: NoneAlwaysBreakBeforeMultilineStrings: falseAlwaysBreakTemplateDeclarations: falseBinPackArguments: trueBinPackParameters: falseBraceWrapping: AfterClass: false AfterControlStatement: false AfterEnum: false AfterFunction: true AfterNamespace: false AfterObjCDeclaration: false AfterStruct: true AfterUnion: true BeforeCatch: true BeforeElse: true IndentBraces: falseBreakBeforeBinaryOperators: NoneBreakBeforeBraces: AllmanBreakBeforeTernaryOperators: falseBreakConstructorInitializersBeforeComma: falseColumnLimit: 0CommentPragmas: &apos;^ IWYU pragma:&apos;ConstructorInitializerAllOnOneLineOrOnePerLine: falseConstructorInitializerIndentWidth: 4ContinuationIndentWidth: 4Cpp11BracedListStyle: trueDerivePointerAlignment: falseDisableFormat: falseExperimentalAutoDetectBinPacking: falseForEachMacros: [ foreach, Q_FOREACH, BOOST_FOREACH ]IncludeCategories: - Regex: &apos;^&quot;(llvm|llvm-c|clang|clang-c)/&apos; Priority: 2 - Regex: &apos;^(&lt;|&quot;(gtest|isl|json)/)&apos; Priority: 3 - Regex: &apos;.*&apos; Priority: 1IndentCaseLabels: falseIndentWidth: 2IndentWrappedFunctionNames: falseKeepEmptyLinesAtTheStartOfBlocks: trueMacroBlockBegin: &apos;&apos;MacroBlockEnd: &apos;&apos;MaxEmptyLinesToKeep: 1NamespaceIndentation: AllObjCBlockIndentWidth: 2ObjCSpaceAfterProperty: falseObjCSpaceBeforeProtocolList: truePenaltyBreakBeforeFirstCallParameter: 19PenaltyBreakComment: 300PenaltyBreakFirstLessLess: 120PenaltyBreakString: 1000PenaltyExcessCharacter: 1000000PenaltyReturnTypeOnItsOwnLine: 60PointerAlignment: RightReflowComments: trueSortIncludes: trueSpaceAfterCStyleCast: falseSpaceBeforeAssignmentOperators: trueSpaceBeforeParens: ControlStatementsSpaceInEmptyParentheses: falseSpacesBeforeTrailingComments: 1SpacesInAngles: falseSpacesInContainerLiterals: trueSpacesInCStyleCastParentheses: falseSpacesInParentheses: falseSpacesInSquareBrackets: falseStandard: Cpp11TabWidth: 8UseTab: Never...]]></content>
+      <categories>
+        <category>memo</category>
+      </categories>
       <tags>
         <tag>vs code</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[pcl类型转换]]></title>
-    <url>%2Fposts%2Funcategorized%2Fpcl_type_transform.html</url>
+    <url>%2Fposts%2Fnote%2Fpcl_type_transform.html</url>
     <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PCL相关的对象与指针互换 pcl::PointIndices -&gt; pcl::PointIndices::Ptr12pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr(new pcl::PointIndices(inliers)); pcl::PointIndices::Ptr -&gt; pcl::PointIndices123pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr;inliers=*inliers_ptr; pcl::PointCloud -&gt; pcl::PointCloud::Ptr123PointCloud&lt;PointT&gt;::Ptr cloud_ptr(new pcl::PointCloud&lt;PointT&gt;);PointCloud&lt;PointT&gt; cloud;cloud=*cloud_ptr; pcl::PointCloud::Ptr -&gt; pcl::PointCloud123PointCloud&lt;PointT&gt;::Ptr cloud_ptr(new pcl::PointCloud&lt;PointT&gt;);PointCloud&lt;PointT&gt; cloud;cloud_ptr=cloud.makeShared();]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
       <tags>
         <tag>pcl</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[Debian最小化按钮]]></title>
-    <url>%2Fposts%2Funcategorized%2Fdebian_minimize_botton.html</url>
+    <url>%2Fposts%2Fmemo%2Fdebian_minimize_botton.html</url>
     <content type="text"><![CDATA[安装tweak和dconf 123sudo apt install gnome-tweak-toolsudo apt install dconf-editor dconf-editor 进入路径: org/gnome/desktop/wm/preferences/button-layout 取消选项 Use default value 在 Custom value 填入 appmemu:close,minimize,maximize,close]]></content>
+      <categories>
+        <category>memo</category>
+      </categories>
       <tags>
         <tag>linux</tag>
       </tags>
