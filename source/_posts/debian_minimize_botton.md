@@ -2,7 +2,9 @@
 title: Debian最小化按钮
 date: 2019-09-04 11:29:34
 tags:
-
+- linux
+categories:
+- memo
 ---
 
 
@@ -25,7 +27,7 @@ dconf-editor
 
 
 
-{% asset_img test.png Debian最小化按钮 %}
+{% asset_img test.png debian_minimize_botton%}
 
 
 

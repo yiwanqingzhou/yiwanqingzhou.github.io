@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: yiwanqingzhou.github.io
+url: https://yiwanqingzhou.github.io/
 root: /
 #permalink: :year/:month/:day/:title/
 permalink: posts/:category/:title.html
@@ -73,6 +73,7 @@ pagination_dir: page
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
+plugins: hexo-generator-sitemap
 ## Themes: https://hexo.io/themes/
 # theme: landscape
 theme: next
@@ -84,3 +85,7 @@ deploy:
   type: git
   repo: https://github.com/yiwanqingzhou/yiwanqingzhou.github.io
   branch: master
+
+# Sitemap
+sitemap:
+  path: sitemap.xml
