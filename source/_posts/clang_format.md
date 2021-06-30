@@ -2,7 +2,7 @@
 title: vscode clang format
 date: 2019-09-04 13:52:31
 tags:
-- vs code
+- vscode
 categories:
 - memo
 encrypt:

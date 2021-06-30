@@ -13,7 +13,7 @@ categories:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PCL相关的对象与指针互换
 {% endnote %}
 
-<!-- more -->
+
 
 ##### pcl::PointIndices -> pcl::PointIndices::Ptr
 

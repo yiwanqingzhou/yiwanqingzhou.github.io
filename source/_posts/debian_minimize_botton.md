@@ -19,8 +19,6 @@ sudo apt install dconf-editor
 dconf-editor
 ```
 
-<!-- more -->
-
 
 
 进入路径: `org/gnome/desktop/wm/preferences/button-layout`
