@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title><![CDATA[linux搭建ftp服务器]]></title>
-    <url>%2Fposts%2Fmemo%2Fftp-server.html</url>
+    <url>%2Fposts%2Fmemo%2Fftp_server.html</url>
     <content type="text"><![CDATA[安装ftp和vsftpd 12sudo apt-get install ftpsudo apt-get install vsftpd 启动服务 12345678910# 使用vsftpd软件，主要包括如下几个命令：# 启动ftpservice vsftpd start# 停止ftpservice vsftpd stop# 重启ftpservice vsftpd restart 配置vsftpd 打开配置文件 123vi /etc/vsftpd.conf# vi /etc/vsftpd/vsftpd.conf 按照需求修改为以下内容 1234567891011121314151617listen=NOlisten_ipv6=YESanonymous_enable=NOlocal_enable=YESwrite_enable=YESdirmessage_enable=YESuse_localtime=YESxferlog_enable=YESconnect_from_port_20=YESsecure_chroot_dir=/var/run/vsftpd/emptypam_service_name=vsftpdrsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pemrsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.keyssl_enable=NO# local rootlocal_root=/home/bot/dev/moma_app/scanner_images 重启服务 1service vsftpd restart 登录测试 1234567# 登录本地ftpftp 127.0.0.1# 输入用户名和密码# 查看当前路径是否设置的local rootpwd]]></content>
       <categories>
         <category>memo</category>
