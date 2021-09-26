@@ -58,18 +58,18 @@
   };
 </script>
 
-  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;PCL相关的对象与指针互换           pcl::PointIndices -&amp;gt; pcl::PointIndices::Ptr12pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr(new pcl::PointIndi">
+  <meta name="description" content="PCL相关的对象与指针互换 pcl::PointIndices -&amp;gt; pcl::PointIndices::Ptr 12pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr(new pcl::PointIndices(inliers));">
 <meta name="keywords" content="pcl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pcl类型转换">
 <meta property="og:url" content="https://yiwanqingzhou.github.io/posts/note/pcl_type_transform.html">
 <meta property="og:site_name" content="一晚清粥">
-<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;PCL相关的对象与指针互换           pcl::PointIndices -&amp;gt; pcl::PointIndices::Ptr12pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr(new pcl::PointIndi">
+<meta property="og:description" content="PCL相关的对象与指针互换 pcl::PointIndices -&amp;gt; pcl::PointIndices::Ptr 12pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr(new pcl::PointIndices(inliers));">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-06-30T04:44:02.714Z">
+<meta property="og:updated_time" content="2021-09-26T02:15:28.253Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pcl类型转换">
-<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;PCL相关的对象与指针互换           pcl::PointIndices -&amp;gt; pcl::PointIndices::Ptr12pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr(new pcl::PointIndi">
+<meta name="twitter:description" content="PCL相关的对象与指针互换 pcl::PointIndices -&amp;gt; pcl::PointIndices::Ptr 12pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr(new pcl::PointIndices(inliers));">
   <link rel="canonical" href="https://yiwanqingzhou.github.io/posts/note/pcl_type_transform">
 
 
@@ -276,7 +276,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-30 12:44:02" itemprop="dateModified" datetime="2021-06-30T12:44:02+08:00">2021-06-30</time>
+                <time title="修改时间：2021-09-26 10:15:28" itemprop="dateModified" datetime="2021-09-26T10:15:28+08:00">2021-09-26</time>
               </span>
             
           
@@ -305,21 +305,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <div class="note info">
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PCL相关的对象与指针互换</p>
-          </div><h5 id="pcl-PointIndices-gt-pcl-PointIndices-Ptr"><a href="#pcl-PointIndices-gt-pcl-PointIndices-Ptr" class="headerlink" title="pcl::PointIndices -&gt; pcl::PointIndices::Ptr"></a>pcl::PointIndices -&gt; pcl::PointIndices::Ptr</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::<span class="function">Ptr <span class="title">inliers_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointIndices(inliers))</span></span>;</span><br></pre></td></tr></table></figure><a id="more"></a>
+        <h4 id="PCL相关的对象与指针互换"><a href="#PCL相关的对象与指针互换" class="headerlink" title="PCL相关的对象与指针互换"></a>PCL相关的对象与指针互换</h4><ol>
+<li>pcl::PointIndices -&gt; pcl::PointIndices::Ptr</li>
+</ol><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::<span class="function">Ptr <span class="title">inliers_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointIndices(inliers))</span></span>;</span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
+<ol start="2">
+<li>pcl::PointIndices::Ptr -&gt; pcl::PointIndices</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::Ptr inliers_ptr;</span><br><span class="line">inliers=*inliers_ptr;</span><br></pre></td></tr></table></figure>
 
+<ol start="3">
+<li>pcl::PointCloud<pointt> -&gt; pcl::PointCloud<pointt>::Ptr</pointt></pointt></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud=*cloud_ptr;</span><br></pre></td></tr></table></figure>
 
+<ol start="4">
+<li>pcl::PointCloud<pointt>::Ptr -&gt; pcl::PointCloud<pointt></pointt></pointt></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud_ptr=cloud.makeShared();</span><br></pre></td></tr></table></figure>
 
-<h5 id="pcl-PointIndices-Ptr-gt-pcl-PointIndices"><a href="#pcl-PointIndices-Ptr-gt-pcl-PointIndices" class="headerlink" title="pcl::PointIndices::Ptr -&gt; pcl::PointIndices"></a>pcl::PointIndices::Ptr -&gt; pcl::PointIndices</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::Ptr inliers_ptr;</span><br><span class="line">inliers=*inliers_ptr;</span><br></pre></td></tr></table></figure>
-
-<h5 id="pcl-PointCloud-gt-pcl-PointCloud-Ptr"><a href="#pcl-PointCloud-gt-pcl-PointCloud-Ptr" class="headerlink" title="pcl::PointCloud -&gt; pcl::PointCloud::Ptr"></a>pcl::PointCloud<pointt> -&gt; pcl::PointCloud<pointt>::Ptr</pointt></pointt></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud=*cloud_ptr;</span><br></pre></td></tr></table></figure>
-
-<h5 id="pcl-PointCloud-Ptr-gt-pcl-PointCloud"><a href="#pcl-PointCloud-Ptr-gt-pcl-PointCloud" class="headerlink" title="pcl::PointCloud::Ptr -&gt; pcl::PointCloud"></a>pcl::PointCloud<pointt>::Ptr -&gt; pcl::PointCloud<pointt></pointt></pointt></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud_ptr=cloud.makeShared();</span><br></pre></td></tr></table></figure>
-
-
+<h4 id="不同数据类型的点云转换"><a href="#不同数据类型的点云转换" class="headerlink" title="不同数据类型的点云转换"></a>不同数据类型的点云转换</h4><ol>
+<li>pcl::PointCloud<a href="pcl::PointXYZRGB" target="_blank" rel="noopener">pcl::PointXYZRGB</a> -&gt; pcl::PointCloud<a href="pcl::PointXYZ" target="_blank" rel="noopener">pcl::PointXYZ</a>::Ptr</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::<span class="function">Ptr <span class="title">cloud_ori</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZRGB&gt;)</span></span>;</span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZ&gt;::<span class="function">Ptr <span class="title">cloud</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZ&gt;)</span></span>;</span><br><span class="line">pcl::copyPointCloud(*cloud_ori, *cloud);</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -405,7 +414,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#pcl-PointIndices-gt-pcl-PointIndices-Ptr"><span class="nav-number">1.</span> <span class="nav-text">pcl::PointIndices -&gt; pcl::PointIndices::Ptr</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pcl-PointIndices-Ptr-gt-pcl-PointIndices"><span class="nav-number">2.</span> <span class="nav-text">pcl::PointIndices::Ptr -&gt; pcl::PointIndices</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pcl-PointCloud-gt-pcl-PointCloud-Ptr"><span class="nav-number">3.</span> <span class="nav-text">pcl::PointCloud -&gt; pcl::PointCloud::Ptr</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pcl-PointCloud-Ptr-gt-pcl-PointCloud"><span class="nav-number">4.</span> <span class="nav-text">pcl::PointCloud::Ptr -&gt; pcl::PointCloud</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#PCL相关的对象与指针互换"><span class="nav-number">1.</span> <span class="nav-text">PCL相关的对象与指针互换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不同数据类型的点云转换"><span class="nav-number">2.</span> <span class="nav-text">不同数据类型的点云转换</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -420,7 +429,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
