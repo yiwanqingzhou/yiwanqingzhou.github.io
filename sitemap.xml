@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://yiwanqingzhou.github.io/posts/note/cmake-set-flag.html</loc>
+    
+    <lastmod>2021-10-14</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://yiwanqingzhou.github.io/posts/memo/format_code.html</loc>
     
     <lastmod>2021-09-26</lastmod>
@@ -30,13 +37,6 @@
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/posts/memo/debian_minimize_botton.html</loc>
-    
-    <lastmod>2021-06-30</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://yiwanqingzhou.github.io/posts/memo/clang_format.html</loc>
     
     <lastmod>2021-06-30</lastmod>
@@ -44,7 +44,7 @@
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/categories/index.html</loc>
+    <loc>https://yiwanqingzhou.github.io/posts/memo/debian_minimize_botton.html</loc>
     
     <lastmod>2021-06-30</lastmod>
     
@@ -57,32 +57,53 @@
     
   </url>
   
+  <url>
+    <loc>https://yiwanqingzhou.github.io/categories/index.html</loc>
+    
+    <lastmod>2021-06-30</lastmod>
+    
+  </url>
+  
 
   <url>
     <loc>https://yiwanqingzhou.github.io/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/tags/linux/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <loc>https://yiwanqingzhou.github.io/tags/vscode/</loc>
+    <lastmod>2021-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/tags/vscode/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <loc>https://yiwanqingzhou.github.io/tags/cmake/</loc>
+    <lastmod>2021-10-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/%E7%BC%96%E8%AF%91/</loc>
+    <lastmod>2021-10-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/linux/</loc>
+    <lastmod>2021-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://yiwanqingzhou.github.io/tags/pcl/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -91,14 +112,14 @@
   
   <url>
     <loc>https://yiwanqingzhou.github.io/categories/memo/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://yiwanqingzhou.github.io/categories/note/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

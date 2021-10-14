@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CMake设置编译选项]]></title>
+    <url>%2Fposts%2Fnote%2Fcmake-set-flag.html</url>
+    <content type="text"><![CDATA[CMake中设置编译选项1234567891011option(BUILD_VISUALIZATIONS "Build visualization, default OFF" OFF)message("BUILD_VISUALIZATIONS is $&#123;BUILD_VISUALIZATIONS&#125;")# 可以跟build type关联# if(CMAKE_BUILD_TYPE MATCHES Debug OR CMAKE_BUILD_TYPE MATCHES DEBUG)if(BUILD_VISUALIZATIONS) add_definitions(-DBUILD_VISUALIZATIONS) # target_compile_definitions($&#123;project_name&#125; PRIVATE BUILD_VISUALIZATIONS)endif() 代码中作为宏12345678910111213141516#ifdef BUILD_VISUALIZATIONSvoid visualize_cloud(const cloud_ptr_t&amp; cloud_ptr)&#123; std::cout &lt;&lt; "visualizations on" &lt;&lt; std::endl; // visualize cloud&#125;#elsetemplate &lt;typename... Args&gt;void visualize_cloud(Args...) &#123; std::cout &lt;&lt; "pass visualizations" &lt;&lt; std::endl;&#125;#endif 编译时传入参数1--cmake-args -DBUILD_VISUALIZATIONS=ON]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
+      <tags>
+        <tag>cmake</tag>
+        <tag>编译</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Linux 解压缩rar包]]></title>
     <url>%2Fposts%2Fmemo%2Fextract_from_rar.html</url>
     <content type="text"><![CDATA[下载rar软件安装包 直接从 rarlab 下载安装包 通过命令行下载 12wget https://www.rarlab.com/rar/rarlinux-x64-6.0.1.tar.gz # 64位wget https://www.rarlab.com/rar/rarlinux-3.8.0.tar.gz # 32位 安装1234tar zxvf rarlinux-x64-6.0.1.tar.gzcd rarsudo makesudo make install 解压缩12rar x xxx.rar # Extract files with full pathrar e xxx.rar # Extract files without archived paths 将xxx目录压缩为xxx.rar1rar a xxx.rar xxx]]></content>
