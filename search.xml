@@ -34,6 +34,27 @@
       </tags>
   </entry>
   <entry>
+    <title>Debian最小化按钮</title>
+    <url>/posts/memo/debian_minimize_botton.html</url>
+    <content><![CDATA[<p>安装tweak和dconf</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install gnome-tweak-tool</span><br><span class="line">sudo apt install dconf-editor </span><br><span class="line">dconf-editor</span><br></pre></td></tr></table></figure><p>进入路径: <code>org/gnome/desktop/wm/preferences/button-layout</code></p><img src="/posts/memo/debian_minimize_botton/test.png" title="debian_minimize_botton"><p>取消选项 Use default value</p><a id="more"></a>
+
+
+
+
+
+
+
+
+<p>在 Custom value 填入 <code>appmemu:close,minimize,maximize,close</code></p>
+]]></content>
+      <categories>
+        <category>memo</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CMake设置编译选项</title>
     <url>/posts/note/cmake-set-flag.html</url>
     <content><![CDATA[<h4 id="CMake中设置编译选项"><a href="#CMake中设置编译选项" class="headerlink" title="CMake中设置编译选项"></a>CMake中设置编译选项</h4><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">option</span>(BUILD_VISUALIZATIONS <span class="string">"Build visualization, default OFF"</span> <span class="keyword">OFF</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">"BUILD_VISUALIZATIONS is $&#123;BUILD_VISUALIZATIONS&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以跟build type关联</span></span><br><span class="line"><span class="comment"># if(CMAKE_BUILD_TYPE MATCHES Debug OR CMAKE_BUILD_TYPE MATCHES DEBUG)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(BUILD_VISUALIZATIONS)</span><br><span class="line"><span class="keyword">add_definitions</span>(-DBUILD_VISUALIZATIONS)</span><br><span class="line"><span class="comment"># target_compile_definitions($&#123;project_name&#125; PRIVATE BUILD_VISUALIZATIONS)</span></span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure><a id="more"></a>
@@ -114,27 +135,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Debian最小化按钮</title>
-    <url>/posts/memo/debian_minimize_botton.html</url>
-    <content><![CDATA[<p>安装tweak和dconf</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install gnome-tweak-tool</span><br><span class="line">sudo apt install dconf-editor </span><br><span class="line">dconf-editor</span><br></pre></td></tr></table></figure><p>进入路径: <code>org/gnome/desktop/wm/preferences/button-layout</code></p><img src="/posts/memo/debian_minimize_botton/test.png" title="debian_minimize_botton"><p>取消选项 Use default value</p><a id="more"></a>
-
-
-
-
-
-
-
-
-<p>在 Custom value 填入 <code>appmemu:close,minimize,maximize,close</code></p>
-]]></content>
-      <categories>
-        <category>memo</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux搭建ftp服务器</title>
     <url>/posts/memo/ftp_server.html</url>
     <content><![CDATA[<h4 id="安装ftp和vsftpd"><a href="#安装ftp和vsftpd" class="headerlink" title="安装ftp和vsftpd"></a>安装ftp和vsftpd</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install ftp</span><br><span class="line">sudo apt-get install vsftpd</span><br></pre></td></tr></table></figure><h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用vsftpd软件，主要包括如下几个命令：</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动ftp</span></span><br><span class="line">service vsftpd start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止ftp</span></span><br><span class="line">service vsftpd stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启ftp</span></span><br><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure><a id="more"></a>
@@ -191,6 +191,26 @@
       </categories>
       <tags>
         <tag>pcl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用SCP远程拷贝文件</title>
+    <url>/posts/memo/scp.html</url>
+    <content><![CDATA[<p> 使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制</p><h4 id="从本地复制到远程"><a href="#从本地复制到远程" class="headerlink" title="从本地复制到远程"></a>从本地复制到远程</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp test.txt bot@10.0.9.211:/home/bot/test_folder</span><br><span class="line">scp test.txt bot@10.0.9.211:/home/bot/test_folder/test.txt</span><br><span class="line">scp test.txt 10.0.9.211:/home/bot/test_folder</span><br><span class="line">scp test.txt 10.0.9.211:/home/bot/test_folder/test.txt</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<h4 id="从远程复制到本地"><a href="#从远程复制到本地" class="headerlink" title="从远程复制到本地"></a>从远程复制到本地</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp bot@10.0.9.211:/home/bot/test_folder text.txt</span><br><span class="line">scp bot@10.0.9.211:/home/bot/test_folder/test.txt test.txt</span><br><span class="line">scp 10.0.9.211:/home/bot/test_folder test.txt</span><br><span class="line">scp 10.0.9.211:/home/bot/test_folder/test.txt test.txt</span><br></pre></td></tr></table></figure>
+
+<h4 id="传输整个目录"><a href="#传输整个目录" class="headerlink" title="传输整个目录"></a>传输整个目录</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp -r /test_folder bot@10.0.9.211:/home/bot/test_folder</span><br></pre></td></tr></table></figure>
+
+<h4 id="其他参数用法"><a href="#其他参数用法" class="headerlink" title="其他参数用法"></a>其他参数用法</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line">usage: scp [-12346BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]</span><br><span class="line">           [-l <span class="built_in">limit</span>] [-o ssh_option] [-P port] [-S program]</span><br><span class="line">           [[user@]host1:]file1 ... [[user@]host2:]file2</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>memo</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
       </tags>
   </entry>
 </search>
