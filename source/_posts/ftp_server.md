@@ -9,7 +9,7 @@ categories:
 
 
 
-1. 安装ftp和vsftpd
+#### 安装ftp和vsftpd
 
 ```bash
 sudo apt-get install ftp
@@ -20,7 +20,7 @@ sudo apt-get install vsftpd
 
 
 
-2. 启动服务
+#### 启动服务
 
 ```bash
 # 使用vsftpd软件，主要包括如下几个命令：
@@ -39,7 +39,7 @@ service vsftpd restart
 
 
 
-3. 配置vsftpd
+#### 配置vsftpd
 
 打开配置文件
 
@@ -75,7 +75,7 @@ local_root=/home/bot/dev/moma_app/scanner_images
 
 
 
-4. 重启服务
+#### 重启服务
 
 ```bash
 service vsftpd restart
@@ -85,7 +85,7 @@ service vsftpd restart
 
 
 
-5. 登录测试
+#### 登录测试
 
 ```bash
 # 登录本地ftp
