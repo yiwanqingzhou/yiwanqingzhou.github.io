@@ -58,19 +58,19 @@
   };
 </script>
 
-  <meta name="description" content="使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制从本地复制到远程1234scp test.txt bot@10.0.9.211:/home/bot/test_folderscp test.txt bot@10.0.9.211:/home/bot/test_folder/test.txtscp test.txt 10.0.9.211:/home/bot/te">
-<meta name="keywords" content="linux">
+  <meta name="description" content="CMake中设置编译选项1234567891011option(BUILD_VISUALIZATIONS &quot;Build visualization, default OFF&quot; OFF)message(&quot;BUILD_VISUALIZATIONS is $&amp;#123;BUILD_VISUALIZATIONS&amp;#125;&quot;)# 可以跟build type关联# if(CMAKE_BUILD_TYPE M">
+<meta name="keywords" content="cmake,编译">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用SCP远程拷贝文件">
-<meta property="og:url" content="https://yiwanqingzhou.github.io/posts/memo/scp.html">
+<meta property="og:title" content="CMake设置编译选项">
+<meta property="og:url" content="https://yiwanqingzhou.github.io/cmake-set-flag.html">
 <meta property="og:site_name" content="一晚清粥">
-<meta property="og:description" content="使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制从本地复制到远程1234scp test.txt bot@10.0.9.211:/home/bot/test_folderscp test.txt bot@10.0.9.211:/home/bot/test_folder/test.txtscp test.txt 10.0.9.211:/home/bot/te">
+<meta property="og:description" content="CMake中设置编译选项1234567891011option(BUILD_VISUALIZATIONS &quot;Build visualization, default OFF&quot; OFF)message(&quot;BUILD_VISUALIZATIONS is $&amp;#123;BUILD_VISUALIZATIONS&amp;#125;&quot;)# 可以跟build type关联# if(CMAKE_BUILD_TYPE M">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-10-22T03:30:01.442Z">
+<meta property="og:updated_time" content="2021-10-14T07:08:09.832Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用SCP远程拷贝文件">
-<meta name="twitter:description" content="使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制从本地复制到远程1234scp test.txt bot@10.0.9.211:/home/bot/test_folderscp test.txt bot@10.0.9.211:/home/bot/test_folder/test.txtscp test.txt 10.0.9.211:/home/bot/te">
-  <link rel="canonical" href="https://yiwanqingzhou.github.io/posts/memo/scp">
+<meta name="twitter:title" content="CMake设置编译选项">
+<meta name="twitter:description" content="CMake中设置编译选项1234567891011option(BUILD_VISUALIZATIONS &quot;Build visualization, default OFF&quot; OFF)message(&quot;BUILD_VISUALIZATIONS is $&amp;#123;BUILD_VISUALIZATIONS&amp;#125;&quot;)# 可以跟build type关联# if(CMAKE_BUILD_TYPE M">
+  <link rel="canonical" href="https://yiwanqingzhou.github.io/cmake-set-flag">
 
 
 <script id="page-configurations">
@@ -84,7 +84,7 @@
   };
 </script>
 
-  <title>使用SCP远程拷贝文件 | 一晚清粥</title>
+  <title>CMake设置编译选项 | 一晚清粥</title>
   
 
 
@@ -248,7 +248,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/posts/memo/scp.html">
+    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/cmake-set-flag.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="清粥">
@@ -260,10 +260,10 @@
       <meta itemprop="name" content="一晚清粥">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">使用SCP远程拷贝文件
+        <h2 class="post-title" itemprop="name headline">CMake设置编译选项
 
           
-        </h1>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -276,7 +276,7 @@
                 
               
 
-              <time title="创建时间：2021-10-22 11:15:01 / 修改时间：11:30:01" itemprop="dateCreated datePublished" datetime="2021-10-22T11:15:01+08:00">2021-10-22</time>
+              <time title="创建时间：2021-10-14 10:03:57 / 修改时间：15:08:09" itemprop="dateCreated datePublished" datetime="2021-10-14T10:03:57+08:00">2021-10-14</time>
             </span>
           
             
@@ -289,7 +289,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/memo/" itemprop="url" rel="index"><span itemprop="name">memo</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/note/" itemprop="url" rel="index"><span itemprop="name">note</span></a></span>
 
                 
                 
@@ -308,14 +308,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p> 使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制</p><h4 id="从本地复制到远程"><a href="#从本地复制到远程" class="headerlink" title="从本地复制到远程"></a>从本地复制到远程</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scp test.txt bot@10.0.9.211:/home/bot/test_folder</span><br><span class="line">scp test.txt bot@10.0.9.211:/home/bot/test_folder/test.txt</span><br><span class="line">scp test.txt 10.0.9.211:/home/bot/test_folder</span><br><span class="line">scp test.txt 10.0.9.211:/home/bot/test_folder/test.txt</span><br></pre></td></tr></table></figure><a id="more"></a>
+        <h4 id="CMake中设置编译选项"><a href="#CMake中设置编译选项" class="headerlink" title="CMake中设置编译选项"></a>CMake中设置编译选项</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">option</span>(BUILD_VISUALIZATIONS <span class="string">"Build visualization, default OFF"</span> <span class="keyword">OFF</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">"BUILD_VISUALIZATIONS is $&#123;BUILD_VISUALIZATIONS&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以跟build type关联</span></span><br><span class="line"><span class="comment"># if(CMAKE_BUILD_TYPE MATCHES Debug OR CMAKE_BUILD_TYPE MATCHES DEBUG)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(BUILD_VISUALIZATIONS)</span><br><span class="line"><span class="keyword">add_definitions</span>(-DBUILD_VISUALIZATIONS)</span><br><span class="line"><span class="comment"># target_compile_definitions($&#123;project_name&#125; PRIVATE BUILD_VISUALIZATIONS)</span></span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure><a id="more"></a>
 
+<h4 id="代码中作为宏"><a href="#代码中作为宏" class="headerlink" title="代码中作为宏"></a>代码中作为宏</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> BUILD_VISUALIZATIONS</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(<span class="keyword">const</span> <span class="keyword">cloud_ptr_t</span>&amp; cloud_ptr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"visualizations on"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// visualize cloud</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(Args...)</span> </span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"pass visualizations"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 
-<h4 id="从远程复制到本地"><a href="#从远程复制到本地" class="headerlink" title="从远程复制到本地"></a>从远程复制到本地</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scp bot@10.0.9.211:/home/bot/test_folder text.txt</span><br><span class="line">scp bot@10.0.9.211:/home/bot/test_folder/test.txt test.txt</span><br><span class="line">scp 10.0.9.211:/home/bot/test_folder test.txt</span><br><span class="line">scp 10.0.9.211:/home/bot/test_folder/test.txt test.txt</span><br></pre></td></tr></table></figure>
-
-<h4 id="传输整个目录"><a href="#传输整个目录" class="headerlink" title="传输整个目录"></a>传输整个目录</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r /test_folder bot@10.0.9.211:/home/bot/test_folder</span><br></pre></td></tr></table></figure>
-
-<h4 id="其他参数用法"><a href="#其他参数用法" class="headerlink" title="其他参数用法"></a>其他参数用法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scp --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line">usage: scp [-12346BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]</span><br><span class="line">           [-l <span class="built_in">limit</span>] [-o ssh_option] [-P port] [-S program]</span><br><span class="line">           [[user@]host1:]file1 ... [[user@]host2:]file2</span><br></pre></td></tr></table></figure>
+<h4 id="编译时传入参数"><a href="#编译时传入参数" class="headerlink" title="编译时传入参数"></a>编译时传入参数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--cmake-args -DBUILD_VISUALIZATIONS=ON</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -332,7 +329,9 @@
           
           <div class="post-tags">
             
-              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/cmake/" rel="tag"># cmake</a>
+            
+              <a href="/tags/编译/" rel="tag"># 编译</a>
             
           </div>
         
@@ -342,8 +341,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/posts/note/boost-options-description.html" rel="next" title="使用boost::program_options解析命令行选项">
-                  <i class="fa fa-chevron-left"></i> 使用boost::program_options解析命令行选项
+                <a href="/extract_from_rar.html" rel="next" title="Linux 解压缩rar包">
+                  <i class="fa fa-chevron-left"></i> Linux 解压缩rar包
                 </a>
               
             </div>
@@ -351,6 +350,10 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/boost-options-description.html" rel="prev" title="C++ 使用boost::program_options解析命令行选项">
+                  C++ 使用boost::program_options解析命令行选项 <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -399,7 +402,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#从本地复制到远程"><span class="nav-number">1.</span> <span class="nav-text">从本地复制到远程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从远程复制到本地"><span class="nav-number">2.</span> <span class="nav-text">从远程复制到本地</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传输整个目录"><span class="nav-number">3.</span> <span class="nav-text">传输整个目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他参数用法"><span class="nav-number">4.</span> <span class="nav-text">其他参数用法</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#CMake中设置编译选项"><span class="nav-number">1.</span> <span class="nav-text">CMake中设置编译选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码中作为宏"><span class="nav-number">2.</span> <span class="nav-text">代码中作为宏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编译时传入参数"><span class="nav-number">3.</span> <span class="nav-text">编译时传入参数</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
