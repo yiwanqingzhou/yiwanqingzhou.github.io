@@ -1,17 +1,19 @@
 ---
-title: 使用boost::program_options解析命令行选项
+title: C++ 使用boost::program_options解析命令行选项
 date: 2021-10-21 12:07:32
 tags:
 - c++
 categories:
 - note
-encrypt:
-description:
 ---
 
 
 
 Boost.ProgramOptions是Boost中一个专门用来解析命令行的库，其目标是轻松的解析命令行选项。
+
+
+
+<!-- more -->
 
 
 
@@ -77,5 +79,7 @@ target_link_libraries(myTarget ${Boost_LIBRARIES} )
 
 
 
-[官方Tutorial参考][https://www.boost.org/doc/libs/1_63_0/doc/html/program_options/tutorial.html#idp523371328]
+[官方Tutorial参考](https://www.boost.org/doc/libs/1_63_0/doc/html/program_options/tutorial.html#idp523371328)
+
+
 

@@ -1,5 +1,5 @@
 ---
-title: vscode clang format
+title: vscode 使用clang格式化代码
 date: 2019-09-04 13:52:31
 tags:
 - vscode

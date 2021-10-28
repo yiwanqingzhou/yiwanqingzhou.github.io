@@ -16,7 +16,8 @@ timezone:
 url: https://yiwanqingzhou.github.io/
 root: /
 #permalink: :year/:month/:day/:title/
-permalink: posts/:category/:title.html
+#permalink: posts/:category/:title.html
+permalink: :title.html
 permalink_defaults:
 
 # Directory

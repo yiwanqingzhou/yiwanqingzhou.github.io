@@ -1,17 +1,20 @@
 ---
-title: 使用SCP远程拷贝文件
+title: Linux 使用SCP远程拷贝文件
 date: 2021-10-22 11:15:01
 tags:
 - linux
 categories:
 - memo
 encrypt:
-description:
 ---
 
 
 
  使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制
+
+
+
+<!-- more -->
 
 
 

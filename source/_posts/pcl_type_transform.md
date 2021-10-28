@@ -50,6 +50,8 @@ cloud_ptr=cloud.makeShared();
 
 
 
+<!-- more -->
+
 
 
 #### 不同数据类型的点云转换

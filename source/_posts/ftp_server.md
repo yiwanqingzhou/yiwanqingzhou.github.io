@@ -1,5 +1,5 @@
 ---
-title: linux搭建ftp服务器
+title: linux 搭建FTP服务器
 date: 2021-06-30 10:42:35
 tags:
 - linux

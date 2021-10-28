@@ -1,5 +1,5 @@
 ---
-title: 代码自动格式化
+title: Linux 代码自动格式化
 date: 2021-09-17 17:59:23
 tags:
 - linux
