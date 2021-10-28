@@ -58,18 +58,18 @@
   };
 </script>
 
-  <meta name="description" content="使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制从本地复制到远程1234scp test.txt bot@10.0.9.211:/home/bot/test_folderscp test.txt bot@10.0.9.211:/home/bot/test_folder/test.txtscp test.txt 10.0.9.211:/home/bot/te">
+  <meta name="description" content="使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux 使用SCP远程拷贝文件">
 <meta property="og:url" content="https://yiwanqingzhou.github.io/scp.html">
 <meta property="og:site_name" content="一晚清粥">
-<meta property="og:description" content="使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制从本地复制到远程1234scp test.txt bot@10.0.9.211:/home/bot/test_folderscp test.txt bot@10.0.9.211:/home/bot/test_folder/test.txtscp test.txt 10.0.9.211:/home/bot/te">
+<meta property="og:description" content="使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-10-26T10:35:01.240Z">
+<meta property="og:updated_time" content="2021-10-28T08:12:56.446Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 使用SCP远程拷贝文件">
-<meta name="twitter:description" content="使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制从本地复制到远程1234scp test.txt bot@10.0.9.211:/home/bot/test_folderscp test.txt bot@10.0.9.211:/home/bot/test_folder/test.txtscp test.txt 10.0.9.211:/home/bot/te">
+<meta name="twitter:description" content="使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制">
   <link rel="canonical" href="https://yiwanqingzhou.github.io/scp">
 
 
@@ -287,7 +287,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-26 18:35:01" itemprop="dateModified" datetime="2021-10-26T18:35:01+08:00">2021-10-26</time>
+                <time title="修改时间：2021-10-28 16:12:56" itemprop="dateModified" datetime="2021-10-28T16:12:56+08:00">2021-10-28</time>
               </span>
             
           
@@ -316,8 +316,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p> 使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制</p><h4 id="从本地复制到远程"><a href="#从本地复制到远程" class="headerlink" title="从本地复制到远程"></a>从本地复制到远程</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scp test.txt bot@10.0.9.211:/home/bot/test_folder</span><br><span class="line">scp test.txt bot@10.0.9.211:/home/bot/test_folder/test.txt</span><br><span class="line">scp test.txt 10.0.9.211:/home/bot/test_folder</span><br><span class="line">scp test.txt 10.0.9.211:/home/bot/test_folder/test.txt</span><br></pre></td></tr></table></figure><a id="more"></a>
+        <p> 使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制</p>
+<a id="more"></a>
 
+
+
+<h4 id="从本地复制到远程"><a href="#从本地复制到远程" class="headerlink" title="从本地复制到远程"></a>从本地复制到远程</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scp test.txt bot@10.0.9.211:/home/bot/test_folder</span><br><span class="line">scp test.txt bot@10.0.9.211:/home/bot/test_folder/test.txt</span><br><span class="line">scp test.txt 10.0.9.211:/home/bot/test_folder</span><br><span class="line">scp test.txt 10.0.9.211:/home/bot/test_folder/test.txt</span><br></pre></td></tr></table></figure>
 
 <h4 id="从远程复制到本地"><a href="#从远程复制到本地" class="headerlink" title="从远程复制到本地"></a>从远程复制到本地</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scp bot@10.0.9.211:/home/bot/test_folder text.txt</span><br><span class="line">scp bot@10.0.9.211:/home/bot/test_folder/test.txt test.txt</span><br><span class="line">scp 10.0.9.211:/home/bot/test_folder test.txt</span><br><span class="line">scp 10.0.9.211:/home/bot/test_folder/test.txt test.txt</span><br></pre></td></tr></table></figure>
 
@@ -479,9 +483,12 @@
   </span>
   <span class="author" itemprop="copyrightHolder">清粥</span>
 </div>
+
+<!--
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
+-->
 
         
 
