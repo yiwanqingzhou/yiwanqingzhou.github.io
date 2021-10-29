@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+  <meta name="google-site-verification" content="google-site-verification=gnN6UKVdDQIcnFPlGii5rIDQXchNJsPLgDTEFBWaQwM">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Droid Sans Fallback:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="std::future 是C++11 的一个模板类，提供了一种用于访问异步操作结果的机制。可以用来获取异步任务的结果，因此可以把它当成一种简单的线程间同步的手段。 设想这样的情况，你希望一个线程进行工作A，同时你在做一些其他的工作，你希望在某个特定的时间获取那个工作A的结果。在c++11，这个可以轻松被 std::future 实现。而由于它是一个模板类，可以返回任何类型的结果。">
+<meta name="keywords" content="c++,async,并发编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++并发编程：std::future的使用">
+<meta property="og:url" content="https://yiwanqingzhou.github.io/std-future.html">
+<meta property="og:site_name" content="一晚清粥">
+<meta property="og:description" content="std::future 是C++11 的一个模板类，提供了一种用于访问异步操作结果的机制。可以用来获取异步任务的结果，因此可以把它当成一种简单的线程间同步的手段。 设想这样的情况，你希望一个线程进行工作A，同时你在做一些其他的工作，你希望在某个特定的时间获取那个工作A的结果。在c++11，这个可以轻松被 std::future 实现。而由于它是一个模板类，可以返回任何类型的结果。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-10-29T10:27:52.920Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++并发编程：std::future的使用">
+<meta name="twitter:description" content="std::future 是C++11 的一个模板类，提供了一种用于访问异步操作结果的机制。可以用来获取异步任务的结果，因此可以把它当成一种简单的线程间同步的手段。 设想这样的情况，你希望一个线程进行工作A，同时你在做一些其他的工作，你希望在某个特定的时间获取那个工作A的结果。在c++11，这个可以轻松被 std::future 实现。而由于它是一个模板类，可以返回任何类型的结果。">
+  <link rel="canonical" href="https://yiwanqingzhou.github.io/std-future">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>C++并发编程：std::future的使用 | 一晚清粥</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一晚清粥</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/std-future.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="清粥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一晚清粥">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">C++并发编程：std::future的使用
+
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2021-10-29 16:39:55 / 修改时间：18:27:52" itemprop="dateCreated datePublished" datetime="2021-10-29T16:39:55+08:00">2021-10-29</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><code>std::future</code> 是C++11 的一个模板类，<strong>提供了一种用于访问异步操作结果的机制</strong>。可以用来获取异步任务的结果，因此可以把它当成一种简单的线程间同步的手段。</p>
+<p>设想这样的情况，你希望一个线程进行工作A，同时你在做一些其他的工作，你希望在某个特定的时间获取那个工作A的结果。在c++11，这个可以轻松被 <code>std::future</code> 实现。而由于它是一个模板类，可以返回任何类型的结果。</p>
+<a id="more"></a>
+
+
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::future&lt;Result&gt; fut = <span class="built_in">std</span>::async(<span class="built_in">std</span>::launch::async, []() &#123;<span class="keyword">return</span> A();&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="comment">// 进行别的工作</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取A的结果 </span></span><br><span class="line">Result result = fut.get();</span><br></pre></td></tr></table></figure>
+
+<h4 id="用法说明"><a href="#用法说明" class="headerlink" title="用法说明"></a>用法说明</h4><p><code>std::future</code> 对象通常由某个 <code>Provider</code> 创建，你可以把 <code>Provider</code> 想象成一个异步任务的提供者，<code>Provider</code> 在某个线程中设置共享状态的值，与该共享状态相关联的 <code>std::future</code> 对象（通常在另外一个线程中）调用 <code>std::future::get()</code> 获取该值。如果共享状态的标志不为 <code>std::future_status::ready</code>，则调用 <code>get()</code> 会<strong>阻塞</strong>当前的调用者，直到 <code>Provider</code> 设置了共享状态的值，<code>get()</code> 返回异步任务的返回值或发生的异常。</p>
+<h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><p><code>std::future</code> 的拷贝构造函数和普通赋值操作是被禁用的，只提供了默认的构造函数和 <code>move</code> 构造函数。默认构造函数构造的对象没有共享状态，因此它是无效的，但是可以通过移动赋值的方式将一个有效的<code>future</code> 值赋值给它。</p>
+<p>一个有效的 <code>std::future</code> 对象通常由以下三种 <code>Provider</code> 创建，并和某个共享状态相关联。</p>
+<ul>
+<li><code>std::async()</code> 函数</li>
+<li><code>std::promise::get_future()</code>，为 <code>promise</code> 类的成员函数</li>
+<li><code>std::packaged_task::get_future()</code>，为 <code>packaged_task</code> 的成员函数</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> d)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::future&lt;<span class="keyword">int</span>&gt; fut;           <span class="comment">// 默认构造函数</span></span><br><span class="line">fut = <span class="built_in">std</span>::async(<span class="built_in">std</span>::async(test, <span class="number">1</span>));   <span class="comment">// move-赋值操作。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="成员函数"><a href="#成员函数" class="headerlink" title="成员函数"></a>成员函数</h4><ul>
+<li><p><code>bool valid()</code></p>
+<p>检查共享状态的有效性，返回当前的 <code>future</code> 对象是否与共享状态关联。一旦调用了 <code>std::future::get()</code> 函数，再调用此函数将返回 <code>false</code> 。</p>
+</li>
+<li><p><code>void wait()</code></p>
+<ul>
+<li>等待共享状态就绪</li>
+<li>如果共享状态尚未就绪(即未返回或发生异常)，则该函数将阻塞调用的线程直到就绪</li>
+<li>当共享状态就绪后，则该函数将取消阻塞并void返回</li>
+</ul>
+</li>
+<li><p><code>std::future_status wait_for(std::chrono::duration span)</code></p>
+<ul>
+<li>在指定的时间内等待共享状态就绪</li>
+<li>如果共享状态尚未就绪，则该函数将阻塞调用的线程直到就绪或已达到设置的时间</li>
+<li>返回<code>std::future_status</code>：<code>ready</code> / <code>timeout</code> / <code>deferred</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(d));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::future&lt;<span class="keyword">bool</span>&gt; fut = <span class="built_in">std</span>::move(<span class="built_in">std</span>::async(test, <span class="number">1</span>));</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">    <span class="keyword">auto</span> future_status = fut.wait_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">2</span>));</span><br><span class="line">    <span class="keyword">auto</span> end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">    <span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt; elapsed_seconds = end - start;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"waited for : "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> result = fut.get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">waited for : 1.00856s</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p><code>std::future_status wait_until(std::chrono::time_point point)</code></p>
+<ul>
+<li>在指定的时间点前等待共享状态准备就绪</li>
+<li>如果共享状态尚未就绪，则该函数将阻塞调用的线程直到就绪或已达到指定的时间点</li>
+<li>返回<code>std::future_status</code>：<code>ready</code> / <code>timeout</code> / <code>deferred</code></li>
+</ul>
+</li>
+<li><p><code>_Res get()</code></p>
+<ul>
+<li>当共享状态就绪时，返回存储在共享状态中的值(或抛出异常)</li>
+<li>如果共享状态尚未就绪，则该函数将阻塞调用的线程直到就绪，相当于 <code>wait()</code> 再 <code>get()</code></li>
+<li>当共享状态就绪后，则该函数将取消阻塞并返回释放其共享状态，这使得 <code>future</code> 对象不再有效，因此对于每一个 <code>future</code> 共享状态，<code>get()</code>函数最多应被调用一次</li>
+<li><code>std::future&lt;void&gt;::get()</code> 不返回任何值，但仍等待共享状态就绪并释放它</li>
+</ul>
+</li>
+<li><p><code>std::shared_future&lt;_Res&gt; share()</code></p>
+<ul>
+<li>返回一个 <code>std::shared_future</code> 对象，该对象获取 <code>future</code> 对象的共享状态。<code>future</code> 对象将不再有效。</li>
+</ul>
+</li>
+</ul>
+<h4 id="简单例子"><a href="#简单例子" class="headerlink" title="简单例子"></a>简单例子</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;future&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test()\n"</span>;</span><br><span class="line">  <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">5</span>));</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"5 sec later..\n"</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::future&lt;<span class="keyword">bool</span>&gt; fut = <span class="built_in">std</span>::move(<span class="built_in">std</span>::async(test, <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"waiting..\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// -1-</span></span><br><span class="line">  <span class="keyword">auto</span> timeout = <span class="built_in">std</span>::chrono::seconds(<span class="number">2</span>);</span><br><span class="line">  <span class="built_in">std</span>::future_status future_status = fut.wait_for(timeout);</span><br><span class="line">  <span class="keyword">if</span> (future_status != <span class="built_in">std</span>::future_status::ready)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 sec timeout!\n"</span>;</span><br><span class="line">    <span class="comment">// return -1;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// -2-</span></span><br><span class="line">  fut.wait();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">bool</span> result = fut.get();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"\nresult : "</span> &lt;&lt; result &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="std-shared-future"><a href="#std-shared-future" class="headerlink" title="std::shared_future"></a><code>std::shared_future</code></h4><p><code>shared_future</code> 与 <code>future</code> 类似，但是允许多个线程等待同一个共享状态。 <code>shared_future</code> 既支持移动操作也支持拷贝操作，而且多个 <code>shared_future</code> 对象可以引用相同的共享状态，还允许多次检索共享状态下的值（多次调用 <code>get()</code> ）。</p>
+<p><code>shared_future</code> 可以通过某个 <code>future</code> 对象隐式转换，或者通过 <code>std::future::share()</code> 显示转换，无论哪种转换，被转换的那个 <code>std::future</code> 对象都会变为 <code>not-valid</code>.</p>
+<h4 id="std-launch"><a href="#std-launch" class="headerlink" title="std::launch"></a><strong>std::launch</strong></h4><p>该枚举类型主要是在调用<code>std::async</code> 设置异步任务的启动策略的。</p>
+<p><code>std::async</code>的原型:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::async(<span class="built_in">std</span>::launch::async | <span class="built_in">std</span>::launch::deferred, f, args...)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>std::launch::async</code></p>
+<p> 表示在调用<code>async</code>函数的时候就开始创建新线程。</p>
+</li>
+<li><p><code>std::launch::deferred</code></p>
+<p>表示延迟调用，在调用 <code>future</code> 中的 <code>wait()</code> 或者 <code>get()</code> 函数时，才执行入口函数。（实际上，并没有创建新线程，只是在主线程中调用的入口函数）</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// async</span></span><br><span class="line"><span class="keyword">auto</span> fut = <span class="built_in">std</span>::async([]() &#123;<span class="keyword">return</span> A();&#125;);</span><br><span class="line"><span class="keyword">auto</span> fut = <span class="built_in">std</span>::async(<span class="built_in">std</span>::launch::async, []() &#123;<span class="keyword">return</span> A();&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// deferred</span></span><br><span class="line"><span class="keyword">auto</span> fut = <span class="built_in">std</span>::async(<span class="built_in">std</span>::launch::deferred, []() &#123;<span class="keyword">return</span> A();&#125;);</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/c/" rel="tag"># c++</a>
+            
+              <a href="/tags/async/" rel="tag"># async</a>
+            
+              <a href="/tags/并发编程/" rel="tag"># 并发编程</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/condition-variable.html" rel="next" title="C++并发编程：条件变量std::condition_variable的使用">
+                  <i class="fa fa-chevron-left"></i> C++并发编程：条件变量std::condition_variable的使用
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#用法说明"><span class="nav-number">1.</span> <span class="nav-text">用法说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建"><span class="nav-number">2.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#成员函数"><span class="nav-number">3.</span> <span class="nav-text">成员函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单例子"><span class="nav-number">4.</span> <span class="nav-text">简单例子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#std-shared-future"><span class="nav-number">5.</span> <span class="nav-text">std::shared_future</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#std-launch"><span class="nav-number">6.</span> <span class="nav-text">std::launch</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">清粥</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">清粥</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
+-->
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
