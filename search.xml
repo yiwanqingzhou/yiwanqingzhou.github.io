@@ -39,6 +39,45 @@
       </tags>
   </entry>
   <entry>
+    <title>CMake设置编译选项</title>
+    <url>/cmake-set-flag.html</url>
+    <content><![CDATA[<h4 id="CMake中设置编译选项"><a href="#CMake中设置编译选项" class="headerlink" title="CMake中设置编译选项"></a>CMake中设置编译选项</h4><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">option</span>(BUILD_VISUALIZATIONS <span class="string">"Build visualization, default OFF"</span> <span class="keyword">OFF</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">"BUILD_VISUALIZATIONS is $&#123;BUILD_VISUALIZATIONS&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以跟build type关联</span></span><br><span class="line"><span class="comment"># if(CMAKE_BUILD_TYPE MATCHES Debug OR CMAKE_BUILD_TYPE MATCHES DEBUG)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(BUILD_VISUALIZATIONS)</span><br><span class="line"><span class="keyword">add_definitions</span>(-DBUILD_VISUALIZATIONS)</span><br><span class="line"><span class="comment"># target_compile_definitions($&#123;project_name&#125; PRIVATE BUILD_VISUALIZATIONS)</span></span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+<h4 id="代码中作为宏"><a href="#代码中作为宏" class="headerlink" title="代码中作为宏"></a>代码中作为宏</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> BUILD_VISUALIZATIONS</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(<span class="keyword">const</span> <span class="keyword">cloud_ptr_t</span>&amp; cloud_ptr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"visualizations on"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// visualize cloud</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(Args...)</span> </span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"pass visualizations"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="编译时传入参数"><a href="#编译时传入参数" class="headerlink" title="编译时传入参数"></a>编译时传入参数</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--cmake-args -DBUILD_VISUALIZATIONS=ON</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>cmake</category>
+      </categories>
+      <tags>
+        <tag>cmake</tag>
+        <tag>编译</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Debian添加最小化按钮</title>
+    <url>/debian_minimize_botton.html</url>
+    <content><![CDATA[<p>安装tweak和dconf</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install gnome-tweak-tool</span><br><span class="line">sudo apt install dconf-editor </span><br><span class="line">dconf-editor</span><br></pre></td></tr></table></figure><p>进入路径: <code>org/gnome/desktop/wm/preferences/button-layout</code></p><img src="/debian_minimize_botton/test.png" title="debian_minimize_botton"><p>取消选项 Use default value</p><a id="more"></a>
+
+
+
+
+
+
+
+
+<p>在 Custom value 填入 <code>appmemu:close,minimize,maximize,close</code></p>
+]]></content>
+      <categories>
+        <category>memo</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++并发编程：条件变量std::condition_variable的使用</title>
     <url>/condition-variable.html</url>
     <content><![CDATA[<p><code>std::condition_variable</code> 是 C++11 多线程编程中的条件变量。</p>
@@ -73,45 +112,6 @@
         <tag>c++</tag>
         <tag>async</tag>
         <tag>并发编程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Debian添加最小化按钮</title>
-    <url>/debian_minimize_botton.html</url>
-    <content><![CDATA[<p>安装tweak和dconf</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install gnome-tweak-tool</span><br><span class="line">sudo apt install dconf-editor </span><br><span class="line">dconf-editor</span><br></pre></td></tr></table></figure><p>进入路径: <code>org/gnome/desktop/wm/preferences/button-layout</code></p><img src="/debian_minimize_botton/test.png" title="debian_minimize_botton"><p>取消选项 Use default value</p><a id="more"></a>
-
-
-
-
-
-
-
-
-<p>在 Custom value 填入 <code>appmemu:close,minimize,maximize,close</code></p>
-]]></content>
-      <categories>
-        <category>memo</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CMake设置编译选项</title>
-    <url>/cmake-set-flag.html</url>
-    <content><![CDATA[<h4 id="CMake中设置编译选项"><a href="#CMake中设置编译选项" class="headerlink" title="CMake中设置编译选项"></a>CMake中设置编译选项</h4><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">option</span>(BUILD_VISUALIZATIONS <span class="string">"Build visualization, default OFF"</span> <span class="keyword">OFF</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">"BUILD_VISUALIZATIONS is $&#123;BUILD_VISUALIZATIONS&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以跟build type关联</span></span><br><span class="line"><span class="comment"># if(CMAKE_BUILD_TYPE MATCHES Debug OR CMAKE_BUILD_TYPE MATCHES DEBUG)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(BUILD_VISUALIZATIONS)</span><br><span class="line"><span class="keyword">add_definitions</span>(-DBUILD_VISUALIZATIONS)</span><br><span class="line"><span class="comment"># target_compile_definitions($&#123;project_name&#125; PRIVATE BUILD_VISUALIZATIONS)</span></span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-<h4 id="代码中作为宏"><a href="#代码中作为宏" class="headerlink" title="代码中作为宏"></a>代码中作为宏</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> BUILD_VISUALIZATIONS</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(<span class="keyword">const</span> <span class="keyword">cloud_ptr_t</span>&amp; cloud_ptr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"visualizations on"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// visualize cloud</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(Args...)</span> </span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"pass visualizations"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-<h4 id="编译时传入参数"><a href="#编译时传入参数" class="headerlink" title="编译时传入参数"></a>编译时传入参数</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--cmake-args -DBUILD_VISUALIZATIONS=ON</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>cmake</category>
-      </categories>
-      <tags>
-        <tag>cmake</tag>
-        <tag>编译</tag>
       </tags>
   </entry>
   <entry>
@@ -174,9 +174,9 @@
         <category>memo</category>
       </categories>
       <tags>
+        <tag>clang</tag>
         <tag>linux</tag>
         <tag>format</tag>
-        <tag>clang</tag>
       </tags>
   </entry>
   <entry>

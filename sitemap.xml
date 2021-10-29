@@ -116,21 +116,7 @@
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/tags/async/</loc>
-    <lastmod>2021-10-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://yiwanqingzhou.github.io/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</loc>
-    <lastmod>2021-10-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://yiwanqingzhou.github.io/tags/linux/</loc>
+    <loc>https://yiwanqingzhou.github.io/tags/clang/</loc>
     <lastmod>2021-10-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -151,28 +137,21 @@
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/tags/pcl/</loc>
+    <loc>https://yiwanqingzhou.github.io/tags/linux/</loc>
     <lastmod>2021-10-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/tags/scp/</loc>
+    <loc>https://yiwanqingzhou.github.io/tags/async/</loc>
     <lastmod>2021-10-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/tags/ftp/</loc>
-    <lastmod>2021-10-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://yiwanqingzhou.github.io/tags/format/</loc>
+    <loc>https://yiwanqingzhou.github.io/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2021-10-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -186,7 +165,28 @@
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/tags/clang/</loc>
+    <loc>https://yiwanqingzhou.github.io/tags/format/</loc>
+    <lastmod>2021-10-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/ftp/</loc>
+    <lastmod>2021-10-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/scp/</loc>
+    <lastmod>2021-10-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/pcl/</loc>
     <lastmod>2021-10-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -195,7 +195,7 @@
 
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/categories/note/</loc>
+    <loc>https://yiwanqingzhou.github.io/categories/c/</loc>
     <lastmod>2021-10-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -203,13 +203,6 @@
   
   <url>
     <loc>https://yiwanqingzhou.github.io/categories/memo/</loc>
-    <lastmod>2021-10-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://yiwanqingzhou.github.io/categories/c/</loc>
     <lastmod>2021-10-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
