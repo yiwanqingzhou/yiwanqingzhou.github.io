@@ -3,6 +3,7 @@ title: Linux 使用SCP远程拷贝文件
 date: 2021-10-22 11:15:01
 tags:
 - linux
+- scp
 categories:
 - memo
 encrypt:

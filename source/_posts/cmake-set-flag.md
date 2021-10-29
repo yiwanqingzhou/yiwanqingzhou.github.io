@@ -5,7 +5,7 @@ tags:
 - cmake
 - 编译
 categories:
-- note
+- cmake
 encrypt:
 description:
 ---

@@ -1,12 +1,12 @@
 ---
-title: C++并发编程：条件变量std::condition_variable
+title: C++并发编程：条件变量std::condition_variable的使用
 date: 2021-10-27 16:43:24
 tags:
 - c++
 - async
 - 并发编程
 categories:
-- note
+- c++
 keywords:
 description:
 ---
