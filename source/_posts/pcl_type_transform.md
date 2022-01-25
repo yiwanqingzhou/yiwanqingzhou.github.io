@@ -10,7 +10,7 @@ categories:
 
 
 
-#### PCL相关的对象与指针互换
+#### PCL相关类型 对象与指针互换
 
 1. pcl::PointIndices -> pcl::PointIndices::Ptr
 
@@ -31,7 +31,16 @@ inliers=*inliers_ptr;
 
 
 
-3. pcl::PointCloud<PointT> -> pcl::PointCloud<PointT>::Ptr
+3. std::vector<int> -> pcl::IndicesPtr
+
+```c++
+std::vector<int> vec_indices;
+pcl::IndicesPtr indices_ptr = boost::make_shared<std::vector<int>>(vec_indices);
+```
+
+
+
+4. pcl::PointCloud<PointT> -> pcl::PointCloud<PointT>::Ptr
 
 ```c++
 PointCloud<PointT>::Ptr cloud_ptr(new pcl::PointCloud<PointT>);
@@ -41,7 +50,7 @@ cloud=*cloud_ptr;
 
 
 
-4. pcl::PointCloud<PointT>::Ptr -> pcl::PointCloud<PointT>
+5. pcl::PointCloud<PointT>::Ptr -> pcl::PointCloud<PointT>
 
 ```c++
 PointCloud<PointT>::Ptr cloud_ptr(new pcl::PointCloud<PointT>);
@@ -50,8 +59,6 @@ cloud_ptr=cloud.makeShared();
 ```
 
 
-
-<!-- more -->
 
 
 
@@ -65,3 +72,4 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_ori(new pcl::PointCloud<pcl::PointX
 pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>);
 pcl::copyPointCloud(*cloud_ori, *cloud);
 ```
+
