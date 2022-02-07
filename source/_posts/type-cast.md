@@ -23,7 +23,7 @@ description:
 
 
 
-## static_cast
+## 1. static_cast
 
 用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。
 
@@ -122,7 +122,7 @@ int main(int argc, char **argv)
 
 
 
-## dynamic_cast
+## 2. dynamic_cast
 
 动态转换，常用于将一个父类对象的指针转换为子类对象的指针或引用。其他三种都是编译时完成的，dynamic_cast是运行时处理的，运行时要进行类型检查。
 
@@ -245,7 +245,7 @@ b2 null
 
 
 
-## reinterpret_cast
+## 3. reinterpret_cast
 
 主要有三种强制转换用途：改变指针或引用的类型、将指针或引用转换为一个足够长度的整形、将整型转换为指针或引用类型。
 
@@ -264,7 +264,7 @@ double *d = reinterpret_cast<double *>(a);
 
 
 
-## const_cast
+## 4. const_cast
 
 `const` 限定符通常被用来限定变量，用于表示该变量的值不能被修改。而 `const_cast` 则正是用于强制去掉这种不能被修改的常数特性，但需要特别注意的是 `const_cast` 不是用于去除变量的常量性，而是去除指向常数对象的指针或引用的常量性，其去除常量性的对象必须为指针或引用。
 

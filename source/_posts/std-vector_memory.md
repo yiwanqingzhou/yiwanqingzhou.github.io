@@ -4,6 +4,7 @@ date: 2022-01-05 16:02:21
 tags:
 - c++
 - stl
+- vector
 categories:
 - c++
 keywords: 内存分配 C++ vector stl 顺序容器
@@ -30,7 +31,7 @@ description:
 
 
 
-#### 自动增长策略
+#### 1. 自动增长策略
 
 假设元素是连续存储的，并且容器的大小是可变的，如果此时向 vector 中添加新的元素，容器不可能简单地将它添加到内存的其它位置，因为元素必须是连续存储的。
 
@@ -84,7 +85,7 @@ int main(int argc, char **argv)
 
 
 
-#### 手动分配内存: reserve 和 resize
+#### 2. 手动分配内存: reserve 和 resize
 
 `std::vector ` 有自动分配内存的机制，但我们也可以通过`reserve()` 和 `resize()` 来手动分配内存，使其效率更高。
 
@@ -160,7 +161,7 @@ ele: 1 2 3 0 0
 
 
 
-#### 手动回收内存
+#### 3. 手动回收内存
 
 ##### erase
 

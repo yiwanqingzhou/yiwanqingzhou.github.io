@@ -4,6 +4,7 @@ date: 2021-09-26 09:57:35
 tags:
 - linux
 - uncompress
+- rar
 categories:
 - memo
 encrypt:

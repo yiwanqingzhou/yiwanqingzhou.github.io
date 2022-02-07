@@ -84,7 +84,9 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:yiwanqingzhou/yiwanqingzhou.github.io
+  repo: 
+    github: git@github.com:yiwanqingzhou/yiwanqingzhou.github.io
+    coding: git@e.coding.net:yiwanqingzhou/yiwanqingzhou/yiwanqingzhou.git
   branch: master
 
 # Sitemap
