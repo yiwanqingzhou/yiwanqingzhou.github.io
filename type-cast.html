@@ -58,18 +58,18 @@
   };
 </script>
 
-  <meta name="description" content="相比于C风格的强制类型转换，C++新增了关键字 static_cast、dynamic_cast、const_cast、reinterpret_cast ，用于强制类型转换。新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。static_cast用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。">
+  <meta name="description" content="相比于C风格的强制类型转换，C++新增了关键字 static_cast、dynamic_cast、const_cast、reinterpret_cast ，用于强制类型转换。新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。1. static_cast用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。">
 <meta name="keywords" content="static_cast,dynamic_cast,reinterpret_cast,const_cast">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 强制类型转换">
 <meta property="og:url" content="https://yiwanqingzhou.github.io/type-cast.html">
 <meta property="og:site_name" content="一晚清粥">
-<meta property="og:description" content="相比于C风格的强制类型转换，C++新增了关键字 static_cast、dynamic_cast、const_cast、reinterpret_cast ，用于强制类型转换。新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。static_cast用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。">
+<meta property="og:description" content="相比于C风格的强制类型转换，C++新增了关键字 static_cast、dynamic_cast、const_cast、reinterpret_cast ，用于强制类型转换。新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。1. static_cast用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2022-01-25T07:13:49.209Z">
+<meta property="og:updated_time" content="2022-02-07T02:46:04.357Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ 强制类型转换">
-<meta name="twitter:description" content="相比于C风格的强制类型转换，C++新增了关键字 static_cast、dynamic_cast、const_cast、reinterpret_cast ，用于强制类型转换。新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。static_cast用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。">
+<meta name="twitter:description" content="相比于C风格的强制类型转换，C++新增了关键字 static_cast、dynamic_cast、const_cast、reinterpret_cast ，用于强制类型转换。新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。1. static_cast用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。">
   <link rel="canonical" href="https://yiwanqingzhou.github.io/type-cast">
 
 
@@ -287,7 +287,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-25 15:13:49" itemprop="dateModified" datetime="2022-01-25T15:13:49+08:00">2022-01-25</time>
+                <time title="修改时间：2022-02-07 10:46:04" itemprop="dateModified" datetime="2022-02-07T10:46:04+08:00">2022-02-07</time>
               </span>
             
           
@@ -316,7 +316,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>相比于C风格的强制类型转换，C++新增了关键字 <code>static_cast</code>、<code>dynamic_cast</code>、<code>const_cast</code>、<code>reinterpret_cast</code> ，用于强制类型转换。</p><p>新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。</p><h2 id="static-cast"><a href="#static-cast" class="headerlink" title="static_cast"></a>static_cast</h2><p>用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。</p><a id="more"></a>
+        <p>相比于C风格的强制类型转换，C++新增了关键字 <code>static_cast</code>、<code>dynamic_cast</code>、<code>const_cast</code>、<code>reinterpret_cast</code> ，用于强制类型转换。</p><p>新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。</p><h2 id="1-static-cast"><a href="#1-static-cast" class="headerlink" title="1. static_cast"></a>1. static_cast</h2><p>用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。</p><a id="more"></a>
 
 
 <p>常用于：</p>
@@ -342,7 +342,7 @@
 <p>输出：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1A 32686</span><br><span class="line">1B 3</span><br><span class="line">1C 5</span><br></pre></td></tr></table></figure>
 
-<h2 id="dynamic-cast"><a href="#dynamic-cast" class="headerlink" title="dynamic_cast"></a>dynamic_cast</h2><p>动态转换，常用于将一个父类对象的指针转换为子类对象的指针或引用。其他三种都是编译时完成的，dynamic_cast是运行时处理的，运行时要进行类型检查。</p>
+<h2 id="2-dynamic-cast"><a href="#2-dynamic-cast" class="headerlink" title="2. dynamic_cast"></a>2. dynamic_cast</h2><p>动态转换，常用于将一个父类对象的指针转换为子类对象的指针或引用。其他三种都是编译时完成的，dynamic_cast是运行时处理的，运行时要进行类型检查。</p>
 <ul>
 <li><p>使用dynamic_cast进行转换的，基类中一定要有虚函数，否则编译不通过</p>
 </li>
@@ -371,7 +371,7 @@
 <p>输出：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1B 3</span><br><span class="line">b2 null</span><br></pre></td></tr></table></figure>
 
-<h2 id="reinterpret-cast"><a href="#reinterpret-cast" class="headerlink" title="reinterpret_cast"></a>reinterpret_cast</h2><p>主要有三种强制转换用途：改变指针或引用的类型、将指针或引用转换为一个足够长度的整形、将整型转换为指针或引用类型。</p>
+<h2 id="3-reinterpret-cast"><a href="#3-reinterpret-cast" class="headerlink" title="3. reinterpret_cast"></a>3. reinterpret_cast</h2><p>主要有三种强制转换用途：改变指针或引用的类型、将指针或引用转换为一个足够长度的整形、将整型转换为指针或引用类型。</p>
 <p><code>reinterpret_cast&lt;type_id&gt; (expression)</code></p>
 <ul>
 <li><p><code>type-id</code> 必须是一个指针、引用、算术类型、函数指针或者成员指针。</p>
@@ -381,7 +381,7 @@
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *a = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line"><span class="keyword">double</span> *d = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">double</span> *&gt;(a);</span><br></pre></td></tr></table></figure>
 
-<h2 id="const-cast"><a href="#const-cast" class="headerlink" title="const_cast"></a>const_cast</h2><p><code>const</code> 限定符通常被用来限定变量，用于表示该变量的值不能被修改。而 <code>const_cast</code> 则正是用于强制去掉这种不能被修改的常数特性，但需要特别注意的是 <code>const_cast</code> 不是用于去除变量的常量性，而是去除指向常数对象的指针或引用的常量性，其去除常量性的对象必须为指针或引用。</p>
+<h2 id="4-const-cast"><a href="#4-const-cast" class="headerlink" title="4. const_cast"></a>4. const_cast</h2><p><code>const</code> 限定符通常被用来限定变量，用于表示该变量的值不能被修改。而 <code>const_cast</code> 则正是用于强制去掉这种不能被修改的常数特性，但需要特别注意的是 <code>const_cast</code> 不是用于去除变量的常量性，而是去除指向常数对象的指针或引用的常量性，其去除常量性的对象必须为指针或引用。</p>
 <p><code>const_cast&lt;type_id&gt; (expression)</code></p>
 <ul>
 <li>该运算符用来修改类型的 <code>const</code> 或 <code>volatile</code> 属性，<code>type_id</code>和 <code>expression</code> 的类型是一样的</li>
@@ -474,7 +474,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#static-cast"><span class="nav-number">1.</span> <span class="nav-text">static_cast</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dynamic-cast"><span class="nav-number">2.</span> <span class="nav-text">dynamic_cast</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#std-dynamic-pointer-cast"><span class="nav-number">3.</span> <span class="nav-text">std::dynamic_pointer_cast</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reinterpret-cast"><span class="nav-number">4.</span> <span class="nav-text">reinterpret_cast</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#const-cast"><span class="nav-number">5.</span> <span class="nav-text">const_cast</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-static-cast"><span class="nav-number">1.</span> <span class="nav-text">1. static_cast</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-dynamic-cast"><span class="nav-number">2.</span> <span class="nav-text">2. dynamic_cast</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#std-dynamic-pointer-cast"><span class="nav-number">3.</span> <span class="nav-text">std::dynamic_pointer_cast</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-reinterpret-cast"><span class="nav-number">4.</span> <span class="nav-text">3. reinterpret_cast</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-const-cast"><span class="nav-number">5.</span> <span class="nav-text">4. const_cast</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->

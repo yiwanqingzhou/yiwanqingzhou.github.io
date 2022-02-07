@@ -2,7 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://yiwanqingzhou.github.io/constructor.html</loc>
-    <lastmod>2022-01-30</lastmod>
+    <lastmod>2022-02-07</lastmod>
+  </url>
+  <url>
+    <loc>https://yiwanqingzhou.github.io/std-vector_memory.html</loc>
+    <lastmod>2022-02-07</lastmod>
+  </url>
+  <url>
+    <loc>https://yiwanqingzhou.github.io/type-cast.html</loc>
+    <lastmod>2022-02-07</lastmod>
   </url>
   <url>
     <loc>https://yiwanqingzhou.github.io/push_back-emplace_back.html</loc>
@@ -11,14 +19,6 @@
   <url>
     <loc>https://yiwanqingzhou.github.io/extract_from_rar.html</loc>
     <lastmod>2022-01-29</lastmod>
-  </url>
-  <url>
-    <loc>https://yiwanqingzhou.github.io/std-vector_memory.html</loc>
-    <lastmod>2022-01-29</lastmod>
-  </url>
-  <url>
-    <loc>https://yiwanqingzhou.github.io/type-cast.html</loc>
-    <lastmod>2022-01-25</lastmod>
   </url>
   <url>
     <loc>https://yiwanqingzhou.github.io/pcl_type_transform.html</loc>
