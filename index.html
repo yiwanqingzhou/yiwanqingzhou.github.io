@@ -366,7 +366,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
             
-            <a href="/push_back-emplace_back.html" class="post-title-link" itemprop="url">C++ push_back vs emplace_back</a>
+            <a href="/push_back-emplace_back.html" class="post-title-link" itemprop="url">C++ push_back和emplace_back的区别</a>
           
         </h2>
 
@@ -392,7 +392,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-07 14:32:38" itemprop="dateModified" datetime="2022-02-07T14:32:38+08:00">2022-02-07</time>
+                <time title="修改时间：2022-02-07 15:02:07" itemprop="dateModified" datetime="2022-02-07T15:02:07+08:00">2022-02-07</time>
               </span>
             
           
@@ -421,8 +421,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><code>push_back()</code>向容器尾部添加元素时，首先会创建这个元素，然后再将这个元素拷贝或者移动到容器中(如果是拷贝的话，事后会自行销毁先前创建的这个元素)。</p>
-<p>而 <code>emplace_back()</code> 在实现时，则是直接在容器尾部创建这个元素，省去了拷贝或移动元素的过程。</p>
+          <p><code>push_back()</code>向容器尾部添加元素时，首先会创建这个元素，然后再将这个元素拷贝或者移动到容器中(如果是拷贝的话，事后会自行销毁先前创建的这个元素)。</p><p>而 <code>emplace_back()</code> 在实现时，则是直接在容器尾部创建这个元素，省去了拷贝或移动元素的过程。</p><p>事实上，大多数情况下二者没有区别，少数情况下 <code>emplace_back()</code> 效率更高，直接看下代码：</p>
           <!--noindex-->
           
             <div class="post-button text-center">
