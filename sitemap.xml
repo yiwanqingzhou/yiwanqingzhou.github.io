@@ -200,20 +200,6 @@
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/tags/format/</loc>
-    <lastmod>2022-04-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://yiwanqingzhou.github.io/tags/ftp/</loc>
-    <lastmod>2022-04-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://yiwanqingzhou.github.io/tags/uncompress/</loc>
     <lastmod>2022-04-10</lastmod>
     <changefreq>daily</changefreq>
@@ -228,7 +214,14 @@
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/tags/pcl/</loc>
+    <loc>https://yiwanqingzhou.github.io/tags/format/</loc>
+    <lastmod>2022-04-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/ftp/</loc>
     <lastmod>2022-04-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -236,6 +229,13 @@
   
   <url>
     <loc>https://yiwanqingzhou.github.io/tags/opencv/</loc>
+    <lastmod>2022-04-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/pcl/</loc>
     <lastmod>2022-04-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -307,14 +307,14 @@
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/categories/pcl/</loc>
+    <loc>https://yiwanqingzhou.github.io/categories/cv/</loc>
     <lastmod>2022-04-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/categories/cv/</loc>
+    <loc>https://yiwanqingzhou.github.io/categories/pcl/</loc>
     <lastmod>2022-04-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
