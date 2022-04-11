@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>vscode 使用clang格式化代码</title>
-    <url>/clang_format.html</url>
-    <content><![CDATA[<p>.clang-format文件存档</p>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">Language:        Cpp</span><br><span class="line"># BasedOnStyle:  LLVM</span><br><span class="line">AccessModifierOffset: -2</span><br><span class="line">AlignAfterOpenBracket: Align</span><br><span class="line">AlignConsecutiveAssignments: false</span><br><span class="line">AlignConsecutiveDeclarations: false</span><br><span class="line">AlignEscapedNewlinesLeft: false</span><br><span class="line">AlignOperands:   true</span><br><span class="line">AlignTrailingComments: true</span><br><span class="line">AllowAllParametersOfDeclarationOnNextLine: true</span><br><span class="line">AllowShortBlocksOnASingleLine: false</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line">AllowShortFunctionsOnASingleLine: All</span><br><span class="line">AllowShortIfStatementsOnASingleLine: false</span><br><span class="line">AllowShortLoopsOnASingleLine: false</span><br><span class="line">AlwaysBreakAfterDefinitionReturnType: None</span><br><span class="line">AlwaysBreakAfterReturnType: None</span><br><span class="line">AlwaysBreakBeforeMultilineStrings: false</span><br><span class="line">AlwaysBreakTemplateDeclarations: false</span><br><span class="line">BinPackArguments: true</span><br><span class="line">BinPackParameters: false</span><br><span class="line">BraceWrapping:</span><br><span class="line">  AfterClass:      false</span><br><span class="line">  AfterControlStatement: false</span><br><span class="line">  AfterEnum:       false</span><br><span class="line">  AfterFunction:   true</span><br><span class="line">  AfterNamespace:  false</span><br><span class="line">  AfterObjCDeclaration: false</span><br><span class="line">  AfterStruct:     true</span><br><span class="line">  AfterUnion:      true</span><br><span class="line">  BeforeCatch:     true</span><br><span class="line">  BeforeElse:      true</span><br><span class="line">  IndentBraces:    false</span><br><span class="line">BreakBeforeBinaryOperators: None</span><br><span class="line">BreakBeforeBraces: Allman</span><br><span class="line">BreakBeforeTernaryOperators: false</span><br><span class="line">BreakConstructorInitializersBeforeComma: false</span><br><span class="line">ColumnLimit:     0</span><br><span class="line">CommentPragmas:  &apos;^ IWYU pragma:&apos;</span><br><span class="line">ConstructorInitializerAllOnOneLineOrOnePerLine: false</span><br><span class="line">ConstructorInitializerIndentWidth: 4</span><br><span class="line">ContinuationIndentWidth: 4</span><br><span class="line">Cpp11BracedListStyle: true</span><br><span class="line">DerivePointerAlignment: false</span><br><span class="line">DisableFormat:   false</span><br><span class="line">ExperimentalAutoDetectBinPacking: false</span><br><span class="line">ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH ]</span><br><span class="line">IncludeCategories: </span><br><span class="line">  - Regex:           &apos;^&quot;(llvm|llvm-c|clang|clang-c)/&apos;</span><br><span class="line">    Priority:        2</span><br><span class="line">  - Regex:           &apos;^(&lt;|&quot;(gtest|isl|json)/)&apos;</span><br><span class="line">    Priority:        3</span><br><span class="line">  - Regex:           &apos;.*&apos;</span><br><span class="line">    Priority:        1</span><br><span class="line">IndentCaseLabels: false</span><br><span class="line">IndentWidth:     2</span><br><span class="line">IndentWrappedFunctionNames: false</span><br><span class="line">KeepEmptyLinesAtTheStartOfBlocks: true</span><br><span class="line">MacroBlockBegin: &apos;&apos;</span><br><span class="line">MacroBlockEnd:   &apos;&apos;</span><br><span class="line">MaxEmptyLinesToKeep: 1</span><br><span class="line">NamespaceIndentation: All</span><br><span class="line">ObjCBlockIndentWidth: 2</span><br><span class="line">ObjCSpaceAfterProperty: false</span><br><span class="line">ObjCSpaceBeforeProtocolList: true</span><br><span class="line">PenaltyBreakBeforeFirstCallParameter: 19</span><br><span class="line">PenaltyBreakComment: 300</span><br><span class="line">PenaltyBreakFirstLessLess: 120</span><br><span class="line">PenaltyBreakString: 1000</span><br><span class="line">PenaltyExcessCharacter: 1000000</span><br><span class="line">PenaltyReturnTypeOnItsOwnLine: 60</span><br><span class="line">PointerAlignment: Right</span><br><span class="line">ReflowComments:  true</span><br><span class="line">SortIncludes:    true</span><br><span class="line">SpaceAfterCStyleCast: false</span><br><span class="line">SpaceBeforeAssignmentOperators: true</span><br><span class="line">SpaceBeforeParens: ControlStatements</span><br><span class="line">SpaceInEmptyParentheses: false</span><br><span class="line">SpacesBeforeTrailingComments: 1</span><br><span class="line">SpacesInAngles:  false</span><br><span class="line">SpacesInContainerLiterals: true</span><br><span class="line">SpacesInCStyleCastParentheses: false</span><br><span class="line">SpacesInParentheses: false</span><br><span class="line">SpacesInSquareBrackets: false</span><br><span class="line">Standard:        Cpp11</span><br><span class="line">TabWidth:        8</span><br><span class="line">UseTab:          Never</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>memo</category>
-      </categories>
-      <tags>
-        <tag>vscode</tag>
-        <tag>clang</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++ 使用boost::program_options解析命令行选项</title>
     <url>/boost-options-description.html</url>
     <content><![CDATA[<p>Boost.ProgramOptions是Boost中一个专门用来解析命令行的库，其目标是轻松的解析命令行选项。</p>
@@ -36,6 +19,41 @@
       </categories>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vscode 使用clang格式化代码</title>
+    <url>/clang_format.html</url>
+    <content><![CDATA[<p>.clang-format文件存档</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">Language:        Cpp</span><br><span class="line"># BasedOnStyle:  LLVM</span><br><span class="line">AccessModifierOffset: -2</span><br><span class="line">AlignAfterOpenBracket: Align</span><br><span class="line">AlignConsecutiveAssignments: false</span><br><span class="line">AlignConsecutiveDeclarations: false</span><br><span class="line">AlignEscapedNewlinesLeft: false</span><br><span class="line">AlignOperands:   true</span><br><span class="line">AlignTrailingComments: true</span><br><span class="line">AllowAllParametersOfDeclarationOnNextLine: true</span><br><span class="line">AllowShortBlocksOnASingleLine: false</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line">AllowShortFunctionsOnASingleLine: All</span><br><span class="line">AllowShortIfStatementsOnASingleLine: false</span><br><span class="line">AllowShortLoopsOnASingleLine: false</span><br><span class="line">AlwaysBreakAfterDefinitionReturnType: None</span><br><span class="line">AlwaysBreakAfterReturnType: None</span><br><span class="line">AlwaysBreakBeforeMultilineStrings: false</span><br><span class="line">AlwaysBreakTemplateDeclarations: false</span><br><span class="line">BinPackArguments: true</span><br><span class="line">BinPackParameters: false</span><br><span class="line">BraceWrapping:</span><br><span class="line">  AfterClass:      false</span><br><span class="line">  AfterControlStatement: false</span><br><span class="line">  AfterEnum:       false</span><br><span class="line">  AfterFunction:   true</span><br><span class="line">  AfterNamespace:  false</span><br><span class="line">  AfterObjCDeclaration: false</span><br><span class="line">  AfterStruct:     true</span><br><span class="line">  AfterUnion:      true</span><br><span class="line">  BeforeCatch:     true</span><br><span class="line">  BeforeElse:      true</span><br><span class="line">  IndentBraces:    false</span><br><span class="line">BreakBeforeBinaryOperators: None</span><br><span class="line">BreakBeforeBraces: Allman</span><br><span class="line">BreakBeforeTernaryOperators: false</span><br><span class="line">BreakConstructorInitializersBeforeComma: false</span><br><span class="line">ColumnLimit:     0</span><br><span class="line">CommentPragmas:  &apos;^ IWYU pragma:&apos;</span><br><span class="line">ConstructorInitializerAllOnOneLineOrOnePerLine: false</span><br><span class="line">ConstructorInitializerIndentWidth: 4</span><br><span class="line">ContinuationIndentWidth: 4</span><br><span class="line">Cpp11BracedListStyle: true</span><br><span class="line">DerivePointerAlignment: false</span><br><span class="line">DisableFormat:   false</span><br><span class="line">ExperimentalAutoDetectBinPacking: false</span><br><span class="line">ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH ]</span><br><span class="line">IncludeCategories: </span><br><span class="line">  - Regex:           &apos;^&quot;(llvm|llvm-c|clang|clang-c)/&apos;</span><br><span class="line">    Priority:        2</span><br><span class="line">  - Regex:           &apos;^(&lt;|&quot;(gtest|isl|json)/)&apos;</span><br><span class="line">    Priority:        3</span><br><span class="line">  - Regex:           &apos;.*&apos;</span><br><span class="line">    Priority:        1</span><br><span class="line">IndentCaseLabels: false</span><br><span class="line">IndentWidth:     2</span><br><span class="line">IndentWrappedFunctionNames: false</span><br><span class="line">KeepEmptyLinesAtTheStartOfBlocks: true</span><br><span class="line">MacroBlockBegin: &apos;&apos;</span><br><span class="line">MacroBlockEnd:   &apos;&apos;</span><br><span class="line">MaxEmptyLinesToKeep: 1</span><br><span class="line">NamespaceIndentation: All</span><br><span class="line">ObjCBlockIndentWidth: 2</span><br><span class="line">ObjCSpaceAfterProperty: false</span><br><span class="line">ObjCSpaceBeforeProtocolList: true</span><br><span class="line">PenaltyBreakBeforeFirstCallParameter: 19</span><br><span class="line">PenaltyBreakComment: 300</span><br><span class="line">PenaltyBreakFirstLessLess: 120</span><br><span class="line">PenaltyBreakString: 1000</span><br><span class="line">PenaltyExcessCharacter: 1000000</span><br><span class="line">PenaltyReturnTypeOnItsOwnLine: 60</span><br><span class="line">PointerAlignment: Right</span><br><span class="line">ReflowComments:  true</span><br><span class="line">SortIncludes:    true</span><br><span class="line">SpaceAfterCStyleCast: false</span><br><span class="line">SpaceBeforeAssignmentOperators: true</span><br><span class="line">SpaceBeforeParens: ControlStatements</span><br><span class="line">SpaceInEmptyParentheses: false</span><br><span class="line">SpacesBeforeTrailingComments: 1</span><br><span class="line">SpacesInAngles:  false</span><br><span class="line">SpacesInContainerLiterals: true</span><br><span class="line">SpacesInCStyleCastParentheses: false</span><br><span class="line">SpacesInParentheses: false</span><br><span class="line">SpacesInSquareBrackets: false</span><br><span class="line">Standard:        Cpp11</span><br><span class="line">TabWidth:        8</span><br><span class="line">UseTab:          Never</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>memo</category>
+      </categories>
+      <tags>
+        <tag>vscode</tag>
+        <tag>clang</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CMake设置编译选项</title>
+    <url>/cmake-set-flag.html</url>
+    <content><![CDATA[<h4 id="CMake中设置编译选项"><a href="#CMake中设置编译选项" class="headerlink" title="CMake中设置编译选项"></a>CMake中设置编译选项</h4><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">option</span>(BUILD_VISUALIZATIONS <span class="string">"Build visualization, default OFF"</span> <span class="keyword">OFF</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">"BUILD_VISUALIZATIONS is $&#123;BUILD_VISUALIZATIONS&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以跟build type关联</span></span><br><span class="line"><span class="comment"># if(CMAKE_BUILD_TYPE MATCHES Debug OR CMAKE_BUILD_TYPE MATCHES DEBUG)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(BUILD_VISUALIZATIONS)</span><br><span class="line"><span class="keyword">add_definitions</span>(-DBUILD_VISUALIZATIONS)</span><br><span class="line"><span class="comment"># target_compile_definitions($&#123;project_name&#125; PRIVATE BUILD_VISUALIZATIONS)</span></span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+<h4 id="代码中作为宏"><a href="#代码中作为宏" class="headerlink" title="代码中作为宏"></a>代码中作为宏</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> BUILD_VISUALIZATIONS</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(<span class="keyword">const</span> <span class="keyword">cloud_ptr_t</span>&amp; cloud_ptr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"visualizations on"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// visualize cloud</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(Args...)</span> </span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"pass visualizations"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="编译时传入参数"><a href="#编译时传入参数" class="headerlink" title="编译时传入参数"></a>编译时传入参数</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--cmake-args -DBUILD_VISUALIZATIONS=ON</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>cmake</category>
+      </categories>
+      <tags>
+        <tag>cmake</tag>
+        <tag>编译</tag>
       </tags>
   </entry>
   <entry>
@@ -73,24 +91,6 @@
         <tag>c++</tag>
         <tag>async</tag>
         <tag>并发编程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CMake设置编译选项</title>
-    <url>/cmake-set-flag.html</url>
-    <content><![CDATA[<h4 id="CMake中设置编译选项"><a href="#CMake中设置编译选项" class="headerlink" title="CMake中设置编译选项"></a>CMake中设置编译选项</h4><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">option</span>(BUILD_VISUALIZATIONS <span class="string">"Build visualization, default OFF"</span> <span class="keyword">OFF</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">"BUILD_VISUALIZATIONS is $&#123;BUILD_VISUALIZATIONS&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以跟build type关联</span></span><br><span class="line"><span class="comment"># if(CMAKE_BUILD_TYPE MATCHES Debug OR CMAKE_BUILD_TYPE MATCHES DEBUG)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(BUILD_VISUALIZATIONS)</span><br><span class="line"><span class="keyword">add_definitions</span>(-DBUILD_VISUALIZATIONS)</span><br><span class="line"><span class="comment"># target_compile_definitions($&#123;project_name&#125; PRIVATE BUILD_VISUALIZATIONS)</span></span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-<h4 id="代码中作为宏"><a href="#代码中作为宏" class="headerlink" title="代码中作为宏"></a>代码中作为宏</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> BUILD_VISUALIZATIONS</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(<span class="keyword">const</span> <span class="keyword">cloud_ptr_t</span>&amp; cloud_ptr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"visualizations on"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// visualize cloud</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(Args...)</span> </span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"pass visualizations"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-<h4 id="编译时传入参数"><a href="#编译时传入参数" class="headerlink" title="编译时传入参数"></a>编译时传入参数</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--cmake-args -DBUILD_VISUALIZATIONS=ON</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>cmake</category>
-      </categories>
-      <tags>
-        <tag>cmake</tag>
-        <tag>编译</tag>
       </tags>
   </entry>
   <entry>
@@ -184,32 +184,6 @@
       </tags>
   </entry>
   <entry>
-    <title>linux 搭建FTP服务器</title>
-    <url>/ftp_server.html</url>
-    <content><![CDATA[<h4 id="安装ftp和vsftpd"><a href="#安装ftp和vsftpd" class="headerlink" title="安装ftp和vsftpd"></a>安装ftp和vsftpd</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install ftp</span><br><span class="line">sudo apt-get install vsftpd</span><br></pre></td></tr></table></figure><h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用vsftpd软件，主要包括如下几个命令：</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动ftp</span></span><br><span class="line">service vsftpd start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止ftp</span></span><br><span class="line">service vsftpd stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启ftp</span></span><br><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-<h4 id="配置vsftpd"><a href="#配置vsftpd" class="headerlink" title="配置vsftpd"></a>配置vsftpd</h4><p>打开配置文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/vsftpd.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># vi /etc/vsftpd/vsftpd.conf</span></span><br></pre></td></tr></table></figure>
-
-<p>按照需求修改为以下内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">listen=NO</span><br><span class="line">listen_ipv6=YES</span><br><span class="line">anonymous_enable=NO</span><br><span class="line">local_enable=YES</span><br><span class="line">write_enable=YES</span><br><span class="line">dirmessage_enable=YES</span><br><span class="line">use_localtime=YES</span><br><span class="line">xferlog_enable=YES</span><br><span class="line">connect_from_port_20=YES</span><br><span class="line">secure_chroot_dir=/var/run/vsftpd/empty</span><br><span class="line">pam_service_name=vsftpd</span><br><span class="line">rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem</span><br><span class="line">rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key</span><br><span class="line">ssl_enable=NO</span><br><span class="line"></span><br><span class="line"># local root</span><br><span class="line">local_root=/home/bot/dev/moma_app/scanner_images</span><br></pre></td></tr></table></figure>
-
-<h4 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure>
-
-<h4 id="登录测试"><a href="#登录测试" class="headerlink" title="登录测试"></a>登录测试</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 登录本地ftp</span></span><br><span class="line">ftp 127.0.0.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入用户名和密码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前路径是否设置的local root</span></span><br><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>memo</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>ftp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OpenCV Mat像素的遍历方法</title>
     <url>/mat-traverse.html</url>
     <content><![CDATA[<h2 id="OpenCV像素遍历常用的几种方法"><a href="#OpenCV像素遍历常用的几种方法" class="headerlink" title="OpenCV像素遍历常用的几种方法"></a>OpenCV像素遍历常用的几种方法</h2><p>以从 organized 的点云提取 RGB 信息为例</p><h3 id="动态地址at"><a href="#动态地址at" class="headerlink" title="动态地址at"></a>动态地址at</h3><p>基于Mat对象的随机像素访问 API 实现，通过行列索引方式遍历每个像素值。这种方法速度较慢，不太适合用于像素遍历。</p><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_1</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">0</span>] = pt.b;</span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">1</span>] = pt.g;</span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">2</span>] = pt.r;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
@@ -279,6 +253,32 @@
       </tags>
   </entry>
   <entry>
+    <title>linux 搭建FTP服务器</title>
+    <url>/ftp_server.html</url>
+    <content><![CDATA[<h4 id="安装ftp和vsftpd"><a href="#安装ftp和vsftpd" class="headerlink" title="安装ftp和vsftpd"></a>安装ftp和vsftpd</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install ftp</span><br><span class="line">sudo apt-get install vsftpd</span><br></pre></td></tr></table></figure><h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用vsftpd软件，主要包括如下几个命令：</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动ftp</span></span><br><span class="line">service vsftpd start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止ftp</span></span><br><span class="line">service vsftpd stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启ftp</span></span><br><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<h4 id="配置vsftpd"><a href="#配置vsftpd" class="headerlink" title="配置vsftpd"></a>配置vsftpd</h4><p>打开配置文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/vsftpd.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># vi /etc/vsftpd/vsftpd.conf</span></span><br></pre></td></tr></table></figure>
+
+<p>按照需求修改为以下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">listen=NO</span><br><span class="line">listen_ipv6=YES</span><br><span class="line">anonymous_enable=NO</span><br><span class="line">local_enable=YES</span><br><span class="line">write_enable=YES</span><br><span class="line">dirmessage_enable=YES</span><br><span class="line">use_localtime=YES</span><br><span class="line">xferlog_enable=YES</span><br><span class="line">connect_from_port_20=YES</span><br><span class="line">secure_chroot_dir=/var/run/vsftpd/empty</span><br><span class="line">pam_service_name=vsftpd</span><br><span class="line">rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem</span><br><span class="line">rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key</span><br><span class="line">ssl_enable=NO</span><br><span class="line"></span><br><span class="line"># local root</span><br><span class="line">local_root=/home/bot/dev/moma_app/scanner_images</span><br></pre></td></tr></table></figure>
+
+<h4 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure>
+
+<h4 id="登录测试"><a href="#登录测试" class="headerlink" title="登录测试"></a>登录测试</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 登录本地ftp</span></span><br><span class="line">ftp 127.0.0.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入用户名和密码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前路径是否设置的local root</span></span><br><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>memo</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>ftp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++ push_back和emplace_back的区别</title>
     <url>/push_back-emplace_back.html</url>
     <content><![CDATA[<p><code>push_back()</code>向容器尾部添加元素时，首先会创建这个元素，然后再将这个元素拷贝或者移动到容器中(如果是拷贝的话，事后会自行销毁先前创建的这个元素)。</p><p>而 <code>emplace_back()</code> 在实现时，则是直接在容器尾部创建这个元素，省去了拷贝或移动元素的过程。</p><p>事实上，大多数情况下二者没有区别，少数情况下 <code>emplace_back()</code> 效率更高，直接看下代码：</p><a id="more"></a>
@@ -326,103 +326,6 @@
       <tags>
         <tag>linux</tag>
         <tag>scp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++并发编程：std::future的使用</title>
-    <url>/std-future.html</url>
-    <content><![CDATA[<p><code>std::future</code> 是C++11 的一个模板类，<strong>提供了一种用于访问异步操作结果的机制</strong>。可以用来获取异步任务的结果，因此可以把它当成一种简单的线程间同步的手段。</p>
-<p>设想这样的情况，你希望一个线程进行工作A，同时你在做一些其他的工作，你希望在某个特定的时间获取那个工作A的结果。在c++11，这个可以轻松被 <code>std::future</code> 实现。而由于它是一个模板类，可以返回任何类型的结果。</p>
-<a id="more"></a>
-
-
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::future&lt;Result&gt; fut = <span class="built_in">std</span>::async(<span class="built_in">std</span>::launch::async, []() &#123;<span class="keyword">return</span> A();&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="comment">// 进行别的工作</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取A的结果 </span></span><br><span class="line">Result result = fut.get();</span><br></pre></td></tr></table></figure>
-
-<h4 id="用法说明"><a href="#用法说明" class="headerlink" title="用法说明"></a>用法说明</h4><p><code>std::future</code> 对象通常由某个 <code>Provider</code> 创建，你可以把 <code>Provider</code> 想象成一个异步任务的提供者，<code>Provider</code> 在某个线程中设置共享状态的值，与该共享状态相关联的 <code>std::future</code> 对象（通常在另外一个线程中）调用 <code>std::future::get()</code> 获取该值。如果共享状态的标志不为 <code>std::future_status::ready</code>，则调用 <code>get()</code> 会<strong>阻塞</strong>当前的调用者，直到 <code>Provider</code> 设置了共享状态的值，<code>get()</code> 返回异步任务的返回值或发生的异常。</p>
-<h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><p><code>std::future</code> 的拷贝构造函数和普通赋值操作是被禁用的，只提供了默认的构造函数和 <code>move</code> 构造函数。默认构造函数构造的对象没有共享状态，因此它是无效的，但是可以通过移动赋值的方式将一个有效的<code>future</code> 值赋值给它。</p>
-<p>一个有效的 <code>std::future</code> 对象通常由以下三种 <code>Provider</code> 创建，并和某个共享状态相关联。</p>
-<ul>
-<li><code>std::async()</code> 函数</li>
-<li><code>std::promise::get_future()</code>，为 <code>promise</code> 类的成员函数</li>
-<li><code>std::packaged_task::get_future()</code>，为 <code>packaged_task</code> 的成员函数</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> d)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::future&lt;<span class="keyword">int</span>&gt; fut;           <span class="comment">// 默认构造函数</span></span><br><span class="line">fut = <span class="built_in">std</span>::async(<span class="built_in">std</span>::async(test, <span class="number">1</span>));   <span class="comment">// move-赋值操作。</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="成员函数"><a href="#成员函数" class="headerlink" title="成员函数"></a>成员函数</h4><ul>
-<li><p><code>bool valid()</code></p>
-<p>检查共享状态的有效性，返回当前的 <code>future</code> 对象是否与共享状态关联。一旦调用了 <code>std::future::get()</code> 函数，再调用此函数将返回 <code>false</code> 。</p>
-</li>
-<li><p><code>void wait()</code></p>
-<ul>
-<li>等待共享状态就绪</li>
-<li>如果共享状态尚未就绪(即未返回或发生异常)，则该函数将阻塞调用的线程直到就绪</li>
-<li>当共享状态就绪后，则该函数将取消阻塞并void返回</li>
-</ul>
-</li>
-<li><p><code>std::future_status wait_for(std::chrono::duration span)</code></p>
-<ul>
-<li>在指定的时间内等待共享状态就绪</li>
-<li>如果共享状态尚未就绪，则该函数将阻塞调用的线程直到就绪或已达到设置的时间</li>
-<li>返回<code>std::future_status</code>：<code>ready</code> / <code>timeout</code> / <code>deferred</code></li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(d));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::future&lt;<span class="keyword">bool</span>&gt; fut = <span class="built_in">std</span>::move(<span class="built_in">std</span>::async(test, <span class="number">1</span>));</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">    <span class="keyword">auto</span> future_status = fut.wait_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">2</span>));</span><br><span class="line">    <span class="keyword">auto</span> end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">    <span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt; elapsed_seconds = end - start;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"waited for : "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> result = fut.get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">waited for : 1.00856s</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ul>
-<li><p><code>std::future_status wait_until(std::chrono::time_point point)</code></p>
-<ul>
-<li>在指定的时间点前等待共享状态准备就绪</li>
-<li>如果共享状态尚未就绪，则该函数将阻塞调用的线程直到就绪或已达到指定的时间点</li>
-<li>返回<code>std::future_status</code>：<code>ready</code> / <code>timeout</code> / <code>deferred</code></li>
-</ul>
-</li>
-<li><p><code>_Res get()</code></p>
-<ul>
-<li>当共享状态就绪时，返回存储在共享状态中的值(或抛出异常)</li>
-<li>如果共享状态尚未就绪，则该函数将阻塞调用的线程直到就绪，相当于 <code>wait()</code> 再 <code>get()</code></li>
-<li>当共享状态就绪后，则该函数将取消阻塞并返回释放其共享状态，这使得 <code>future</code> 对象不再有效，因此对于每一个 <code>future</code> 共享状态，<code>get()</code>函数最多应被调用一次</li>
-<li><code>std::future&lt;void&gt;::get()</code> 不返回任何值，但仍等待共享状态就绪并释放它</li>
-</ul>
-</li>
-<li><p><code>std::shared_future&lt;_Res&gt; share()</code></p>
-<ul>
-<li>返回一个 <code>std::shared_future</code> 对象，该对象获取 <code>future</code> 对象的共享状态。<code>future</code> 对象将不再有效。</li>
-</ul>
-</li>
-</ul>
-<h4 id="简单例子"><a href="#简单例子" class="headerlink" title="简单例子"></a>简单例子</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;future&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test()\n"</span>;</span><br><span class="line">  <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">5</span>));</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"5 sec later..\n"</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::future&lt;<span class="keyword">bool</span>&gt; fut = <span class="built_in">std</span>::move(<span class="built_in">std</span>::async(test, <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"waiting..\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// -1-</span></span><br><span class="line">  <span class="keyword">auto</span> timeout = <span class="built_in">std</span>::chrono::seconds(<span class="number">2</span>);</span><br><span class="line">  <span class="built_in">std</span>::future_status future_status = fut.wait_for(timeout);</span><br><span class="line">  <span class="keyword">if</span> (future_status != <span class="built_in">std</span>::future_status::ready)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 sec timeout!\n"</span>;</span><br><span class="line">    <span class="comment">// return -1;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// -2-</span></span><br><span class="line">  fut.wait();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">bool</span> result = fut.get();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"\nresult : "</span> &lt;&lt; result &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="std-shared-future"><a href="#std-shared-future" class="headerlink" title="std::shared_future"></a><code>std::shared_future</code></h4><p><code>shared_future</code> 与 <code>future</code> 类似，但是允许多个线程等待同一个共享状态。 <code>shared_future</code> 既支持移动操作也支持拷贝操作，而且多个 <code>shared_future</code> 对象可以引用相同的共享状态，还允许多次检索共享状态下的值（多次调用 <code>get()</code> ）。</p>
-<p><code>shared_future</code> 可以通过某个 <code>future</code> 对象隐式转换，或者通过 <code>std::future::share()</code> 显示转换，无论哪种转换，被转换的那个 <code>std::future</code> 对象都会变为 <code>not-valid</code>.</p>
-<h4 id="std-launch"><a href="#std-launch" class="headerlink" title="std::launch"></a><strong>std::launch</strong></h4><p>该枚举类型主要是在调用<code>std::async</code> 设置异步任务的启动策略的。</p>
-<p><code>std::async</code>的原型:</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::async(<span class="built_in">std</span>::launch::async | <span class="built_in">std</span>::launch::deferred, f, args...)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><code>std::launch::async</code></p>
-<p> 表示在调用<code>async</code>函数的时候就开始创建新线程。</p>
-</li>
-<li><p><code>std::launch::deferred</code></p>
-<p>表示延迟调用，在调用 <code>future</code> 中的 <code>wait()</code> 或者 <code>get()</code> 函数时，才执行入口函数。（实际上，并没有创建新线程，只是在主线程中调用的入口函数）</p>
-</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// async</span></span><br><span class="line"><span class="keyword">auto</span> fut = <span class="built_in">std</span>::async([]() &#123;<span class="keyword">return</span> A();&#125;);</span><br><span class="line"><span class="keyword">auto</span> fut = <span class="built_in">std</span>::async(<span class="built_in">std</span>::launch::async, []() &#123;<span class="keyword">return</span> A();&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// deferred</span></span><br><span class="line"><span class="keyword">auto</span> fut = <span class="built_in">std</span>::async(<span class="built_in">std</span>::launch::deferred, []() &#123;<span class="keyword">return</span> A();&#125;);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>c++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>async</tag>
-        <tag>并发编程</tag>
       </tags>
   </entry>
   <entry>
@@ -563,6 +466,103 @@
       </categories>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++并发编程：std::future的使用</title>
+    <url>/std-future.html</url>
+    <content><![CDATA[<p><code>std::future</code> 是C++11 的一个模板类，<strong>提供了一种用于访问异步操作结果的机制</strong>。可以用来获取异步任务的结果，因此可以把它当成一种简单的线程间同步的手段。</p>
+<p>设想这样的情况，你希望一个线程进行工作A，同时你在做一些其他的工作，你希望在某个特定的时间获取那个工作A的结果。在c++11，这个可以轻松被 <code>std::future</code> 实现。而由于它是一个模板类，可以返回任何类型的结果。</p>
+<a id="more"></a>
+
+
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::future&lt;Result&gt; fut = <span class="built_in">std</span>::async(<span class="built_in">std</span>::launch::async, []() &#123;<span class="keyword">return</span> A();&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="comment">// 进行别的工作</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取A的结果 </span></span><br><span class="line">Result result = fut.get();</span><br></pre></td></tr></table></figure>
+
+<h4 id="用法说明"><a href="#用法说明" class="headerlink" title="用法说明"></a>用法说明</h4><p><code>std::future</code> 对象通常由某个 <code>Provider</code> 创建，你可以把 <code>Provider</code> 想象成一个异步任务的提供者，<code>Provider</code> 在某个线程中设置共享状态的值，与该共享状态相关联的 <code>std::future</code> 对象（通常在另外一个线程中）调用 <code>std::future::get()</code> 获取该值。如果共享状态的标志不为 <code>std::future_status::ready</code>，则调用 <code>get()</code> 会<strong>阻塞</strong>当前的调用者，直到 <code>Provider</code> 设置了共享状态的值，<code>get()</code> 返回异步任务的返回值或发生的异常。</p>
+<h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><p><code>std::future</code> 的拷贝构造函数和普通赋值操作是被禁用的，只提供了默认的构造函数和 <code>move</code> 构造函数。默认构造函数构造的对象没有共享状态，因此它是无效的，但是可以通过移动赋值的方式将一个有效的<code>future</code> 值赋值给它。</p>
+<p>一个有效的 <code>std::future</code> 对象通常由以下三种 <code>Provider</code> 创建，并和某个共享状态相关联。</p>
+<ul>
+<li><code>std::async()</code> 函数</li>
+<li><code>std::promise::get_future()</code>，为 <code>promise</code> 类的成员函数</li>
+<li><code>std::packaged_task::get_future()</code>，为 <code>packaged_task</code> 的成员函数</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> d)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::future&lt;<span class="keyword">int</span>&gt; fut;           <span class="comment">// 默认构造函数</span></span><br><span class="line">fut = <span class="built_in">std</span>::async(<span class="built_in">std</span>::async(test, <span class="number">1</span>));   <span class="comment">// move-赋值操作。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="成员函数"><a href="#成员函数" class="headerlink" title="成员函数"></a>成员函数</h4><ul>
+<li><p><code>bool valid()</code></p>
+<p>检查共享状态的有效性，返回当前的 <code>future</code> 对象是否与共享状态关联。一旦调用了 <code>std::future::get()</code> 函数，再调用此函数将返回 <code>false</code> 。</p>
+</li>
+<li><p><code>void wait()</code></p>
+<ul>
+<li>等待共享状态就绪</li>
+<li>如果共享状态尚未就绪(即未返回或发生异常)，则该函数将阻塞调用的线程直到就绪</li>
+<li>当共享状态就绪后，则该函数将取消阻塞并void返回</li>
+</ul>
+</li>
+<li><p><code>std::future_status wait_for(std::chrono::duration span)</code></p>
+<ul>
+<li>在指定的时间内等待共享状态就绪</li>
+<li>如果共享状态尚未就绪，则该函数将阻塞调用的线程直到就绪或已达到设置的时间</li>
+<li>返回<code>std::future_status</code>：<code>ready</code> / <code>timeout</code> / <code>deferred</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(d));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::future&lt;<span class="keyword">bool</span>&gt; fut = <span class="built_in">std</span>::move(<span class="built_in">std</span>::async(test, <span class="number">1</span>));</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">    <span class="keyword">auto</span> future_status = fut.wait_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">2</span>));</span><br><span class="line">    <span class="keyword">auto</span> end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">    <span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt; elapsed_seconds = end - start;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"waited for : "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> result = fut.get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">waited for : 1.00856s</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p><code>std::future_status wait_until(std::chrono::time_point point)</code></p>
+<ul>
+<li>在指定的时间点前等待共享状态准备就绪</li>
+<li>如果共享状态尚未就绪，则该函数将阻塞调用的线程直到就绪或已达到指定的时间点</li>
+<li>返回<code>std::future_status</code>：<code>ready</code> / <code>timeout</code> / <code>deferred</code></li>
+</ul>
+</li>
+<li><p><code>_Res get()</code></p>
+<ul>
+<li>当共享状态就绪时，返回存储在共享状态中的值(或抛出异常)</li>
+<li>如果共享状态尚未就绪，则该函数将阻塞调用的线程直到就绪，相当于 <code>wait()</code> 再 <code>get()</code></li>
+<li>当共享状态就绪后，则该函数将取消阻塞并返回释放其共享状态，这使得 <code>future</code> 对象不再有效，因此对于每一个 <code>future</code> 共享状态，<code>get()</code>函数最多应被调用一次</li>
+<li><code>std::future&lt;void&gt;::get()</code> 不返回任何值，但仍等待共享状态就绪并释放它</li>
+</ul>
+</li>
+<li><p><code>std::shared_future&lt;_Res&gt; share()</code></p>
+<ul>
+<li>返回一个 <code>std::shared_future</code> 对象，该对象获取 <code>future</code> 对象的共享状态。<code>future</code> 对象将不再有效。</li>
+</ul>
+</li>
+</ul>
+<h4 id="简单例子"><a href="#简单例子" class="headerlink" title="简单例子"></a>简单例子</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;future&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test()\n"</span>;</span><br><span class="line">  <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">5</span>));</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"5 sec later..\n"</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::future&lt;<span class="keyword">bool</span>&gt; fut = <span class="built_in">std</span>::move(<span class="built_in">std</span>::async(test, <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"waiting..\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// -1-</span></span><br><span class="line">  <span class="keyword">auto</span> timeout = <span class="built_in">std</span>::chrono::seconds(<span class="number">2</span>);</span><br><span class="line">  <span class="built_in">std</span>::future_status future_status = fut.wait_for(timeout);</span><br><span class="line">  <span class="keyword">if</span> (future_status != <span class="built_in">std</span>::future_status::ready)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 sec timeout!\n"</span>;</span><br><span class="line">    <span class="comment">// return -1;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// -2-</span></span><br><span class="line">  fut.wait();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">bool</span> result = fut.get();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"\nresult : "</span> &lt;&lt; result &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="std-shared-future"><a href="#std-shared-future" class="headerlink" title="std::shared_future"></a><code>std::shared_future</code></h4><p><code>shared_future</code> 与 <code>future</code> 类似，但是允许多个线程等待同一个共享状态。 <code>shared_future</code> 既支持移动操作也支持拷贝操作，而且多个 <code>shared_future</code> 对象可以引用相同的共享状态，还允许多次检索共享状态下的值（多次调用 <code>get()</code> ）。</p>
+<p><code>shared_future</code> 可以通过某个 <code>future</code> 对象隐式转换，或者通过 <code>std::future::share()</code> 显示转换，无论哪种转换，被转换的那个 <code>std::future</code> 对象都会变为 <code>not-valid</code>.</p>
+<h4 id="std-launch"><a href="#std-launch" class="headerlink" title="std::launch"></a><strong>std::launch</strong></h4><p>该枚举类型主要是在调用<code>std::async</code> 设置异步任务的启动策略的。</p>
+<p><code>std::async</code>的原型:</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::async(<span class="built_in">std</span>::launch::async | <span class="built_in">std</span>::launch::deferred, f, args...)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>std::launch::async</code></p>
+<p> 表示在调用<code>async</code>函数的时候就开始创建新线程。</p>
+</li>
+<li><p><code>std::launch::deferred</code></p>
+<p>表示延迟调用，在调用 <code>future</code> 中的 <code>wait()</code> 或者 <code>get()</code> 函数时，才执行入口函数。（实际上，并没有创建新线程，只是在主线程中调用的入口函数）</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// async</span></span><br><span class="line"><span class="keyword">auto</span> fut = <span class="built_in">std</span>::async([]() &#123;<span class="keyword">return</span> A();&#125;);</span><br><span class="line"><span class="keyword">auto</span> fut = <span class="built_in">std</span>::async(<span class="built_in">std</span>::launch::async, []() &#123;<span class="keyword">return</span> A();&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// deferred</span></span><br><span class="line"><span class="keyword">auto</span> fut = <span class="built_in">std</span>::async(<span class="built_in">std</span>::launch::deferred, []() &#123;<span class="keyword">return</span> A();&#125;);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>async</tag>
+        <tag>并发编程</tag>
       </tags>
   </entry>
   <entry>
