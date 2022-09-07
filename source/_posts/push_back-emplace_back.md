@@ -19,7 +19,11 @@ description:
 
 
 
-事实上，大多数情况下二者没有区别，少数情况下 `emplace_back()` 效率更高，直接看下代码：
+事实上，大多数情况下二者没有区别，只有在少数情况下 `emplace_back()` 效率更高。主要是 `emplace_back()` 支持 `in-place construction` 。
+
+
+
+直接看下代码：
 
 
 
@@ -42,6 +46,7 @@ public:
   {
     std::cout << "move constructor" << std::endl;
   }
+  ~TestClass() { std::cout << "destructor" << std::endl; }
 };
 
 int main(int argc, char **argv)
@@ -55,23 +60,31 @@ int main(int argc, char **argv)
   std::cout << "\n-----------------0---------------\n";
 
   vec.push_back(t1);
+  vec.clear();
   std::cout << "\n";
   vec.emplace_back(t1);
+  vec.clear();
   std::cout << "-----------------1---------------\n";
 
   vec.push_back(std::move(t1));
+  vec.clear();
   std::cout << "\n";
   vec.push_back(std::move(t2));
+  vec.clear();
   std::cout << "----------------2----------------\n";
 
   vec.push_back(TestClass(3, "3"));
+  vec.clear();
   std::cout << "\n";
   vec.emplace_back(TestClass(3, "3"));
+  vec.clear();
   std::cout << "----------------3----------------\n";
 
   vec.push_back({4, "4"});
+  vec.clear();
   std::cout << "\n";
-  vec.emplace_back(4, "4");
+  vec.emplace_back(4, "4"); // in-place construction
+  vec.clear();
   std::cout << "----------------4----------------\n";
 
   return 0;
@@ -88,24 +101,39 @@ default constructor
 
 -----------------0---------------
 copy constructor
+destructor
 
 copy constructor
+destructor
 -----------------1---------------
 move constructor
+destructor
 
 move constructor
+destructor
 ----------------2----------------
 default constructor
 move constructor
+destructor
+destructor
 
 default constructor
 move constructor
+destructor
+destructor
 ----------------3----------------
 default constructor
 move constructor
+destructor
+destructor
 
 default constructor
+destructor
 ----------------4----------------
+
+destructor
+destructor
+
 ```
 
 
@@ -117,4 +145,4 @@ vec.push_back({4, "4"});
 vec.emplace_back(4, "4");
 ```
 
-在这种情况下，`push_back()` 会调用默认构造和移动构造，而 `emplace_back()` 只调用一次默认构造， 效率更高。
+在这种情况下，`push_back()` 会调用默认构造和移动构造，对应两次析构；而 `emplace_back()` 只调用一次默认构造一次析构， 效率更高。
