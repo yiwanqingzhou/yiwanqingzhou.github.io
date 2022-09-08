@@ -587,7 +587,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-07 11:24:06" itemprop="dateModified" datetime="2022-09-07T11:24:06+08:00">2022-09-07</time>
+                <time title="修改时间：2022-09-08 11:27:53" itemprop="dateModified" datetime="2022-09-08T11:27:53+08:00">2022-09-08</time>
               </span>
             
           
@@ -616,7 +616,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><code>push_back()</code>向容器尾部添加元素时，首先会创建这个元素，然后再将这个元素拷贝或者移动到容器中(如果是拷贝的话，事后会自行销毁先前创建的这个元素)。</p><p>而 <code>emplace_back()</code> 在实现时，则是直接在容器尾部创建这个元素，省去了拷贝或移动元素的过程。</p><p>事实上，大多数情况下二者没有区别，只有在少数情况下 <code>emplace_back()</code> 效率更高。主要是 <code>emplace_back()</code> 支持 <code>in-place construction</code> 。</p>
+          <blockquote>
+<p><code>push_back()</code>向容器尾部添加元素时，首先会创建这个元素，然后再将这个元素拷贝或者移动到容器中(如果是拷贝的话，事后会自行销毁先前创建的这个元素)。</p>
+</blockquote><blockquote>
+<p>而 <code>emplace_back()</code> 在实现时，则是直接在容器尾部创建这个元素，省去了拷贝或移动元素的过程。</p>
+</blockquote><p>事实上，大多数情况下二者没有区别，只有在少数情况下 <code>emplace_back()</code> 效率更高。主要是 <code>emplace_back()</code> 支持 <code>in-place construction</code> 。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
