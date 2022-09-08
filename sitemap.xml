@@ -214,13 +214,6 @@
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/tags/format/</loc>
-    <lastmod>2022-09-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://yiwanqingzhou.github.io/tags/ftp/</loc>
     <lastmod>2022-09-08</lastmod>
     <changefreq>daily</changefreq>
@@ -229,6 +222,13 @@
   
   <url>
     <loc>https://yiwanqingzhou.github.io/tags/opencv/</loc>
+    <lastmod>2022-09-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/format/</loc>
     <lastmod>2022-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
