@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>leetcode刷题记录</title>
+    <url>/algorithm-notes.html</url>
+    <content><![CDATA[<ul>
+<li><p><a href="./algorithm-notes/content/时间复杂度.html">时间复杂度</a></p>
+</li>
+<li><p><a href="./algorithm-notes/content/二分法.html">二分算法</a></p>
+</li>
+<li><p><a href="./algorithm-notes/content/双指针算法.html">双指针算法</a></p>
+</li>
+<li><p><a href="./algorithm-notes/content/排序.html">排序算法</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>coding</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++ 使用boost::program_options解析命令行选项</title>
     <url>/boost-options-description.html</url>
     <content><![CDATA[<p>Boost.ProgramOptions是Boost中一个专门用来解析命令行的库，其目标是轻松的解析命令行选项。</p>
@@ -36,27 +58,6 @@
       <tags>
         <tag>vscode</tag>
         <tag>clang</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Debian添加最小化按钮</title>
-    <url>/debian_minimize_botton.html</url>
-    <content><![CDATA[<p>安装tweak和dconf</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install gnome-tweak-tool</span><br><span class="line">sudo apt install dconf-editor </span><br><span class="line">dconf-editor</span><br></pre></td></tr></table></figure><p>进入路径: <code>org/gnome/desktop/wm/preferences/button-layout</code></p><img src="/debian_minimize_botton/test.png" title="debian_minimize_botton"><p>取消选项 Use default value</p><a id="more"></a>
-
-
-
-
-
-
-
-
-<p>在 Custom value 填入 <code>appmemu:close,minimize,maximize,close</code></p>
-]]></content>
-      <categories>
-        <category>memo</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -112,6 +113,27 @@
         <tag>c++</tag>
         <tag>async</tag>
         <tag>并发编程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Debian添加最小化按钮</title>
+    <url>/debian_minimize_botton.html</url>
+    <content><![CDATA[<p>安装tweak和dconf</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install gnome-tweak-tool</span><br><span class="line">sudo apt install dconf-editor </span><br><span class="line">dconf-editor</span><br></pre></td></tr></table></figure><p>进入路径: <code>org/gnome/desktop/wm/preferences/button-layout</code></p><img src="/debian_minimize_botton/test.png" title="debian_minimize_botton"><p>取消选项 Use default value</p><a id="more"></a>
+
+
+
+
+
+
+
+
+<p>在 Custom value 填入 <code>appmemu:close,minimize,maximize,close</code></p>
+]]></content>
+      <categories>
+        <category>memo</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -210,58 +232,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux 使用SCP远程拷贝文件</title>
-    <url>/scp.html</url>
-    <content><![CDATA[<p> 使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制</p>
-<a id="more"></a>
-
-
-
-<h4 id="从本地复制到远程"><a href="#从本地复制到远程" class="headerlink" title="从本地复制到远程"></a>从本地复制到远程</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp test.txt bot@10.0.9.211:/home/bot/test_folder</span><br><span class="line">scp test.txt bot@10.0.9.211:/home/bot/test_folder/test.txt</span><br><span class="line">scp test.txt 10.0.9.211:/home/bot/test_folder</span><br><span class="line">scp test.txt 10.0.9.211:/home/bot/test_folder/test.txt</span><br></pre></td></tr></table></figure>
-
-<h4 id="从远程复制到本地"><a href="#从远程复制到本地" class="headerlink" title="从远程复制到本地"></a>从远程复制到本地</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp bot@10.0.9.211:/home/bot/test_folder text.txt</span><br><span class="line">scp bot@10.0.9.211:/home/bot/test_folder/test.txt test.txt</span><br><span class="line">scp 10.0.9.211:/home/bot/test_folder test.txt</span><br><span class="line">scp 10.0.9.211:/home/bot/test_folder/test.txt test.txt</span><br></pre></td></tr></table></figure>
-
-<h4 id="传输整个目录"><a href="#传输整个目录" class="headerlink" title="传输整个目录"></a>传输整个目录</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp -r /test_folder bot@10.0.9.211:/home/bot/test_folder</span><br></pre></td></tr></table></figure>
-
-<h4 id="其他参数用法"><a href="#其他参数用法" class="headerlink" title="其他参数用法"></a>其他参数用法</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line">usage: scp [-12346BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]</span><br><span class="line">           [-l <span class="built_in">limit</span>] [-o ssh_option] [-P port] [-S program]</span><br><span class="line">           [[user@]host1:]file1 ... [[user@]host2:]file2</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>memo</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>scp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OpenCV Mat像素的遍历方法</title>
-    <url>/mat-traverse.html</url>
-    <content><![CDATA[<h2 id="OpenCV像素遍历常用的几种方法"><a href="#OpenCV像素遍历常用的几种方法" class="headerlink" title="OpenCV像素遍历常用的几种方法"></a>OpenCV像素遍历常用的几种方法</h2><p>以从 organized 的点云提取 RGB 信息为例</p><h3 id="动态地址at"><a href="#动态地址at" class="headerlink" title="动态地址at"></a>动态地址at</h3><p>基于Mat对象的随机像素访问 API 实现，通过行列索引方式遍历每个像素值。这种方法速度较慢，不太适合用于像素遍历。</p><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_1</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">0</span>] = pt.b;</span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">1</span>] = pt.g;</span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">2</span>] = pt.r;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-<h3 id="行指针"><a href="#行指针" class="headerlink" title="行指针"></a>行指针</h3><p>基于Mat对象的行随机访问指针方式实现对每个像素的遍历。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_2</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    cv::Vec3b *ptr = image.ptr&lt;cv::Vec3b&gt;(row);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      cv::Vec3b &amp;pixel = ptr[col];</span><br><span class="line">      pixel[<span class="number">0</span>] = pt.b;</span><br><span class="line">      pixel[<span class="number">1</span>] = pt.g;</span><br><span class="line">      pixel[<span class="number">2</span>] = pt.r;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="uchar-行指针"><a href="#uchar-行指针" class="headerlink" title="uchar 行指针"></a>uchar 行指针</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_3</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    uchar *uc_pixel = image.ptr(row);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      uc_pixel[<span class="number">0</span>] = pt.b;</span><br><span class="line">      uc_pixel[<span class="number">1</span>] = pt.g;</span><br><span class="line">      uc_pixel[<span class="number">2</span>] = pt.r;</span><br><span class="line">      uc_pixel += <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="将图像完全展开"><a href="#将图像完全展开" class="headerlink" title="将图像完全展开"></a>将图像完全展开</h3><p>一般图像行与行之间往往存储是不连续的，但是有些图像可以是连续的，Mat提供了一个检测图像是否连续的函数<code>isContinuous()</code>。当图像连通时，我们就可以把图像完全展开，看成是一行进行处理。</p>
-<h3 id="速度比较"><a href="#速度比较" class="headerlink" title="速度比较"></a>速度比较</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> cloud_path = <span class="string">"test.pcd"</span></span><br><span class="line">  pcl::PointCloud&lt;PointT&gt;::Ptr cloud(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;);</span><br><span class="line">  pcl_utils::load_pcd(cloud_path, *cloud);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *cloud &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_1;</span><br><span class="line">  extract_1(cloud, img_1);</span><br><span class="line">  <span class="keyword">auto</span> end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  <span class="keyword">auto</span> elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_2;</span><br><span class="line">  extract_2(cloud, img_2);</span><br><span class="line">  end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_3;</span><br><span class="line">  extract_3(cloud, img_3);</span><br><span class="line">  end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"3 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出 :</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Load pcd file with 1228800 data points.</span><br><span class="line">header: seq: 0 stamp: 0 frame_id: </span><br><span class="line"></span><br><span class="line">points[]: 1228800</span><br><span class="line">width: 1280</span><br><span class="line">height: 960</span><br><span class="line">is_dense: 0</span><br><span class="line">sensor origin (xyz): [0, 0, 0] / orientation (xyzw): [0, 0, 0, 1]</span><br><span class="line"></span><br><span class="line">1 elapsed time: 0.0199077s</span><br><span class="line">2 elapsed time: 0.012727s</span><br><span class="line">3 elapsed time: 0.00880297s</span><br><span class="line">4 elapsed time: 0.00900436s</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>cv</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>opencv</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>pcl类型转换</title>
     <url>/pcl_type_transform.html</url>
     <content><![CDATA[<h4 id="PCL相关类型-对象与指针互换"><a href="#PCL相关类型-对象与指针互换" class="headerlink" title="PCL相关类型 对象与指针互换"></a>PCL相关类型 对象与指针互换</h4><ol>
@@ -304,86 +274,30 @@
       </tags>
   </entry>
   <entry>
-    <title>C++ 强制类型转换</title>
-    <url>/type-cast.html</url>
-    <content><![CDATA[<p>相比于C风格的强制类型转换，C++新增了关键字 <code>static_cast</code>、<code>dynamic_cast</code>、<code>const_cast</code>、<code>reinterpret_cast</code> ，用于强制类型转换。</p><p>新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。</p><h2 id="1-static-cast"><a href="#1-static-cast" class="headerlink" title="1. static_cast"></a>1. static_cast</h2><p>用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。</p><a id="more"></a>
+    <title>OpenCV Mat像素的遍历方法</title>
+    <url>/mat-traverse.html</url>
+    <content><![CDATA[<h2 id="OpenCV像素遍历常用的几种方法"><a href="#OpenCV像素遍历常用的几种方法" class="headerlink" title="OpenCV像素遍历常用的几种方法"></a>OpenCV像素遍历常用的几种方法</h2><p>以从 organized 的点云提取 RGB 信息为例</p><h3 id="动态地址at"><a href="#动态地址at" class="headerlink" title="动态地址at"></a>动态地址at</h3><p>基于Mat对象的随机像素访问 API 实现，通过行列索引方式遍历每个像素值。这种方法速度较慢，不太适合用于像素遍历。</p><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_1</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">0</span>] = pt.b;</span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">1</span>] = pt.g;</span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">2</span>] = pt.r;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
-<p>常用于：</p>
-<ul>
-<li>基本数据类型之间的转换，如<code>int -&gt; char</code>，这种转换的安全也要开发人员来保证</li>
-<li>任何类型的表达式转换成 <code>void</code> 类型</li>
-<li>不能转换掉 <code>expression</code> 的 <code>const</code> 、<code>volitale</code> 或者 <code>__unaligned</code> 属性</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> a = <span class="number">65</span>;</span><br><span class="line">  <span class="keyword">int</span> b = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"int a: "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"char a: "</span> &lt;&lt; <span class="keyword">static_cast</span>&lt;<span class="keyword">char</span>&gt;(a) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">double</span> c = a / b;</span><br><span class="line">  <span class="keyword">double</span> d = <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>&gt;(a) / <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>&gt;(b);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"c: "</span> &lt;&lt; c &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"d: "</span> &lt;&lt; d &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">a: 65</span><br><span class="line">char a: A</span><br><span class="line">c: 6</span><br><span class="line">d: 6.5</span><br></pre></td></tr></table></figure>
+<h3 id="行指针"><a href="#行指针" class="headerlink" title="行指针"></a>行指针</h3><p>基于Mat对象的行随机访问指针方式实现对每个像素的遍历。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_2</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    cv::Vec3b *ptr = image.ptr&lt;cv::Vec3b&gt;(row);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      cv::Vec3b &amp;pixel = ptr[col];</span><br><span class="line">      pixel[<span class="number">0</span>] = pt.b;</span><br><span class="line">      pixel[<span class="number">1</span>] = pt.g;</span><br><span class="line">      pixel[<span class="number">2</span>] = pt.r;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>没有运行时类型检查来保证转换的安全性</strong></p>
-<ul>
-<li>上行转型 (子类对象指针–&gt;父类对象指针/引用)： 安全</li>
-<li>下行转型(父类对象指针–&gt;子类对象指针/引用)：没有动态类型检查，所以是不安全的</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"typeinfo"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">virtual</span> <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">class_name</span><span class="params">()</span> final </span>&#123; <span class="keyword">return</span> <span class="keyword">typeid</span>(*<span class="keyword">this</span>).name(); &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span> <span class="keyword">public</span> A</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> b = <span class="number">3</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> :</span> <span class="keyword">public</span> A</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> c = <span class="number">5</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="uchar-行指针"><a href="#uchar-行指针" class="headerlink" title="uchar 行指针"></a>uchar 行指针</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_3</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    uchar *uc_pixel = image.ptr(row);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      uc_pixel[<span class="number">0</span>] = pt.b;</span><br><span class="line">      uc_pixel[<span class="number">1</span>] = pt.g;</span><br><span class="line">      uc_pixel[<span class="number">2</span>] = pt.r;</span><br><span class="line">      uc_pixel += <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  A *pt_1 = <span class="keyword">new</span> A;</span><br><span class="line">  A *pt_2 = <span class="keyword">new</span> B;</span><br><span class="line">  A *pt_3 = <span class="keyword">new</span> C;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="keyword">static_cast</span>&lt;B *&gt;(pt_1);</span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="keyword">static_cast</span>&lt;B *&gt;(pt_2);</span><br><span class="line">  <span class="keyword">auto</span> b3 = <span class="keyword">static_cast</span>&lt;B *&gt;(pt_3);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b1-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b2-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b3-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b3-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="将图像完全展开"><a href="#将图像完全展开" class="headerlink" title="将图像完全展开"></a>将图像完全展开</h3><p>一般图像行与行之间往往存储是不连续的，但是有些图像可以是连续的，Mat提供了一个检测图像是否连续的函数<code>isContinuous()</code>。当图像连通时，我们就可以把图像完全展开，看成是一行进行处理。</p>
+<h3 id="速度比较"><a href="#速度比较" class="headerlink" title="速度比较"></a>速度比较</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> cloud_path = <span class="string">"test.pcd"</span></span><br><span class="line">  pcl::PointCloud&lt;PointT&gt;::Ptr cloud(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;);</span><br><span class="line">  pcl_utils::load_pcd(cloud_path, *cloud);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *cloud &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_1;</span><br><span class="line">  extract_1(cloud, img_1);</span><br><span class="line">  <span class="keyword">auto</span> end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  <span class="keyword">auto</span> elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_2;</span><br><span class="line">  extract_2(cloud, img_2);</span><br><span class="line">  end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_3;</span><br><span class="line">  extract_3(cloud, img_3);</span><br><span class="line">  end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"3 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1A 32686</span><br><span class="line">1B 3</span><br><span class="line">1C 5</span><br></pre></td></tr></table></figure>
+<p>输出 :</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Load pcd file with 1228800 data points.</span><br><span class="line">header: seq: 0 stamp: 0 frame_id: </span><br><span class="line"></span><br><span class="line">points[]: 1228800</span><br><span class="line">width: 1280</span><br><span class="line">height: 960</span><br><span class="line">is_dense: 0</span><br><span class="line">sensor origin (xyz): [0, 0, 0] / orientation (xyzw): [0, 0, 0, 1]</span><br><span class="line"></span><br><span class="line">1 elapsed time: 0.0199077s</span><br><span class="line">2 elapsed time: 0.012727s</span><br><span class="line">3 elapsed time: 0.00880297s</span><br><span class="line">4 elapsed time: 0.00900436s</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-dynamic-cast"><a href="#2-dynamic-cast" class="headerlink" title="2. dynamic_cast"></a>2. dynamic_cast</h2><p>动态转换，常用于将一个父类对象的指针转换为子类对象的指针或引用。其他三种都是编译时完成的，dynamic_cast是运行时处理的，运行时要进行类型检查。</p>
-<ul>
-<li><p>使用dynamic_cast进行转换的，基类中一定要有虚函数，否则编译不通过</p>
-</li>
-<li><p>在进行下行转换时，会进行类型检查 (这个信息存储在类的虚函数表)，比 <code>static_cast</code> 安全</p>
-</li>
-<li><p>转换后必须是类的指针、引用或 <code>void*</code></p>
-</li>
-<li><p>对于指针，转换失败会返回<code>nullptr</code>；对于引用，转换失败会 (在运行时) 抛出异常</p>
-</li>
-</ul>
-<p><strong>返回指针</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  A *pt1 = <span class="keyword">new</span> A;</span><br><span class="line">  A *pt2 = <span class="keyword">new</span> B;</span><br><span class="line">  A *pt3 = <span class="keyword">new</span> C;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pt1);</span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pt2);</span><br><span class="line">  <span class="keyword">auto</span> b3 = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pt3);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b1)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b1-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b1 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b2)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b2-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b2 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b3)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b3-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b3-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b3 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">b1 null</span><br><span class="line">1B 3</span><br><span class="line">b3 null</span><br></pre></td></tr></table></figure>
-
-<p><strong>返回引用</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  B b;</span><br><span class="line">  C c;</span><br><span class="line">  A &amp;a1 = b;</span><br><span class="line">  A &amp;a2 = c;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="keyword">dynamic_cast</span>&lt;B &amp;&gt;(a1);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1.class_name() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="keyword">dynamic_cast</span>&lt;B &amp;&gt;(a2);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2.class_name() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1B</span><br><span class="line">terminate called after throwing an instance of <span class="string">'std::bad_cast'</span></span><br><span class="line">  what():  std::bad_cast</span><br><span class="line">Aborted</span><br></pre></td></tr></table></figure>
-
-<h2 id="std-dynamic-pointer-cast"><a href="#std-dynamic-pointer-cast" class="headerlink" title="std::dynamic_pointer_cast"></a>std::dynamic_pointer_cast</h2><p>使用 <code>std::dynamic_pointer_cast</code> 可以返回 <code>std::shared_ptr</code></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;A&gt; pt1 = <span class="built_in">std</span>::make_shared&lt;B&gt;();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;A&gt; pt2 = <span class="built_in">std</span>::make_shared&lt;C&gt;();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="built_in">std</span>::dynamic_pointer_cast&lt;B&gt;(pt1);</span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="built_in">std</span>::dynamic_pointer_cast&lt;B&gt;(pt2);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b1)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b1-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b1 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b2)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b2-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b2 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1B 3</span><br><span class="line">b2 null</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-reinterpret-cast"><a href="#3-reinterpret-cast" class="headerlink" title="3. reinterpret_cast"></a>3. reinterpret_cast</h2><p>主要有三种强制转换用途：改变指针或引用的类型、将指针或引用转换为一个足够长度的整形、将整型转换为指针或引用类型。</p>
-<p><code>reinterpret_cast&lt;type_id&gt; (expression)</code></p>
-<ul>
-<li><p><code>type-id</code> 必须是一个指针、引用、算术类型、函数指针或者成员指针。</p>
-</li>
-<li><p>在使用reinterpret_cast强制转换过程仅仅只是比特位的拷贝，因此在使用过程中需要特别谨慎</p>
-</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> *a = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line"><span class="keyword">double</span> *d = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">double</span> *&gt;(a);</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-const-cast"><a href="#4-const-cast" class="headerlink" title="4. const_cast"></a>4. const_cast</h2><p><code>const</code> 限定符通常被用来限定变量，用于表示该变量的值不能被修改。而 <code>const_cast</code> 则正是用于强制去掉这种不能被修改的常数特性，但需要特别注意的是 <code>const_cast</code> 不是用于去除变量的常量性，而是去除指向常数对象的指针或引用的常量性，其去除常量性的对象必须为指针或引用。</p>
-<p><code>const_cast&lt;type_id&gt; (expression)</code></p>
-<ul>
-<li>该运算符用来修改类型的 <code>const</code> 或 <code>volatile</code> 属性，<code>type_id</code>和 <code>expression</code> 的类型是一样的</li>
-<li>常量指针被转化成非常量指针，并且仍然指向原来的对象</li>
-<li>常量引用被转换成非常量引用，并且仍然指向原来的对象；常量对象被转换成非常量对象</li>
-</ul>
 ]]></content>
       <categories>
-        <category>c++</category>
+        <category>cv</category>
       </categories>
       <tags>
         <tag>c++</tag>
+        <tag>opencv</tag>
       </tags>
   </entry>
   <entry>
@@ -412,6 +326,31 @@
         <tag>c++</tag>
         <tag>stl</tag>
         <tag>vector</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 使用SCP远程拷贝文件</title>
+    <url>/scp.html</url>
+    <content><![CDATA[<p> 使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制</p>
+<a id="more"></a>
+
+
+
+<h4 id="从本地复制到远程"><a href="#从本地复制到远程" class="headerlink" title="从本地复制到远程"></a>从本地复制到远程</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp test.txt bot@10.0.9.211:/home/bot/test_folder</span><br><span class="line">scp test.txt bot@10.0.9.211:/home/bot/test_folder/test.txt</span><br><span class="line">scp test.txt 10.0.9.211:/home/bot/test_folder</span><br><span class="line">scp test.txt 10.0.9.211:/home/bot/test_folder/test.txt</span><br></pre></td></tr></table></figure>
+
+<h4 id="从远程复制到本地"><a href="#从远程复制到本地" class="headerlink" title="从远程复制到本地"></a>从远程复制到本地</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp bot@10.0.9.211:/home/bot/test_folder text.txt</span><br><span class="line">scp bot@10.0.9.211:/home/bot/test_folder/test.txt test.txt</span><br><span class="line">scp 10.0.9.211:/home/bot/test_folder test.txt</span><br><span class="line">scp 10.0.9.211:/home/bot/test_folder/test.txt test.txt</span><br></pre></td></tr></table></figure>
+
+<h4 id="传输整个目录"><a href="#传输整个目录" class="headerlink" title="传输整个目录"></a>传输整个目录</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp -r /test_folder bot@10.0.9.211:/home/bot/test_folder</span><br></pre></td></tr></table></figure>
+
+<h4 id="其他参数用法"><a href="#其他参数用法" class="headerlink" title="其他参数用法"></a>其他参数用法</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line">usage: scp [-12346BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]</span><br><span class="line">           [-l <span class="built_in">limit</span>] [-o ssh_option] [-P port] [-S program]</span><br><span class="line">           [[user@]host1:]file1 ... [[user@]host2:]file2</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>memo</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>scp</tag>
       </tags>
   </entry>
   <entry>
@@ -509,6 +448,89 @@
         <tag>c++</tag>
         <tag>async</tag>
         <tag>并发编程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++ 强制类型转换</title>
+    <url>/type-cast.html</url>
+    <content><![CDATA[<p>相比于C风格的强制类型转换，C++新增了关键字 <code>static_cast</code>、<code>dynamic_cast</code>、<code>const_cast</code>、<code>reinterpret_cast</code> ，用于强制类型转换。</p><p>新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。</p><h2 id="1-static-cast"><a href="#1-static-cast" class="headerlink" title="1. static_cast"></a>1. static_cast</h2><p>用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。</p><a id="more"></a>
+
+
+<p>常用于：</p>
+<ul>
+<li>基本数据类型之间的转换，如<code>int -&gt; char</code>，这种转换的安全也要开发人员来保证</li>
+<li>任何类型的表达式转换成 <code>void</code> 类型</li>
+<li>不能转换掉 <code>expression</code> 的 <code>const</code> 、<code>volitale</code> 或者 <code>__unaligned</code> 属性</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> a = <span class="number">65</span>;</span><br><span class="line">  <span class="keyword">int</span> b = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"int a: "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"char a: "</span> &lt;&lt; <span class="keyword">static_cast</span>&lt;<span class="keyword">char</span>&gt;(a) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">double</span> c = a / b;</span><br><span class="line">  <span class="keyword">double</span> d = <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>&gt;(a) / <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>&gt;(b);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"c: "</span> &lt;&lt; c &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"d: "</span> &lt;&lt; d &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">a: 65</span><br><span class="line">char a: A</span><br><span class="line">c: 6</span><br><span class="line">d: 6.5</span><br></pre></td></tr></table></figure>
+
+<p><strong>没有运行时类型检查来保证转换的安全性</strong></p>
+<ul>
+<li>上行转型 (子类对象指针–&gt;父类对象指针/引用)： 安全</li>
+<li>下行转型(父类对象指针–&gt;子类对象指针/引用)：没有动态类型检查，所以是不安全的</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"typeinfo"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">virtual</span> <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">class_name</span><span class="params">()</span> final </span>&#123; <span class="keyword">return</span> <span class="keyword">typeid</span>(*<span class="keyword">this</span>).name(); &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span> <span class="keyword">public</span> A</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> b = <span class="number">3</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> :</span> <span class="keyword">public</span> A</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> c = <span class="number">5</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  A *pt_1 = <span class="keyword">new</span> A;</span><br><span class="line">  A *pt_2 = <span class="keyword">new</span> B;</span><br><span class="line">  A *pt_3 = <span class="keyword">new</span> C;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="keyword">static_cast</span>&lt;B *&gt;(pt_1);</span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="keyword">static_cast</span>&lt;B *&gt;(pt_2);</span><br><span class="line">  <span class="keyword">auto</span> b3 = <span class="keyword">static_cast</span>&lt;B *&gt;(pt_3);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b1-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b2-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b3-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b3-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1A 32686</span><br><span class="line">1B 3</span><br><span class="line">1C 5</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-dynamic-cast"><a href="#2-dynamic-cast" class="headerlink" title="2. dynamic_cast"></a>2. dynamic_cast</h2><p>动态转换，常用于将一个父类对象的指针转换为子类对象的指针或引用。其他三种都是编译时完成的，dynamic_cast是运行时处理的，运行时要进行类型检查。</p>
+<ul>
+<li><p>使用dynamic_cast进行转换的，基类中一定要有虚函数，否则编译不通过</p>
+</li>
+<li><p>在进行下行转换时，会进行类型检查 (这个信息存储在类的虚函数表)，比 <code>static_cast</code> 安全</p>
+</li>
+<li><p>转换后必须是类的指针、引用或 <code>void*</code></p>
+</li>
+<li><p>对于指针，转换失败会返回<code>nullptr</code>；对于引用，转换失败会 (在运行时) 抛出异常</p>
+</li>
+</ul>
+<p><strong>返回指针</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  A *pt1 = <span class="keyword">new</span> A;</span><br><span class="line">  A *pt2 = <span class="keyword">new</span> B;</span><br><span class="line">  A *pt3 = <span class="keyword">new</span> C;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pt1);</span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pt2);</span><br><span class="line">  <span class="keyword">auto</span> b3 = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pt3);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b1)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b1-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b1 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b2)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b2-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b2 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b3)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b3-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b3-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b3 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">b1 null</span><br><span class="line">1B 3</span><br><span class="line">b3 null</span><br></pre></td></tr></table></figure>
+
+<p><strong>返回引用</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  B b;</span><br><span class="line">  C c;</span><br><span class="line">  A &amp;a1 = b;</span><br><span class="line">  A &amp;a2 = c;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="keyword">dynamic_cast</span>&lt;B &amp;&gt;(a1);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1.class_name() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="keyword">dynamic_cast</span>&lt;B &amp;&gt;(a2);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2.class_name() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1B</span><br><span class="line">terminate called after throwing an instance of <span class="string">'std::bad_cast'</span></span><br><span class="line">  what():  std::bad_cast</span><br><span class="line">Aborted</span><br></pre></td></tr></table></figure>
+
+<h2 id="std-dynamic-pointer-cast"><a href="#std-dynamic-pointer-cast" class="headerlink" title="std::dynamic_pointer_cast"></a>std::dynamic_pointer_cast</h2><p>使用 <code>std::dynamic_pointer_cast</code> 可以返回 <code>std::shared_ptr</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;A&gt; pt1 = <span class="built_in">std</span>::make_shared&lt;B&gt;();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;A&gt; pt2 = <span class="built_in">std</span>::make_shared&lt;C&gt;();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="built_in">std</span>::dynamic_pointer_cast&lt;B&gt;(pt1);</span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="built_in">std</span>::dynamic_pointer_cast&lt;B&gt;(pt2);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b1)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b1-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b1 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b2)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b2-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b2 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1B 3</span><br><span class="line">b2 null</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-reinterpret-cast"><a href="#3-reinterpret-cast" class="headerlink" title="3. reinterpret_cast"></a>3. reinterpret_cast</h2><p>主要有三种强制转换用途：改变指针或引用的类型、将指针或引用转换为一个足够长度的整形、将整型转换为指针或引用类型。</p>
+<p><code>reinterpret_cast&lt;type_id&gt; (expression)</code></p>
+<ul>
+<li><p><code>type-id</code> 必须是一个指针、引用、算术类型、函数指针或者成员指针。</p>
+</li>
+<li><p>在使用reinterpret_cast强制转换过程仅仅只是比特位的拷贝，因此在使用过程中需要特别谨慎</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> *a = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line"><span class="keyword">double</span> *d = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">double</span> *&gt;(a);</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-const-cast"><a href="#4-const-cast" class="headerlink" title="4. const_cast"></a>4. const_cast</h2><p><code>const</code> 限定符通常被用来限定变量，用于表示该变量的值不能被修改。而 <code>const_cast</code> 则正是用于强制去掉这种不能被修改的常数特性，但需要特别注意的是 <code>const_cast</code> 不是用于去除变量的常量性，而是去除指向常数对象的指针或引用的常量性，其去除常量性的对象必须为指针或引用。</p>
+<p><code>const_cast&lt;type_id&gt; (expression)</code></p>
+<ul>
+<li>该运算符用来修改类型的 <code>const</code> 或 <code>volatile</code> 属性，<code>type_id</code>和 <code>expression</code> 的类型是一样的</li>
+<li>常量指针被转化成非常量指针，并且仍然指向原来的对象</li>
+<li>常量引用被转换成非常量引用，并且仍然指向原来的对象；常量对象被转换成非常量对象</li>
+</ul>
+]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1652,5 +1674,15 @@
       <tags>
         <tag>c++</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>分类</title>
+    <url>/categories/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>标签</title>
+    <url>/tags/index.html</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
