@@ -1154,8 +1154,9 @@ public:
   std::string name() const;
 
 private:
-  std::shared_ptr<PersonImpl> impl_;  // 因为是指针，编译器不需要知道PersonImpl的大小
-  																		// 只需要分配指针需要的内存
+  // 因为是指针，编译器不需要知道PersonImpl的大小
+  // 只需要分配指针需要的内存
+  std::shared_ptr<PersonImpl> impl_;
 };
 ```
 
