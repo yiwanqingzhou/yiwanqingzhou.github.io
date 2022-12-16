@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+  <meta name="google-site-verification" content="google-site-verification=gnN6UKVdDQIcnFPlGii5rIDQXchNJsPLgDTEFBWaQwM">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Droid Sans Fallback:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="恢复git stash误删的内容不小心使用 git drop stash 误删了暂存的内容，怎么恢复？其实drop后并没有真正删除暂存的内容，而是移除了对它的引用，所以通过一些操作是可以找回的。模拟误删场景 git st 查看当前修改   12345678910111213On branch masterYour branch is up-to-date with &apos;origin/master&apos;.">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="恢复git stash误删的内容">
+<meta property="og:url" content="https://yiwanqingzhou.github.io/git-stash-dropped-by-incidence.html">
+<meta property="og:site_name" content="一晚清粥">
+<meta property="og:description" content="恢复git stash误删的内容不小心使用 git drop stash 误删了暂存的内容，怎么恢复？其实drop后并没有真正删除暂存的内容，而是移除了对它的引用，所以通过一些操作是可以找回的。模拟误删场景 git st 查看当前修改   12345678910111213On branch masterYour branch is up-to-date with &apos;origin/master&apos;.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://yiwanqingzhou.github.io/git-stash-dropped-by-incidence/1.png">
+<meta property="og:image" content="https://yiwanqingzhou.github.io/git-stash-dropped-by-incidence/2.png">
+<meta property="og:updated_time" content="2022-12-16T06:54:17.175Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="恢复git stash误删的内容">
+<meta name="twitter:description" content="恢复git stash误删的内容不小心使用 git drop stash 误删了暂存的内容，怎么恢复？其实drop后并没有真正删除暂存的内容，而是移除了对它的引用，所以通过一些操作是可以找回的。模拟误删场景 git st 查看当前修改   12345678910111213On branch masterYour branch is up-to-date with &apos;origin/master&apos;.">
+<meta name="twitter:image" content="https://yiwanqingzhou.github.io/git-stash-dropped-by-incidence/1.png">
+  <link rel="canonical" href="https://yiwanqingzhou.github.io/git-stash-dropped-by-incidence">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>恢复git stash误删的内容 | 一晚清粥</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一晚清粥</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/git-stash-dropped-by-incidence.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="清粥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一晚清粥">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">恢复git stash误删的内容
+
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2022-12-16 11:52:17 / 修改时间：14:54:17" itemprop="dateCreated datePublished" datetime="2022-12-16T11:52:17+08:00">2022-12-16</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/memo/" itemprop="url" rel="index"><span itemprop="name">memo</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="恢复git-stash误删的内容"><a href="#恢复git-stash误删的内容" class="headerlink" title="恢复git stash误删的内容"></a>恢复git stash误删的内容</h2><p>不小心使用 <code>git drop stash</code> 误删了暂存的内容，怎么恢复？</p><p>其实drop后并没有真正删除暂存的内容，而是移除了对它的引用，所以通过一些操作是可以找回的。</p><h3 id="模拟误删场景"><a href="#模拟误删场景" class="headerlink" title="模拟误删场景"></a>模拟误删场景</h3><ul>
+<li><p><code>git st</code> 查看当前修改</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">On branch master</span><br><span class="line">Your branch is up-to-date with <span class="string">'origin/master'</span>.</span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add/rm &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">    deleted:    calibration/adjust_result.json</span><br><span class="line">    modified:   calibration/config.json</span><br><span class="line">    modified:   calibration/src/rd_test.cc</span><br><span class="line">    modified:   pose_estimation/CMakeLists.txt</span><br><span class="line">    modified:   <span class="built_in">test</span>/CMakeLists.txt</span><br><span class="line">    modified:   <span class="built_in">test</span>/multiple_sensors.json</span><br><span class="line">    modified:   <span class="built_in">test</span>/src/test_multiple_sensors.cc</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>git stash</code> 暂存修改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Saved working directory and index state WIP on master: 4d74f8a fix spell</span><br><span class="line">HEAD is now at 4d74f8a fix spell</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>git stash list</code> 查看暂存内容列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stash@&#123;0&#125;: WIP on master: 4d74f8a fix spell</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>git stash drop stash@{0}</code> 移除暂存内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dropped refs/stash@&#123;0&#125; (0b45536f1ce7e859a85f1459d6ae34fc6cdc4039)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul><a id="more"></a>
+
+
+<p>至此已经把暂存的修改内容移除了</p>
+<h3 id="恢复步骤"><a href="#恢复步骤" class="headerlink" title="恢复步骤"></a>恢复步骤</h3><h4 id="1-查找unreachable的记录"><a href="#1-查找unreachable的记录" class="headerlink" title="1. 查找unreachable的记录"></a>1. 查找unreachable的记录</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fsck --unreachable</span><br><span class="line"><span class="comment"># git fsck --lost-found</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="git-stash-dropped-by-incidence/1.png" alt="1"></p>
+<p>可能会查找到几百条记录，截图了部分。这些记录有三种类型：blob、tree和commit。</p>
+<blockquote>
+<p>blob：每个blob代表一个版本的文件，blob只包含文件的数据，而忽略文件的其他元数据，如名字、路径、格式等。tags tag用于给某个上述类型的对象指配一个便于开发者记忆的名字, 通常用于某次commit。</p>
+</blockquote>
+<blockquote>
+<p>tree：每个tree代表了一个目录的信息，包含了此目录下的blobs，子目录，文件名、路径等元数据。因此，对于有子目录的目录，git相当于存储了嵌套的trees。</p>
+</blockquote>
+<blockquote>
+<p>commit：每个commit记录了提交一个更新的所有元数据，如指向的tree，父commit，作者、提交者、提交日期、提交日志等。每次提交都指向一个tree对象，记录了当次提交时的目录信息。一个commit可以有多个父commits。</p>
+</blockquote>
+<p>一般来说能用得上的是commit后跟的id，所以可以用 <code>grep</code> 过滤一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fsck --unreachable | grep commit</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Checking object directories: 100% (256/256), done.</span><br><span class="line">Checking objects: 100% (167/167), done.</span><br><span class="line">unreachable commit 32b865ecc5f2a0a924fac70bed3183d04e843c80</span><br><span class="line">unreachable commit e6c8f569f6a0b1614822bf57d5ed0a068fcba55d</span><br><span class="line">unreachable commit 692968cca20bcc1635dc18eaf91fd473cb8eaa25</span><br><span class="line">unreachable commit de39efe5ef0b54956fd747637ad9f2d879937ffc</span><br><span class="line">unreachable commit 437a84f0a8278b1e06bc6ddc580210a02752c757</span><br><span class="line">unreachable commit d372ccc53fb83ad5fd817fa438ba89c45269728d</span><br><span class="line">unreachable commit 69c3f6c907d8560359811939be1988a9599d5331</span><br><span class="line">unreachable commit 77bb1398679c8885d37999d19596fa67d5d1c33a</span><br><span class="line">unreachable commit 7d4b2ea272b62f656136207bd4ada0727308a416</span><br><span class="line">unreachable commit a8ebeb6316f84f2ff4593405fd9e6171c4e3fa06</span><br><span class="line">unreachable commit 9e24d0c4bfda86b4b0728f524b8e4e73bbde207b</span><br><span class="line">unreachable commit 150d9ae6ffa0273a8b500327e802a28d69450077</span><br><span class="line">unreachable commit 0b45536f1ce7e859a85f1459d6ae34fc6cdc4039</span><br><span class="line">unreachable commit a25da65d9a4167cee02357cb947c9900311fcf8b</span><br><span class="line">unreachable commit 14c66d8c765dd705ffdc8e229cb68abfd4bb579a</span><br><span class="line">unreachable commit 224e616a67dab617d481c90133ee3f9060db0893</span><br><span class="line">unreachable commit 5ede90fa7c81d74be1c2b5f180e875a968f47355</span><br><span class="line">unreachable commit 7dee291774f4b96c3a73f92de6bf8765e629b567</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-查看修改内容"><a href="#2-查看修改内容" class="headerlink" title="2. 查看修改内容"></a>2. 查看修改内容</h4><ul>
+<li><p>查看完整修改内容</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show 32b865ecc5f2a0a924fac70bed3183d04e843c80</span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">commit 32b865ecc5f2a0a924fac70bed3183d04e843c80</span><br><span class="line">Author: Tiffany Zhou &lt;xueying.zhou@dorabot.com&gt;</span><br><span class="line">Date:   Wed Nov 3 17:33:13 2021 +0800</span><br><span class="line"></span><br><span class="line">    index on feature/depalletizing: aa9d706 update <span class="keyword">for</span> dr_vision_lib</span><br><span class="line"></span><br><span class="line">diff --git a/include/pcl_utils/tree.hh b/include/pcl_utils/tree.hh</span><br><span class="line">index 11e46c1..ceb56be 100644</span><br><span class="line">--- a/include/pcl_utils/tree.hh</span><br><span class="line">+++ b/include/pcl_utils/tree.hh</span><br><span class="line">@@ -11,7 +11,7 @@ template &lt;typename PointT&gt;</span><br><span class="line"> inline void detect_change(const typename pcl::PointCloud&lt;PointT&gt;::Ptr &amp;based_cloud_ptr,</span><br><span class="line">                           const typename pcl::PointCloud&lt;PointT&gt;::Ptr &amp;scene_cloud_ptr,</span><br><span class="line">                           typename pcl::PointCloud&lt;PointT&gt;::Ptr &amp;cloud_diff_ptr,</span><br><span class="line">-                          <span class="built_in">float</span> resolution = 0.01f)</span><br><span class="line">+                          double resolution = 0.01)</span><br><span class="line"> &#123;</span><br><span class="line">   typename pcl::octree::OctreePointCloudChangeDetector&lt;PointT&gt; octree(resolution);</span><br><span class="line">   octree.setInputCloud(based_cloud_ptr);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看修改文件</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show 32b865ecc5f2a0a924fac70bed3183d04e843c80 --<span class="built_in">stat</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Author: Tiffany Zhou &lt;xueying.zhou@dorabot.com&gt;</span><br><span class="line">Date:   Wed Nov 3 17:33:13 2021 +0800</span><br><span class="line"></span><br><span class="line">index on feature/depalletizing: aa9d706 update <span class="keyword">for</span> dr_vision_lib</span><br><span class="line"></span><br><span class="line">include/pcl_utils/tree.hh | 2 +-</span><br><span class="line">1 file changed, 1 insertion(+), 1 deletion(-)</span><br></pre></td></tr></table></figure></code></pre><h4 id="3-找到误删的内容"><a href="#3-找到误删的内容" class="headerlink" title="3. 找到误删的内容"></a>3. 找到误删的内容</h4><p>那么很清晰了，查看每个unreachable commit的修改内容就能找到误删的stash。但是用得越久的repo，找出来的记录就越多，而且记录并不是按照时间来排序的，手动查看每个修改内容也太费时了。</p>
+<p>我的方法是把所有记录复制到编辑器，将 “unreachable commit” 删除，只留下所有的id，存成文件，然后用简单脚本读取循环。</p>
+<p><img src="git-stash-dropped-by-incidence/2.png" alt="2"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">cat unreachable.txt | <span class="keyword">while</span> <span class="built_in">read</span> line</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    git show <span class="variable">$line</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"------------------"</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>如果能大概记得修改了哪些文件，可以用 <code>--stat | grep</code> ，比如这份暂存内容修改了 <code>test/src/test_multiple_sensors.cc</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">cat unreachable.txt | <span class="keyword">while</span> <span class="built_in">read</span> line</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$line</span></span><br><span class="line">    git show <span class="variable">$line</span> | grep <span class="built_in">test</span>/src/test_multiple_sensors.cc</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"------------------"</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>运行时也可以输出到文件里，更方便查找：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh xxx.sh &gt; xxx.log</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">437a84f0a8278b1e06bc6ddc580210a02752c757</span><br><span class="line">------------------</span><br><span class="line">150d9ae6ffa0273a8b500327e802a28d69450077</span><br><span class="line">------------------</span><br><span class="line">0b45536f1ce7e859a85f1459d6ae34fc6cdc4039</span><br><span class="line">diff --cc <span class="built_in">test</span>/src/test_multiple_sensors.cc</span><br><span class="line">--- a/<span class="built_in">test</span>/src/test_multiple_sensors.cc</span><br><span class="line">+++ b/<span class="built_in">test</span>/src/test_multiple_sensors.cc</span><br><span class="line">------------------</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-恢复找到的记录"><a href="#4-恢复找到的记录" class="headerlink" title="4. 恢复找到的记录"></a>4. 恢复找到的记录</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stach apply 0b45536f1ce7e859a85f1459d6ae34fc6cdc4039</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/git/" rel="tag"># git</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/algorithm-notes.html" rel="next" title="leetcode刷题记录">
+                  <i class="fa fa-chevron-left"></i> leetcode刷题记录
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#恢复git-stash误删的内容"><span class="nav-number">1.</span> <span class="nav-text">恢复git stash误删的内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟误删场景"><span class="nav-number">1.1.</span> <span class="nav-text">模拟误删场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恢复步骤"><span class="nav-number">1.2.</span> <span class="nav-text">恢复步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-查找unreachable的记录"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 查找unreachable的记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-查看修改内容"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 查看修改内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-找到误删的内容"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 找到误删的内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-恢复找到的记录"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. 恢复找到的记录</span></a></li></ol></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">清粥</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">清粥</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
+-->
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
