@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://yiwanqingzhou.github.io/image-processing-conv-filter.html</loc>
+    
+    <lastmod>2023-08-29</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://yiwanqingzhou.github.io/git-stash-dropped-by-coincidence.html</loc>
     
     <lastmod>2022-12-16</lastmod>
@@ -305,20 +312,6 @@
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/tags/vscode/</loc>
-    <lastmod>2023-08-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://yiwanqingzhou.github.io/tags/clang/</loc>
-    <lastmod>2023-08-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://yiwanqingzhou.github.io/tags/cmake/</loc>
     <lastmod>2023-08-29</lastmod>
     <changefreq>daily</changefreq>
@@ -327,6 +320,20 @@
   
   <url>
     <loc>https://yiwanqingzhou.github.io/tags/%E7%BC%96%E8%AF%91/</loc>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/vscode/</loc>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/clang/</loc>
     <lastmod>2023-08-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -389,13 +396,6 @@
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/tags/scp/</loc>
-    <lastmod>2023-08-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://yiwanqingzhou.github.io/tags/stl/</loc>
     <lastmod>2023-08-29</lastmod>
     <changefreq>daily</changefreq>
@@ -404,6 +404,13 @@
   
   <url>
     <loc>https://yiwanqingzhou.github.io/tags/vector/</loc>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/scp/</loc>
     <lastmod>2023-08-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -437,6 +444,27 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/cv/</loc>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://yiwanqingzhou.github.io/tags/python/</loc>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -454,14 +482,14 @@
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/categories/memo/</loc>
+    <loc>https://yiwanqingzhou.github.io/categories/cmake/</loc>
     <lastmod>2023-08-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://yiwanqingzhou.github.io/categories/cmake/</loc>
+    <loc>https://yiwanqingzhou.github.io/categories/memo/</loc>
     <lastmod>2023-08-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
