@@ -58,19 +58,26 @@
   };
 </script>
 
-  <meta name="description" content="时间复杂度  二分算法  双指针算法  排序算法">
-<meta name="keywords" content="c++,algorithm,coding">
+  <meta name="description" content="低通滤波: 通常使用来去噪常见滤波类型均值滤波高斯滤波 (权重与距离相关)中值滤波顾名思义取中值具体代码例子高斯的模糊/去噪效果12345678910111213141516171819# Read in the imageimage = cv2.imread(&apos;images/brain_MR.jpg&apos;)# Convert to grayscale for filteringgray = cv2.">
+<meta name="keywords" content="图像处理,cv,opencv,python,卷积,滤波,边缘检测">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode刷题记录">
-<meta property="og:url" content="https://yiwanqingzhou.github.io/algorithm-notes.html">
+<meta property="og:title" content="OpenCV图像处理2-使用低通滤波进行去噪">
+<meta property="og:url" content="https://yiwanqingzhou.github.io/image-processing-low-pass-filter.html">
 <meta property="og:site_name" content="一晚清粥">
-<meta property="og:description" content="时间复杂度  二分算法  双指针算法  排序算法">
+<meta property="og:description" content="低通滤波: 通常使用来去噪常见滤波类型均值滤波高斯滤波 (权重与距离相关)中值滤波顾名思义取中值具体代码例子高斯的模糊/去噪效果12345678910111213141516171819# Read in the imageimage = cv2.imread(&apos;images/brain_MR.jpg&apos;)# Convert to grayscale for filteringgray = cv2.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2023-08-29T12:31:32.757Z">
+<meta property="og:image" content="https://yiwanqingzhou.github.io/image-processing-low-pass-filter/math-4.png">
+<meta property="og:image" content="https://yiwanqingzhou.github.io/image-processing-low-pass-filter/math-5.png">
+<meta property="og:image" content="https://yiwanqingzhou.github.io/image-processing-low-pass-filter/3.png">
+<meta property="og:image" content="https://yiwanqingzhou.github.io/image-processing-low-pass-filter/4.png">
+<meta property="og:image" content="https://yiwanqingzhou.github.io/image-processing-low-pass-filter/5.png">
+<meta property="og:image" content="https://yiwanqingzhou.github.io/image-processing-low-pass-filter/6.png">
+<meta property="og:updated_time" content="2023-09-14T05:45:37.369Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode刷题记录">
-<meta name="twitter:description" content="时间复杂度  二分算法  双指针算法  排序算法">
-  <link rel="canonical" href="https://yiwanqingzhou.github.io/algorithm-notes">
+<meta name="twitter:title" content="OpenCV图像处理2-使用低通滤波进行去噪">
+<meta name="twitter:description" content="低通滤波: 通常使用来去噪常见滤波类型均值滤波高斯滤波 (权重与距离相关)中值滤波顾名思义取中值具体代码例子高斯的模糊/去噪效果12345678910111213141516171819# Read in the imageimage = cv2.imread(&apos;images/brain_MR.jpg&apos;)# Convert to grayscale for filteringgray = cv2.">
+<meta name="twitter:image" content="https://yiwanqingzhou.github.io/image-processing-low-pass-filter/math-4.png">
+  <link rel="canonical" href="https://yiwanqingzhou.github.io/image-processing-low-pass-filter">
 
 
 <script id="page-configurations">
@@ -84,7 +91,7 @@
   };
 </script>
 
-  <title>leetcode刷题记录 | 一晚清粥</title>
+  <title>OpenCV图像处理2-使用低通滤波进行去噪 | 一晚清粥</title>
   
 
 
@@ -248,7 +255,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/algorithm-notes.html">
+    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/image-processing-low-pass-filter.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="清粥">
@@ -260,7 +267,7 @@
       <meta itemprop="name" content="一晚清粥">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">leetcode刷题记录
+        <h2 class="post-title" itemprop="name headline">OpenCV图像处理2-使用低通滤波进行去噪
 
           
         </h2>
@@ -276,7 +283,7 @@
                 
               
 
-              <time title="创建时间：2022-09-17 16:42:54" itemprop="dateCreated datePublished" datetime="2022-09-17T16:42:54+08:00">2022-09-17</time>
+              <time title="创建时间：2023-08-29 18:06:54" itemprop="dateCreated datePublished" datetime="2023-08-29T18:06:54+08:00">2023-08-29</time>
             </span>
           
             
@@ -287,7 +294,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-08-29 20:31:32" itemprop="dateModified" datetime="2023-08-29T20:31:32+08:00">2023-08-29</time>
+                <time title="修改时间：2023-09-14 13:45:37" itemprop="dateModified" datetime="2023-09-14T13:45:37+08:00">2023-09-14</time>
               </span>
             
           
@@ -297,7 +304,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/cv/" itemprop="url" rel="index"><span itemprop="name">cv</span></a></span>
 
                 
                 
@@ -316,16 +323,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <ul>
-<li><p><a href="./algorithm-notes/content/时间复杂度.html">时间复杂度</a></p>
-</li>
-<li><p><a href="./algorithm-notes/content/二分法.html">二分算法</a></p>
-</li>
-<li><p><a href="./algorithm-notes/content/双指针算法.html">双指针算法</a></p>
-</li>
-<li><p><a href="./algorithm-notes/content/排序.html">排序算法</a></p>
-</li>
-</ul>
+        <h2 id="低通滤波-通常使用来去噪"><a href="#低通滤波-通常使用来去噪" class="headerlink" title="低通滤波: 通常使用来去噪"></a>低通滤波: 通常使用来去噪</h2><h3 id="常见滤波类型"><a href="#常见滤波类型" class="headerlink" title="常见滤波类型"></a>常见滤波类型</h3><h5 id="均值滤波"><a href="#均值滤波" class="headerlink" title="均值滤波"></a>均值滤波</h5><p><img src="image-processing-low-pass-filter/math-4.png" alt="math-4"></p><h5 id="高斯滤波-权重与距离相关"><a href="#高斯滤波-权重与距离相关" class="headerlink" title="高斯滤波 (权重与距离相关)"></a>高斯滤波 (权重与距离相关)</h5><p><img src="image-processing-low-pass-filter/math-5.png" alt="math-5"></p><h5 id="中值滤波"><a href="#中值滤波" class="headerlink" title="中值滤波"></a>中值滤波</h5><p>顾名思义取中值</p><h3 id="具体代码例子"><a href="#具体代码例子" class="headerlink" title="具体代码例子"></a>具体代码例子</h3><h5 id="高斯的模糊-去噪效果"><a href="#高斯的模糊-去噪效果" class="headerlink" title="高斯的模糊/去噪效果"></a>高斯的模糊/去噪效果</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Read in the image</span></span><br><span class="line">image = cv2.imread(<span class="string">'images/brain_MR.jpg'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert to grayscale for filtering</span></span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a Gaussian blurred image</span></span><br><span class="line">gray_blur = cv2.GaussianBlur(gray, (<span class="number">9</span>, <span class="number">9</span>), <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># use custom kernal</span></span><br><span class="line"><span class="comment"># gaussian = (1/16)*np.array([[1, 2, 1],</span></span><br><span class="line"><span class="comment">#                            [2, 4, 2],</span></span><br><span class="line"><span class="comment">#                            [1, 2, 1]])</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># gray_blur = cv2.filter2D(gray, -1, gaussian)</span></span><br><span class="line"></span><br><span class="line">f, (ax1, ax2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">ax1.set_title(<span class="string">'original gray'</span>),ax1.imshow(gray, cmap=<span class="string">'gray'</span>)</span><br><span class="line">ax2.set_title(<span class="string">'blurred image'</span>),ax2.imshow(gray_blur, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+<p><img src="image-processing-low-pass-filter/3.png" alt="3"></p>
+<h5 id="与高通滤波配合"><a href="#与高通滤波配合" class="headerlink" title="与高通滤波配合"></a>与高通滤波配合</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Filter the orginal and blurred grayscale images using filter2D</span></span><br><span class="line">filtered = cv2.filter2D(gray, <span class="number">-1</span>, sobel_y)</span><br><span class="line">filtered_blurred = cv2.filter2D(gray_blur, <span class="number">-1</span>, sobel_y)</span><br><span class="line"></span><br><span class="line">f, (ax1, ax2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">ax1.set_title(<span class="string">'original &amp; filtered imnage'</span>),ax1.imshow(filtered, cmap=<span class="string">'gray'</span>)</span><br><span class="line">ax2.set_title(<span class="string">'blurred &amp; filtered image'</span>),ax2.imshow(filtered_blurred, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-low-pass-filter/4.png" alt="4"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">retval, binary_image = cv2.threshold(filtered_blurred, <span class="number">50</span>, <span class="number">255</span>, cv2.THRESH_BINARY)</span><br><span class="line">plt.imshow(binary_image, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-low-pass-filter/5.png" alt="5"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">filtered_blurred = cv2.filter2D(gray_blur, <span class="number">-1</span>, laplacian)</span><br><span class="line">retval, binary_image = cv2.threshold(filtered_blurred, <span class="number">5</span>, <span class="number">255</span>, cv2.THRESH_BINARY)</span><br><span class="line">plt.imshow(binary_image, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-low-pass-filter/6.png" alt="6"></p>
 
     </div>
 
@@ -341,9 +353,13 @@
           
           <div class="post-tags">
             
-              <a href="/tags/c/" rel="tag"># c++</a>
+              <a href="/tags/图像处理/" rel="tag"># 图像处理</a>
             
-              <a href="/tags/coding/" rel="tag"># coding</a>
+              <a href="/tags/cv/" rel="tag"># cv</a>
+            
+              <a href="/tags/opencv/" rel="tag"># opencv</a>
+            
+              <a href="/tags/python/" rel="tag"># python</a>
             
           </div>
         
@@ -353,8 +369,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/Effective-Cpp.html" rel="next" title="Effective C++ 笔记">
-                  <i class="fa fa-chevron-left"></i> Effective C++ 笔记
+                <a href="/image-processing-high-pass-filter.html" rel="next" title="OpenCV图像处理1-使用高通滤波进行边缘检测">
+                  <i class="fa fa-chevron-left"></i> OpenCV图像处理1-使用高通滤波进行边缘检测
                 </a>
               
             </div>
@@ -362,10 +378,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/git-stash-dropped-by-coincidence.html" rel="prev" title="恢复git stash误删的内容">
-                  恢复git stash误删的内容 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -414,6 +426,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#低通滤波-通常使用来去噪"><span class="nav-number">1.</span> <span class="nav-text">低通滤波: 通常使用来去噪</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见滤波类型"><span class="nav-number">1.1.</span> <span class="nav-text">常见滤波类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#均值滤波"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">均值滤波</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#高斯滤波-权重与距离相关"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">高斯滤波 (权重与距离相关)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#中值滤波"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">中值滤波</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体代码例子"><span class="nav-number">1.2.</span> <span class="nav-text">具体代码例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#高斯的模糊-去噪效果"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">高斯的模糊/去噪效果</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#与高通滤波配合"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">与高通滤波配合</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
