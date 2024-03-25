@@ -58,19 +58,19 @@
   };
 </script>
 
-  <meta name="description" content="PCL相关类型 对象与指针互换 pcl::PointIndices -&amp;gt; pcl::PointIndices::Ptr 12pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr(new pcl::PointIndices(inliers));">
-<meta name="keywords" content="c++,pcl">
+  <meta name="description" content="Install Git123sudo apt install gitgit config --global user.name &quot;Your Name&quot;git config --global user.email &quot;youremail@domain.com&quot;Configure Firewall12345sudo apt install ufwsudo ufw allow &quot;OpenSSH&quot;sudo">
+<meta name="keywords" content="hexo,linux,ubuntu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PCL类型转换">
-<meta property="og:url" content="https://yiwanqingzhou.github.io/pcl_type_transform.html">
+<meta property="og:title" content="Ubuntu环境下安装使用hexo">
+<meta property="og:url" content="https://yiwanqingzhou.github.io/install-hexo.html">
 <meta property="og:site_name" content="一晚清粥">
-<meta property="og:description" content="PCL相关类型 对象与指针互换 pcl::PointIndices -&amp;gt; pcl::PointIndices::Ptr 12pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr(new pcl::PointIndices(inliers));">
+<meta property="og:description" content="Install Git123sudo apt install gitgit config --global user.name &quot;Your Name&quot;git config --global user.email &quot;youremail@domain.com&quot;Configure Firewall12345sudo apt install ufwsudo ufw allow &quot;OpenSSH&quot;sudo">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2023-11-23T08:21:13.000Z">
+<meta property="og:updated_time" content="2024-03-25T10:14:57.471Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PCL类型转换">
-<meta name="twitter:description" content="PCL相关类型 对象与指针互换 pcl::PointIndices -&amp;gt; pcl::PointIndices::Ptr 12pcl::PointIndices inliers;pcl::PointIndices::Ptr inliers_ptr(new pcl::PointIndices(inliers));">
-  <link rel="canonical" href="https://yiwanqingzhou.github.io/pcl_type_transform">
+<meta name="twitter:title" content="Ubuntu环境下安装使用hexo">
+<meta name="twitter:description" content="Install Git123sudo apt install gitgit config --global user.name &quot;Your Name&quot;git config --global user.email &quot;youremail@domain.com&quot;Configure Firewall12345sudo apt install ufwsudo ufw allow &quot;OpenSSH&quot;sudo">
+  <link rel="canonical" href="https://yiwanqingzhou.github.io/install-hexo">
 
 
 <script id="page-configurations">
@@ -84,7 +84,7 @@
   };
 </script>
 
-  <title>PCL类型转换 | 一晚清粥</title>
+  <title>Ubuntu环境下安装使用hexo | 一晚清粥</title>
   
 
 
@@ -248,7 +248,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/pcl_type_transform.html">
+    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/install-hexo.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="清粥">
@@ -260,7 +260,7 @@
       <meta itemprop="name" content="一晚清粥">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">PCL类型转换
+        <h2 class="post-title" itemprop="name headline">Ubuntu环境下安装使用hexo
 
           
         </h2>
@@ -276,19 +276,11 @@
                 
               
 
-              <time title="创建时间：2019-09-04 11:32:48" itemprop="dateCreated datePublished" datetime="2019-09-04T11:32:48+08:00">2019-09-04</time>
+              <time title="创建时间：2024-03-25 17:48:00 / 修改时间：18:14:57" itemprop="dateCreated datePublished" datetime="2024-03-25T17:48:00+08:00">2024-03-25</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-11-23 16:21:13" itemprop="dateModified" datetime="2023-11-23T16:21:13+08:00">2023-11-23</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -297,7 +289,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/pcl/" itemprop="url" rel="index"><span itemprop="name">pcl</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/memo/" itemprop="url" rel="index"><span itemprop="name">memo</span></a></span>
 
                 
                 
@@ -316,35 +308,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="PCL相关类型-对象与指针互换"><a href="#PCL相关类型-对象与指针互换" class="headerlink" title="PCL相关类型 对象与指针互换"></a>PCL相关类型 对象与指针互换</h4><ol>
-<li>pcl::PointIndices -&gt; pcl::PointIndices::Ptr</li>
-</ol><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::<span class="function">Ptr <span class="title">inliers_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointIndices(inliers))</span></span>;</span><br></pre></td></tr></table></figure><a id="more"></a>
+        <h2 id="Install-Git"><a href="#Install-Git" class="headerlink" title="Install Git"></a>Install Git</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git</span><br><span class="line">git config --global user.name <span class="string">"Your Name"</span></span><br><span class="line">git config --global user.email <span class="string">"youremail@domain.com"</span></span><br></pre></td></tr></table></figure><h2 id="Configure-Firewall"><a href="#Configure-Firewall" class="headerlink" title="Configure Firewall"></a>Configure Firewall</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install ufw</span><br><span class="line">sudo ufw allow <span class="string">"OpenSSH"</span></span><br><span class="line">sudo ufw <span class="built_in">enable</span></span><br><span class="line">sudo ufw allow http</span><br><span class="line">sudo ufw allow https</span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
-<ol start="2">
-<li>pcl::PointIndices::Ptr -&gt; pcl::PointIndices</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::Ptr inliers_ptr;</span><br><span class="line">inliers=*inliers_ptr;</span><br></pre></td></tr></table></figure>
 
-<ol start="3">
-<li>std::vector<int> -&gt; pcl::IndicesPtr</int></li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec_indices;</span><br><span class="line">pcl::IndicesPtr indices_ptr = boost::make_shared&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;(vec_indices);</span><br></pre></td></tr></table></figure>
+<p>Check the firewall status.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw status</span><br><span class="line">Status: active</span><br><span class="line"></span><br><span class="line">To                         Action      From</span><br><span class="line">-                          --          --</span><br><span class="line">OpenSSH                    ALLOW       Anywhere                  </span><br><span class="line">4000                       ALLOW       Anywhere                  </span><br><span class="line">80/tcp                     ALLOW       Anywhere                  </span><br><span class="line">443                        ALLOW       Anywhere                  </span><br><span class="line">OpenSSH (v6)               ALLOW       Anywhere (v6)             </span><br><span class="line">4000 (v6)                  ALLOW       Anywhere (v6)             </span><br><span class="line">80/tcp (v6)                ALLOW       Anywhere (v6)             </span><br><span class="line">443 (v6)                   ALLOW       Anywhere (v6)</span><br></pre></td></tr></table></figure>
 
-<ol start="4">
-<li>pcl::PointCloud<pointt> -&gt; pcl::PointCloud<pointt>::Ptr</pointt></pointt></li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud=*cloud_ptr;</span><br></pre></td></tr></table></figure>
+<h2 id="Install-nodejs-via-nvm"><a href="#Install-nodejs-via-nvm" class="headerlink" title="Install nodejs via nvm"></a>Install <code>nodejs</code> via <code>nvm</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># installs NVM (Node Version Manager)</span></span><br><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash</span><br><span class="line"><span class="comment"># download and install Node.js</span></span><br><span class="line">nvm install 20</span><br><span class="line"><span class="comment"># verifies the right Node.js version is in the environment</span></span><br><span class="line">node -v <span class="comment"># should print `v20.11.1`</span></span><br><span class="line"><span class="comment"># verifies the right NPM version is in the environment</span></span><br><span class="line">npm -v <span class="comment"># should print `10.2.4`</span></span><br></pre></td></tr></table></figure>
 
-<ol start="5">
-<li>pcl::PointCloud<pointt>::Ptr -&gt; pcl::PointCloud<pointt></pointt></pointt></li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud_ptr=cloud.makeShared();</span><br></pre></td></tr></table></figure>
+<h2 id="Install-hexo"><a href="#Install-hexo" class="headerlink" title="Install hexo"></a>Install <code>hexo</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
 
-<h4 id="不同数据类型的点云转换"><a href="#不同数据类型的点云转换" class="headerlink" title="不同数据类型的点云转换"></a>不同数据类型的点云转换</h4><ol>
-<li>pcl::PointCloud<a href="pcl::PointXYZRGB" target="_blank" rel="noopener">pcl::PointXYZRGB</a> -&gt; pcl::PointCloud<a href="pcl::PointXYZ" target="_blank" rel="noopener">pcl::PointXYZ</a>::Ptr</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::<span class="function">Ptr <span class="title">cloud_ori</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZRGB&gt;)</span></span>;</span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZ&gt;::<span class="function">Ptr <span class="title">cloud</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZ&gt;)</span></span>;</span><br><span class="line">pcl::copyPointCloud(*cloud_ori, *cloud);</span><br></pre></td></tr></table></figure>
+<h2 id="Init-the-hexo-blog"><a href="#Init-the-hexo-blog" class="headerlink" title="Init the hexo blog"></a>Init the hexo blog</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir blog  <span class="comment"># create the blog folder</span></span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -361,9 +336,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/c/" rel="tag"># c++</a>
-            
-              <a href="/tags/pcl/" rel="tag"># pcl</a>
+              <a href="/tags/linux/" rel="tag"># linux</a>
             
           </div>
         
@@ -373,8 +346,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/debian_minimize_botton.html" rel="next" title="Debian添加最小化按钮">
-                  <i class="fa fa-chevron-left"></i> Debian添加最小化按钮
+                <a href="/pcl-cloud-types.html" rel="next" title="PCL点云的表示方式">
+                  <i class="fa fa-chevron-left"></i> PCL点云的表示方式
                 </a>
               
             </div>
@@ -382,10 +355,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/clang_format.html" rel="prev" title="vscode 使用clang格式化代码">
-                  vscode 使用clang格式化代码 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -434,7 +403,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#PCL相关类型-对象与指针互换"><span class="nav-number">1.</span> <span class="nav-text">PCL相关类型 对象与指针互换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不同数据类型的点云转换"><span class="nav-number">2.</span> <span class="nav-text">不同数据类型的点云转换</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Git"><span class="nav-number">1.</span> <span class="nav-text">Install Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-Firewall"><span class="nav-number">2.</span> <span class="nav-text">Configure Firewall</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-nodejs-via-nvm"><span class="nav-number">3.</span> <span class="nav-text">Install nodejs via nvm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-hexo"><span class="nav-number">4.</span> <span class="nav-text">Install hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Init-the-hexo-blog"><span class="nav-number">5.</span> <span class="nav-text">Init the hexo blog</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
