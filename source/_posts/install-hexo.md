@@ -65,6 +65,10 @@ nvm install 20
 node -v # should print `v20.11.1`
 # verifies the right NPM version is in the environment
 npm -v # should print `10.2.4`
+
+# change version
+# nvm install 12
+# nvm use 12
 ```
 
 
