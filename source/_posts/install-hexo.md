@@ -14,7 +14,7 @@ description:
 
 
 
-## Install Git
+## 安装 Git
 
 ```bash
 sudo apt install git
@@ -24,7 +24,7 @@ git config --global user.email "youremail@domain.com"
 
 
 
-## Configure Firewall
+## 配置防火墙
 
 ```bash
 sudo apt install ufw
@@ -54,7 +54,7 @@ OpenSSH (v6)               ALLOW       Anywhere (v6)
 
 
 
-## Install `nodejs` via `nvm`
+## 通过 `nvm` 安装 `nodejs`
 
 ```bash
 # installs NVM (Node Version Manager)
@@ -73,7 +73,7 @@ npm -v # should print `10.2.4`
 
 
 
-## Install `hexo`
+## 安装 `hexo`
 
 ```bash
 sudo npm install hexo-cli -g
@@ -81,7 +81,7 @@ sudo npm install hexo-cli -g
 
 
 
-## Init the hexo blog
+## 初始化博客
 
 ```bash
 mkdir blog  # create the blog folder
