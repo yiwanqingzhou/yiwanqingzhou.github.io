@@ -4,6 +4,7 @@ date: 2024-03-26 16:55:24
 tags:
 - linux
 - python
+- environment
 categories:
 - memo
 keywords:
@@ -11,6 +12,7 @@ keywords:
 - python
 - miniconda
 - jupyter
+- environment
 description:
 ---
 
