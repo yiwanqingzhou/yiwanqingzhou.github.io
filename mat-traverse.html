@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+  <meta name="google-site-verification" content="google-site-verification=gnN6UKVdDQIcnFPlGii5rIDQXchNJsPLgDTEFBWaQwM">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Droid Sans Fallback:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="OpenCV像素遍历常用的几种方法以从 organized 的点云提取 RGB 信息为例动态地址at基于Mat对象的随机像素访问 API 实现，通过行列索引方式遍历每个像素值。这种方法速度较慢，不太适合用于像素遍历。123456789101112131415161718192021void extract_1(const pcl::PointCloud&amp;lt;PointT&amp;gt;::Ptr clo">
+<meta name="keywords" content="c++,opencv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenCV Mat像素的遍历方法">
+<meta property="og:url" content="https://yiwanqingzhou.github.io/mat-traverse.html">
+<meta property="og:site_name" content="一晚清粥">
+<meta property="og:description" content="OpenCV像素遍历常用的几种方法以从 organized 的点云提取 RGB 信息为例动态地址at基于Mat对象的随机像素访问 API 实现，通过行列索引方式遍历每个像素值。这种方法速度较慢，不太适合用于像素遍历。123456789101112131415161718192021void extract_1(const pcl::PointCloud&amp;lt;PointT&amp;gt;::Ptr clo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2023-09-14T05:59:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenCV Mat像素的遍历方法">
+<meta name="twitter:description" content="OpenCV像素遍历常用的几种方法以从 organized 的点云提取 RGB 信息为例动态地址at基于Mat对象的随机像素访问 API 实现，通过行列索引方式遍历每个像素值。这种方法速度较慢，不太适合用于像素遍历。123456789101112131415161718192021void extract_1(const pcl::PointCloud&amp;lt;PointT&amp;gt;::Ptr clo">
+  <link rel="canonical" href="https://yiwanqingzhou.github.io/mat-traverse">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>OpenCV Mat像素的遍历方法 | 一晚清粥</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一晚清粥</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/mat-traverse.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="清粥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一晚清粥">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">OpenCV Mat像素的遍历方法
+
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2022-03-28 16:27:54" itemprop="dateCreated datePublished" datetime="2022-03-28T16:27:54+08:00">2022-03-28</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-09-14 13:59:54" itemprop="dateModified" datetime="2023-09-14T13:59:54+08:00">2023-09-14</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/cv/" itemprop="url" rel="index"><span itemprop="name">cv</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="OpenCV像素遍历常用的几种方法"><a href="#OpenCV像素遍历常用的几种方法" class="headerlink" title="OpenCV像素遍历常用的几种方法"></a>OpenCV像素遍历常用的几种方法</h2><p>以从 organized 的点云提取 RGB 信息为例</p><h3 id="动态地址at"><a href="#动态地址at" class="headerlink" title="动态地址at"></a>动态地址at</h3><p>基于Mat对象的随机像素访问 API 实现，通过行列索引方式遍历每个像素值。这种方法速度较慢，不太适合用于像素遍历。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_1</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">0</span>] = pt.b;</span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">1</span>] = pt.g;</span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">2</span>] = pt.r;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<h3 id="行指针"><a href="#行指针" class="headerlink" title="行指针"></a>行指针</h3><p>基于Mat对象的行随机访问指针方式实现对每个像素的遍历。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_2</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    cv::Vec3b *ptr = image.ptr&lt;cv::Vec3b&gt;(row);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      cv::Vec3b &amp;pixel = ptr[col];</span><br><span class="line">      pixel[<span class="number">0</span>] = pt.b;</span><br><span class="line">      pixel[<span class="number">1</span>] = pt.g;</span><br><span class="line">      pixel[<span class="number">2</span>] = pt.r;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="uchar-行指针"><a href="#uchar-行指针" class="headerlink" title="uchar 行指针"></a>uchar 行指针</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_3</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    uchar *uc_pixel = image.ptr(row);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      uc_pixel[<span class="number">0</span>] = pt.b;</span><br><span class="line">      uc_pixel[<span class="number">1</span>] = pt.g;</span><br><span class="line">      uc_pixel[<span class="number">2</span>] = pt.r;</span><br><span class="line">      uc_pixel += <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="将图像完全展开"><a href="#将图像完全展开" class="headerlink" title="将图像完全展开"></a>将图像完全展开</h3><p>一般图像行与行之间往往存储是不连续的，但是有些图像可以是连续的，Mat提供了一个检测图像是否连续的函数<code>isContinuous()</code>。当图像连通时，我们就可以把图像完全展开，看成是一行进行处理。</p>
+<h3 id="速度比较"><a href="#速度比较" class="headerlink" title="速度比较"></a>速度比较</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> cloud_path = <span class="string">"test.pcd"</span></span><br><span class="line">  pcl::PointCloud&lt;PointT&gt;::Ptr cloud(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;);</span><br><span class="line">  pcl_utils::load_pcd(cloud_path, *cloud);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *cloud &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_1;</span><br><span class="line">  extract_1(cloud, img_1);</span><br><span class="line">  <span class="keyword">auto</span> end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  <span class="keyword">auto</span> elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_2;</span><br><span class="line">  extract_2(cloud, img_2);</span><br><span class="line">  end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_3;</span><br><span class="line">  extract_3(cloud, img_3);</span><br><span class="line">  end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"3 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出 :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Load pcd file with 1228800 data points.</span><br><span class="line">header: seq: 0 stamp: 0 frame_id: </span><br><span class="line"></span><br><span class="line">points[]: 1228800</span><br><span class="line">width: 1280</span><br><span class="line">height: 960</span><br><span class="line">is_dense: 0</span><br><span class="line">sensor origin (xyz): [0, 0, 0] / orientation (xyzw): [0, 0, 0, 1]</span><br><span class="line"></span><br><span class="line">1 elapsed time: 0.0199077s</span><br><span class="line">2 elapsed time: 0.012727s</span><br><span class="line">3 elapsed time: 0.00880297s</span><br><span class="line">4 elapsed time: 0.00900436s</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/c/" rel="tag"># c++</a>
+            
+              <a href="/tags/opencv/" rel="tag"># opencv</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/constructor.html" rel="next" title="C++ 类构造函数">
+                  <i class="fa fa-chevron-left"></i> C++ 类构造函数
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/udacity-self-driving-apollo.html" rel="prev" title="Udacity自动驾驶入门课笔记">
+                  Udacity自动驾驶入门课笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenCV像素遍历常用的几种方法"><span class="nav-number">1.</span> <span class="nav-text">OpenCV像素遍历常用的几种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态地址at"><span class="nav-number">1.1.</span> <span class="nav-text">动态地址at</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行指针"><span class="nav-number">1.2.</span> <span class="nav-text">行指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#uchar-行指针"><span class="nav-number">1.3.</span> <span class="nav-text">uchar 行指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将图像完全展开"><span class="nav-number">1.4.</span> <span class="nav-text">将图像完全展开</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#速度比较"><span class="nav-number">1.5.</span> <span class="nav-text">速度比较</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">清粥</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">清粥</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
+-->
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

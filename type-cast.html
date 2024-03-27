@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+  <meta name="google-site-verification" content="google-site-verification=gnN6UKVdDQIcnFPlGii5rIDQXchNJsPLgDTEFBWaQwM">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Droid Sans Fallback:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="相比于C风格的强制类型转换，C++新增了关键字 static_cast、dynamic_cast、const_cast、reinterpret_cast ，用于强制类型转换。新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。1. static_cast用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。与C旧式转型基本相同。">
+<meta name="keywords" content="static_cast,dynamic_cast,reinterpret_cast,const_cast">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 强制类型转换">
+<meta property="og:url" content="https://yiwanqingzhou.github.io/type-cast.html">
+<meta property="og:site_name" content="一晚清粥">
+<meta property="og:description" content="相比于C风格的强制类型转换，C++新增了关键字 static_cast、dynamic_cast、const_cast、reinterpret_cast ，用于强制类型转换。新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。1. static_cast用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。与C旧式转型基本相同。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2023-09-22T10:33:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++ 强制类型转换">
+<meta name="twitter:description" content="相比于C风格的强制类型转换，C++新增了关键字 static_cast、dynamic_cast、const_cast、reinterpret_cast ，用于强制类型转换。新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。1. static_cast用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。与C旧式转型基本相同。">
+  <link rel="canonical" href="https://yiwanqingzhou.github.io/type-cast">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>C++ 强制类型转换 | 一晚清粥</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一晚清粥</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/type-cast.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="清粥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一晚清粥">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">C++ 强制类型转换
+
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2022-01-24 18:38:46" itemprop="dateCreated datePublished" datetime="2022-01-24T18:38:46+08:00">2022-01-24</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-09-22 18:33:26" itemprop="dateModified" datetime="2023-09-22T18:33:26+08:00">2023-09-22</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>相比于C风格的强制类型转换，C++新增了关键字 <code>static_cast</code>、<code>dynamic_cast</code>、<code>const_cast</code>、<code>reinterpret_cast</code> ，用于强制类型转换。</p><p>新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。</p><h2 id="1-static-cast"><a href="#1-static-cast" class="headerlink" title="1. static_cast"></a>1. static_cast</h2><p>用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。与C旧式转型基本相同。</p><a id="more"></a>
+
+
+<p>常用于：</p>
+<ul>
+<li>基本数据类型之间的转换，如<code>int -&gt; char</code>，这种转换的安全也要开发人员来保证。</li>
+<li>任何类型的表达式转换成 <code>void</code> 类型。</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>不能转换掉 <code>expression</code> 的 <code>const</code> 、<code>volitale</code> 或者 <code>__unaligned</code> 属性。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> a = <span class="number">65</span>;</span><br><span class="line">  <span class="keyword">int</span> b = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"int a: "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"char a: "</span> &lt;&lt; <span class="keyword">static_cast</span>&lt;<span class="keyword">char</span>&gt;(a) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">double</span> c = a / b;</span><br><span class="line">  <span class="keyword">double</span> d = <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>&gt;(a) / <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>&gt;(b);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"c: "</span> &lt;&lt; c &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"d: "</span> &lt;&lt; d &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a: 65</span><br><span class="line">char a: A</span><br><span class="line">c: 6</span><br><span class="line">d: 6.5</span><br></pre></td></tr></table></figure>
+
+<p><strong>没有运行时类型检查来保证转换的安全性</strong></p>
+<ul>
+<li>上行转型 (子类对象指针–&gt;父类对象指针/引用)： 安全</li>
+<li>下行转型(父类对象指针–&gt;子类对象指针/引用)：没有动态类型检查，所以是不安全的</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"typeinfo"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">virtual</span> <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">class_name</span><span class="params">()</span> final </span>&#123; <span class="keyword">return</span> <span class="keyword">typeid</span>(*<span class="keyword">this</span>).name(); &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span> <span class="keyword">public</span> A</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> b = <span class="number">3</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> :</span> <span class="keyword">public</span> A</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> c = <span class="number">5</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  A *pt_1 = <span class="keyword">new</span> A;</span><br><span class="line">  A *pt_2 = <span class="keyword">new</span> B;</span><br><span class="line">  A *pt_3 = <span class="keyword">new</span> C;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="keyword">static_cast</span>&lt;B *&gt;(pt_1);</span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="keyword">static_cast</span>&lt;B *&gt;(pt_2);</span><br><span class="line">  <span class="keyword">auto</span> b3 = <span class="keyword">static_cast</span>&lt;B *&gt;(pt_3);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b1-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b2-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b3-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b3-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1A 32686</span><br><span class="line">1B 3</span><br><span class="line">1C 5</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-dynamic-cast"><a href="#2-dynamic-cast" class="headerlink" title="2. dynamic_cast"></a>2. dynamic_cast</h2><p>动态转换，常用于将一个父类对象的指针转换为子类对象的指针或引用。其他三种都是编译时完成的，<code>dynamic_cast</code> 是运行时处理的，运行时要进行类型检查。</p>
+<ul>
+<li><p>使用 <code>dynamic_cast</code> 进行转换的，基类中<strong>一定要有虚函数</strong>，否则编译不通过。</p>
+</li>
+<li><p>在进行下行转换时，会进行类型检查 (这个信息存储在类的虚函数表)，比 <code>static_cast</code> 安全。</p>
+</li>
+<li><p>转换后必须是类的指针、引用或 <code>void*</code>。</p>
+</li>
+<li><p>对于指针，转换失败会返回<code>nullptr</code>；对于引用，转换失败会 (在运行时) 抛出异常。</p>
+</li>
+</ul>
+<p><strong>返回指针</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  A *pt1 = <span class="keyword">new</span> A;</span><br><span class="line">  A *pt2 = <span class="keyword">new</span> B;</span><br><span class="line">  A *pt3 = <span class="keyword">new</span> C;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pt1);</span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pt2);</span><br><span class="line">  <span class="keyword">auto</span> b3 = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pt3);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b1)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b1-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b1 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b2)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b2-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b2 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b3)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b3-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b3-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b3 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b1 null</span><br><span class="line">1B 3</span><br><span class="line">b3 null</span><br></pre></td></tr></table></figure>
+
+<p><strong>返回引用</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  B b;</span><br><span class="line">  C c;</span><br><span class="line">  A &amp;a1 = b;</span><br><span class="line">  A &amp;a2 = c;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="keyword">dynamic_cast</span>&lt;B &amp;&gt;(a1);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1.class_name() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="keyword">dynamic_cast</span>&lt;B &amp;&gt;(a2);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2.class_name() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1B</span><br><span class="line">terminate called after throwing an instance of <span class="string">'std::bad_cast'</span></span><br><span class="line">  what():  std::bad_cast</span><br><span class="line">Aborted</span><br></pre></td></tr></table></figure>
+
+<h2 id="std-dynamic-pointer-cast"><a href="#std-dynamic-pointer-cast" class="headerlink" title="std::dynamic_pointer_cast"></a>std::dynamic_pointer_cast</h2><p>使用 <code>std::dynamic_pointer_cast</code> 可以返回 <code>std::shared_ptr</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;A&gt; pt1 = <span class="built_in">std</span>::make_shared&lt;B&gt;();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;A&gt; pt2 = <span class="built_in">std</span>::make_shared&lt;C&gt;();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="built_in">std</span>::dynamic_pointer_cast&lt;B&gt;(pt1);</span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="built_in">std</span>::dynamic_pointer_cast&lt;B&gt;(pt2);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b1)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b1-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b1 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b2)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b2-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b2 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1B 3</span><br><span class="line">b2 null</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-reinterpret-cast"><a href="#3-reinterpret-cast" class="headerlink" title="3. reinterpret_cast"></a>3. reinterpret_cast</h2><p>主要有三种强制转换用途：改变指针或引用的类型、将指针或引用转换为一个足够长度的整形、将整型转换为指针或引用类型。</p>
+<p><code>reinterpret_cast&lt;type_id&gt; (expression)</code></p>
+<ul>
+<li><code>type_id</code> 必须是一个指针、引用、算术类型、函数指针或者成员指针。</li>
+<li>在使用 <code>reinterpret_cast</code> 强制转换过程仅仅只是比特位的拷贝，因此在使用过程中需要特别谨慎。</li>
+<li>转换结果与编译平台息息相关，<strong>不具有移植性</strong>，应该尽量避免使用。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *a = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line"><span class="keyword">double</span> *d = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">double</span> *&gt;(a);</span><br></pre></td></tr></table></figure>
+
+<p>最常用用途是转化 “函数指针” 类型：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*FuncPtr)</span><span class="params">()</span></span>;  <span class="comment">// Funcptr是个指针，指向一个无输入参数且返回值为void的函数</span></span><br><span class="line">FuncPtr func_ptr_array[<span class="number">10</span>]; <span class="comment">// 包含10个函数指针的数组</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">do_something</span><span class="params">()</span></span>;         <span class="comment">// 无输入参数且返回值为int的函数</span></span><br><span class="line"></span><br><span class="line">func_ptr_array[<span class="number">0</span>] = &amp;dosomething(); <span class="comment">// 错误，类型不符</span></span><br><span class="line">func_ptr_array[<span class="number">0</span>] = <span class="keyword">reinterpret_cast</span>&lt;FuncPtr&gt;(&amp;dosomething()); <span class="comment">// 可以通过编译</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-const-cast"><a href="#4-const-cast" class="headerlink" title="4. const_cast"></a>4. const_cast</h2><p><code>const</code> 限定符通常被用来限定变量，用于表示该变量的值不能被修改。而 <code>const_cast</code> 则正是用于强制去掉这种不能被修改的常数特性。但需要特别注意的是 <code>const_cast</code> 不是用于<strong>去除变量的常量性</strong>，而是<strong>去除指向常数对象的指针或引用的常量性</strong>，其去除常量性的<strong>对象必须为指针或引用</strong>。</p>
+<p><code>const_cast&lt;type_id&gt; (expression)</code></p>
+<ul>
+<li>该运算符用来修改表达式的常量性或易变性，也就是 <code>const</code> 或 <code>volatile</code> 属性。</li>
+<li><code>type_id</code>和 <code>expression</code> 的类型必须是一样的。</li>
+<li>常量指针被转化成非常量指针，并且仍然指向原来的对象。</li>
+<li>常量引用被转换成非常量引用，并且仍然指向原来的对象；常量对象被转换成非常量对象。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Widget</span>&#123;</span>...&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(Widget&amp; w)</span></span>;</span><br><span class="line"></span><br><span class="line">Widget w;</span><br><span class="line">cosnt Widget&amp; cw = w;  <span class="comment">// 常量引用</span></span><br><span class="line"></span><br><span class="line">update(cw);                      <span class="comment">// 错误，无法将常量引用传给一个非常量</span></span><br><span class="line">update(<span class="keyword">const_cast</span>&lt;Widget&amp;&gt; cw);  <span class="comment">// 可以，cw的常量性被去除，且cw在此函数中可被更改</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/c/" rel="tag"># c++</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/std-vector_memory.html" rel="next" title="C++ std::vector的内存分配机制">
+                  <i class="fa fa-chevron-left"></i> C++ std::vector的内存分配机制
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/push_back-emplace_back.html" rel="prev" title="C++ push_back和emplace_back的区别">
+                  C++ push_back和emplace_back的区别 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-static-cast"><span class="nav-number">1.</span> <span class="nav-text">1. static_cast</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-dynamic-cast"><span class="nav-number">2.</span> <span class="nav-text">2. dynamic_cast</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#std-dynamic-pointer-cast"><span class="nav-number">3.</span> <span class="nav-text">std::dynamic_pointer_cast</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-reinterpret-cast"><span class="nav-number">4.</span> <span class="nav-text">3. reinterpret_cast</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-const-cast"><span class="nav-number">5.</span> <span class="nav-text">4. const_cast</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">清粥</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">清粥</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
+-->
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
