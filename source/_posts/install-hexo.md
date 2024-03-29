@@ -3,12 +3,15 @@ title: Ubuntu环境下安装使用hexo
 date: 2024-03-25 17:48:00
 tags: 
 - linux
+- environment
+- hexo
 categories:
 - memo
 keywords: 
 - hexo
 - linux
 - ubuntu
+- environment
 description:
 ---
 
