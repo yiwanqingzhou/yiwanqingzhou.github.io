@@ -58,15 +58,19 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="https://yiwanqingzhou.github.io/categories/index.html">
+  <meta name="description" content="查看两个目录的结构1$ tree test_a/ test_b/12345test_a/└── test.txttest_b/├── test_b.txt└── test.txt使用 diff 逐行比较1$ diff -aur test_a/ test_b/1234567Only in test_b/: test_b.txtdiff -aur test_a/test.txt test_b/test">
+<meta name="keywords" content="linux,diff">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux 比较两个目录的区别">
+<meta property="og:url" content="https://yiwanqingzhou.github.io/diff-of-two-folders.html">
 <meta property="og:site_name" content="一晚清粥">
+<meta property="og:description" content="查看两个目录的结构1$ tree test_a/ test_b/12345test_a/└── test.txttest_b/├── test_b.txt└── test.txt使用 diff 逐行比较1$ diff -aur test_a/ test_b/1234567Only in test_b/: test_b.txtdiff -aur test_a/test.txt test_b/test">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2024-03-29T11:12:46.163Z">
+<meta property="og:updated_time" content="2024-04-01T11:39:07.134Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-  <link rel="canonical" href="https://yiwanqingzhou.github.io/categories/">
+<meta name="twitter:title" content="linux 比较两个目录的区别">
+<meta name="twitter:description" content="查看两个目录的结构1$ tree test_a/ test_b/12345test_a/└── test.txttest_b/├── test_b.txt└── test.txt使用 diff 逐行比较1$ diff -aur test_a/ test_b/1234567Only in test_b/: test_b.txtdiff -aur test_a/test.txt test_b/test">
+  <link rel="canonical" href="https://yiwanqingzhou.github.io/diff-of-two-folders">
 
 
 <script id="page-configurations">
@@ -74,13 +78,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
-    isPage: true,
+    isPost: true,
+    isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>分类 | 一晚清粥</title>
+  <title>linux 比较两个目录的区别 | 一晚清粥</title>
   
 
 
@@ -200,24 +204,6 @@
 
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 </nav>
   <div class="site-search">
     <div class="popup search-popup">
@@ -257,47 +243,131 @@
             
 
   <div id="posts" class="posts-expand">
-    
-    
-    
-    <div class="post-block page">
-      <header class="post-header">
-
-<h2 class="post-title" itemprop="name headline">分类
-
-</h2>
-
-<div class="post-meta">
+      <article itemscope itemtype="http://schema.org/Article">
   
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/diff-of-two-folders.html">
 
-</div>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="清粥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
 
-</header>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一晚清粥">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">linux 比较两个目录的区别
+
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2024-04-01 19:27:14 / 修改时间：19:39:07" itemprop="dateCreated datePublished" datetime="2024-04-01T19:27:14+08:00">2024-04-01</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/memo/" itemprop="url" rel="index"><span itemprop="name">memo</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-      
-      <div class="post-body">
+        <h3 id="查看两个目录的结构"><a href="#查看两个目录的结构" class="headerlink" title="查看两个目录的结构"></a>查看两个目录的结构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tree test_a/ test_b/</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">test_a/</span><br><span class="line">└── test.txt</span><br><span class="line">test_b/</span><br><span class="line">├── test_b.txt</span><br><span class="line">└── test.txt</span><br></pre></td></tr></table></figure><h3 id="使用-diff-逐行比较"><a href="#使用-diff-逐行比较" class="headerlink" title="使用 diff 逐行比较"></a>使用 diff 逐行比较</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ diff -aur test_a/ test_b/</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Only <span class="keyword">in</span> test_b/: test_b.txt</span><br><span class="line">diff -aur test_a/test.txt test_b/test.txt</span><br><span class="line">--- test_a/test.txt	2024-04-01 19:29:35.024777745 +0800</span><br><span class="line">+++ test_b/test.txt	2024-04-01 19:36:22.759553212 +0800</span><br><span class="line">@@ -1 +1 @@</span><br><span class="line">-test_a</span><br><span class="line">+test_b</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+
+
+
+<p>上面结果可以看到两个文件夹里相同文件名 <code>test.txt</code> 里的细节区别，而对于 test_b 文件夹里的 test_b.txt，只显示 <code>Only in test_b/: test_b.txt</code></p>
+<p>使用 <code>-N</code> 则可以同时打印新文件的内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ diff -Naur test_a/ test_b/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">diff -Naur test_a/test_b.txt test_b/test_b.txt</span><br><span class="line">--- test_a/test_b.txt	1970-01-01 08:00:00.000000000 +0800</span><br><span class="line">+++ test_b/test_b.txt	2024-04-01 19:29:48.008986470 +0800</span><br><span class="line">@@ -0,0 +1 @@</span><br><span class="line">+extra_test_b</span><br><span class="line">diff -Naur test_a/test.txt test_b/test.txt</span><br><span class="line">--- test_a/test.txt	2024-04-01 19:29:35.024777745 +0800</span><br><span class="line">+++ test_b/test.txt	2024-04-01 19:36:22.759553212 +0800</span><br><span class="line">@@ -1 +1 @@</span><br><span class="line">-test_a</span><br><span class="line">+test_b</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-              目前共计 7 个分类
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/linux/" rel="tag"># linux</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/pcl-12-viewer-segmentation-fault.html" rel="next" title="PCL-1.12.1点云显示segfaults的解决办法">
+                  <i class="fa fa-chevron-left"></i> PCL-1.12.1点云显示segfaults的解决办法
+                </a>
+              
             </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/c/">c++</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cmake/">cmake</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cv/">cv</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/memo/">memo</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pcl/">pcl</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/self-driving/">self-driving</a><span class="category-list-count">1</span></li></ul>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
             </div>
           </div>
         
-      </div>
-      
-      
-      
-    </div>
+      </footer>
     
+  </div>
+  
+  
+  
+  </article>
 
-    
-    
-    
   </div>
 
 
@@ -334,6 +404,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看两个目录的结构"><span class="nav-number">1.</span> <span class="nav-text">查看两个目录的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-diff-逐行比较"><span class="nav-number">2.</span> <span class="nav-text">使用 diff 逐行比较</span></a></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
