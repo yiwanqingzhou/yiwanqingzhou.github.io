@@ -66,7 +66,7 @@
 <meta property="og:site_name" content="一晚清粥">
 <meta property="og:description" content="查看两个目录的结构1$ tree test_a/ test_b/12345test_a/└── test.txttest_b/├── test_b.txt└── test.txt使用 diff 逐行比较1$ diff -aur test_a/ test_b/1234567Only in test_b/: test_b.txtdiff -aur test_a/test.txt test_b/test">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2024-04-01T11:39:07.134Z">
+<meta property="og:updated_time" content="2024-04-02T06:29:48.095Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux 比较两个目录的区别">
 <meta name="twitter:description" content="查看两个目录的结构1$ tree test_a/ test_b/12345test_a/└── test.txttest_b/├── test_b.txt└── test.txt使用 diff 逐行比较1$ diff -aur test_a/ test_b/1234567Only in test_b/: test_b.txtdiff -aur test_a/test.txt test_b/test">
@@ -276,11 +276,19 @@
                 
               
 
-              <time title="创建时间：2024-04-01 19:27:14 / 修改时间：19:39:07" itemprop="dateCreated datePublished" datetime="2024-04-01T19:27:14+08:00">2024-04-01</time>
+              <time title="创建时间：2024-04-01 19:27:14" itemprop="dateCreated datePublished" datetime="2024-04-01T19:27:14+08:00">2024-04-01</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-04-02 14:29:48" itemprop="dateModified" datetime="2024-04-02T14:29:48+08:00">2024-04-02</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -321,6 +329,16 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ diff -Naur test_a/ test_b/</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">diff -Naur test_a/test_b.txt test_b/test_b.txt</span><br><span class="line">--- test_a/test_b.txt	1970-01-01 08:00:00.000000000 +0800</span><br><span class="line">+++ test_b/test_b.txt	2024-04-01 19:29:48.008986470 +0800</span><br><span class="line">@@ -0,0 +1 @@</span><br><span class="line">+extra_test_b</span><br><span class="line">diff -Naur test_a/test.txt test_b/test.txt</span><br><span class="line">--- test_a/test.txt	2024-04-01 19:29:35.024777745 +0800</span><br><span class="line">+++ test_b/test.txt	2024-04-01 19:36:22.759553212 +0800</span><br><span class="line">@@ -1 +1 @@</span><br><span class="line">-test_a</span><br><span class="line">+test_b</span><br></pre></td></tr></table></figure>
+
+<h3 id="只显示有区别的文件名"><a href="#只显示有区别的文件名" class="headerlink" title="只显示有区别的文件名"></a>只显示有区别的文件名</h3><p>使用 <code>-q</code> 可以快速显示有区别的文件名而非具体内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diff -rq test_a/ test_b/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Only <span class="keyword">in</span> test_b/: test_b.txt</span><br><span class="line">Files test_a/test.txt and test_b/test.txt differ</span><br></pre></td></tr></table></figure>
+
+<p>加上 <code>-N</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ diff -Naurq test_a/ test_b/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Files test_a/test_b.txt and test_b/test_b.txt differ</span><br><span class="line">Files test_a/test.txt and test_b/test.txt differ</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -404,7 +422,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看两个目录的结构"><span class="nav-number">1.</span> <span class="nav-text">查看两个目录的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-diff-逐行比较"><span class="nav-number">2.</span> <span class="nav-text">使用 diff 逐行比较</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看两个目录的结构"><span class="nav-number">1.</span> <span class="nav-text">查看两个目录的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-diff-逐行比较"><span class="nav-number">2.</span> <span class="nav-text">使用 diff 逐行比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只显示有区别的文件名"><span class="nav-number">3.</span> <span class="nav-text">只显示有区别的文件名</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
