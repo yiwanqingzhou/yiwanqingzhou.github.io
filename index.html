@@ -242,6 +242,114 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/pcl-pointcloud-pointcloud2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="清粥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一晚清粥">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+            
+            <a href="/pcl-pointcloud-pointcloud2.html" class="post-title-link" itemprop="url">PointCloud<PointT> 和 PCLPointCloud2 的区别</a>
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2024-04-08 16:16:43 / 修改时间：17:37:54" itemprop="dateCreated datePublished" datetime="2024-04-08T16:16:43+08:00">2024-04-08</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/pcl/" itemprop="url" rel="index"><span itemprop="name">pcl</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><code>PCL</code> 中有两种表示点云的数据结构，分别为 <code>PointCloud&lt;PointT&gt;</code> 和 <code>PCLPointCloud2</code>。官方注释中常称为 <code>a pcl::PointCloud&lt;T&gt; object</code> 以及 <code>a PCLPointCloud2 binary data blob</code>。</p>
+<p>两者的最大区别是<strong>储存数据的方式</strong>：</p>
+<ul>
+<li><p><code>PointCloud&lt;PointT&gt;</code> 为模板类，其中指定了每个点的数据类型 <code>PointT</code>， 独立储存每个点的数据。这种存储方式使得数据非常清晰，可以很方便地对某一个点或是某个点的某一字段进行访问，但无法选择存储或删除某一字段。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> PointT&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PointCloud</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;PointT, Eigen::aligned_allocator&lt;PointT&gt;&gt; points;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<ul>
+<li><p><code>PCLPointCloud2</code> 则没有指定点的数据类型，而是在 <code>fields</code> 里记录每个点中有哪些字段（比如 <code>rgba</code> , <code>x</code> , <code>normal_x</code> 等），并以 <code>std::uint8_t</code> 将它们按顺序连续存储。这种存储方式理论上更通用，能够存储各种类型的点云数据，而不仅是 <code>PCL</code>中定义好的常见格式；可以灵活地对数据进行直接处理，选择存储或删除某一字段；当然也使得数据变得不太直观。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PCLPointCloud2</span>&#123;</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;::pcl::PCLPointField&gt;  fields;</span><br><span class="line">    <span class="keyword">uindex_t</span> point_step = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="keyword">uint8_t</span>&gt; data;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/pcl-pointcloud-pointcloud2.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/pcl-double-free.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -284,14 +392,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/memo/" itemprop="url" rel="index"><span itemprop="name">memo</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/cmake/" itemprop="url" rel="index"><span itemprop="name">cmake</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/cmake/" itemprop="url" rel="index"><span itemprop="name">cmake</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/memo/" itemprop="url" rel="index"><span itemprop="name">memo</span></a></span>
 
                 
                 
@@ -980,108 +1088,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/image-processing-low-pass-filter.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="清粥">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一晚清粥">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-            
-            <a href="/image-processing-low-pass-filter.html" class="post-title-link" itemprop="url">OpenCV图像处理2-使用低通滤波进行去噪</a>
-          
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2023-08-29 18:06:54" itemprop="dateCreated datePublished" datetime="2023-08-29T18:06:54+08:00">2023-08-29</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-29 19:12:46" itemprop="dateModified" datetime="2024-03-29T19:12:46+08:00">2024-03-29</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/cv/" itemprop="url" rel="index"><span itemprop="name">cv</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="低通滤波-通常使用来去噪"><a href="#低通滤波-通常使用来去噪" class="headerlink" title="低通滤波: 通常使用来去噪"></a>低通滤波: 通常使用来去噪</h2><h3 id="常见滤波类型"><a href="#常见滤波类型" class="headerlink" title="常见滤波类型"></a>常见滤波类型</h3><h5 id="均值滤波"><a href="#均值滤波" class="headerlink" title="均值滤波"></a>均值滤波</h5><p><img src="image-processing-low-pass-filter/math-4.png" alt="math-4"></p><h5 id="高斯滤波-权重与距离相关"><a href="#高斯滤波-权重与距离相关" class="headerlink" title="高斯滤波 (权重与距离相关)"></a>高斯滤波 (权重与距离相关)</h5><p><img src="image-processing-low-pass-filter/math-5.png" alt="math-5"></p><h5 id="中值滤波"><a href="#中值滤波" class="headerlink" title="中值滤波"></a>中值滤波</h5><p>顾名思义取中值</p><h3 id="具体代码例子"><a href="#具体代码例子" class="headerlink" title="具体代码例子"></a>具体代码例子</h3><h5 id="高斯的模糊-去噪效果"><a href="#高斯的模糊-去噪效果" class="headerlink" title="高斯的模糊/去噪效果"></a>高斯的模糊/去噪效果</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Read in the image</span></span><br><span class="line">image = cv2.imread(<span class="string">'images/brain_MR.jpg'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert to grayscale for filtering</span></span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a Gaussian blurred image</span></span><br><span class="line">gray_blur = cv2.GaussianBlur(gray, (<span class="number">9</span>, <span class="number">9</span>), <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># use custom kernal</span></span><br><span class="line"><span class="comment"># gaussian = (1/16)*np.array([[1, 2, 1],</span></span><br><span class="line"><span class="comment">#                            [2, 4, 2],</span></span><br><span class="line"><span class="comment">#                            [1, 2, 1]])</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># gray_blur = cv2.filter2D(gray, -1, gaussian)</span></span><br><span class="line"></span><br><span class="line">f, (ax1, ax2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">ax1.set_title(<span class="string">'original gray'</span>),ax1.imshow(gray, cmap=<span class="string">'gray'</span>)</span><br><span class="line">ax2.set_title(<span class="string">'blurred image'</span>),ax2.imshow(gray_blur, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/image-processing-low-pass-filter.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/image-processing-high-pass-filter.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1184,7 +1190,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/git-stash-dropped-by-coincidence.html">
+    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/image-processing-low-pass-filter.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="清粥">
@@ -1198,7 +1204,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
             
-            <a href="/git-stash-dropped-by-coincidence.html" class="post-title-link" itemprop="url">恢复git stash误删的内容</a>
+            <a href="/image-processing-low-pass-filter.html" class="post-title-link" itemprop="url">OpenCV图像处理2-使用低通滤波进行去噪</a>
           
         </h2>
 
@@ -1213,7 +1219,7 @@
                 
               
 
-              <time title="创建时间：2022-12-16 11:52:17" itemprop="dateCreated datePublished" datetime="2022-12-16T11:52:17+08:00">2022-12-16</time>
+              <time title="创建时间：2023-08-29 18:06:54" itemprop="dateCreated datePublished" datetime="2023-08-29T18:06:54+08:00">2023-08-29</time>
             </span>
           
             
@@ -1234,7 +1240,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/memo/" itemprop="url" rel="index"><span itemprop="name">memo</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/cv/" itemprop="url" rel="index"><span itemprop="name">cv</span></a></span>
 
                 
                 
@@ -1253,25 +1259,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="恢复git-stash误删的内容"><a href="#恢复git-stash误删的内容" class="headerlink" title="恢复git stash误删的内容"></a>恢复git stash误删的内容</h2><p>不小心使用 <code>git drop stash</code> 误删了暂存的内容，怎么恢复？</p><p>其实drop后并没有真正删除暂存的内容，而是移除了对它的引用，所以通过一些操作是可以找回的。</p><h3 id="模拟误删场景"><a href="#模拟误删场景" class="headerlink" title="模拟误删场景"></a>模拟误删场景</h3><ul>
-<li><p><code>git st</code> 查看当前修改</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">On branch master</span><br><span class="line">Your branch is up-to-date with <span class="string">'origin/master'</span>.</span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add/rm &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">    deleted:    calibration/adjust_result.json</span><br><span class="line">    modified:   calibration/config.json</span><br><span class="line">    modified:   calibration/src/rd_test.cc</span><br><span class="line">    modified:   pose_estimation/CMakeLists.txt</span><br><span class="line">    modified:   <span class="built_in">test</span>/CMakeLists.txt</span><br><span class="line">    modified:   <span class="built_in">test</span>/multiple_sensors.json</span><br><span class="line">    modified:   <span class="built_in">test</span>/src/test_multiple_sensors.cc</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>git stash</code> 暂存修改</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Saved working directory and index state WIP on master: 4d74f8a fix spell</span><br><span class="line">HEAD is now at 4d74f8a fix spell</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>git stash list</code> 查看暂存内容列表</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stash@&#123;0&#125;: WIP on master: 4d74f8a fix spell</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>git stash drop stash@{0}</code> 移除暂存内容</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dropped refs/stash@&#123;0&#125; (0b45536f1ce7e859a85f1459d6ae34fc6cdc4039)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
+          <h2 id="低通滤波-通常使用来去噪"><a href="#低通滤波-通常使用来去噪" class="headerlink" title="低通滤波: 通常使用来去噪"></a>低通滤波: 通常使用来去噪</h2><h3 id="常见滤波类型"><a href="#常见滤波类型" class="headerlink" title="常见滤波类型"></a>常见滤波类型</h3><h5 id="均值滤波"><a href="#均值滤波" class="headerlink" title="均值滤波"></a>均值滤波</h5><p><img src="image-processing-low-pass-filter/math-4.png" alt="math-4"></p><h5 id="高斯滤波-权重与距离相关"><a href="#高斯滤波-权重与距离相关" class="headerlink" title="高斯滤波 (权重与距离相关)"></a>高斯滤波 (权重与距离相关)</h5><p><img src="image-processing-low-pass-filter/math-5.png" alt="math-5"></p><h5 id="中值滤波"><a href="#中值滤波" class="headerlink" title="中值滤波"></a>中值滤波</h5><p>顾名思义取中值</p><h3 id="具体代码例子"><a href="#具体代码例子" class="headerlink" title="具体代码例子"></a>具体代码例子</h3><h5 id="高斯的模糊-去噪效果"><a href="#高斯的模糊-去噪效果" class="headerlink" title="高斯的模糊/去噪效果"></a>高斯的模糊/去噪效果</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Read in the image</span></span><br><span class="line">image = cv2.imread(<span class="string">'images/brain_MR.jpg'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert to grayscale for filtering</span></span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a Gaussian blurred image</span></span><br><span class="line">gray_blur = cv2.GaussianBlur(gray, (<span class="number">9</span>, <span class="number">9</span>), <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># use custom kernal</span></span><br><span class="line"><span class="comment"># gaussian = (1/16)*np.array([[1, 2, 1],</span></span><br><span class="line"><span class="comment">#                            [2, 4, 2],</span></span><br><span class="line"><span class="comment">#                            [1, 2, 1]])</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># gray_blur = cv2.filter2D(gray, -1, gaussian)</span></span><br><span class="line"></span><br><span class="line">f, (ax1, ax2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">ax1.set_title(<span class="string">'original gray'</span>),ax1.imshow(gray, cmap=<span class="string">'gray'</span>)</span><br><span class="line">ax2.set_title(<span class="string">'blurred image'</span>),ax2.imshow(gray_blur, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/git-stash-dropped-by-coincidence.html#more" rel="contents">
+              <a class="btn" href="/image-processing-low-pass-filter.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1344,7 +1336,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1370,7 +1362,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

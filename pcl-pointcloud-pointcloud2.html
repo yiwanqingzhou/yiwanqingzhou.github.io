@@ -58,14 +58,19 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="一晚清粥">
-<meta property="og:url" content="https://yiwanqingzhou.github.io/tags/自动驾驶/index.html">
+  <meta name="description" content="PCL 中有两种表示点云的数据结构，分别为 PointCloud&amp;lt;PointT&amp;gt; 和 PCLPointCloud2。官方注释中常称为 a pcl::PointCloud&amp;lt;T&amp;gt; object 以及 a PCLPointCloud2 binary data blob。 两者的最大区别是储存数据的方式：  PointCloud&amp;lt;PointT&amp;gt; 为模板类，其中指定了每个">
+<meta name="keywords" content="pcl,pointcloud,点云,ros">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PointCloud&lt;PointT&gt; 和 PCLPointCloud2 的区别">
+<meta property="og:url" content="https://yiwanqingzhou.github.io/pcl-pointcloud-pointcloud2.html">
 <meta property="og:site_name" content="一晚清粥">
+<meta property="og:description" content="PCL 中有两种表示点云的数据结构，分别为 PointCloud&amp;lt;PointT&amp;gt; 和 PCLPointCloud2。官方注释中常称为 a pcl::PointCloud&amp;lt;T&amp;gt; object 以及 a PCLPointCloud2 binary data blob。 两者的最大区别是储存数据的方式：  PointCloud&amp;lt;PointT&amp;gt; 为模板类，其中指定了每个">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2024-04-08T09:37:54.442Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一晚清粥">
-  <link rel="canonical" href="https://yiwanqingzhou.github.io/tags/自动驾驶/">
+<meta name="twitter:title" content="PointCloud&lt;PointT&gt; 和 PCLPointCloud2 的区别">
+<meta name="twitter:description" content="PCL 中有两种表示点云的数据结构，分别为 PointCloud&amp;lt;PointT&amp;gt; 和 PCLPointCloud2。官方注释中常称为 a pcl::PointCloud&amp;lt;T&amp;gt; object 以及 a PCLPointCloud2 binary data blob。 两者的最大区别是储存数据的方式：  PointCloud&amp;lt;PointT&amp;gt; 为模板类，其中指定了每个">
+  <link rel="canonical" href="https://yiwanqingzhou.github.io/pcl-pointcloud-pointcloud2">
 
 
 <script id="page-configurations">
@@ -73,13 +78,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>标签: 自动驾驶 | 一晚清粥</title>
+  <title>PointCloud<PointT> 和 PCLPointCloud2 的区别 | 一晚清粥</title>
   
 
 
@@ -199,24 +204,6 @@
 
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 </nav>
   <div class="site-search">
     <div class="popup search-popup">
@@ -255,60 +242,143 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block tag">
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">自动驾驶<small>标签</small>
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/pcl-pointcloud-pointcloud2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="清粥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一晚清粥">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">PointCloud<PointT> 和 PCLPointCloud2 的区别
+
+          
         </h2>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2024-04-08 16:16:43 / 修改时间：17:37:54" itemprop="dateCreated datePublished" datetime="2024-04-08T16:16:43+08:00">2024-04-08</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/pcl/" itemprop="url" rel="index"><span itemprop="name">pcl</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+        <p><code>PCL</code> 中有两种表示点云的数据结构，分别为 <code>PointCloud&lt;PointT&gt;</code> 和 <code>PCLPointCloud2</code>。官方注释中常称为 <code>a pcl::PointCloud&lt;T&gt; object</code> 以及 <code>a PCLPointCloud2 binary data blob</code>。</p>
+<p>两者的最大区别是<strong>储存数据的方式</strong>：</p>
+<ul>
+<li><p><code>PointCloud&lt;PointT&gt;</code> 为模板类，其中指定了每个点的数据类型 <code>PointT</code>， 独立储存每个点的数据。这种存储方式使得数据非常清晰，可以很方便地对某一个点或是某个点的某一字段进行访问，但无法选择存储或删除某一字段。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> PointT&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PointCloud</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;PointT, Eigen::aligned_allocator&lt;PointT&gt;&gt; points;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-  
-  
 
-  
+</li>
+</ul>
+<ul>
+<li><p><code>PCLPointCloud2</code> 则没有指定点的数据类型，而是在 <code>fields</code> 里记录每个点中有哪些字段（比如 <code>rgba</code> , <code>x</code> , <code>normal_x</code> 等），并以 <code>std::uint8_t</code> 将它们按顺序连续存储。这种存储方式理论上更通用，能够存储各种类型的点云数据，而不仅是 <code>PCL</code>中定义好的常见格式；可以灵活地对数据进行直接处理，选择存储或删除某一字段；当然也使得数据变得不太直观。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PCLPointCloud2</span>&#123;</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;::pcl::PCLPointField&gt;  fields;</span><br><span class="line">    <span class="keyword">uindex_t</span> point_step = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="keyword">uint8_t</span>&gt; data;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<a id="more"></a>
+
+
+<p><code>ROS</code> 中使用 <code>PCLPointCloud2</code> 传输点云数据: <a href="https://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html" target="_blank" rel="noopener">sensor_msgs::msg::PointCloud2</a></p>
+<p><code>PCL</code> 中提供了两者互换的接口：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> PointT&gt; <span class="keyword">void</span></span><br><span class="line">fromPCLPointCloud2 (<span class="keyword">const</span> pcl::PCLPointCloud2&amp; msg, pcl::PointCloud&lt;PointT&gt;&amp; cloud)</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> PointT&gt; <span class="keyword">void</span></span><br><span class="line">toPCLPointCloud2 (<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;&amp; cloud, pcl::PCLPointCloud2&amp; msg)</span><br><span class="line"></span><br><span class="line"><span class="comment">//以前为 `fromROSMsg` 和`toROSMsg`</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
     
-    <div class="collection-year">
-      <h2 class="collection-header">2022</h2>
-    </div>
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
+    
+    
         
-          <a class="post-title-link" href="/udacity-self-driving-apollo.html" itemprop="url">
-            <span itemprop="name">Udacity自动驾驶入门课笔记</span>
-          </a>
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/pcl/" rel="tag"># pcl</a>
+            
+              <a href="/tags/ros/" rel="tag"># ros</a>
+            
+          </div>
         
-      </h3>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2022-04-10T17:56:19+08:00"
-              content="2022-04-10">
-          04-10
-        </time>
-      </div>
+        
 
-    </header>
-  </article>
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/pcl-double-free.html" rel="next" title="使用PCL的滤波时遇到`double free or corruption`">
+                  <i class="fa fa-chevron-left"></i> 使用PCL的滤波时遇到`double free or corruption`
+                </a>
+              
+            </div>
 
+            <span class="post-nav-divider"></span>
 
-
-    </div>
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
   </div>
   
   
   
+  </article>
 
-  
-
+  </div>
 
 
           </div>
@@ -327,6 +397,11 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
+        
+        
+        
+        
+      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
