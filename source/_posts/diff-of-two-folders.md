@@ -68,7 +68,7 @@ diff -Naur test_a/test.txt test_b/test.txt
 使用 `-q` 可以快速显示有区别的文件名而非具体内容
 
 ```bash
-diff -rq test_a/ test_b/
+$ diff -rq test_a/ test_b/
 ```
 
 ```bash
