@@ -66,7 +66,7 @@
 <meta property="og:site_name" content="一晚清粥">
 <meta property="og:description" content="查看两个目录的结构1$ tree test_a/ test_b/12345test_a/└── test.txttest_b/├── test_b.txt└── test.txt使用 diff 逐行比较1$ diff -aur test_a/ test_b/1234567Only in test_b/: test_b.txtdiff -aur test_a/test.txt test_b/test">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2024-04-02T06:29:48.095Z">
+<meta property="og:updated_time" content="2024-04-02T07:01:08.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux 比较两个目录的区别">
 <meta name="twitter:description" content="查看两个目录的结构1$ tree test_a/ test_b/12345test_a/└── test.txttest_b/├── test_b.txt└── test.txt使用 diff 逐行比较1$ diff -aur test_a/ test_b/1234567Only in test_b/: test_b.txtdiff -aur test_a/test.txt test_b/test">
@@ -287,7 +287,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-02 14:29:48" itemprop="dateModified" datetime="2024-04-02T14:29:48+08:00">2024-04-02</time>
+                <time title="修改时间：2024-04-02 15:01:08" itemprop="dateModified" datetime="2024-04-02T15:01:08+08:00">2024-04-02</time>
               </span>
             
           
@@ -331,7 +331,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">diff -Naur test_a/test_b.txt test_b/test_b.txt</span><br><span class="line">--- test_a/test_b.txt	1970-01-01 08:00:00.000000000 +0800</span><br><span class="line">+++ test_b/test_b.txt	2024-04-01 19:29:48.008986470 +0800</span><br><span class="line">@@ -0,0 +1 @@</span><br><span class="line">+extra_test_b</span><br><span class="line">diff -Naur test_a/test.txt test_b/test.txt</span><br><span class="line">--- test_a/test.txt	2024-04-01 19:29:35.024777745 +0800</span><br><span class="line">+++ test_b/test.txt	2024-04-01 19:36:22.759553212 +0800</span><br><span class="line">@@ -1 +1 @@</span><br><span class="line">-test_a</span><br><span class="line">+test_b</span><br></pre></td></tr></table></figure>
 
 <h3 id="只显示有区别的文件名"><a href="#只显示有区别的文件名" class="headerlink" title="只显示有区别的文件名"></a>只显示有区别的文件名</h3><p>使用 <code>-q</code> 可以快速显示有区别的文件名而非具体内容</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diff -rq test_a/ test_b/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ diff -rq test_a/ test_b/</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Only <span class="keyword">in</span> test_b/: test_b.txt</span><br><span class="line">Files test_a/test.txt and test_b/test.txt differ</span><br></pre></td></tr></table></figure>
 
@@ -374,6 +374,10 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/pcl-double-free.html" rel="prev" title="使用PCL的滤波时遇到`double free or corruption`">
+                  使用PCL的滤波时遇到`double free or corruption` <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -437,7 +441,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -463,7 +467,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

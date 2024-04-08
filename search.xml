@@ -23,6 +23,120 @@
       </tags>
   </entry>
   <entry>
+    <title>C++ 使用boost::program_options解析命令行选项</title>
+    <url>/boost-options-description.html</url>
+    <content><![CDATA[<p>Boost.ProgramOptions是Boost中一个专门用来解析命令行的库，其目标是轻松的解析命令行选项。</p>
+<a id="more"></a>
+
+
+
+<h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/program_options.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">on_notifier</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"On notifier: "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">namespace</span> po = boost::program_options;</span><br><span class="line">    po::<span class="function">options_description <span class="title">desc</span><span class="params">(<span class="string">"Options"</span>)</span></span>;</span><br><span class="line">    desc.add_options()</span><br><span class="line">        (<span class="string">"enable_something,e"</span>, <span class="string">"Enable Something"</span>)</span><br><span class="line">        (<span class="string">"test_string,s"</span>, po::value&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;(), <span class="string">"Test String"</span>)</span><br><span class="line">        (<span class="string">"test_int,p"</span>, po::value&lt;<span class="keyword">int</span>&gt;(), <span class="string">"Test Int"</span>)</span><br><span class="line">        (<span class="string">"test_default_value,d"</span>,po::value&lt;<span class="keyword">int</span>&gt;()-&gt;default_value(<span class="number">1</span>), <span class="string">"Test Default Value"</span>)</span><br><span class="line">        (<span class="string">"test_notifier"</span>, value&lt;<span class="keyword">int</span>&gt;()-&gt;notifier(on_notifier), <span class="string">"Test Notifier"</span>);</span><br><span class="line">    po::variables_map vm;</span><br><span class="line">  	po::store(po::parse_command_line(argc, argv, desc), vm);</span><br><span class="line">  	po::notify(vm);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// no options set</span></span><br><span class="line">    <span class="comment">// print all options</span></span><br><span class="line">    <span class="keyword">if</span> (argc == <span class="number">1</span> || !vm.count(<span class="string">"sensor_id"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; desc &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">bool</span> enable_something = vm.count(<span class="string">"enable_something"</span>);</span><br><span class="line">    <span class="keyword">int</span> value = vm[<span class="string">"test_default_value"</span>].as&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">    <span class="keyword">if</span> (vm.count(<span class="string">"test_string"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> ss = vm[<span class="string">"test_string"</span>].as&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;();</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test_string was set to: "</span>  &lt;&lt; ss &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (vm.count(<span class="string">"test_int"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> dd = vm[<span class="string">"test_int"</span>].as&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test_int was set to: "</span>  &lt;&lt; dd &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="CMake里引入依赖"><a href="#CMake里引入依赖" class="headerlink" title="CMake里引入依赖"></a>CMake里引入依赖</h4><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">find_package</span>(Boost COMPONENTS program_options REQUIRED)</span><br><span class="line"><span class="keyword">target_include_directories</span>(myTarget PRIVATE <span class="variable">$&#123;Boost_INCLUDE_DIR&#125;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(myTarget <span class="variable">$&#123;Boost_LIBRARIES&#125;</span> )</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.boost.org/doc/libs/1_63_0/doc/html/program_options/tutorial.html#idp523371328" target="_blank" rel="noopener">官方Tutorial参考</a></p>
+]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vscode 使用clang格式化代码</title>
+    <url>/clang_format.html</url>
+    <content><![CDATA[<p>.clang-format文件存档</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">Language:        Cpp</span><br><span class="line"># BasedOnStyle:  LLVM</span><br><span class="line">AccessModifierOffset: -2</span><br><span class="line">AlignAfterOpenBracket: Align</span><br><span class="line">AlignConsecutiveAssignments: false</span><br><span class="line">AlignConsecutiveDeclarations: false</span><br><span class="line">AlignEscapedNewlinesLeft: false</span><br><span class="line">AlignOperands:   true</span><br><span class="line">AlignTrailingComments: true</span><br><span class="line">AllowAllParametersOfDeclarationOnNextLine: true</span><br><span class="line">AllowShortBlocksOnASingleLine: false</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line">AllowShortFunctionsOnASingleLine: All</span><br><span class="line">AllowShortIfStatementsOnASingleLine: false</span><br><span class="line">AllowShortLoopsOnASingleLine: false</span><br><span class="line">AlwaysBreakAfterDefinitionReturnType: None</span><br><span class="line">AlwaysBreakAfterReturnType: None</span><br><span class="line">AlwaysBreakBeforeMultilineStrings: false</span><br><span class="line">AlwaysBreakTemplateDeclarations: false</span><br><span class="line">BinPackArguments: true</span><br><span class="line">BinPackParameters: false</span><br><span class="line">BraceWrapping:</span><br><span class="line">  AfterClass:      false</span><br><span class="line">  AfterControlStatement: false</span><br><span class="line">  AfterEnum:       false</span><br><span class="line">  AfterFunction:   true</span><br><span class="line">  AfterNamespace:  false</span><br><span class="line">  AfterObjCDeclaration: false</span><br><span class="line">  AfterStruct:     true</span><br><span class="line">  AfterUnion:      true</span><br><span class="line">  BeforeCatch:     true</span><br><span class="line">  BeforeElse:      true</span><br><span class="line">  IndentBraces:    false</span><br><span class="line">BreakBeforeBinaryOperators: None</span><br><span class="line">BreakBeforeBraces: Allman</span><br><span class="line">BreakBeforeTernaryOperators: false</span><br><span class="line">BreakConstructorInitializersBeforeComma: false</span><br><span class="line">ColumnLimit:     0</span><br><span class="line">CommentPragmas:  &apos;^ IWYU pragma:&apos;</span><br><span class="line">ConstructorInitializerAllOnOneLineOrOnePerLine: false</span><br><span class="line">ConstructorInitializerIndentWidth: 4</span><br><span class="line">ContinuationIndentWidth: 4</span><br><span class="line">Cpp11BracedListStyle: true</span><br><span class="line">DerivePointerAlignment: false</span><br><span class="line">DisableFormat:   false</span><br><span class="line">ExperimentalAutoDetectBinPacking: false</span><br><span class="line">ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH ]</span><br><span class="line">IncludeCategories: </span><br><span class="line">  - Regex:           &apos;^&quot;(llvm|llvm-c|clang|clang-c)/&apos;</span><br><span class="line">    Priority:        2</span><br><span class="line">  - Regex:           &apos;^(&lt;|&quot;(gtest|isl|json)/)&apos;</span><br><span class="line">    Priority:        3</span><br><span class="line">  - Regex:           &apos;.*&apos;</span><br><span class="line">    Priority:        1</span><br><span class="line">IndentCaseLabels: false</span><br><span class="line">IndentWidth:     2</span><br><span class="line">IndentWrappedFunctionNames: false</span><br><span class="line">KeepEmptyLinesAtTheStartOfBlocks: true</span><br><span class="line">MacroBlockBegin: &apos;&apos;</span><br><span class="line">MacroBlockEnd:   &apos;&apos;</span><br><span class="line">MaxEmptyLinesToKeep: 1</span><br><span class="line">NamespaceIndentation: All</span><br><span class="line">ObjCBlockIndentWidth: 2</span><br><span class="line">ObjCSpaceAfterProperty: false</span><br><span class="line">ObjCSpaceBeforeProtocolList: true</span><br><span class="line">PenaltyBreakBeforeFirstCallParameter: 19</span><br><span class="line">PenaltyBreakComment: 300</span><br><span class="line">PenaltyBreakFirstLessLess: 120</span><br><span class="line">PenaltyBreakString: 1000</span><br><span class="line">PenaltyExcessCharacter: 1000000</span><br><span class="line">PenaltyReturnTypeOnItsOwnLine: 60</span><br><span class="line">PointerAlignment: Right</span><br><span class="line">ReflowComments:  true</span><br><span class="line">SortIncludes:    true</span><br><span class="line">SpaceAfterCStyleCast: false</span><br><span class="line">SpaceBeforeAssignmentOperators: true</span><br><span class="line">SpaceBeforeParens: ControlStatements</span><br><span class="line">SpaceInEmptyParentheses: false</span><br><span class="line">SpacesBeforeTrailingComments: 1</span><br><span class="line">SpacesInAngles:  false</span><br><span class="line">SpacesInContainerLiterals: true</span><br><span class="line">SpacesInCStyleCastParentheses: false</span><br><span class="line">SpacesInParentheses: false</span><br><span class="line">SpacesInSquareBrackets: false</span><br><span class="line">Standard:        Cpp11</span><br><span class="line">TabWidth:        8</span><br><span class="line">UseTab:          Never</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>memo</category>
+      </categories>
+      <tags>
+        <tag>vscode</tag>
+        <tag>clang</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CMake设置编译选项</title>
+    <url>/cmake-set-flag.html</url>
+    <content><![CDATA[<h4 id="CMake中设置编译选项"><a href="#CMake中设置编译选项" class="headerlink" title="CMake中设置编译选项"></a>CMake中设置编译选项</h4><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">option</span>(BUILD_VISUALIZATIONS <span class="string">"Build visualization, default OFF"</span> <span class="keyword">OFF</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">"BUILD_VISUALIZATIONS is $&#123;BUILD_VISUALIZATIONS&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以跟build type关联</span></span><br><span class="line"><span class="comment"># if(CMAKE_BUILD_TYPE MATCHES Debug OR CMAKE_BUILD_TYPE MATCHES DEBUG)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(BUILD_VISUALIZATIONS)</span><br><span class="line"><span class="keyword">add_definitions</span>(-DBUILD_VISUALIZATIONS)</span><br><span class="line"><span class="comment"># target_compile_definitions($&#123;project_name&#125; PRIVATE BUILD_VISUALIZATIONS)</span></span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+<h4 id="代码中作为宏"><a href="#代码中作为宏" class="headerlink" title="代码中作为宏"></a>代码中作为宏</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> BUILD_VISUALIZATIONS</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(<span class="keyword">const</span> <span class="keyword">cloud_ptr_t</span>&amp; cloud_ptr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"visualizations on"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// visualize cloud</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(Args...)</span> </span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"pass visualizations"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="编译时传入参数"><a href="#编译时传入参数" class="headerlink" title="编译时传入参数"></a>编译时传入参数</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--cmake-args -DBUILD_VISUALIZATIONS=ON</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>cmake</category>
+      </categories>
+      <tags>
+        <tag>cmake</tag>
+        <tag>编译</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++并发编程：条件变量std::condition_variable的使用</title>
+    <url>/condition-variable.html</url>
+    <content><![CDATA[<p><code>std::condition_variable</code> 是 C++11 多线程编程中的条件变量。</p>
+<p>一般用法: 线程 A <strong>等待</strong>某个条件并挂起，直到线程 B 设置了这个条件，并<strong>通知</strong>条件变量，然后线程 A 被唤醒。</p>
+<a id="more"></a>
+
+
+
+<h4 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h4><p>仅支持默认构造函数，拷贝、赋值和移动(move)均是被禁用的。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::condition_variable cv;</span><br></pre></td></tr></table></figure>
+
+<h4 id="等待"><a href="#等待" class="headerlink" title="等待"></a>等待</h4><h5 id="无条件等待"><a href="#无条件等待" class="headerlink" title="无条件等待"></a>无条件等待</h5><p>阻塞当前线程直到被其他线程通知唤醒。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wait</span> <span class="params">(unique_lock&lt;mutex&gt;&amp; lck)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="有条件等待"><a href="#有条件等待" class="headerlink" title="有条件等待"></a>有条件等待</h5><p>只有当 <code>pred</code> 条件为 <code>false</code> 时才会阻塞当前线程，并且在收到其他线程的通知后只有当 <code>pred</code> 为 <code>true</code> 时才会被解除阻塞。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">Predicate</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">wait</span> (<span class="title">unique_lock</span>&lt;mutex&gt;&amp; <span class="title">lck</span>, <span class="title">Predicate</span> <span class="title">pred</span>);</span></span><br></pre></td></tr></table></figure>
+
+<p>相当于</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (!pred())</span><br><span class="line">&#123;</span><br><span class="line">	wait()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h4><p>通知线程可以使用 <code>notify_one()</code> 通知一个线程，或一次使用 <code>notify_all()</code> 通知所有线程。</p>
+<h4 id="简单例子"><a href="#简单例子" class="headerlink" title="简单例子"></a>简单例子</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;atomic&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;condition_variable&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::mutex mtx;</span><br><span class="line"><span class="built_in">std</span>::condition_variable cv;</span><br><span class="line"><span class="built_in">std</span>::atomic&lt;<span class="keyword">bool</span>&gt; ready;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wait</span><span class="params">(<span class="keyword">int</span> id)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"thread: "</span> &lt;&lt; <span class="built_in">std</span>::this_thread::get_id() &lt;&lt; <span class="string">" id: "</span> &lt;&lt; id &lt;&lt; <span class="string">" start.\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; lck(mtx);</span><br><span class="line">  cv.wait(lck, [] &#123; <span class="keyword">return</span> ready.load(); &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"thread: "</span> &lt;&lt; <span class="built_in">std</span>::this_thread::get_id() &lt;&lt; <span class="string">" id: "</span> &lt;&lt; id &lt;&lt; <span class="string">" done.\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set_ready</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"set_ready(): "</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  ready.store(<span class="literal">true</span>);</span><br><span class="line">  cv.notify_one();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ready.store(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> t_1 = <span class="built_in">std</span>::thread(wait, <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">auto</span> t_2 = <span class="built_in">std</span>::thread(wait, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">1</span>));</span><br><span class="line">  set_ready();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">1</span>));</span><br><span class="line">  set_ready();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"join...."</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  t_1.join();</span><br><span class="line">  t_2.join();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"all done"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">thread: 139827702187776 id: 1 start.</span><br><span class="line">thread: 139827693795072 id: 2 start.</span><br><span class="line">set_ready(): 1</span><br><span class="line">thread: 139827702187776 id: 1 done.</span><br><span class="line">set_ready(): 1</span><br><span class="line">join....</span><br><span class="line">thread: 139827693795072 id: 2 done.</span><br><span class="line">all done</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>async</tag>
+        <tag>并发编程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Debian添加最小化按钮</title>
+    <url>/debian_minimize_botton.html</url>
+    <content><![CDATA[<p>安装tweak和dconf</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install gnome-tweak-tool</span><br><span class="line">sudo apt install dconf-editor </span><br><span class="line">dconf-editor</span><br></pre></td></tr></table></figure><p>进入路径: <code>org/gnome/desktop/wm/preferences/button-layout</code></p><img src="/debian_minimize_botton/test.png" title="debian_minimize_botton"><p>取消选项 Use default value</p><a id="more"></a>
+
+
+
+
+
+
+
+
+<p>在 Custom value 填入 <code>appmemu:close,minimize,maximize,close</code></p>
+]]></content>
+      <categories>
+        <category>memo</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Effective C++ 笔记</title>
     <url>/Effective-Cpp.html</url>
     <content><![CDATA[<h2 id="让自己习惯C"><a href="#让自己习惯C" class="headerlink" title="让自己习惯C++"></a>让自己习惯C++</h2><h3 id="1-视C-为一个语言联邦"><a href="#1-视C-为一个语言联邦" class="headerlink" title="1. 视C++为一个语言联邦"></a>1. 视C++为一个语言联邦</h3><p>C++是从四个次语言组成的联邦政府，每个次语言都有自己的规则。</p><ul>
@@ -615,99 +729,6 @@
       </tags>
   </entry>
   <entry>
-    <title>C++ 使用boost::program_options解析命令行选项</title>
-    <url>/boost-options-description.html</url>
-    <content><![CDATA[<p>Boost.ProgramOptions是Boost中一个专门用来解析命令行的库，其目标是轻松的解析命令行选项。</p>
-<a id="more"></a>
-
-
-
-<h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/program_options.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">on_notifier</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"On notifier: "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">namespace</span> po = boost::program_options;</span><br><span class="line">    po::<span class="function">options_description <span class="title">desc</span><span class="params">(<span class="string">"Options"</span>)</span></span>;</span><br><span class="line">    desc.add_options()</span><br><span class="line">        (<span class="string">"enable_something,e"</span>, <span class="string">"Enable Something"</span>)</span><br><span class="line">        (<span class="string">"test_string,s"</span>, po::value&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;(), <span class="string">"Test String"</span>)</span><br><span class="line">        (<span class="string">"test_int,p"</span>, po::value&lt;<span class="keyword">int</span>&gt;(), <span class="string">"Test Int"</span>)</span><br><span class="line">        (<span class="string">"test_default_value,d"</span>,po::value&lt;<span class="keyword">int</span>&gt;()-&gt;default_value(<span class="number">1</span>), <span class="string">"Test Default Value"</span>)</span><br><span class="line">        (<span class="string">"test_notifier"</span>, value&lt;<span class="keyword">int</span>&gt;()-&gt;notifier(on_notifier), <span class="string">"Test Notifier"</span>);</span><br><span class="line">    po::variables_map vm;</span><br><span class="line">  	po::store(po::parse_command_line(argc, argv, desc), vm);</span><br><span class="line">  	po::notify(vm);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// no options set</span></span><br><span class="line">    <span class="comment">// print all options</span></span><br><span class="line">    <span class="keyword">if</span> (argc == <span class="number">1</span> || !vm.count(<span class="string">"sensor_id"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; desc &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">bool</span> enable_something = vm.count(<span class="string">"enable_something"</span>);</span><br><span class="line">    <span class="keyword">int</span> value = vm[<span class="string">"test_default_value"</span>].as&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">    <span class="keyword">if</span> (vm.count(<span class="string">"test_string"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> ss = vm[<span class="string">"test_string"</span>].as&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;();</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test_string was set to: "</span>  &lt;&lt; ss &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (vm.count(<span class="string">"test_int"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> dd = vm[<span class="string">"test_int"</span>].as&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test_int was set to: "</span>  &lt;&lt; dd &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="CMake里引入依赖"><a href="#CMake里引入依赖" class="headerlink" title="CMake里引入依赖"></a>CMake里引入依赖</h4><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">find_package</span>(Boost COMPONENTS program_options REQUIRED)</span><br><span class="line"><span class="keyword">target_include_directories</span>(myTarget PRIVATE <span class="variable">$&#123;Boost_INCLUDE_DIR&#125;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(myTarget <span class="variable">$&#123;Boost_LIBRARIES&#125;</span> )</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://www.boost.org/doc/libs/1_63_0/doc/html/program_options/tutorial.html#idp523371328" target="_blank" rel="noopener">官方Tutorial参考</a></p>
-]]></content>
-      <categories>
-        <category>c++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vscode 使用clang格式化代码</title>
-    <url>/clang_format.html</url>
-    <content><![CDATA[<p>.clang-format文件存档</p>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">Language:        Cpp</span><br><span class="line"># BasedOnStyle:  LLVM</span><br><span class="line">AccessModifierOffset: -2</span><br><span class="line">AlignAfterOpenBracket: Align</span><br><span class="line">AlignConsecutiveAssignments: false</span><br><span class="line">AlignConsecutiveDeclarations: false</span><br><span class="line">AlignEscapedNewlinesLeft: false</span><br><span class="line">AlignOperands:   true</span><br><span class="line">AlignTrailingComments: true</span><br><span class="line">AllowAllParametersOfDeclarationOnNextLine: true</span><br><span class="line">AllowShortBlocksOnASingleLine: false</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line">AllowShortFunctionsOnASingleLine: All</span><br><span class="line">AllowShortIfStatementsOnASingleLine: false</span><br><span class="line">AllowShortLoopsOnASingleLine: false</span><br><span class="line">AlwaysBreakAfterDefinitionReturnType: None</span><br><span class="line">AlwaysBreakAfterReturnType: None</span><br><span class="line">AlwaysBreakBeforeMultilineStrings: false</span><br><span class="line">AlwaysBreakTemplateDeclarations: false</span><br><span class="line">BinPackArguments: true</span><br><span class="line">BinPackParameters: false</span><br><span class="line">BraceWrapping:</span><br><span class="line">  AfterClass:      false</span><br><span class="line">  AfterControlStatement: false</span><br><span class="line">  AfterEnum:       false</span><br><span class="line">  AfterFunction:   true</span><br><span class="line">  AfterNamespace:  false</span><br><span class="line">  AfterObjCDeclaration: false</span><br><span class="line">  AfterStruct:     true</span><br><span class="line">  AfterUnion:      true</span><br><span class="line">  BeforeCatch:     true</span><br><span class="line">  BeforeElse:      true</span><br><span class="line">  IndentBraces:    false</span><br><span class="line">BreakBeforeBinaryOperators: None</span><br><span class="line">BreakBeforeBraces: Allman</span><br><span class="line">BreakBeforeTernaryOperators: false</span><br><span class="line">BreakConstructorInitializersBeforeComma: false</span><br><span class="line">ColumnLimit:     0</span><br><span class="line">CommentPragmas:  &apos;^ IWYU pragma:&apos;</span><br><span class="line">ConstructorInitializerAllOnOneLineOrOnePerLine: false</span><br><span class="line">ConstructorInitializerIndentWidth: 4</span><br><span class="line">ContinuationIndentWidth: 4</span><br><span class="line">Cpp11BracedListStyle: true</span><br><span class="line">DerivePointerAlignment: false</span><br><span class="line">DisableFormat:   false</span><br><span class="line">ExperimentalAutoDetectBinPacking: false</span><br><span class="line">ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH ]</span><br><span class="line">IncludeCategories: </span><br><span class="line">  - Regex:           &apos;^&quot;(llvm|llvm-c|clang|clang-c)/&apos;</span><br><span class="line">    Priority:        2</span><br><span class="line">  - Regex:           &apos;^(&lt;|&quot;(gtest|isl|json)/)&apos;</span><br><span class="line">    Priority:        3</span><br><span class="line">  - Regex:           &apos;.*&apos;</span><br><span class="line">    Priority:        1</span><br><span class="line">IndentCaseLabels: false</span><br><span class="line">IndentWidth:     2</span><br><span class="line">IndentWrappedFunctionNames: false</span><br><span class="line">KeepEmptyLinesAtTheStartOfBlocks: true</span><br><span class="line">MacroBlockBegin: &apos;&apos;</span><br><span class="line">MacroBlockEnd:   &apos;&apos;</span><br><span class="line">MaxEmptyLinesToKeep: 1</span><br><span class="line">NamespaceIndentation: All</span><br><span class="line">ObjCBlockIndentWidth: 2</span><br><span class="line">ObjCSpaceAfterProperty: false</span><br><span class="line">ObjCSpaceBeforeProtocolList: true</span><br><span class="line">PenaltyBreakBeforeFirstCallParameter: 19</span><br><span class="line">PenaltyBreakComment: 300</span><br><span class="line">PenaltyBreakFirstLessLess: 120</span><br><span class="line">PenaltyBreakString: 1000</span><br><span class="line">PenaltyExcessCharacter: 1000000</span><br><span class="line">PenaltyReturnTypeOnItsOwnLine: 60</span><br><span class="line">PointerAlignment: Right</span><br><span class="line">ReflowComments:  true</span><br><span class="line">SortIncludes:    true</span><br><span class="line">SpaceAfterCStyleCast: false</span><br><span class="line">SpaceBeforeAssignmentOperators: true</span><br><span class="line">SpaceBeforeParens: ControlStatements</span><br><span class="line">SpaceInEmptyParentheses: false</span><br><span class="line">SpacesBeforeTrailingComments: 1</span><br><span class="line">SpacesInAngles:  false</span><br><span class="line">SpacesInContainerLiterals: true</span><br><span class="line">SpacesInCStyleCastParentheses: false</span><br><span class="line">SpacesInParentheses: false</span><br><span class="line">SpacesInSquareBrackets: false</span><br><span class="line">Standard:        Cpp11</span><br><span class="line">TabWidth:        8</span><br><span class="line">UseTab:          Never</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>memo</category>
-      </categories>
-      <tags>
-        <tag>vscode</tag>
-        <tag>clang</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CMake设置编译选项</title>
-    <url>/cmake-set-flag.html</url>
-    <content><![CDATA[<h4 id="CMake中设置编译选项"><a href="#CMake中设置编译选项" class="headerlink" title="CMake中设置编译选项"></a>CMake中设置编译选项</h4><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">option</span>(BUILD_VISUALIZATIONS <span class="string">"Build visualization, default OFF"</span> <span class="keyword">OFF</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">"BUILD_VISUALIZATIONS is $&#123;BUILD_VISUALIZATIONS&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以跟build type关联</span></span><br><span class="line"><span class="comment"># if(CMAKE_BUILD_TYPE MATCHES Debug OR CMAKE_BUILD_TYPE MATCHES DEBUG)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(BUILD_VISUALIZATIONS)</span><br><span class="line"><span class="keyword">add_definitions</span>(-DBUILD_VISUALIZATIONS)</span><br><span class="line"><span class="comment"># target_compile_definitions($&#123;project_name&#125; PRIVATE BUILD_VISUALIZATIONS)</span></span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-<h4 id="代码中作为宏"><a href="#代码中作为宏" class="headerlink" title="代码中作为宏"></a>代码中作为宏</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> BUILD_VISUALIZATIONS</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(<span class="keyword">const</span> <span class="keyword">cloud_ptr_t</span>&amp; cloud_ptr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"visualizations on"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// visualize cloud</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(Args...)</span> </span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"pass visualizations"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-<h4 id="编译时传入参数"><a href="#编译时传入参数" class="headerlink" title="编译时传入参数"></a>编译时传入参数</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--cmake-args -DBUILD_VISUALIZATIONS=ON</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>cmake</category>
-      </categories>
-      <tags>
-        <tag>cmake</tag>
-        <tag>编译</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++并发编程：条件变量std::condition_variable的使用</title>
-    <url>/condition-variable.html</url>
-    <content><![CDATA[<p><code>std::condition_variable</code> 是 C++11 多线程编程中的条件变量。</p>
-<p>一般用法: 线程 A <strong>等待</strong>某个条件并挂起，直到线程 B 设置了这个条件，并<strong>通知</strong>条件变量，然后线程 A 被唤醒。</p>
-<a id="more"></a>
-
-
-
-<h4 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h4><p>仅支持默认构造函数，拷贝、赋值和移动(move)均是被禁用的。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::condition_variable cv;</span><br></pre></td></tr></table></figure>
-
-<h4 id="等待"><a href="#等待" class="headerlink" title="等待"></a>等待</h4><h5 id="无条件等待"><a href="#无条件等待" class="headerlink" title="无条件等待"></a>无条件等待</h5><p>阻塞当前线程直到被其他线程通知唤醒。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wait</span> <span class="params">(unique_lock&lt;mutex&gt;&amp; lck)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<h5 id="有条件等待"><a href="#有条件等待" class="headerlink" title="有条件等待"></a>有条件等待</h5><p>只有当 <code>pred</code> 条件为 <code>false</code> 时才会阻塞当前线程，并且在收到其他线程的通知后只有当 <code>pred</code> 为 <code>true</code> 时才会被解除阻塞。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">Predicate</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">wait</span> (<span class="title">unique_lock</span>&lt;mutex&gt;&amp; <span class="title">lck</span>, <span class="title">Predicate</span> <span class="title">pred</span>);</span></span><br></pre></td></tr></table></figure>
-
-<p>相当于</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (!pred())</span><br><span class="line">&#123;</span><br><span class="line">	wait()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h4><p>通知线程可以使用 <code>notify_one()</code> 通知一个线程，或一次使用 <code>notify_all()</code> 通知所有线程。</p>
-<h4 id="简单例子"><a href="#简单例子" class="headerlink" title="简单例子"></a>简单例子</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;atomic&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;condition_variable&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::mutex mtx;</span><br><span class="line"><span class="built_in">std</span>::condition_variable cv;</span><br><span class="line"><span class="built_in">std</span>::atomic&lt;<span class="keyword">bool</span>&gt; ready;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wait</span><span class="params">(<span class="keyword">int</span> id)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"thread: "</span> &lt;&lt; <span class="built_in">std</span>::this_thread::get_id() &lt;&lt; <span class="string">" id: "</span> &lt;&lt; id &lt;&lt; <span class="string">" start.\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; lck(mtx);</span><br><span class="line">  cv.wait(lck, [] &#123; <span class="keyword">return</span> ready.load(); &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"thread: "</span> &lt;&lt; <span class="built_in">std</span>::this_thread::get_id() &lt;&lt; <span class="string">" id: "</span> &lt;&lt; id &lt;&lt; <span class="string">" done.\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set_ready</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"set_ready(): "</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  ready.store(<span class="literal">true</span>);</span><br><span class="line">  cv.notify_one();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ready.store(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> t_1 = <span class="built_in">std</span>::thread(wait, <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">auto</span> t_2 = <span class="built_in">std</span>::thread(wait, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">1</span>));</span><br><span class="line">  set_ready();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">1</span>));</span><br><span class="line">  set_ready();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"join...."</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  t_1.join();</span><br><span class="line">  t_2.join();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"all done"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">thread: 139827702187776 id: 1 start.</span><br><span class="line">thread: 139827693795072 id: 2 start.</span><br><span class="line">set_ready(): 1</span><br><span class="line">thread: 139827702187776 id: 1 done.</span><br><span class="line">set_ready(): 1</span><br><span class="line">join....</span><br><span class="line">thread: 139827693795072 id: 2 done.</span><br><span class="line">all done</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>c++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>async</tag>
-        <tag>并发编程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux 比较两个目录的区别</title>
     <url>/diff-of-two-folders.html</url>
     <content><![CDATA[<h3 id="查看两个目录的结构"><a href="#查看两个目录的结构" class="headerlink" title="查看两个目录的结构"></a>查看两个目录的结构</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tree test_a/ test_b/</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">test_a/</span><br><span class="line">└── test.txt</span><br><span class="line">test_b/</span><br><span class="line">├── test_b.txt</span><br><span class="line">└── test.txt</span><br></pre></td></tr></table></figure><h3 id="使用-diff-逐行比较"><a href="#使用-diff-逐行比较" class="headerlink" title="使用 diff 逐行比较"></a>使用 diff 逐行比较</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ diff -aur test_a/ test_b/</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Only <span class="keyword">in</span> test_b/: test_b.txt</span><br><span class="line">diff -aur test_a/test.txt test_b/test.txt</span><br><span class="line">--- test_a/test.txt	2024-04-01 19:29:35.024777745 +0800</span><br><span class="line">+++ test_b/test.txt	2024-04-01 19:36:22.759553212 +0800</span><br><span class="line">@@ -1 +1 @@</span><br><span class="line">-test_a</span><br><span class="line">+test_b</span><br></pre></td></tr></table></figure><a id="more"></a>
@@ -725,7 +746,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">diff -Naur test_a/test_b.txt test_b/test_b.txt</span><br><span class="line">--- test_a/test_b.txt	1970-01-01 08:00:00.000000000 +0800</span><br><span class="line">+++ test_b/test_b.txt	2024-04-01 19:29:48.008986470 +0800</span><br><span class="line">@@ -0,0 +1 @@</span><br><span class="line">+extra_test_b</span><br><span class="line">diff -Naur test_a/test.txt test_b/test.txt</span><br><span class="line">--- test_a/test.txt	2024-04-01 19:29:35.024777745 +0800</span><br><span class="line">+++ test_b/test.txt	2024-04-01 19:36:22.759553212 +0800</span><br><span class="line">@@ -1 +1 @@</span><br><span class="line">-test_a</span><br><span class="line">+test_b</span><br></pre></td></tr></table></figure>
 
 <h3 id="只显示有区别的文件名"><a href="#只显示有区别的文件名" class="headerlink" title="只显示有区别的文件名"></a>只显示有区别的文件名</h3><p>使用 <code>-q</code> 可以快速显示有区别的文件名而非具体内容</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">diff -rq test_a/ test_b/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ diff -rq test_a/ test_b/</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Only <span class="keyword">in</span> test_b/: test_b.txt</span><br><span class="line">Files test_a/test.txt and test_b/test.txt differ</span><br></pre></td></tr></table></figure>
 
@@ -743,24 +764,34 @@
       </tags>
   </entry>
   <entry>
-    <title>Debian添加最小化按钮</title>
-    <url>/debian_minimize_botton.html</url>
-    <content><![CDATA[<p>安装tweak和dconf</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install gnome-tweak-tool</span><br><span class="line">sudo apt install dconf-editor </span><br><span class="line">dconf-editor</span><br></pre></td></tr></table></figure><p>进入路径: <code>org/gnome/desktop/wm/preferences/button-layout</code></p><img src="/debian_minimize_botton/test.png" title="debian_minimize_botton"><p>取消选项 Use default value</p><a id="more"></a>
+    <title>Linux 解压缩rar包</title>
+    <url>/extract_from_rar.html</url>
+    <content><![CDATA[<h4 id="下载rar软件安装包"><a href="#下载rar软件安装包" class="headerlink" title="下载rar软件安装包"></a>下载rar软件安装包</h4><ol>
+<li><p>直接从 <a href="https://www.rarlab.com/download.htm" target="_blank" rel="noopener">rarlab</a> 下载安装包</p>
+</li>
+<li><p>通过命令行下载</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://www.rarlab.com/rar/rarlinux-x64-6.0.1.tar.gz  <span class="comment"># 64位</span></span><br><span class="line">wget https://www.rarlab.com/rar/rarlinux-3.8.0.tar.gz	   <span class="comment"># 32位</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar zxvf rarlinux-x64-6.0.1.tar.gz</span><br><span class="line"><span class="built_in">cd</span> rar</span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<h4 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rar x xxx.rar  <span class="comment"># Extract files with full path</span></span><br><span class="line">rar e xxx.rar  <span class="comment"># Extract files without archived paths</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
 
 
 
+<h4 id="将xxx目录压缩为xxx-rar"><a href="#将xxx目录压缩为xxx-rar" class="headerlink" title="将xxx目录压缩为xxx.rar"></a>将xxx目录压缩为xxx.rar</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rar a xxx.rar xxx</span><br></pre></td></tr></table></figure>
 
-
-
-
-
-<p>在 Custom value 填入 <code>appmemu:close,minimize,maximize,close</code></p>
 ]]></content>
       <categories>
         <category>memo</category>
       </categories>
       <tags>
         <tag>linux</tag>
+        <tag>uncompress</tag>
+        <tag>rar</tag>
       </tags>
   </entry>
   <entry>
@@ -892,37 +923,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux 解压缩rar包</title>
-    <url>/extract_from_rar.html</url>
-    <content><![CDATA[<h4 id="下载rar软件安装包"><a href="#下载rar软件安装包" class="headerlink" title="下载rar软件安装包"></a>下载rar软件安装包</h4><ol>
-<li><p>直接从 <a href="https://www.rarlab.com/download.htm" target="_blank" rel="noopener">rarlab</a> 下载安装包</p>
-</li>
-<li><p>通过命令行下载</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://www.rarlab.com/rar/rarlinux-x64-6.0.1.tar.gz  <span class="comment"># 64位</span></span><br><span class="line">wget https://www.rarlab.com/rar/rarlinux-3.8.0.tar.gz	   <span class="comment"># 32位</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar zxvf rarlinux-x64-6.0.1.tar.gz</span><br><span class="line"><span class="built_in">cd</span> rar</span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-
-<h4 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rar x xxx.rar  <span class="comment"># Extract files with full path</span></span><br><span class="line">rar e xxx.rar  <span class="comment"># Extract files without archived paths</span></span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-
-
-<h4 id="将xxx目录压缩为xxx-rar"><a href="#将xxx目录压缩为xxx-rar" class="headerlink" title="将xxx目录压缩为xxx.rar"></a>将xxx目录压缩为xxx.rar</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rar a xxx.rar xxx</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>memo</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>uncompress</tag>
-        <tag>rar</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用clang和black 对C++、Python代码自动格式化</title>
     <url>/format_code.html</url>
     <content><![CDATA[<h4 id="使用clang对C-进行格式化"><a href="#使用clang对C-进行格式化" class="headerlink" title="使用clang对C++进行格式化"></a>使用<code>clang</code>对C++进行格式化</h4><ul>
@@ -958,73 +958,6 @@
         <tag>clang</tag>
         <tag>linux</tag>
         <tag>format</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux 搭建FTP服务器</title>
-    <url>/ftp_server.html</url>
-    <content><![CDATA[<h4 id="安装ftp和vsftpd"><a href="#安装ftp和vsftpd" class="headerlink" title="安装ftp和vsftpd"></a>安装ftp和vsftpd</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install ftp</span><br><span class="line">sudo apt-get install vsftpd</span><br></pre></td></tr></table></figure><h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用vsftpd软件，主要包括如下几个命令：</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动ftp</span></span><br><span class="line">service vsftpd start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止ftp</span></span><br><span class="line">service vsftpd stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启ftp</span></span><br><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-<h4 id="配置vsftpd"><a href="#配置vsftpd" class="headerlink" title="配置vsftpd"></a>配置vsftpd</h4><p>打开配置文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/vsftpd.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># vi /etc/vsftpd/vsftpd.conf</span></span><br></pre></td></tr></table></figure>
-
-<p>按照需求修改为以下内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">listen=NO</span><br><span class="line">listen_ipv6=YES</span><br><span class="line">anonymous_enable=NO</span><br><span class="line">local_enable=YES</span><br><span class="line">write_enable=YES</span><br><span class="line">dirmessage_enable=YES</span><br><span class="line">use_localtime=YES</span><br><span class="line">xferlog_enable=YES</span><br><span class="line">connect_from_port_20=YES</span><br><span class="line">secure_chroot_dir=/var/run/vsftpd/empty</span><br><span class="line">pam_service_name=vsftpd</span><br><span class="line">rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem</span><br><span class="line">rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key</span><br><span class="line">ssl_enable=NO</span><br><span class="line"></span><br><span class="line"># local root</span><br><span class="line">local_root=/home/bot/dev/moma_app/scanner_images</span><br></pre></td></tr></table></figure>
-
-<h4 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure>
-
-<h4 id="登录测试"><a href="#登录测试" class="headerlink" title="登录测试"></a>登录测试</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 登录本地ftp</span></span><br><span class="line">ftp 127.0.0.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入用户名和密码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前路径是否设置的local root</span></span><br><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>memo</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>ftp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OpenCV图像处理1-使用高通滤波进行边缘检测</title>
-    <url>/image-processing-high-pass-filter.html</url>
-    <content><![CDATA[<h2 id="高通滤波-通常使用来检测边缘"><a href="#高通滤波-通常使用来检测边缘" class="headerlink" title="高通滤波: 通常使用来检测边缘"></a>高通滤波: 通常使用来检测边缘</h2><h3 id="常见算子"><a href="#常见算子" class="headerlink" title="常见算子"></a>常见算子</h3><h5 id="sobel算子"><a href="#sobel算子" class="headerlink" title="sobel算子"></a>sobel算子</h5><p><img src="image-processing-high-pass-filter/math-1.png" alt="math-1"></p><h5 id="Scharr算子-更敏感-细致"><a href="#Scharr算子-更敏感-细致" class="headerlink" title="Scharr算子 (更敏感/细致)"></a>Scharr算子 (更敏感/细致)</h5><p><img src="image-processing-high-pass-filter/math-2.png" alt="math-2"></p><h5 id="Laplacian-拉普拉斯-算子-对噪声较敏感，一般搭配其他操作"><a href="#Laplacian-拉普拉斯-算子-对噪声较敏感，一般搭配其他操作" class="headerlink" title="Laplacian(拉普拉斯)算子 (对噪声较敏感，一般搭配其他操作)"></a>Laplacian(拉普拉斯)算子 (对噪声较敏感，一般搭配其他操作)</h5><p><img src="image-processing-high-pass-filter/math-3.png" alt="math-3"></p><h3 id="具体代码例子"><a href="#具体代码例子" class="headerlink" title="具体代码例子"></a>具体代码例子</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> matplotlib.image <span class="keyword">as</span> mpimg</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read in the image</span></span><br><span class="line">image = cv2.imread(<span class="string">'images/curved_lane.jpg'</span>)</span><br><span class="line">image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)</span><br><span class="line"></span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'original img'</span>)</span><br><span class="line">p1.imshow(image)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'gray img'</span>)</span><br><span class="line">p2.imshow(gray, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-
-<p><img src="image-processing-high-pass-filter/1.png" alt="1"></p>
-<h5 id="自定义filter"><a href="#自定义filter" class="headerlink" title="自定义filter"></a>自定义filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Create a custom kernel</span></span><br><span class="line"><span class="comment"># 3x3 array for edge detection</span></span><br><span class="line"></span><br><span class="line">sobel_x= np.array([[<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">                   [<span class="number">-2</span>, <span class="number">0</span>, <span class="number">2</span>],</span><br><span class="line">                   [<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">sobel_y= np.array([[<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-1</span>],</span><br><span class="line">                   [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                   [<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># laplacian, edge filter</span></span><br><span class="line">laplacian=np.array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">                    [<span class="number">1</span>,<span class="number">-4</span>, <span class="number">1</span>],</span><br><span class="line">                    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]])</span><br></pre></td></tr></table></figure>
-
-<h5 id="单向filter"><a href="#单向filter" class="headerlink" title="单向filter"></a>单向filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Filter the image using filter2D, which has inputs: (grayscale image, bit-depth, kernel)  </span></span><br><span class="line">filtered_x_image = cv2.filter2D(gray, <span class="number">-1</span>, sobel_x)</span><br><span class="line">filtered_y_image = cv2.filter2D(gray, <span class="number">-1</span>, sobel_y)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'filtered x'</span>)</span><br><span class="line">p1.imshow(filtered_x_image, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'filtered y'</span>)</span><br><span class="line">p2.imshow(filtered_y_image, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="image-processing-high-pass-filter/2.png" alt="2"></p>
-<h5 id="双向filter"><a href="#双向filter" class="headerlink" title="双向filter"></a>双向filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sobel_x_img = cv2.filter2D(gray, cv2.CV_64F, sobel_x) <span class="comment"># CV_64F 可含负数</span></span><br><span class="line">sobel_y_img = cv2.filter2D(gray, cv2.CV_64F, sobel_y)</span><br><span class="line"></span><br><span class="line">sobel_x_img = cv2.convertScaleAbs(sobel_x_img)   <span class="comment"># 将负数取绝对值</span></span><br><span class="line">sobel_y_img = cv2.convertScaleAbs(sobel_y_img)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'sobel_x_img'</span>)</span><br><span class="line">p1.imshow(sobel_x_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line">p2.set_title(<span class="string">'sobel_y_img'</span>)</span><br><span class="line">p2.imshow(sobel_y_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="image-processing-high-pass-filter/7.png" alt="7"></p>
-<p>通过和上面的结果对比，可以发现，上面的结果是单向的，而下面的结果是双向的。这是由于直接使用算子滤波时会<strong>产生负数</strong>，而在超出 <code>0-255</code> 范围时<strong>被截取</strong>。这也是为什么在下面的处理过程中需要<strong>先转换成 <code>CV_64F</code> (含负数) 的格式后，再取绝对值</strong>。</p>
-<h5 id="使用现成的接口"><a href="#使用现成的接口" class="headerlink" title="使用现成的接口"></a>使用现成的接口</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 也可以直接使用 cv2.Sobel，效果一致</span></span><br><span class="line"><span class="comment"># dst = cv2.Sobel(src, ddepth, dx, dy, ksize)</span></span><br><span class="line"><span class="comment"># ddepth: depth of image</span></span><br><span class="line"><span class="comment"># dx, dy: 0/1, 指定方向 </span></span><br><span class="line"><span class="comment"># ksize: kernal size</span></span><br><span class="line"></span><br><span class="line">sobel_x_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>, ksize=<span class="number">3</span>) </span><br><span class="line">sobel_x_img = cv2.convertScaleAbs(sobel_x_img)</span><br><span class="line">sobel_y_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>, ksize=<span class="number">3</span>)</span><br><span class="line">sobel_y_img = cv2.convertScaleAbs(sobel_y_img)</span><br></pre></td></tr></table></figure>
-
-<h5 id="合并不同方向"><a href="#合并不同方向" class="headerlink" title="合并不同方向"></a>合并不同方向</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># combine x and y</span></span><br><span class="line">sobel_img = cv2.addWeighted(sobel_x_img, <span class="number">0.5</span>, sobel_y_img, <span class="number">0.5</span>, <span class="number">0</span>)</span><br><span class="line">plt.imshow(sobel_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="image-processing-high-pass-filter/8.png" alt="8"></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># not that good to compute xy together directly</span></span><br><span class="line">sobel_xy_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">1</span>, ksize=<span class="number">3</span>)</span><br><span class="line">sobel_xy_img = cv2.convertScaleAbs(sobel_xy_img)</span><br><span class="line">plt.imshow(sobel_xy_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="image-processing-high-pass-filter/9.png" alt="9"></p>
-<p>很明显，<strong>分别计算 x 和 y 再求和的效果比一次性计算的效果要好很多</strong>。</p>
-<h5 id="不同算子的结果对比："><a href="#不同算子的结果对比：" class="headerlink" title="不同算子的结果对比："></a>不同算子的结果对比：</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">scharr_x_img = cv2.Scharr(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>)</span><br><span class="line">scharr_y_img = cv2.Scharr(gray, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">scharr_x_img = cv2.convertScaleAbs(scharr_x_img)</span><br><span class="line">scharr_y_img = cv2.convertScaleAbs(scharr_y_img)</span><br><span class="line">scharr_img = cv2.addWeighted(scharr_x_img, <span class="number">0.5</span>, scharr_y_img, <span class="number">0.5</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">laplacian_img = cv2.Laplacian(gray, cv2.CV_64F)</span><br><span class="line">laplacian_img = cv2.convertScaleAbs(laplacian_img)</span><br><span class="line"></span><br><span class="line">f, (p1, p2, p3) = plt.subplots(<span class="number">1</span>, <span class="number">3</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'sobel'</span>)</span><br><span class="line">p1.imshow(sobel_filtered_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'scharr'</span>)</span><br><span class="line">p2.imshow(scharr_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p3.set_title(<span class="string">'laplacian'</span>)</span><br><span class="line">p3.imshow(laplacian_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="image-processing-high-pass-filter/10.png" alt="10"></p>
-]]></content>
-      <categories>
-        <category>cv</category>
-      </categories>
-      <tags>
-        <tag>图像处理</tag>
-        <tag>cv</tag>
-        <tag>opencv</tag>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -1102,20 +1035,21 @@
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu环境下安装使用hexo</title>
-    <url>/install-hexo.html</url>
-    <content><![CDATA[<h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install git</span><br><span class="line">git config --global user.name <span class="string">"Your Name"</span></span><br><span class="line">git config --global user.email <span class="string">"youremail@domain.com"</span></span><br></pre></td></tr></table></figure><h2 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install ufw</span><br><span class="line">sudo ufw allow <span class="string">"OpenSSH"</span></span><br><span class="line">sudo ufw <span class="built_in">enable</span></span><br><span class="line">sudo ufw allow http</span><br><span class="line">sudo ufw allow https</span><br></pre></td></tr></table></figure><a id="more"></a>
+    <title>linux 搭建FTP服务器</title>
+    <url>/ftp_server.html</url>
+    <content><![CDATA[<h4 id="安装ftp和vsftpd"><a href="#安装ftp和vsftpd" class="headerlink" title="安装ftp和vsftpd"></a>安装ftp和vsftpd</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install ftp</span><br><span class="line">sudo apt-get install vsftpd</span><br></pre></td></tr></table></figure><h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用vsftpd软件，主要包括如下几个命令：</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动ftp</span></span><br><span class="line">service vsftpd start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止ftp</span></span><br><span class="line">service vsftpd stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启ftp</span></span><br><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
 
-<p>Check the firewall status.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo ufw status</span><br><span class="line">Status: active</span><br><span class="line"></span><br><span class="line">To                         Action      From</span><br><span class="line">-                          --          --</span><br><span class="line">OpenSSH                    ALLOW       Anywhere                  </span><br><span class="line">4000                       ALLOW       Anywhere                  </span><br><span class="line">80/tcp                     ALLOW       Anywhere                  </span><br><span class="line">443                        ALLOW       Anywhere                  </span><br><span class="line">OpenSSH (v6)               ALLOW       Anywhere (v6)             </span><br><span class="line">4000 (v6)                  ALLOW       Anywhere (v6)             </span><br><span class="line">80/tcp (v6)                ALLOW       Anywhere (v6)             </span><br><span class="line">443 (v6)                   ALLOW       Anywhere (v6)</span><br></pre></td></tr></table></figure>
+<h4 id="配置vsftpd"><a href="#配置vsftpd" class="headerlink" title="配置vsftpd"></a>配置vsftpd</h4><p>打开配置文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/vsftpd.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># vi /etc/vsftpd/vsftpd.conf</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="通过-nvm-安装-nodejs"><a href="#通过-nvm-安装-nodejs" class="headerlink" title="通过 nvm 安装 nodejs"></a>通过 <code>nvm</code> 安装 <code>nodejs</code></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># installs NVM (Node Version Manager)</span></span><br><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash</span><br><span class="line"><span class="comment"># download and install Node.js</span></span><br><span class="line">nvm install 20</span><br><span class="line"><span class="comment"># verifies the right Node.js version is in the environment</span></span><br><span class="line">node -v <span class="comment"># should print `v20.11.1`</span></span><br><span class="line"><span class="comment"># verifies the right NPM version is in the environment</span></span><br><span class="line">npm -v <span class="comment"># should print `10.2.4`</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># change version</span></span><br><span class="line"><span class="comment"># nvm install 12</span></span><br><span class="line"><span class="comment"># nvm use 12</span></span><br></pre></td></tr></table></figure>
+<p>按照需求修改为以下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">listen=NO</span><br><span class="line">listen_ipv6=YES</span><br><span class="line">anonymous_enable=NO</span><br><span class="line">local_enable=YES</span><br><span class="line">write_enable=YES</span><br><span class="line">dirmessage_enable=YES</span><br><span class="line">use_localtime=YES</span><br><span class="line">xferlog_enable=YES</span><br><span class="line">connect_from_port_20=YES</span><br><span class="line">secure_chroot_dir=/var/run/vsftpd/empty</span><br><span class="line">pam_service_name=vsftpd</span><br><span class="line">rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem</span><br><span class="line">rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key</span><br><span class="line">ssl_enable=NO</span><br><span class="line"></span><br><span class="line"># local root</span><br><span class="line">local_root=/home/bot/dev/moma_app/scanner_images</span><br></pre></td></tr></table></figure>
 
-<h2 id="安装-hexo"><a href="#安装-hexo" class="headerlink" title="安装 hexo"></a>安装 <code>hexo</code></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+<h4 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure>
 
-<h2 id="初始化博客"><a href="#初始化博客" class="headerlink" title="初始化博客"></a>初始化博客</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir blog  <span class="comment"># create the blog folder</span></span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<h4 id="登录测试"><a href="#登录测试" class="headerlink" title="登录测试"></a>登录测试</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 登录本地ftp</span></span><br><span class="line">ftp 127.0.0.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入用户名和密码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前路径是否设置的local root</span></span><br><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -1123,8 +1057,48 @@
       </categories>
       <tags>
         <tag>linux</tag>
-        <tag>environment</tag>
-        <tag>hexo</tag>
+        <tag>ftp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenCV图像处理1-使用高通滤波进行边缘检测</title>
+    <url>/image-processing-high-pass-filter.html</url>
+    <content><![CDATA[<h2 id="高通滤波-通常使用来检测边缘"><a href="#高通滤波-通常使用来检测边缘" class="headerlink" title="高通滤波: 通常使用来检测边缘"></a>高通滤波: 通常使用来检测边缘</h2><h3 id="常见算子"><a href="#常见算子" class="headerlink" title="常见算子"></a>常见算子</h3><h5 id="sobel算子"><a href="#sobel算子" class="headerlink" title="sobel算子"></a>sobel算子</h5><p><img src="image-processing-high-pass-filter/math-1.png" alt="math-1"></p><h5 id="Scharr算子-更敏感-细致"><a href="#Scharr算子-更敏感-细致" class="headerlink" title="Scharr算子 (更敏感/细致)"></a>Scharr算子 (更敏感/细致)</h5><p><img src="image-processing-high-pass-filter/math-2.png" alt="math-2"></p><h5 id="Laplacian-拉普拉斯-算子-对噪声较敏感，一般搭配其他操作"><a href="#Laplacian-拉普拉斯-算子-对噪声较敏感，一般搭配其他操作" class="headerlink" title="Laplacian(拉普拉斯)算子 (对噪声较敏感，一般搭配其他操作)"></a>Laplacian(拉普拉斯)算子 (对噪声较敏感，一般搭配其他操作)</h5><p><img src="image-processing-high-pass-filter/math-3.png" alt="math-3"></p><h3 id="具体代码例子"><a href="#具体代码例子" class="headerlink" title="具体代码例子"></a>具体代码例子</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> matplotlib.image <span class="keyword">as</span> mpimg</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read in the image</span></span><br><span class="line">image = cv2.imread(<span class="string">'images/curved_lane.jpg'</span>)</span><br><span class="line">image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)</span><br><span class="line"></span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'original img'</span>)</span><br><span class="line">p1.imshow(image)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'gray img'</span>)</span><br><span class="line">p2.imshow(gray, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+<p><img src="image-processing-high-pass-filter/1.png" alt="1"></p>
+<h5 id="自定义filter"><a href="#自定义filter" class="headerlink" title="自定义filter"></a>自定义filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Create a custom kernel</span></span><br><span class="line"><span class="comment"># 3x3 array for edge detection</span></span><br><span class="line"></span><br><span class="line">sobel_x= np.array([[<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">                   [<span class="number">-2</span>, <span class="number">0</span>, <span class="number">2</span>],</span><br><span class="line">                   [<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">sobel_y= np.array([[<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-1</span>],</span><br><span class="line">                   [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                   [<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># laplacian, edge filter</span></span><br><span class="line">laplacian=np.array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">                    [<span class="number">1</span>,<span class="number">-4</span>, <span class="number">1</span>],</span><br><span class="line">                    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]])</span><br></pre></td></tr></table></figure>
+
+<h5 id="单向filter"><a href="#单向filter" class="headerlink" title="单向filter"></a>单向filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Filter the image using filter2D, which has inputs: (grayscale image, bit-depth, kernel)  </span></span><br><span class="line">filtered_x_image = cv2.filter2D(gray, <span class="number">-1</span>, sobel_x)</span><br><span class="line">filtered_y_image = cv2.filter2D(gray, <span class="number">-1</span>, sobel_y)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'filtered x'</span>)</span><br><span class="line">p1.imshow(filtered_x_image, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'filtered y'</span>)</span><br><span class="line">p2.imshow(filtered_y_image, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-high-pass-filter/2.png" alt="2"></p>
+<h5 id="双向filter"><a href="#双向filter" class="headerlink" title="双向filter"></a>双向filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sobel_x_img = cv2.filter2D(gray, cv2.CV_64F, sobel_x) <span class="comment"># CV_64F 可含负数</span></span><br><span class="line">sobel_y_img = cv2.filter2D(gray, cv2.CV_64F, sobel_y)</span><br><span class="line"></span><br><span class="line">sobel_x_img = cv2.convertScaleAbs(sobel_x_img)   <span class="comment"># 将负数取绝对值</span></span><br><span class="line">sobel_y_img = cv2.convertScaleAbs(sobel_y_img)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'sobel_x_img'</span>)</span><br><span class="line">p1.imshow(sobel_x_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line">p2.set_title(<span class="string">'sobel_y_img'</span>)</span><br><span class="line">p2.imshow(sobel_y_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-high-pass-filter/7.png" alt="7"></p>
+<p>通过和上面的结果对比，可以发现，上面的结果是单向的，而下面的结果是双向的。这是由于直接使用算子滤波时会<strong>产生负数</strong>，而在超出 <code>0-255</code> 范围时<strong>被截取</strong>。这也是为什么在下面的处理过程中需要<strong>先转换成 <code>CV_64F</code> (含负数) 的格式后，再取绝对值</strong>。</p>
+<h5 id="使用现成的接口"><a href="#使用现成的接口" class="headerlink" title="使用现成的接口"></a>使用现成的接口</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 也可以直接使用 cv2.Sobel，效果一致</span></span><br><span class="line"><span class="comment"># dst = cv2.Sobel(src, ddepth, dx, dy, ksize)</span></span><br><span class="line"><span class="comment"># ddepth: depth of image</span></span><br><span class="line"><span class="comment"># dx, dy: 0/1, 指定方向 </span></span><br><span class="line"><span class="comment"># ksize: kernal size</span></span><br><span class="line"></span><br><span class="line">sobel_x_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>, ksize=<span class="number">3</span>) </span><br><span class="line">sobel_x_img = cv2.convertScaleAbs(sobel_x_img)</span><br><span class="line">sobel_y_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>, ksize=<span class="number">3</span>)</span><br><span class="line">sobel_y_img = cv2.convertScaleAbs(sobel_y_img)</span><br></pre></td></tr></table></figure>
+
+<h5 id="合并不同方向"><a href="#合并不同方向" class="headerlink" title="合并不同方向"></a>合并不同方向</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># combine x and y</span></span><br><span class="line">sobel_img = cv2.addWeighted(sobel_x_img, <span class="number">0.5</span>, sobel_y_img, <span class="number">0.5</span>, <span class="number">0</span>)</span><br><span class="line">plt.imshow(sobel_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-high-pass-filter/8.png" alt="8"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># not that good to compute xy together directly</span></span><br><span class="line">sobel_xy_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">1</span>, ksize=<span class="number">3</span>)</span><br><span class="line">sobel_xy_img = cv2.convertScaleAbs(sobel_xy_img)</span><br><span class="line">plt.imshow(sobel_xy_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-high-pass-filter/9.png" alt="9"></p>
+<p>很明显，<strong>分别计算 x 和 y 再求和的效果比一次性计算的效果要好很多</strong>。</p>
+<h5 id="不同算子的结果对比："><a href="#不同算子的结果对比：" class="headerlink" title="不同算子的结果对比："></a>不同算子的结果对比：</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">scharr_x_img = cv2.Scharr(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>)</span><br><span class="line">scharr_y_img = cv2.Scharr(gray, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">scharr_x_img = cv2.convertScaleAbs(scharr_x_img)</span><br><span class="line">scharr_y_img = cv2.convertScaleAbs(scharr_y_img)</span><br><span class="line">scharr_img = cv2.addWeighted(scharr_x_img, <span class="number">0.5</span>, scharr_y_img, <span class="number">0.5</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">laplacian_img = cv2.Laplacian(gray, cv2.CV_64F)</span><br><span class="line">laplacian_img = cv2.convertScaleAbs(laplacian_img)</span><br><span class="line"></span><br><span class="line">f, (p1, p2, p3) = plt.subplots(<span class="number">1</span>, <span class="number">3</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'sobel'</span>)</span><br><span class="line">p1.imshow(sobel_filtered_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'scharr'</span>)</span><br><span class="line">p2.imshow(scharr_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p3.set_title(<span class="string">'laplacian'</span>)</span><br><span class="line">p3.imshow(laplacian_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-high-pass-filter/10.png" alt="10"></p>
+]]></content>
+      <categories>
+        <category>cv</category>
+      </categories>
+      <tags>
+        <tag>图像处理</tag>
+        <tag>cv</tag>
+        <tag>opencv</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -1154,6 +1128,32 @@
         <tag>cv</tag>
         <tag>opencv</tag>
         <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu环境下安装使用hexo</title>
+    <url>/install-hexo.html</url>
+    <content><![CDATA[<h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install git</span><br><span class="line">git config --global user.name <span class="string">"Your Name"</span></span><br><span class="line">git config --global user.email <span class="string">"youremail@domain.com"</span></span><br></pre></td></tr></table></figure><h2 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install ufw</span><br><span class="line">sudo ufw allow <span class="string">"OpenSSH"</span></span><br><span class="line">sudo ufw <span class="built_in">enable</span></span><br><span class="line">sudo ufw allow http</span><br><span class="line">sudo ufw allow https</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<p>Check the firewall status.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo ufw status</span><br><span class="line">Status: active</span><br><span class="line"></span><br><span class="line">To                         Action      From</span><br><span class="line">-                          --          --</span><br><span class="line">OpenSSH                    ALLOW       Anywhere                  </span><br><span class="line">4000                       ALLOW       Anywhere                  </span><br><span class="line">80/tcp                     ALLOW       Anywhere                  </span><br><span class="line">443                        ALLOW       Anywhere                  </span><br><span class="line">OpenSSH (v6)               ALLOW       Anywhere (v6)             </span><br><span class="line">4000 (v6)                  ALLOW       Anywhere (v6)             </span><br><span class="line">80/tcp (v6)                ALLOW       Anywhere (v6)             </span><br><span class="line">443 (v6)                   ALLOW       Anywhere (v6)</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过-nvm-安装-nodejs"><a href="#通过-nvm-安装-nodejs" class="headerlink" title="通过 nvm 安装 nodejs"></a>通过 <code>nvm</code> 安装 <code>nodejs</code></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># installs NVM (Node Version Manager)</span></span><br><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash</span><br><span class="line"><span class="comment"># download and install Node.js</span></span><br><span class="line">nvm install 20</span><br><span class="line"><span class="comment"># verifies the right Node.js version is in the environment</span></span><br><span class="line">node -v <span class="comment"># should print `v20.11.1`</span></span><br><span class="line"><span class="comment"># verifies the right NPM version is in the environment</span></span><br><span class="line">npm -v <span class="comment"># should print `10.2.4`</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># change version</span></span><br><span class="line"><span class="comment"># nvm install 12</span></span><br><span class="line"><span class="comment"># nvm use 12</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-hexo"><a href="#安装-hexo" class="headerlink" title="安装 hexo"></a>安装 <code>hexo</code></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<h2 id="初始化博客"><a href="#初始化博客" class="headerlink" title="初始化博客"></a>初始化博客</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir blog  <span class="comment"># create the blog folder</span></span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>memo</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>environment</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1213,6 +1213,45 @@
         <tag>environment</tag>
         <tag>pcl</tag>
         <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用PCL的滤波时遇到`double free or corruption`</title>
+    <url>/pcl-double-free.html</url>
+    <content><![CDATA[<p>在调用 <code>StatisticalOutlierRemoval</code> 时遇到 <code>double free or corruption</code></p><p>我在 <code>PCL</code> 源代码中加入了一些log，具体如下：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">2: [INFO]1712543988.313661216: filter - CropBox</span><br><span class="line">2: --- FilterIndices h - filter indices - start ---</span><br><span class="line">2: --- PCLBase - initCompute - indices size:1228800 ---</span><br><span class="line">2: --- FilterIndices h - call applyFilter(indices)</span><br><span class="line">2: ----- CropBox hpp - applyFilter indices - start -------</span><br><span class="line">2: ----- CropBox hpp - applyFilter indices - finish -------</span><br><span class="line">2: --- FilterIndices h - call deinitCompute()</span><br><span class="line">2: --- PCLBase hpp - deinitCompute ---</span><br><span class="line">2: --- FilterIndices h - filter indices - finish ---</span><br><span class="line"></span><br><span class="line">2: [INFO]1712543988.372619178: filter - StatisticalOutlierRemoval</span><br><span class="line">2: --- FilterIndices h - filter indices - start ---</span><br><span class="line">2: --- PCLBase - initCompute - indices size:2568 ---</span><br><span class="line">2: --- FilterIndices h - call applyFilter(indices)</span><br><span class="line">2: --- StatisticalOutlierRemoval h - applyFilter indices ---</span><br><span class="line">2: ----- StatisticalOutlierRemoval hpp - applyFilterIndices - start -------</span><br><span class="line">2: ----- StatisticalOutlierRemoval hpp - applyFilterIndices - finish -------</span><br><span class="line">2: --- FilterIndices h - call deinitCompute()</span><br><span class="line">2: double free or corruption (out)</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<p><a href="https://github.com/PointCloudLibrary/pcl/blob/master/filters/include/pcl/filters/filter_indices.h#L99-L109" target="_blank" rel="noopener">PCL 的 filter 函数里</a>只包括了 <code>initCompute()</code> <code>applyFilter()</code> <code>deinitCompute()</code> 三个部分。</p>
+<p>在正常情况，也就是跑 <code>CropBox</code> 的时候，程序会进入 <code>deinitCompute()</code>。而下面跑 <code>StatisticalOutlierRemoval</code> 的时候，明显它没有进入到 <code>deinitCompute()</code>，没有打印里面的log，就以 <code>double free or corruption (out)</code> 结束了。</p>
+<h3 id="使用-gdb-追踪"><a href="#使用-gdb-追踪" class="headerlink" title="使用 gdb 追踪"></a>使用 <code>gdb</code> 追踪</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--- FilterIndices h - call deinitCompute()</span><br><span class="line">double free or corruption (out)</span><br><span class="line"></span><br><span class="line">Thread 1 <span class="string">"tests"</span> received signal SIGABRT, Aborted.</span><br><span class="line">__pthread_kill_implementation (no_tid=0, signo=6, threadid=140736700039680) at ./nptl/pthread_kill.c:44</span><br><span class="line">44	./nptl/pthread_kill.c: No such file or directory.</span><br><span class="line">(gdb) bt</span><br><span class="line"><span class="comment">#0  __pthread_kill_implementation (no_tid=0, signo=6, threadid=140736700039680) at ./nptl/pthread_kill.c:44</span></span><br><span class="line"><span class="comment">#1  __pthread_kill_internal (signo=6, threadid=140736700039680) at ./nptl/pthread_kill.c:78</span></span><br><span class="line"><span class="comment">#2  __GI___pthread_kill (threadid=140736700039680, signo=signo@entry=6) at ./nptl/pthread_kill.c:89</span></span><br><span class="line"><span class="comment">#3  0x00007fffe5311476 in __GI_raise (sig=sig@entry=6) at ../sysdeps/posix/raise.c:26</span></span><br><span class="line"><span class="comment">#4  0x00007fffe52f77f3 in __GI_abort () at ./stdlib/abort.c:79</span></span><br><span class="line"><span class="comment">#5  0x00007fffe5358676 in __libc_message (action=action@entry=do_abort, fmt=fmt@entry=0x7fffe54aab77 "%s\n")</span></span><br><span class="line">    at ../sysdeps/posix/libc_fatal.c:155</span><br><span class="line"><span class="comment">#6  0x00007fffe536fcfc in malloc_printerr (str=str@entry=0x7fffe54ad790 "double free or corruption (out)") at ./malloc/malloc.c:5664</span></span><br><span class="line"><span class="comment">#7  0x00007fffe5371e70 in _int_free (av=0x7fffe54e9c80 &lt;main_arena&gt;, p=0x555555b18b10, have_lock=&lt;optimized out&gt;)</span></span><br><span class="line">    at ./malloc/malloc.c:4588</span><br><span class="line"><span class="comment">#8  0x00007fffe5374453 in __GI___libc_free (mem=&lt;optimized out&gt;) at ./malloc/malloc.c:3391</span></span><br><span class="line"><span class="comment">#9  0x000055555556c6ba in std::_Sp_counted_base&lt;(__gnu_cxx::_Lock_policy)2&gt;::_M_release() ()</span></span><br><span class="line"><span class="comment">#10 0x000055555556d33e in void vision::cloud::filter_sor&lt;pcl::PointXYZRGB&gt;(pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr const&amp;, std::vector&lt;int, std::allocator&lt;int&gt; &gt;&amp;, int const&amp;, double const&amp;, std::vector&lt;int, std::allocator&lt;int&gt; &gt; const&amp;) ()</span></span><br><span class="line"><span class="comment">#13 0x0000555555568caa in CoreHelpers_Test::TestBody() ()</span></span><br><span class="line"><span class="comment">#14 0x00005555555a7bef in void testing::internal::HandleExceptionsInMethodIfSupported&lt;testing::Test, void&gt;(testing::Test*, void (testing::Test::*)(), char const*) ()</span></span><br><span class="line"><span class="comment">#15 0x000055555559bde6 in testing::Test::Run() ()</span></span><br><span class="line"><span class="comment">#16 0x000055555559bf65 in testing::TestInfo::Run() ()</span></span><br><span class="line"><span class="comment">#17 0x000055555559c519 in testing::TestSuite::Run() ()</span></span><br><span class="line"><span class="comment">#18 0x000055555559cc1f in testing::internal::UnitTestImpl::RunAllTests() ()</span></span><br><span class="line"><span class="comment">#19 0x00005555555a81b7 in bool testing::internal::HandleExceptionsInMethodIfSupported&lt;testing::internal::UnitTestImpl, bool&gt;(testing::internal::UnitTestImpl*, bool (testing::internal::UnitTestImpl::*)(), char const*) ()</span></span><br><span class="line"><span class="comment">#20 0x000055555559c02c in testing::UnitTest::Run() ()</span></span><br><span class="line"><span class="comment">#21 0x00005555555684d4 in main ()</span></span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>vision::cloud::filter_sor</code> 是我自定义的函数，里面就是调用了 <code>PCL</code> 的 <code>StatisticalOutlierRemoval</code>。</p>
+<p>从 <code>gdb</code> 的结果来看，是 <code>PCL</code> 内部 <code>free</code> 的时候出了问题。</p>
+<h3 id="Fix"><a href="#Fix" class="headerlink" title="Fix"></a>Fix</h3><blockquote>
+<p>Eigen has a custom mechanism to guarantee aligned memory (used for everything older than C++17, see Memory.h in the Eigen project). If PCL is compiled with C++14 and the user project is compiled with C++17, this will lead to problems (e.g. memory allocated with the custom mechanism but freed without it). Defining EIGEN_HAS_CXX17_OVERALIGN=0 forces Eigen in the user project to use Eigen’s custom mechanism, even in C++17 and newer.</p>
+</blockquote>
+<p>也就是说，由于 <code>PCL</code> 使用了 <code>Eigen</code> 的一种特殊对齐方式，当 <code>PCL</code> 使用 <code>C++14</code> 但用户程序使用 <code>C++17</code> 编译时，由于内存对齐方式不一致，将可能导致 <code>double free</code>。</p>
+<p>那么修复方式：</p>
+<ul>
+<li>使用相同版本的 <code>C++</code> 编译<code>PCL</code>和用户程序</li>
+<li>在 <code>PCL</code> 的 <code>cmake</code> 文件中<a href="https://github.com/PointCloudLibrary/pcl/blob/master/cmake/pcl_pclconfig.cmake#L22-L24" target="_blank" rel="noopener">判断 <code>C++</code> 版本并设置<code>EIGEN_HAS_CXX17_OVERALIGN</code></a></li>
+<li>在用户程序的 <code>camke</code> 中设置 <code>EIGEN_HAS_CXX17_OVERALIGN</code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">add_definitions(-DEIGEN_HAS_CXX17_OVERALIGN=0)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>c++</category>
+        <category>cmake</category>
+        <category>pcl</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>cmake</tag>
+        <tag>编译</tag>
+        <tag>pcl</tag>
+        <tag>eigen</tag>
       </tags>
   </entry>
   <entry>
@@ -1319,48 +1358,6 @@
       </tags>
   </entry>
   <entry>
-    <title>PCL类型转换</title>
-    <url>/pcl_type_transform.html</url>
-    <content><![CDATA[<h4 id="PCL相关类型-对象与指针互换"><a href="#PCL相关类型-对象与指针互换" class="headerlink" title="PCL相关类型 对象与指针互换"></a>PCL相关类型 对象与指针互换</h4><ol>
-<li>pcl::PointIndices -&gt; pcl::PointIndices::Ptr</li>
-</ol><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::<span class="function">Ptr <span class="title">inliers_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointIndices(inliers))</span></span>;</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-<ol start="2">
-<li>pcl::PointIndices::Ptr -&gt; pcl::PointIndices</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::Ptr inliers_ptr;</span><br><span class="line">inliers=*inliers_ptr;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>std::vector<int> -&gt; pcl::IndicesPtr</int></li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec_indices;</span><br><span class="line">pcl::IndicesPtr indices_ptr = boost::make_shared&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;(vec_indices);</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>pcl::PointCloud<pointt> -&gt; pcl::PointCloud<pointt>::Ptr</pointt></pointt></li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud=*cloud_ptr;</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>pcl::PointCloud<pointt>::Ptr -&gt; pcl::PointCloud<pointt></pointt></pointt></li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud_ptr=cloud.makeShared();</span><br></pre></td></tr></table></figure>
-
-<h4 id="不同数据类型的点云转换"><a href="#不同数据类型的点云转换" class="headerlink" title="不同数据类型的点云转换"></a>不同数据类型的点云转换</h4><ol>
-<li>pcl::PointCloud<a href="pcl::PointXYZRGB" target="_blank" rel="noopener">pcl::PointXYZRGB</a> -&gt; pcl::PointCloud<a href="pcl::PointXYZ" target="_blank" rel="noopener">pcl::PointXYZ</a>::Ptr</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::<span class="function">Ptr <span class="title">cloud_ori</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZRGB&gt;)</span></span>;</span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZ&gt;::<span class="function">Ptr <span class="title">cloud</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZ&gt;)</span></span>;</span><br><span class="line">pcl::copyPointCloud(*cloud_ori, *cloud);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>pcl</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>pcl</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++ push_back和emplace_back的区别</title>
     <url>/push_back-emplace_back.html</url>
     <content><![CDATA[<blockquote>
@@ -1386,31 +1383,6 @@
         <tag>c++</tag>
         <tag>stl</tag>
         <tag>vector</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux 使用SCP远程拷贝文件</title>
-    <url>/scp.html</url>
-    <content><![CDATA[<p> 使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制</p>
-<a id="more"></a>
-
-
-
-<h4 id="从本地复制到远程"><a href="#从本地复制到远程" class="headerlink" title="从本地复制到远程"></a>从本地复制到远程</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp test.txt bot@10.0.9.211:/home/bot/test_folder</span><br><span class="line">scp test.txt bot@10.0.9.211:/home/bot/test_folder/test.txt</span><br><span class="line">scp test.txt 10.0.9.211:/home/bot/test_folder</span><br><span class="line">scp test.txt 10.0.9.211:/home/bot/test_folder/test.txt</span><br></pre></td></tr></table></figure>
-
-<h4 id="从远程复制到本地"><a href="#从远程复制到本地" class="headerlink" title="从远程复制到本地"></a>从远程复制到本地</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp bot@10.0.9.211:/home/bot/test_folder text.txt</span><br><span class="line">scp bot@10.0.9.211:/home/bot/test_folder/test.txt test.txt</span><br><span class="line">scp 10.0.9.211:/home/bot/test_folder test.txt</span><br><span class="line">scp 10.0.9.211:/home/bot/test_folder/test.txt test.txt</span><br></pre></td></tr></table></figure>
-
-<h4 id="传输整个目录"><a href="#传输整个目录" class="headerlink" title="传输整个目录"></a>传输整个目录</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp -r /test_folder bot@10.0.9.211:/home/bot/test_folder</span><br></pre></td></tr></table></figure>
-
-<h4 id="其他参数用法"><a href="#其他参数用法" class="headerlink" title="其他参数用法"></a>其他参数用法</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line">usage: scp [-12346BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]</span><br><span class="line">           [-l <span class="built_in">limit</span>] [-o ssh_option] [-P port] [-S program]</span><br><span class="line">           [[user@]host1:]file1 ... [[user@]host2:]file2</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>memo</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>scp</tag>
       </tags>
   </entry>
   <entry>
@@ -1511,17 +1483,20 @@
       </tags>
   </entry>
   <entry>
-    <title>通过miniconda安装使用jupyter</title>
-    <url>/use-miniconda-jupyter.html</url>
-    <content><![CDATA[<h2 id="安装-miniconda"><a href="#安装-miniconda" class="headerlink" title="安装 miniconda"></a>安装 <code>miniconda</code></h2><p>从 <a href="https://docs.anaconda.com/free/miniconda/" target="_blank" rel="noopener">https://docs.anaconda.com/free/miniconda/</a> 下载对应版本的安装脚本</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash xx.sh</span><br></pre></td></tr></table></figure><p>根据提示安装完成后，重新打开terminal窗口</p><h2 id="通过-miniconda-创建单独的环境且安装-jupyter-等需要的包"><a href="#通过-miniconda-创建单独的环境且安装-jupyter-等需要的包" class="headerlink" title="通过 miniconda 创建单独的环境且安装 jupyter 等需要的包"></a>通过 <code>miniconda</code> 创建单独的环境且安装 <code>jupyter</code> 等需要的包</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda env list</span><br><span class="line">conda create -n environment_name python numpy pandas jupyter</span><br></pre></td></tr></table></figure><a id="more"></a>
+    <title>Linux 使用SCP远程拷贝文件</title>
+    <url>/scp.html</url>
+    <content><![CDATA[<p> 使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制</p>
+<a id="more"></a>
 
 
 
+<h4 id="从本地复制到远程"><a href="#从本地复制到远程" class="headerlink" title="从本地复制到远程"></a>从本地复制到远程</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp test.txt bot@10.0.9.211:/home/bot/test_folder</span><br><span class="line">scp test.txt bot@10.0.9.211:/home/bot/test_folder/test.txt</span><br><span class="line">scp test.txt 10.0.9.211:/home/bot/test_folder</span><br><span class="line">scp test.txt 10.0.9.211:/home/bot/test_folder/test.txt</span><br></pre></td></tr></table></figure>
 
+<h4 id="从远程复制到本地"><a href="#从远程复制到本地" class="headerlink" title="从远程复制到本地"></a>从远程复制到本地</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp bot@10.0.9.211:/home/bot/test_folder text.txt</span><br><span class="line">scp bot@10.0.9.211:/home/bot/test_folder/test.txt test.txt</span><br><span class="line">scp 10.0.9.211:/home/bot/test_folder test.txt</span><br><span class="line">scp 10.0.9.211:/home/bot/test_folder/test.txt test.txt</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda deactivate <span class="comment"># exit current environment</span></span><br><span class="line">conda activate environment_name <span class="comment"># activate the specific environment</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># can still install other packages</span></span><br><span class="line">conda install matplotlib</span><br></pre></td></tr></table></figure>
+<h4 id="传输整个目录"><a href="#传输整个目录" class="headerlink" title="传输整个目录"></a>传输整个目录</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp -r /test_folder bot@10.0.9.211:/home/bot/test_folder</span><br></pre></td></tr></table></figure>
 
-<h2 id="运行-jupyter"><a href="#运行-jupyter" class="headerlink" title="运行 jupyter"></a>运行 <code>jupyter</code></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
+<h4 id="其他参数用法"><a href="#其他参数用法" class="headerlink" title="其他参数用法"></a>其他参数用法</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line">usage: scp [-12346BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]</span><br><span class="line">           [-l <span class="built_in">limit</span>] [-o ssh_option] [-P port] [-S program]</span><br><span class="line">           [[user@]host1:]file1 ... [[user@]host2:]file2</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -1529,8 +1504,197 @@
       </categories>
       <tags>
         <tag>linux</tag>
-        <tag>python</tag>
-        <tag>environment</tag>
+        <tag>scp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PCL类型转换</title>
+    <url>/pcl_type_transform.html</url>
+    <content><![CDATA[<h4 id="PCL相关类型-对象与指针互换"><a href="#PCL相关类型-对象与指针互换" class="headerlink" title="PCL相关类型 对象与指针互换"></a>PCL相关类型 对象与指针互换</h4><ol>
+<li>pcl::PointIndices -&gt; pcl::PointIndices::Ptr</li>
+</ol><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::<span class="function">Ptr <span class="title">inliers_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointIndices(inliers))</span></span>;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<ol start="2">
+<li>pcl::PointIndices::Ptr -&gt; pcl::PointIndices</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::Ptr inliers_ptr;</span><br><span class="line">inliers=*inliers_ptr;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>std::vector<int> -&gt; pcl::IndicesPtr</int></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec_indices;</span><br><span class="line">pcl::IndicesPtr indices_ptr = boost::make_shared&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;(vec_indices);</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>pcl::PointCloud<pointt> -&gt; pcl::PointCloud<pointt>::Ptr</pointt></pointt></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud=*cloud_ptr;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>pcl::PointCloud<pointt>::Ptr -&gt; pcl::PointCloud<pointt></pointt></pointt></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud_ptr=cloud.makeShared();</span><br></pre></td></tr></table></figure>
+
+<h4 id="不同数据类型的点云转换"><a href="#不同数据类型的点云转换" class="headerlink" title="不同数据类型的点云转换"></a>不同数据类型的点云转换</h4><ol>
+<li>pcl::PointCloud<a href="pcl::PointXYZRGB" target="_blank" rel="noopener">pcl::PointXYZRGB</a> -&gt; pcl::PointCloud<a href="pcl::PointXYZ" target="_blank" rel="noopener">pcl::PointXYZ</a>::Ptr</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::<span class="function">Ptr <span class="title">cloud_ori</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZRGB&gt;)</span></span>;</span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZ&gt;::<span class="function">Ptr <span class="title">cloud</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZ&gt;)</span></span>;</span><br><span class="line">pcl::copyPointCloud(*cloud_ori, *cloud);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>pcl</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>pcl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++ std::vector的内存分配机制</title>
+    <url>/std-vector_memory.html</url>
+    <content><![CDATA[<blockquote>
+<p><code>template &lt; class T, class Alloc = allocator&lt;T&gt; &gt; class vector;</code></p>
+</blockquote><h3 id="std-vector-简介"><a href="#std-vector-简介" class="headerlink" title="std::vector 简介"></a>std::vector 简介</h3><p><code>std::vector</code> 是C++标准库里封装好的<strong>动态大小数组</strong>的顺序容器，能够存放各种类型的对象。</p><p>与数组 <code>array</code> 一样， <code>vector</code> 的<strong>内存空间的地址是连续的</strong>。这意味着可以通过下标索引的方式获取到对应的元素，所以访问其元素的效率非常高，从其末端添加或删除元素的效率也相对较高。而对于涉及在非结束位置插入或删除元素的操作，它们的性能比其他操作差，效率较低。</p><a id="more"></a>
+
+
+<p>但与<code>array</code>不同的是，它们的大小可以动态变化，它们的存储由容器自动处理。在插入新元素时，若当前容量不能够容纳新的元素，将自动重新申请一块更大的内存空间，将原有数据拷贝到新的内存空间，且释放原来的空间。这一过程非常耗时，为了避免频繁的内容分配， <code>vector</code> 不会在每次添加元素时都重新分配空间，而是分配一些额外的存储空间来容纳可能的增长。因此， <code>vector</code> 的实际容量 (<strong>capacity</strong>) 永远大于等于它容纳的元素大小 (<strong>size</strong>)。</p>
+<h3 id="内存分配机制"><a href="#内存分配机制" class="headerlink" title="内存分配机制"></a>内存分配机制</h3><h4 id="1-自动增长策略"><a href="#1-自动增长策略" class="headerlink" title="1. 自动增长策略"></a>1. 自动增长策略</h4><p>假设元素是连续存储的，并且容器的大小是可变的，如果此时向 vector 中添加新的元素，容器不可能简单地将它添加到内存的其它位置，因为元素必须是连续存储的。</p>
+<p>容器必须分配新的空间，来保存已有元素和新的元素，将已有的元素从旧位置移动到新空间。然后添加新元素，释放旧的存储空间。如果每添加一个元素，容器就执行一次内存分配和释放，性能会变得超级慢。</p>
+<p>为了避免这种代价，标准库实现者采用了可以减少容器空间重新分配的策略。当不得不获取新的空间的时候，<code>vector</code> 的实现，通常会分配比需求空间更大的内存空间。这种分配策略，比每次添加新元素后都重新分配容器内存空间的策略要高效的多。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(<span class="number">2</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"3 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(<span class="number">3</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"4 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(<span class="number">4</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"5 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(<span class="number">5</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"6 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1 vec capacity: 0  size: 0</span><br><span class="line">2 vec capacity: 1  size: 1</span><br><span class="line">3 vec capacity: 2  size: 2</span><br><span class="line">4 vec capacity: 4  size: 3</span><br><span class="line">5 vec capacity: 4  size: 4</span><br><span class="line">6 vec capacity: 8  size: 5</span><br></pre></td></tr></table></figure>
+
+<p>可以看出，每当 <code>size</code> 和 <code>capacity</code> 相等时，也就是无法容纳新的元素时，<code>vector</code> 自动申请了新的 (成倍增长的) 容量。</p>
+<h4 id="2-手动分配内存-reserve-和-resize"><a href="#2-手动分配内存-reserve-和-resize" class="headerlink" title="2. 手动分配内存: reserve 和 resize"></a>2. 手动分配内存: reserve 和 resize</h4><p><code>std::vector</code> 有自动分配内存的机制，但我们也可以通过<code>reserve()</code> 和 <code>resize()</code> 来手动分配内存，使其效率更高。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_ele</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;vec)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"ele: "</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;e : vec)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; e &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line"></span><br><span class="line">  vec.reserve(<span class="number">4</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(<span class="number">1</span>);</span><br><span class="line">  vec.push_back(<span class="number">2</span>);</span><br><span class="line">  vec.push_back(<span class="number">3</span>);</span><br><span class="line">  vec.push_back(<span class="number">4</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.reserve(<span class="number">3</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"3 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  print_ele(vec);</span><br><span class="line"></span><br><span class="line">  vec.resize(<span class="number">5</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"4 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  print_ele(vec);</span><br><span class="line"></span><br><span class="line">  vec.resize(<span class="number">3</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"5 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  print_ele(vec);</span><br><span class="line"></span><br><span class="line">  vec.resize(<span class="number">5</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"6 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  print_ele(vec);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1 vec capacity: 4  size: 0</span><br><span class="line">2 vec capacity: 4  size: 4</span><br><span class="line">3 vec capacity: 4  size: 4</span><br><span class="line">ele: 1 2 3 4 </span><br><span class="line">4 vec capacity: 8  size: 5</span><br><span class="line">ele: 1 2 3 4 0 </span><br><span class="line">5 vec capacity: 8  size: 3</span><br><span class="line">ele: 1 2 3 </span><br><span class="line">6 vec capacity: 8  size: 5</span><br><span class="line">ele: 1 2 3 0 0</span><br></pre></td></tr></table></figure>
+
+<p>可以看出：</p>
+<ol>
+<li><code>reserve()</code> 只增加不减少数组的 <code>capacity</code>，不对 <code>size()</code> 造成任何改变</li>
+<li><code>resize()</code> 只增加不减少数组的 <code>capacity</code>，但可以增加和减少 <code>size</code>。减少时会直接移除多余的元素，增加时会填入默认值 (0)。</li>
+</ol>
+<h4 id="3-手动回收内存"><a href="#3-手动回收内存" class="headerlink" title="3. 手动回收内存"></a>3. 手动回收内存</h4><h5 id="erase"><a href="#erase" class="headerlink" title="erase"></a>erase</h5><p><code>erase()</code> 可以从 <code>vector</code> 中移除单个或一段元素 [begin, end)，实际上是以后面的元素移动并覆盖前面的位置，不对<code>capacity</code> 造成改变。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.erase(vec.begin() + <span class="number">1</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  print_ele(vec);</span><br><span class="line"></span><br><span class="line">  vec.erase(vec.begin(), vec.begin() + <span class="number">2</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"3 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  print_ele(vec);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1 vec capacity: 5  size: 5</span><br><span class="line">2 vec capacity: 5  size: 4</span><br><span class="line">ele: 1 3 4 5 </span><br><span class="line">3 vec capacity: 5  size: 2</span><br><span class="line">ele: 4 5</span><br></pre></td></tr></table></figure>
+
+<h5 id="clear"><a href="#clear" class="headerlink" title="clear"></a>clear</h5><p><code>clear()</code> 可以移除 <code>vector</code>所有元素，使容器<code>size</code> 为0，不对<code>capacity</code> 造成改变。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1 vec capacity: 4  size: 4</span><br><span class="line">2 vec capacity: 4  size: 0</span><br></pre></td></tr></table></figure>
+
+<h5 id="shrink-to-fit-c-11"><a href="#shrink-to-fit-c-11" class="headerlink" title="shrink_to_fit (c++11)"></a>shrink_to_fit (c++11)</h5><p><code>shrink_to_fit()</code> 可以请求将内存减少到等于当前元素实际所使用的大小，也就是使 <code>capacity = size</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec(<span class="number">10</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.resize(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.shrink_to_fit();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"3 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1 vec capacity: 10  size: 10</span><br><span class="line">2 vec capacity: 10  size: 1</span><br><span class="line">3 vec capacity: 1  size: 1</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>stl</tag>
+        <tag>vector</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++ 强制类型转换</title>
+    <url>/type-cast.html</url>
+    <content><![CDATA[<p>相比于C风格的强制类型转换，C++新增了关键字 <code>static_cast</code>、<code>dynamic_cast</code>、<code>const_cast</code>、<code>reinterpret_cast</code> ，用于强制类型转换。</p><p>新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。</p><h2 id="1-static-cast"><a href="#1-static-cast" class="headerlink" title="1. static_cast"></a>1. static_cast</h2><p>用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。与C旧式转型基本相同。</p><a id="more"></a>
+
+
+<p>常用于：</p>
+<ul>
+<li>基本数据类型之间的转换，如<code>int -&gt; char</code>，这种转换的安全也要开发人员来保证。</li>
+<li>任何类型的表达式转换成 <code>void</code> 类型。</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>不能转换掉 <code>expression</code> 的 <code>const</code> 、<code>volitale</code> 或者 <code>__unaligned</code> 属性。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> a = <span class="number">65</span>;</span><br><span class="line">  <span class="keyword">int</span> b = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"int a: "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"char a: "</span> &lt;&lt; <span class="keyword">static_cast</span>&lt;<span class="keyword">char</span>&gt;(a) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">double</span> c = a / b;</span><br><span class="line">  <span class="keyword">double</span> d = <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>&gt;(a) / <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>&gt;(b);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"c: "</span> &lt;&lt; c &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"d: "</span> &lt;&lt; d &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">a: 65</span><br><span class="line">char a: A</span><br><span class="line">c: 6</span><br><span class="line">d: 6.5</span><br></pre></td></tr></table></figure>
+
+<p><strong>没有运行时类型检查来保证转换的安全性</strong></p>
+<ul>
+<li>上行转型 (子类对象指针–&gt;父类对象指针/引用)： 安全</li>
+<li>下行转型(父类对象指针–&gt;子类对象指针/引用)：没有动态类型检查，所以是不安全的</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"typeinfo"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">virtual</span> <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">class_name</span><span class="params">()</span> final </span>&#123; <span class="keyword">return</span> <span class="keyword">typeid</span>(*<span class="keyword">this</span>).name(); &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span> <span class="keyword">public</span> A</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> b = <span class="number">3</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> :</span> <span class="keyword">public</span> A</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> c = <span class="number">5</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  A *pt_1 = <span class="keyword">new</span> A;</span><br><span class="line">  A *pt_2 = <span class="keyword">new</span> B;</span><br><span class="line">  A *pt_3 = <span class="keyword">new</span> C;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="keyword">static_cast</span>&lt;B *&gt;(pt_1);</span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="keyword">static_cast</span>&lt;B *&gt;(pt_2);</span><br><span class="line">  <span class="keyword">auto</span> b3 = <span class="keyword">static_cast</span>&lt;B *&gt;(pt_3);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b1-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b2-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b3-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b3-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1A 32686</span><br><span class="line">1B 3</span><br><span class="line">1C 5</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-dynamic-cast"><a href="#2-dynamic-cast" class="headerlink" title="2. dynamic_cast"></a>2. dynamic_cast</h2><p>动态转换，常用于将一个父类对象的指针转换为子类对象的指针或引用。其他三种都是编译时完成的，<code>dynamic_cast</code> 是运行时处理的，运行时要进行类型检查。</p>
+<ul>
+<li><p>使用 <code>dynamic_cast</code> 进行转换的，基类中<strong>一定要有虚函数</strong>，否则编译不通过。</p>
+</li>
+<li><p>在进行下行转换时，会进行类型检查 (这个信息存储在类的虚函数表)，比 <code>static_cast</code> 安全。</p>
+</li>
+<li><p>转换后必须是类的指针、引用或 <code>void*</code>。</p>
+</li>
+<li><p>对于指针，转换失败会返回<code>nullptr</code>；对于引用，转换失败会 (在运行时) 抛出异常。</p>
+</li>
+</ul>
+<p><strong>返回指针</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  A *pt1 = <span class="keyword">new</span> A;</span><br><span class="line">  A *pt2 = <span class="keyword">new</span> B;</span><br><span class="line">  A *pt3 = <span class="keyword">new</span> C;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pt1);</span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pt2);</span><br><span class="line">  <span class="keyword">auto</span> b3 = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pt3);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b1)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b1-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b1 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b2)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b2-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b2 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b3)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b3-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b3-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b3 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">b1 null</span><br><span class="line">1B 3</span><br><span class="line">b3 null</span><br></pre></td></tr></table></figure>
+
+<p><strong>返回引用</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  B b;</span><br><span class="line">  C c;</span><br><span class="line">  A &amp;a1 = b;</span><br><span class="line">  A &amp;a2 = c;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="keyword">dynamic_cast</span>&lt;B &amp;&gt;(a1);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1.class_name() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="keyword">dynamic_cast</span>&lt;B &amp;&gt;(a2);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2.class_name() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1B</span><br><span class="line">terminate called after throwing an instance of <span class="string">'std::bad_cast'</span></span><br><span class="line">  what():  std::bad_cast</span><br><span class="line">Aborted</span><br></pre></td></tr></table></figure>
+
+<h2 id="std-dynamic-pointer-cast"><a href="#std-dynamic-pointer-cast" class="headerlink" title="std::dynamic_pointer_cast"></a>std::dynamic_pointer_cast</h2><p>使用 <code>std::dynamic_pointer_cast</code> 可以返回 <code>std::shared_ptr</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;A&gt; pt1 = <span class="built_in">std</span>::make_shared&lt;B&gt;();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;A&gt; pt2 = <span class="built_in">std</span>::make_shared&lt;C&gt;();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="built_in">std</span>::dynamic_pointer_cast&lt;B&gt;(pt1);</span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="built_in">std</span>::dynamic_pointer_cast&lt;B&gt;(pt2);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b1)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b1-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b1 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b2)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b2-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b2 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1B 3</span><br><span class="line">b2 null</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-reinterpret-cast"><a href="#3-reinterpret-cast" class="headerlink" title="3. reinterpret_cast"></a>3. reinterpret_cast</h2><p>主要有三种强制转换用途：改变指针或引用的类型、将指针或引用转换为一个足够长度的整形、将整型转换为指针或引用类型。</p>
+<p><code>reinterpret_cast&lt;type_id&gt; (expression)</code></p>
+<ul>
+<li><code>type_id</code> 必须是一个指针、引用、算术类型、函数指针或者成员指针。</li>
+<li>在使用 <code>reinterpret_cast</code> 强制转换过程仅仅只是比特位的拷贝，因此在使用过程中需要特别谨慎。</li>
+<li>转换结果与编译平台息息相关，<strong>不具有移植性</strong>，应该尽量避免使用。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> *a = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line"><span class="keyword">double</span> *d = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">double</span> *&gt;(a);</span><br></pre></td></tr></table></figure>
+
+<p>最常用用途是转化 “函数指针” 类型：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*FuncPtr)</span><span class="params">()</span></span>;  <span class="comment">// Funcptr是个指针，指向一个无输入参数且返回值为void的函数</span></span><br><span class="line">FuncPtr func_ptr_array[<span class="number">10</span>]; <span class="comment">// 包含10个函数指针的数组</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">do_something</span><span class="params">()</span></span>;         <span class="comment">// 无输入参数且返回值为int的函数</span></span><br><span class="line"></span><br><span class="line">func_ptr_array[<span class="number">0</span>] = &amp;dosomething(); <span class="comment">// 错误，类型不符</span></span><br><span class="line">func_ptr_array[<span class="number">0</span>] = <span class="keyword">reinterpret_cast</span>&lt;FuncPtr&gt;(&amp;dosomething()); <span class="comment">// 可以通过编译</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-const-cast"><a href="#4-const-cast" class="headerlink" title="4. const_cast"></a>4. const_cast</h2><p><code>const</code> 限定符通常被用来限定变量，用于表示该变量的值不能被修改。而 <code>const_cast</code> 则正是用于强制去掉这种不能被修改的常数特性。但需要特别注意的是 <code>const_cast</code> 不是用于<strong>去除变量的常量性</strong>，而是<strong>去除指向常数对象的指针或引用的常量性</strong>，其去除常量性的<strong>对象必须为指针或引用</strong>。</p>
+<p><code>const_cast&lt;type_id&gt; (expression)</code></p>
+<ul>
+<li>该运算符用来修改表达式的常量性或易变性，也就是 <code>const</code> 或 <code>volatile</code> 属性。</li>
+<li><code>type_id</code>和 <code>expression</code> 的类型必须是一样的。</li>
+<li>常量指针被转化成非常量指针，并且仍然指向原来的对象。</li>
+<li>常量引用被转换成非常量引用，并且仍然指向原来的对象；常量对象被转换成非常量对象。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Widget</span>&#123;</span>...&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(Widget&amp; w)</span></span>;</span><br><span class="line"></span><br><span class="line">Widget w;</span><br><span class="line">cosnt Widget&amp; cw = w;  <span class="comment">// 常量引用</span></span><br><span class="line"></span><br><span class="line">update(cw);                      <span class="comment">// 错误，无法将常量引用传给一个非常量</span></span><br><span class="line">update(<span class="keyword">const_cast</span>&lt;Widget&amp;&gt; cw);  <span class="comment">// 可以，cw的常量性被去除，且cw在此函数中可被更改</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1899,151 +2063,26 @@
       </tags>
   </entry>
   <entry>
-    <title>C++ std::vector的内存分配机制</title>
-    <url>/std-vector_memory.html</url>
-    <content><![CDATA[<blockquote>
-<p><code>template &lt; class T, class Alloc = allocator&lt;T&gt; &gt; class vector;</code></p>
-</blockquote><h3 id="std-vector-简介"><a href="#std-vector-简介" class="headerlink" title="std::vector 简介"></a>std::vector 简介</h3><p><code>std::vector</code> 是C++标准库里封装好的<strong>动态大小数组</strong>的顺序容器，能够存放各种类型的对象。</p><p>与数组 <code>array</code> 一样， <code>vector</code> 的<strong>内存空间的地址是连续的</strong>。这意味着可以通过下标索引的方式获取到对应的元素，所以访问其元素的效率非常高，从其末端添加或删除元素的效率也相对较高。而对于涉及在非结束位置插入或删除元素的操作，它们的性能比其他操作差，效率较低。</p><a id="more"></a>
+    <title>通过miniconda安装使用jupyter</title>
+    <url>/use-miniconda-jupyter.html</url>
+    <content><![CDATA[<h2 id="安装-miniconda"><a href="#安装-miniconda" class="headerlink" title="安装 miniconda"></a>安装 <code>miniconda</code></h2><p>从 <a href="https://docs.anaconda.com/free/miniconda/" target="_blank" rel="noopener">https://docs.anaconda.com/free/miniconda/</a> 下载对应版本的安装脚本</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash xx.sh</span><br></pre></td></tr></table></figure><p>根据提示安装完成后，重新打开terminal窗口</p><h2 id="通过-miniconda-创建单独的环境且安装-jupyter-等需要的包"><a href="#通过-miniconda-创建单独的环境且安装-jupyter-等需要的包" class="headerlink" title="通过 miniconda 创建单独的环境且安装 jupyter 等需要的包"></a>通过 <code>miniconda</code> 创建单独的环境且安装 <code>jupyter</code> 等需要的包</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda env list</span><br><span class="line">conda create -n environment_name python numpy pandas jupyter</span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
-<p>但与<code>array</code>不同的是，它们的大小可以动态变化，它们的存储由容器自动处理。在插入新元素时，若当前容量不能够容纳新的元素，将自动重新申请一块更大的内存空间，将原有数据拷贝到新的内存空间，且释放原来的空间。这一过程非常耗时，为了避免频繁的内容分配， <code>vector</code> 不会在每次添加元素时都重新分配空间，而是分配一些额外的存储空间来容纳可能的增长。因此， <code>vector</code> 的实际容量 (<strong>capacity</strong>) 永远大于等于它容纳的元素大小 (<strong>size</strong>)。</p>
-<h3 id="内存分配机制"><a href="#内存分配机制" class="headerlink" title="内存分配机制"></a>内存分配机制</h3><h4 id="1-自动增长策略"><a href="#1-自动增长策略" class="headerlink" title="1. 自动增长策略"></a>1. 自动增长策略</h4><p>假设元素是连续存储的，并且容器的大小是可变的，如果此时向 vector 中添加新的元素，容器不可能简单地将它添加到内存的其它位置，因为元素必须是连续存储的。</p>
-<p>容器必须分配新的空间，来保存已有元素和新的元素，将已有的元素从旧位置移动到新空间。然后添加新元素，释放旧的存储空间。如果每添加一个元素，容器就执行一次内存分配和释放，性能会变得超级慢。</p>
-<p>为了避免这种代价，标准库实现者采用了可以减少容器空间重新分配的策略。当不得不获取新的空间的时候，<code>vector</code> 的实现，通常会分配比需求空间更大的内存空间。这种分配策略，比每次添加新元素后都重新分配容器内存空间的策略要高效的多。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(<span class="number">2</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"3 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(<span class="number">3</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"4 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(<span class="number">4</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"5 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(<span class="number">5</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"6 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1 vec capacity: 0  size: 0</span><br><span class="line">2 vec capacity: 1  size: 1</span><br><span class="line">3 vec capacity: 2  size: 2</span><br><span class="line">4 vec capacity: 4  size: 3</span><br><span class="line">5 vec capacity: 4  size: 4</span><br><span class="line">6 vec capacity: 8  size: 5</span><br></pre></td></tr></table></figure>
 
-<p>可以看出，每当 <code>size</code> 和 <code>capacity</code> 相等时，也就是无法容纳新的元素时，<code>vector</code> 自动申请了新的 (成倍增长的) 容量。</p>
-<h4 id="2-手动分配内存-reserve-和-resize"><a href="#2-手动分配内存-reserve-和-resize" class="headerlink" title="2. 手动分配内存: reserve 和 resize"></a>2. 手动分配内存: reserve 和 resize</h4><p><code>std::vector</code> 有自动分配内存的机制，但我们也可以通过<code>reserve()</code> 和 <code>resize()</code> 来手动分配内存，使其效率更高。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_ele</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;vec)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"ele: "</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;e : vec)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; e &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line"></span><br><span class="line">  vec.reserve(<span class="number">4</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(<span class="number">1</span>);</span><br><span class="line">  vec.push_back(<span class="number">2</span>);</span><br><span class="line">  vec.push_back(<span class="number">3</span>);</span><br><span class="line">  vec.push_back(<span class="number">4</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.reserve(<span class="number">3</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"3 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  print_ele(vec);</span><br><span class="line"></span><br><span class="line">  vec.resize(<span class="number">5</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"4 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  print_ele(vec);</span><br><span class="line"></span><br><span class="line">  vec.resize(<span class="number">3</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"5 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  print_ele(vec);</span><br><span class="line"></span><br><span class="line">  vec.resize(<span class="number">5</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"6 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  print_ele(vec);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1 vec capacity: 4  size: 0</span><br><span class="line">2 vec capacity: 4  size: 4</span><br><span class="line">3 vec capacity: 4  size: 4</span><br><span class="line">ele: 1 2 3 4 </span><br><span class="line">4 vec capacity: 8  size: 5</span><br><span class="line">ele: 1 2 3 4 0 </span><br><span class="line">5 vec capacity: 8  size: 3</span><br><span class="line">ele: 1 2 3 </span><br><span class="line">6 vec capacity: 8  size: 5</span><br><span class="line">ele: 1 2 3 0 0</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda deactivate <span class="comment"># exit current environment</span></span><br><span class="line">conda activate environment_name <span class="comment"># activate the specific environment</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># can still install other packages</span></span><br><span class="line">conda install matplotlib</span><br></pre></td></tr></table></figure>
 
-<p>可以看出：</p>
-<ol>
-<li><code>reserve()</code> 只增加不减少数组的 <code>capacity</code>，不对 <code>size()</code> 造成任何改变</li>
-<li><code>resize()</code> 只增加不减少数组的 <code>capacity</code>，但可以增加和减少 <code>size</code>。减少时会直接移除多余的元素，增加时会填入默认值 (0)。</li>
-</ol>
-<h4 id="3-手动回收内存"><a href="#3-手动回收内存" class="headerlink" title="3. 手动回收内存"></a>3. 手动回收内存</h4><h5 id="erase"><a href="#erase" class="headerlink" title="erase"></a>erase</h5><p><code>erase()</code> 可以从 <code>vector</code> 中移除单个或一段元素 [begin, end)，实际上是以后面的元素移动并覆盖前面的位置，不对<code>capacity</code> 造成改变。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.erase(vec.begin() + <span class="number">1</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  print_ele(vec);</span><br><span class="line"></span><br><span class="line">  vec.erase(vec.begin(), vec.begin() + <span class="number">2</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"3 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  print_ele(vec);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1 vec capacity: 5  size: 5</span><br><span class="line">2 vec capacity: 5  size: 4</span><br><span class="line">ele: 1 3 4 5 </span><br><span class="line">3 vec capacity: 5  size: 2</span><br><span class="line">ele: 4 5</span><br></pre></td></tr></table></figure>
-
-<h5 id="clear"><a href="#clear" class="headerlink" title="clear"></a>clear</h5><p><code>clear()</code> 可以移除 <code>vector</code>所有元素，使容器<code>size</code> 为0，不对<code>capacity</code> 造成改变。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1 vec capacity: 4  size: 4</span><br><span class="line">2 vec capacity: 4  size: 0</span><br></pre></td></tr></table></figure>
-
-<h5 id="shrink-to-fit-c-11"><a href="#shrink-to-fit-c-11" class="headerlink" title="shrink_to_fit (c++11)"></a>shrink_to_fit (c++11)</h5><p><code>shrink_to_fit()</code> 可以请求将内存减少到等于当前元素实际所使用的大小，也就是使 <code>capacity = size</code></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec(<span class="number">10</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.resize(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  vec.shrink_to_fit();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"3 vec capacity: "</span> &lt;&lt; vec.capacity() &lt;&lt; <span class="string">"  size: "</span> &lt;&lt; vec.size() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1 vec capacity: 10  size: 10</span><br><span class="line">2 vec capacity: 10  size: 1</span><br><span class="line">3 vec capacity: 1  size: 1</span><br></pre></td></tr></table></figure>
+<h2 id="运行-jupyter"><a href="#运行-jupyter" class="headerlink" title="运行 jupyter"></a>运行 <code>jupyter</code></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
-        <category>c++</category>
+        <category>memo</category>
       </categories>
       <tags>
-        <tag>c++</tag>
-        <tag>stl</tag>
-        <tag>vector</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++ 强制类型转换</title>
-    <url>/type-cast.html</url>
-    <content><![CDATA[<p>相比于C风格的强制类型转换，C++新增了关键字 <code>static_cast</code>、<code>dynamic_cast</code>、<code>const_cast</code>、<code>reinterpret_cast</code> ，用于强制类型转换。</p><p>新类型的强制转换可以提供更好的控制强制转换过程，允许控制各种不同种类的强制转换。</p><h2 id="1-static-cast"><a href="#1-static-cast" class="headerlink" title="1. static_cast"></a>1. static_cast</h2><p>用于非多态类型转换 (静态转换)，任何标准转换都可以用它，但是不能用于两个不相关的类型转换。与C旧式转型基本相同。</p><a id="more"></a>
-
-
-<p>常用于：</p>
-<ul>
-<li>基本数据类型之间的转换，如<code>int -&gt; char</code>，这种转换的安全也要开发人员来保证。</li>
-<li>任何类型的表达式转换成 <code>void</code> 类型。</li>
-</ul>
-<p>注意：</p>
-<ul>
-<li>不能转换掉 <code>expression</code> 的 <code>const</code> 、<code>volitale</code> 或者 <code>__unaligned</code> 属性。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> a = <span class="number">65</span>;</span><br><span class="line">  <span class="keyword">int</span> b = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"int a: "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"char a: "</span> &lt;&lt; <span class="keyword">static_cast</span>&lt;<span class="keyword">char</span>&gt;(a) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">double</span> c = a / b;</span><br><span class="line">  <span class="keyword">double</span> d = <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>&gt;(a) / <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>&gt;(b);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"c: "</span> &lt;&lt; c &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"d: "</span> &lt;&lt; d &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">a: 65</span><br><span class="line">char a: A</span><br><span class="line">c: 6</span><br><span class="line">d: 6.5</span><br></pre></td></tr></table></figure>
-
-<p><strong>没有运行时类型检查来保证转换的安全性</strong></p>
-<ul>
-<li>上行转型 (子类对象指针–&gt;父类对象指针/引用)： 安全</li>
-<li>下行转型(父类对象指针–&gt;子类对象指针/引用)：没有动态类型检查，所以是不安全的</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"typeinfo"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">virtual</span> <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">class_name</span><span class="params">()</span> final </span>&#123; <span class="keyword">return</span> <span class="keyword">typeid</span>(*<span class="keyword">this</span>).name(); &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span> <span class="keyword">public</span> A</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> b = <span class="number">3</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> :</span> <span class="keyword">public</span> A</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> c = <span class="number">5</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  A *pt_1 = <span class="keyword">new</span> A;</span><br><span class="line">  A *pt_2 = <span class="keyword">new</span> B;</span><br><span class="line">  A *pt_3 = <span class="keyword">new</span> C;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="keyword">static_cast</span>&lt;B *&gt;(pt_1);</span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="keyword">static_cast</span>&lt;B *&gt;(pt_2);</span><br><span class="line">  <span class="keyword">auto</span> b3 = <span class="keyword">static_cast</span>&lt;B *&gt;(pt_3);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b1-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b2-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b3-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b3-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1A 32686</span><br><span class="line">1B 3</span><br><span class="line">1C 5</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-dynamic-cast"><a href="#2-dynamic-cast" class="headerlink" title="2. dynamic_cast"></a>2. dynamic_cast</h2><p>动态转换，常用于将一个父类对象的指针转换为子类对象的指针或引用。其他三种都是编译时完成的，<code>dynamic_cast</code> 是运行时处理的，运行时要进行类型检查。</p>
-<ul>
-<li><p>使用 <code>dynamic_cast</code> 进行转换的，基类中<strong>一定要有虚函数</strong>，否则编译不通过。</p>
-</li>
-<li><p>在进行下行转换时，会进行类型检查 (这个信息存储在类的虚函数表)，比 <code>static_cast</code> 安全。</p>
-</li>
-<li><p>转换后必须是类的指针、引用或 <code>void*</code>。</p>
-</li>
-<li><p>对于指针，转换失败会返回<code>nullptr</code>；对于引用，转换失败会 (在运行时) 抛出异常。</p>
-</li>
-</ul>
-<p><strong>返回指针</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  A *pt1 = <span class="keyword">new</span> A;</span><br><span class="line">  A *pt2 = <span class="keyword">new</span> B;</span><br><span class="line">  A *pt3 = <span class="keyword">new</span> C;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pt1);</span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pt2);</span><br><span class="line">  <span class="keyword">auto</span> b3 = <span class="keyword">dynamic_cast</span>&lt;B *&gt;(pt3);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b1)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b1-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b1 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b2)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b2-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b2 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b3)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b3-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b3-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b3 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">b1 null</span><br><span class="line">1B 3</span><br><span class="line">b3 null</span><br></pre></td></tr></table></figure>
-
-<p><strong>返回引用</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  B b;</span><br><span class="line">  C c;</span><br><span class="line">  A &amp;a1 = b;</span><br><span class="line">  A &amp;a2 = c;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="keyword">dynamic_cast</span>&lt;B &amp;&gt;(a1);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1.class_name() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="keyword">dynamic_cast</span>&lt;B &amp;&gt;(a2);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2.class_name() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1B</span><br><span class="line">terminate called after throwing an instance of <span class="string">'std::bad_cast'</span></span><br><span class="line">  what():  std::bad_cast</span><br><span class="line">Aborted</span><br></pre></td></tr></table></figure>
-
-<h2 id="std-dynamic-pointer-cast"><a href="#std-dynamic-pointer-cast" class="headerlink" title="std::dynamic_pointer_cast"></a>std::dynamic_pointer_cast</h2><p>使用 <code>std::dynamic_pointer_cast</code> 可以返回 <code>std::shared_ptr</code></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;A&gt; pt1 = <span class="built_in">std</span>::make_shared&lt;B&gt;();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;A&gt; pt2 = <span class="built_in">std</span>::make_shared&lt;C&gt;();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> b1 = <span class="built_in">std</span>::dynamic_pointer_cast&lt;B&gt;(pt1);</span><br><span class="line">  <span class="keyword">auto</span> b2 = <span class="built_in">std</span>::dynamic_pointer_cast&lt;B&gt;(pt2);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b1)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b1-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b1-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b1 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (b2)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b2-&gt;class_name() &lt;&lt; <span class="string">" "</span> &lt;&lt; b2-&gt;b &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"b2 null"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1B 3</span><br><span class="line">b2 null</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-reinterpret-cast"><a href="#3-reinterpret-cast" class="headerlink" title="3. reinterpret_cast"></a>3. reinterpret_cast</h2><p>主要有三种强制转换用途：改变指针或引用的类型、将指针或引用转换为一个足够长度的整形、将整型转换为指针或引用类型。</p>
-<p><code>reinterpret_cast&lt;type_id&gt; (expression)</code></p>
-<ul>
-<li><code>type_id</code> 必须是一个指针、引用、算术类型、函数指针或者成员指针。</li>
-<li>在使用 <code>reinterpret_cast</code> 强制转换过程仅仅只是比特位的拷贝，因此在使用过程中需要特别谨慎。</li>
-<li>转换结果与编译平台息息相关，<strong>不具有移植性</strong>，应该尽量避免使用。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> *a = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line"><span class="keyword">double</span> *d = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">double</span> *&gt;(a);</span><br></pre></td></tr></table></figure>
-
-<p>最常用用途是转化 “函数指针” 类型：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*FuncPtr)</span><span class="params">()</span></span>;  <span class="comment">// Funcptr是个指针，指向一个无输入参数且返回值为void的函数</span></span><br><span class="line">FuncPtr func_ptr_array[<span class="number">10</span>]; <span class="comment">// 包含10个函数指针的数组</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">do_something</span><span class="params">()</span></span>;         <span class="comment">// 无输入参数且返回值为int的函数</span></span><br><span class="line"></span><br><span class="line">func_ptr_array[<span class="number">0</span>] = &amp;dosomething(); <span class="comment">// 错误，类型不符</span></span><br><span class="line">func_ptr_array[<span class="number">0</span>] = <span class="keyword">reinterpret_cast</span>&lt;FuncPtr&gt;(&amp;dosomething()); <span class="comment">// 可以通过编译</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="4-const-cast"><a href="#4-const-cast" class="headerlink" title="4. const_cast"></a>4. const_cast</h2><p><code>const</code> 限定符通常被用来限定变量，用于表示该变量的值不能被修改。而 <code>const_cast</code> 则正是用于强制去掉这种不能被修改的常数特性。但需要特别注意的是 <code>const_cast</code> 不是用于<strong>去除变量的常量性</strong>，而是<strong>去除指向常数对象的指针或引用的常量性</strong>，其去除常量性的<strong>对象必须为指针或引用</strong>。</p>
-<p><code>const_cast&lt;type_id&gt; (expression)</code></p>
-<ul>
-<li>该运算符用来修改表达式的常量性或易变性，也就是 <code>const</code> 或 <code>volatile</code> 属性。</li>
-<li><code>type_id</code>和 <code>expression</code> 的类型必须是一样的。</li>
-<li>常量指针被转化成非常量指针，并且仍然指向原来的对象。</li>
-<li>常量引用被转换成非常量引用，并且仍然指向原来的对象；常量对象被转换成非常量对象。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Widget</span>&#123;</span>...&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(Widget&amp; w)</span></span>;</span><br><span class="line"></span><br><span class="line">Widget w;</span><br><span class="line">cosnt Widget&amp; cw = w;  <span class="comment">// 常量引用</span></span><br><span class="line"></span><br><span class="line">update(cw);                      <span class="comment">// 错误，无法将常量引用传给一个非常量</span></span><br><span class="line">update(<span class="keyword">const_cast</span>&lt;Widget&amp;&gt; cw);  <span class="comment">// 可以，cw的常量性被去除，且cw在此函数中可被更改</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>c++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
+        <tag>linux</tag>
+        <tag>python</tag>
+        <tag>environment</tag>
       </tags>
   </entry>
   <entry>

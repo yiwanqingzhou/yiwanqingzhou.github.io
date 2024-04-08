@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+  <meta name="google-site-verification" content="google-site-verification=gnN6UKVdDQIcnFPlGii5rIDQXchNJsPLgDTEFBWaQwM">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Droid Sans Fallback:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="在调用 StatisticalOutlierRemoval 时遇到 double free or corruption我在 PCL 源代码中加入了一些log，具体如下：123456789101112131415161718192: [INFO]1712543988.313661216: filter - CropBox2: --- FilterIndices h - filter indices">
+<meta name="keywords" content="pcl,eigen,c++,cmake">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用PCL的滤波时遇到`double free or corruption`">
+<meta property="og:url" content="https://yiwanqingzhou.github.io/pcl-double-free.html">
+<meta property="og:site_name" content="一晚清粥">
+<meta property="og:description" content="在调用 StatisticalOutlierRemoval 时遇到 double free or corruption我在 PCL 源代码中加入了一些log，具体如下：123456789101112131415161718192: [INFO]1712543988.313661216: filter - CropBox2: --- FilterIndices h - filter indices">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2024-04-08T03:36:49.058Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用PCL的滤波时遇到`double free or corruption`">
+<meta name="twitter:description" content="在调用 StatisticalOutlierRemoval 时遇到 double free or corruption我在 PCL 源代码中加入了一些log，具体如下：123456789101112131415161718192: [INFO]1712543988.313661216: filter - CropBox2: --- FilterIndices h - filter indices">
+  <link rel="canonical" href="https://yiwanqingzhou.github.io/pcl-double-free">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>使用PCL的滤波时遇到`double free or corruption` | 一晚清粥</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一晚清粥</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/pcl-double-free.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="清粥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一晚清粥">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">使用PCL的滤波时遇到`double free or corruption`
+
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2024-04-08 10:35:32 / 修改时间：11:36:49" itemprop="dateCreated datePublished" datetime="2024-04-08T10:35:32+08:00">2024-04-08</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/cmake/" itemprop="url" rel="index"><span itemprop="name">cmake</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/pcl/" itemprop="url" rel="index"><span itemprop="name">pcl</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在调用 <code>StatisticalOutlierRemoval</code> 时遇到 <code>double free or corruption</code></p><p>我在 <code>PCL</code> 源代码中加入了一些log，具体如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">2: [INFO]1712543988.313661216: filter - CropBox</span><br><span class="line">2: --- FilterIndices h - filter indices - start ---</span><br><span class="line">2: --- PCLBase - initCompute - indices size:1228800 ---</span><br><span class="line">2: --- FilterIndices h - call applyFilter(indices)</span><br><span class="line">2: ----- CropBox hpp - applyFilter indices - start -------</span><br><span class="line">2: ----- CropBox hpp - applyFilter indices - finish -------</span><br><span class="line">2: --- FilterIndices h - call deinitCompute()</span><br><span class="line">2: --- PCLBase hpp - deinitCompute ---</span><br><span class="line">2: --- FilterIndices h - filter indices - finish ---</span><br><span class="line"></span><br><span class="line">2: [INFO]1712543988.372619178: filter - StatisticalOutlierRemoval</span><br><span class="line">2: --- FilterIndices h - filter indices - start ---</span><br><span class="line">2: --- PCLBase - initCompute - indices size:2568 ---</span><br><span class="line">2: --- FilterIndices h - call applyFilter(indices)</span><br><span class="line">2: --- StatisticalOutlierRemoval h - applyFilter indices ---</span><br><span class="line">2: ----- StatisticalOutlierRemoval hpp - applyFilterIndices - start -------</span><br><span class="line">2: ----- StatisticalOutlierRemoval hpp - applyFilterIndices - finish -------</span><br><span class="line">2: --- FilterIndices h - call deinitCompute()</span><br><span class="line">2: double free or corruption (out)</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<p><a href="https://github.com/PointCloudLibrary/pcl/blob/master/filters/include/pcl/filters/filter_indices.h#L99-L109" target="_blank" rel="noopener">PCL 的 filter 函数里</a>只包括了 <code>initCompute()</code> <code>applyFilter()</code> <code>deinitCompute()</code> 三个部分。</p>
+<p>在正常情况，也就是跑 <code>CropBox</code> 的时候，程序会进入 <code>deinitCompute()</code>。而下面跑 <code>StatisticalOutlierRemoval</code> 的时候，明显它没有进入到 <code>deinitCompute()</code>，没有打印里面的log，就以 <code>double free or corruption (out)</code> 结束了。</p>
+<h3 id="使用-gdb-追踪"><a href="#使用-gdb-追踪" class="headerlink" title="使用 gdb 追踪"></a>使用 <code>gdb</code> 追踪</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">--- FilterIndices h - call deinitCompute()</span><br><span class="line">double free or corruption (out)</span><br><span class="line"></span><br><span class="line">Thread 1 <span class="string">"tests"</span> received signal SIGABRT, Aborted.</span><br><span class="line">__pthread_kill_implementation (no_tid=0, signo=6, threadid=140736700039680) at ./nptl/pthread_kill.c:44</span><br><span class="line">44	./nptl/pthread_kill.c: No such file or directory.</span><br><span class="line">(gdb) bt</span><br><span class="line"><span class="comment">#0  __pthread_kill_implementation (no_tid=0, signo=6, threadid=140736700039680) at ./nptl/pthread_kill.c:44</span></span><br><span class="line"><span class="comment">#1  __pthread_kill_internal (signo=6, threadid=140736700039680) at ./nptl/pthread_kill.c:78</span></span><br><span class="line"><span class="comment">#2  __GI___pthread_kill (threadid=140736700039680, signo=signo@entry=6) at ./nptl/pthread_kill.c:89</span></span><br><span class="line"><span class="comment">#3  0x00007fffe5311476 in __GI_raise (sig=sig@entry=6) at ../sysdeps/posix/raise.c:26</span></span><br><span class="line"><span class="comment">#4  0x00007fffe52f77f3 in __GI_abort () at ./stdlib/abort.c:79</span></span><br><span class="line"><span class="comment">#5  0x00007fffe5358676 in __libc_message (action=action@entry=do_abort, fmt=fmt@entry=0x7fffe54aab77 "%s\n")</span></span><br><span class="line">    at ../sysdeps/posix/libc_fatal.c:155</span><br><span class="line"><span class="comment">#6  0x00007fffe536fcfc in malloc_printerr (str=str@entry=0x7fffe54ad790 "double free or corruption (out)") at ./malloc/malloc.c:5664</span></span><br><span class="line"><span class="comment">#7  0x00007fffe5371e70 in _int_free (av=0x7fffe54e9c80 &lt;main_arena&gt;, p=0x555555b18b10, have_lock=&lt;optimized out&gt;)</span></span><br><span class="line">    at ./malloc/malloc.c:4588</span><br><span class="line"><span class="comment">#8  0x00007fffe5374453 in __GI___libc_free (mem=&lt;optimized out&gt;) at ./malloc/malloc.c:3391</span></span><br><span class="line"><span class="comment">#9  0x000055555556c6ba in std::_Sp_counted_base&lt;(__gnu_cxx::_Lock_policy)2&gt;::_M_release() ()</span></span><br><span class="line"><span class="comment">#10 0x000055555556d33e in void vision::cloud::filter_sor&lt;pcl::PointXYZRGB&gt;(pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr const&amp;, std::vector&lt;int, std::allocator&lt;int&gt; &gt;&amp;, int const&amp;, double const&amp;, std::vector&lt;int, std::allocator&lt;int&gt; &gt; const&amp;) ()</span></span><br><span class="line"><span class="comment">#13 0x0000555555568caa in CoreHelpers_Test::TestBody() ()</span></span><br><span class="line"><span class="comment">#14 0x00005555555a7bef in void testing::internal::HandleExceptionsInMethodIfSupported&lt;testing::Test, void&gt;(testing::Test*, void (testing::Test::*)(), char const*) ()</span></span><br><span class="line"><span class="comment">#15 0x000055555559bde6 in testing::Test::Run() ()</span></span><br><span class="line"><span class="comment">#16 0x000055555559bf65 in testing::TestInfo::Run() ()</span></span><br><span class="line"><span class="comment">#17 0x000055555559c519 in testing::TestSuite::Run() ()</span></span><br><span class="line"><span class="comment">#18 0x000055555559cc1f in testing::internal::UnitTestImpl::RunAllTests() ()</span></span><br><span class="line"><span class="comment">#19 0x00005555555a81b7 in bool testing::internal::HandleExceptionsInMethodIfSupported&lt;testing::internal::UnitTestImpl, bool&gt;(testing::internal::UnitTestImpl*, bool (testing::internal::UnitTestImpl::*)(), char const*) ()</span></span><br><span class="line"><span class="comment">#20 0x000055555559c02c in testing::UnitTest::Run() ()</span></span><br><span class="line"><span class="comment">#21 0x00005555555684d4 in main ()</span></span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>vision::cloud::filter_sor</code> 是我自定义的函数，里面就是调用了 <code>PCL</code> 的 <code>StatisticalOutlierRemoval</code>。</p>
+<p>从 <code>gdb</code> 的结果来看，是 <code>PCL</code> 内部 <code>free</code> 的时候出了问题。</p>
+<h3 id="Fix"><a href="#Fix" class="headerlink" title="Fix"></a>Fix</h3><blockquote>
+<p>Eigen has a custom mechanism to guarantee aligned memory (used for everything older than C++17, see Memory.h in the Eigen project). If PCL is compiled with C++14 and the user project is compiled with C++17, this will lead to problems (e.g. memory allocated with the custom mechanism but freed without it). Defining EIGEN_HAS_CXX17_OVERALIGN=0 forces Eigen in the user project to use Eigen’s custom mechanism, even in C++17 and newer.</p>
+</blockquote>
+<p>也就是说，由于 <code>PCL</code> 使用了 <code>Eigen</code> 的一种特殊对齐方式，当 <code>PCL</code> 使用 <code>C++14</code> 但用户程序使用 <code>C++17</code> 编译时，由于内存对齐方式不一致，将可能导致 <code>double free</code>。</p>
+<p>那么修复方式：</p>
+<ul>
+<li>使用相同版本的 <code>C++</code> 编译<code>PCL</code>和用户程序</li>
+<li>在 <code>PCL</code> 的 <code>cmake</code> 文件中<a href="https://github.com/PointCloudLibrary/pcl/blob/master/cmake/pcl_pclconfig.cmake#L22-L24" target="_blank" rel="noopener">判断 <code>C++</code> 版本并设置<code>EIGEN_HAS_CXX17_OVERALIGN</code></a></li>
+<li>在用户程序的 <code>camke</code> 中设置 <code>EIGEN_HAS_CXX17_OVERALIGN</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add_definitions(-DEIGEN_HAS_CXX17_OVERALIGN=0)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/c/" rel="tag"># c++</a>
+            
+              <a href="/tags/cmake/" rel="tag"># cmake</a>
+            
+              <a href="/tags/编译/" rel="tag"># 编译</a>
+            
+              <a href="/tags/pcl/" rel="tag"># pcl</a>
+            
+              <a href="/tags/eigen/" rel="tag"># eigen</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/diff-of-two-folders.html" rel="next" title="linux 比较两个目录的区别">
+                  <i class="fa fa-chevron-left"></i> linux 比较两个目录的区别
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-gdb-追踪"><span class="nav-number">1.</span> <span class="nav-text">使用 gdb 追踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fix"><span class="nav-number">2.</span> <span class="nav-text">Fix</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">清粥</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">清粥</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
+-->
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
