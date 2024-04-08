@@ -9,8 +9,8 @@ tags:
 - 编译
 categories:
 - [pcl]
-- [c++]
 - [cmake]
+- [memo]
 keywords:
 - pcl
 - eigen

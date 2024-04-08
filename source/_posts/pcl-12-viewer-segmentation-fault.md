@@ -7,7 +7,8 @@ tags:
 - ubuntu
 - environment
 categories:
-- memo
+- [memo]
+- [pcl]
 keywords:
 - ubuntu
 - environment
