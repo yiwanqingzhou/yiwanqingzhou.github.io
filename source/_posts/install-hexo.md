@@ -92,3 +92,14 @@ cd blog
 hexo init
 ```
 
+
+
+## 简单使用
+
+```bash
+hexo n "first post"
+hexo g
+hexo s
+hexo d
+```
+
