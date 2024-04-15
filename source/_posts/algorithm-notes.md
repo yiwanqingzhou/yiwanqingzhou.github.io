@@ -5,7 +5,8 @@ tags:
 - c++
 - coding
 categories:
-- algorithm
+- [algorithm]
+- [c++]
 keywords:
 - c++
 - algorithm

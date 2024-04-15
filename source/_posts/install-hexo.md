@@ -6,7 +6,8 @@ tags:
 - environment
 - hexo
 categories:
-- memo
+- [memo]
+- [linux]
 keywords: 
 - hexo
 - linux

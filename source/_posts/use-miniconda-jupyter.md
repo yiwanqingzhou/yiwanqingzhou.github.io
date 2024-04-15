@@ -6,7 +6,9 @@ tags:
 - python
 - environment
 categories:
-- memo
+- [memo]
+- [linux]
+- [python]
 keywords:
 - linux
 - python

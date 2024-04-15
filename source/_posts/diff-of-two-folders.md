@@ -4,7 +4,8 @@ date: 2024-04-01 19:27:14
 tags:
 - linux
 categories:
-- memo
+- [memo]
+- [linux]
 keywords:
 - linux
 - diff

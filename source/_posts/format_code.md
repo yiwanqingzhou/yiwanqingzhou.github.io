@@ -6,7 +6,8 @@ tags:
 - format
 - clang
 categories:
-- memo
+- [memo]
+- [linux]
 encrypt:
 description:
 ---

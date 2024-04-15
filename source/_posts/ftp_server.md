@@ -5,7 +5,8 @@ tags:
 - linux
 - ftp
 categories:
-- memo
+- [memo]
+- [linux]
 ---
 
 
@@ -16,8 +17,6 @@ categories:
 sudo apt-get install ftp
 sudo apt-get install vsftpd
 ```
-
-
 
 
 

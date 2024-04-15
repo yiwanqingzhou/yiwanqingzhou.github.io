@@ -6,7 +6,8 @@ tags:
 - uncompress
 - rar
 categories:
-- memo
+- [memo]
+- [linux]
 encrypt:
 description:
 ---

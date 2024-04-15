@@ -5,7 +5,8 @@ tags:
 - linux
 - scp
 categories:
-- memo
+- [memo]
+- [linux]
 encrypt:
 ---
 

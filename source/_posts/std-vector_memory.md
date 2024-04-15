@@ -7,7 +7,12 @@ tags:
 - vector
 categories:
 - c++
-keywords: 内存分配 C++ vector stl 顺序容器
+keywords:
+- 内存分配
+- C++
+- vector
+- stl
+- 顺序容器
 description:
 ---
 

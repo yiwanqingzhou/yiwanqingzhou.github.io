@@ -4,7 +4,8 @@ date: 2019-09-04 11:29:34
 tags:
 - linux
 categories:
-- memo
+- [memo]
+- [linux]
 ---
 
 

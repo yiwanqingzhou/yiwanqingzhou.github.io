@@ -8,6 +8,9 @@ tags:
 categories:
 - c++
 keywords:
+- c++
+- stl
+- vector
 description:
 ---
 

@@ -1,8 +1,10 @@
 ---
 title: 恢复git stash误删的内容
 date: 2022-12-16 11:52:17
-tags: git
-categories: memo
+tags:
+- git
+categories: 
+- memo
 keywords:
 description:
 ---
