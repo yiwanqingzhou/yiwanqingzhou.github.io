@@ -920,7 +920,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-15 17:01:51" itemprop="dateModified" datetime="2024-04-15T17:01:51+08:00">2024-04-15</time>
+                <time title="修改时间：2024-04-17 19:42:03" itemprop="dateModified" datetime="2024-04-17T19:42:03+08:00">2024-04-17</time>
               </span>
             
           
@@ -960,8 +960,14 @@
 <li><p>安装<code>clang-format-7</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y clang-format-7</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>编写脚本 <code>clang_format.bash</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find . -regextype egrep -regex <span class="string">".*\.(c|cc|h|hh)$"</span> -not -path <span class="string">'*/install/*'</span> \</span><br><span class="line">  -not -path <span class="string">'*/build/*'</span> -not -path <span class="string">'*/log/*'</span> -not -path <span class="string">'*/deps/*'</span>| xargs clang-format-7 -i</span><br></pre></td></tr></table></figure>
+<li><p>简单使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">clang-format-7 -i &lt;file_to_format&gt;</span><br><span class="line"><span class="comment"># clang-format-7 -i test.cc</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定 <a href="./clang_format.html">style 文件</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">clang-format-7 -i --stlye=file:&lt;style_file&gt;</span><br><span class="line"><span class="comment"># clang-format-7 -i --style=file:.clang-format</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写脚本 <code>clang_format.bash</code> 对文件夹下所有c++代码格式化</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">find . -regextype egrep -regex <span class="string">".*\.(c|cc|h|hh)$"</span> | xargs clang-format-7 -i</span><br><span class="line"></span><br><span class="line"><span class="comment"># skip some paths</span></span><br><span class="line"><span class="comment"># find . -regextype egrep -regex ".*\.(c|cc|h|hh)$" -not -path '*/install/*' -not -path '*/build/*' -not -path '*/log/*' -not -path '*/deps/*'| xargs clang-format-7 -i</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在需要格式化的路径下运行脚本</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./clang_format.bash</span><br></pre></td></tr></table></figure>
@@ -1127,7 +1133,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
             
-            <a href="/clang_format.html" class="post-title-link" itemprop="url">vscode 使用clang格式化代码</a>
+            <a href="/clang_format.html" class="post-title-link" itemprop="url">clang-format格式文件存档</a>
           
         </h2>
 
@@ -1153,7 +1159,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-29 19:12:46" itemprop="dateModified" datetime="2024-03-29T19:12:46+08:00">2024-03-29</time>
+                <time title="修改时间：2024-04-17 19:41:00" itemprop="dateModified" datetime="2024-04-17T19:41:00+08:00">2024-04-17</time>
               </span>
             
           
@@ -1182,7 +1188,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>.clang-format文件存档</p>
+          <p>常用 <code>.clang-format</code> <code>style</code> 文件存档</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1389,7 +1395,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
