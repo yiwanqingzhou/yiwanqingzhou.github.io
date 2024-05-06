@@ -16,33 +16,40 @@ description:
 
 #### 使用`clang`对C++进行格式化
 
-- 安装`clang-format-7`
+- 安装`clang-format`
 
   ```bash
-  sudo apt-get install -y clang-format-7
+  sudo apt-get install -y clang-format
   ```
 
 - 简单使用
 
   ```bash
-  clang-format-7 -i <file_to_format>
-  # clang-format-7 -i test.cc
+  clang-format -i <file_to_format>
+  # clang-format -i test.cc
+  ```
+
+- 指定 `style`
+
+  ```bash
+  clang-format -i --stlye="{key: value, ...}"
+  # clang-format -i --stlye="{BasedOnStyle: Google, IndentWidth: 2}"
   ```
 
 - 指定 [style 文件](./clang_format.html)
 
   ```bash
-  clang-format-7 -i --stlye=file:<style_file>
-  # clang-format-7 -i --style=file:.clang-format
+  clang-format -i --stlye=file:<style_file>
+  # clang-format -i --style=file:.clang-format
   ```
 
 - 编写脚本 `clang_format.bash` 对文件夹下所有c++代码格式化
 
   ```bash
-  find . -regextype egrep -regex ".*\.(c|cc|h|hh)$" | xargs clang-format-7 -i
+  find . -regextype egrep -regex ".*\.(c|cc|h|hh)$" | xargs clang-format -i
   
   # skip some paths
-  # find . -regextype egrep -regex ".*\.(c|cc|h|hh)$" -not -path '*/install/*' -not -path '*/build/*' -not -path '*/log/*' -not -path '*/deps/*'| xargs clang-format-7 -i
+  # find . -regextype egrep -regex ".*\.(c|cc|h|hh)$" -not -path '*/install/*' -not -path '*/build/*' -not -path '*/log/*' -not -path '*/deps/*'| xargs clang-format -i
   ```
 
 - 在需要格式化的路径下运行脚本
