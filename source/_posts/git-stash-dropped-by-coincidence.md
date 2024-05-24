@@ -13,7 +13,7 @@ description:
 
 ## 恢复git stash误删的内容
 
-不小心使用 `git drop stash` 误删了暂存的内容，怎么恢复？
+不小心使用 `git drop stash` 误删了暂存的内容 (或是 `git stash pop` 后丢失)，怎么恢复？
 
 其实drop后并没有真正删除暂存的内容，而是移除了对它的引用，所以通过一些操作是可以找回的。
 
@@ -120,11 +120,11 @@ unreachable commit 7dee291774f4b96c3a73f92de6bf8765e629b567
 
 - 查看完整修改内容
 
-    ```bash
+	```bash
     git show 32b865ecc5f2a0a924fac70bed3183d04e843c80
-    ```
+	```
 
-    ```bash
+	```bash
     commit 32b865ecc5f2a0a924fac70bed3183d04e843c80
     Author: Tiffany Zhou <xueying.zhou@dorabot.com>
     Date:   Wed Nov 3 17:33:13 2021 +0800
@@ -136,31 +136,22 @@ unreachable commit 7dee291774f4b96c3a73f92de6bf8765e629b567
     --- a/include/pcl_utils/tree.hh
     +++ b/include/pcl_utils/tree.hh
     @@ -11,7 +11,7 @@ template <typename PointT>
-     inline void detect_change(const typename pcl::PointCloud<PointT>::Ptr &based_cloud_ptr,
-                               const typename pcl::PointCloud<PointT>::Ptr &scene_cloud_ptr,
-                               typename pcl::PointCloud<PointT>::Ptr &cloud_diff_ptr,
-    -                          float resolution = 0.01f)
-    +                          double resolution = 0.01)
-     {
-       typename pcl::octree::OctreePointCloudChangeDetector<PointT> octree(resolution);
-       octree.setInputCloud(based_cloud_ptr);
-
-    ```
+	```
 
 - 查看修改文件
-    ```bash
+	```bash
     git show 32b865ecc5f2a0a924fac70bed3183d04e843c80 --stat
-    ```
-    
-    ```bash
+	```
+
+	``` bash
     Author: Tiffany Zhou <xueying.zhou@dorabot.com>
     Date:   Wed Nov 3 17:33:13 2021 +0800
-
+    
     index on feature/depalletizing: aa9d706 update for dr_vision_lib
-
+    
     include/pcl_utils/tree.hh | 2 +-
     1 file changed, 1 insertion(+), 1 deletion(-)
-    ```
+	```
 
 
 
@@ -192,6 +183,8 @@ done
 cat unreachable.txt | while read line
 do
     echo $line
+    # 也可以打印出时间来方便筛查
+    # git show $line | grep Date 
     git show $line | grep test/src/test_multiple_sensors.cc
     echo "------------------"
 done
@@ -215,11 +208,20 @@ diff --cc test/src/test_multiple_sensors.cc
 ------------------
 ```
 
+如果查到多个结果，可以再使用 `git show ${commit_id} ` 确认。
+
 
 
 #### 4. 恢复找到的记录
 
 ```bash
-git stach apply 0b45536f1ce7e859a85f1459d6ae34fc6cdc4039
+git stash apply ${commit_id}
+# git stach apply 0b45536f1ce7e859a85f1459d6ae34fc6cdc4039
+
+# 如果遇到报错: 
+# fatal: '${commit_id}' is not a stash-like commit
+# 可尝试: 
+# 1. git cherry-pick ${commit_id}
+# 2. git git checkout -b temp-branch ${commit_id}
 ```
 
