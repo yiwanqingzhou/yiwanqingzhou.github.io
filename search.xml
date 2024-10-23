@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>C++ 使用boost::program_options解析命令行选项</title>
-    <url>/boost-options-description.html</url>
-    <content><![CDATA[<p>Boost.ProgramOptions是Boost中一个专门用来解析命令行的库，其目标是轻松的解析命令行选项。</p>
-<a id="more"></a>
-
-
-
-<h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/program_options.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">on_notifier</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"On notifier: "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">namespace</span> po = boost::program_options;</span><br><span class="line">    po::<span class="function">options_description <span class="title">desc</span><span class="params">(<span class="string">"Options"</span>)</span></span>;</span><br><span class="line">    desc.add_options()</span><br><span class="line">        (<span class="string">"enable_something,e"</span>, <span class="string">"Enable Something"</span>)</span><br><span class="line">        (<span class="string">"test_string,s"</span>, po::value&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;(), <span class="string">"Test String"</span>)</span><br><span class="line">        (<span class="string">"test_int,p"</span>, po::value&lt;<span class="keyword">int</span>&gt;(), <span class="string">"Test Int"</span>)</span><br><span class="line">        (<span class="string">"test_default_value,d"</span>,po::value&lt;<span class="keyword">int</span>&gt;()-&gt;default_value(<span class="number">1</span>), <span class="string">"Test Default Value"</span>)</span><br><span class="line">        (<span class="string">"test_notifier"</span>, value&lt;<span class="keyword">int</span>&gt;()-&gt;notifier(on_notifier), <span class="string">"Test Notifier"</span>);</span><br><span class="line">    po::variables_map vm;</span><br><span class="line">  	po::store(po::parse_command_line(argc, argv, desc), vm);</span><br><span class="line">  	po::notify(vm);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// no options set</span></span><br><span class="line">    <span class="comment">// print all options</span></span><br><span class="line">    <span class="keyword">if</span> (argc == <span class="number">1</span> || !vm.count(<span class="string">"sensor_id"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; desc &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">bool</span> enable_something = vm.count(<span class="string">"enable_something"</span>);</span><br><span class="line">    <span class="keyword">int</span> value = vm[<span class="string">"test_default_value"</span>].as&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">    <span class="keyword">if</span> (vm.count(<span class="string">"test_string"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> ss = vm[<span class="string">"test_string"</span>].as&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;();</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test_string was set to: "</span>  &lt;&lt; ss &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (vm.count(<span class="string">"test_int"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> dd = vm[<span class="string">"test_int"</span>].as&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test_int was set to: "</span>  &lt;&lt; dd &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="CMake里引入依赖"><a href="#CMake里引入依赖" class="headerlink" title="CMake里引入依赖"></a>CMake里引入依赖</h4><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">find_package</span>(Boost COMPONENTS program_options REQUIRED)</span><br><span class="line"><span class="keyword">target_include_directories</span>(myTarget PRIVATE <span class="variable">$&#123;Boost_INCLUDE_DIR&#125;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(myTarget <span class="variable">$&#123;Boost_LIBRARIES&#125;</span> )</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://www.boost.org/doc/libs/1_63_0/doc/html/program_options/tutorial.html#idp523371328" target="_blank" rel="noopener">官方Tutorial参考</a></p>
-]]></content>
-      <categories>
-        <category>c++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode刷题记录</title>
     <url>/algorithm-notes.html</url>
     <content><![CDATA[<ul>
@@ -42,6 +21,27 @@
       <tags>
         <tag>c++</tag>
         <tag>coding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++ 使用boost::program_options解析命令行选项</title>
+    <url>/boost-options-description.html</url>
+    <content><![CDATA[<p>Boost.ProgramOptions是Boost中一个专门用来解析命令行的库，其目标是轻松的解析命令行选项。</p>
+<a id="more"></a>
+
+
+
+<h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/program_options.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">on_notifier</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"On notifier: "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">namespace</span> po = boost::program_options;</span><br><span class="line">    po::<span class="function">options_description <span class="title">desc</span><span class="params">(<span class="string">"Options"</span>)</span></span>;</span><br><span class="line">    desc.add_options()</span><br><span class="line">        (<span class="string">"enable_something,e"</span>, <span class="string">"Enable Something"</span>)</span><br><span class="line">        (<span class="string">"test_string,s"</span>, po::value&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;(), <span class="string">"Test String"</span>)</span><br><span class="line">        (<span class="string">"test_int,p"</span>, po::value&lt;<span class="keyword">int</span>&gt;(), <span class="string">"Test Int"</span>)</span><br><span class="line">        (<span class="string">"test_default_value,d"</span>,po::value&lt;<span class="keyword">int</span>&gt;()-&gt;default_value(<span class="number">1</span>), <span class="string">"Test Default Value"</span>)</span><br><span class="line">        (<span class="string">"test_notifier"</span>, value&lt;<span class="keyword">int</span>&gt;()-&gt;notifier(on_notifier), <span class="string">"Test Notifier"</span>);</span><br><span class="line">    po::variables_map vm;</span><br><span class="line">  	po::store(po::parse_command_line(argc, argv, desc), vm);</span><br><span class="line">  	po::notify(vm);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// no options set</span></span><br><span class="line">    <span class="comment">// print all options</span></span><br><span class="line">    <span class="keyword">if</span> (argc == <span class="number">1</span> || !vm.count(<span class="string">"sensor_id"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; desc &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">bool</span> enable_something = vm.count(<span class="string">"enable_something"</span>);</span><br><span class="line">    <span class="keyword">int</span> value = vm[<span class="string">"test_default_value"</span>].as&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">    <span class="keyword">if</span> (vm.count(<span class="string">"test_string"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> ss = vm[<span class="string">"test_string"</span>].as&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;();</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test_string was set to: "</span>  &lt;&lt; ss &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (vm.count(<span class="string">"test_int"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> dd = vm[<span class="string">"test_int"</span>].as&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test_int was set to: "</span>  &lt;&lt; dd &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="CMake里引入依赖"><a href="#CMake里引入依赖" class="headerlink" title="CMake里引入依赖"></a>CMake里引入依赖</h4><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">find_package</span>(Boost COMPONENTS program_options REQUIRED)</span><br><span class="line"><span class="keyword">target_include_directories</span>(myTarget PRIVATE <span class="variable">$&#123;Boost_INCLUDE_DIR&#125;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(myTarget <span class="variable">$&#123;Boost_LIBRARIES&#125;</span> )</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.boost.org/doc/libs/1_63_0/doc/html/program_options/tutorial.html#idp523371328" target="_blank" rel="noopener">官方Tutorial参考</a></p>
+]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -81,43 +81,6 @@
       <tags>
         <tag>cmake</tag>
         <tag>编译</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++并发编程：条件变量std::condition_variable的使用</title>
-    <url>/condition-variable.html</url>
-    <content><![CDATA[<p><code>std::condition_variable</code> 是 C++11 多线程编程中的条件变量。</p>
-<p>一般用法: 线程 A <strong>等待</strong>某个条件并挂起，直到线程 B 设置了这个条件，并<strong>通知</strong>条件变量，然后线程 A 被唤醒。</p>
-<a id="more"></a>
-
-
-
-<h4 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h4><p>仅支持默认构造函数，拷贝、赋值和移动(move)均是被禁用的。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::condition_variable cv;</span><br></pre></td></tr></table></figure>
-
-<h4 id="等待"><a href="#等待" class="headerlink" title="等待"></a>等待</h4><h5 id="无条件等待"><a href="#无条件等待" class="headerlink" title="无条件等待"></a>无条件等待</h5><p>阻塞当前线程直到被其他线程通知唤醒。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wait</span> <span class="params">(unique_lock&lt;mutex&gt;&amp; lck)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<h5 id="有条件等待"><a href="#有条件等待" class="headerlink" title="有条件等待"></a>有条件等待</h5><p>只有当 <code>pred</code> 条件为 <code>false</code> 时才会阻塞当前线程，并且在收到其他线程的通知后只有当 <code>pred</code> 为 <code>true</code> 时才会被解除阻塞。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">Predicate</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">wait</span> (<span class="title">unique_lock</span>&lt;mutex&gt;&amp; <span class="title">lck</span>, <span class="title">Predicate</span> <span class="title">pred</span>);</span></span><br></pre></td></tr></table></figure>
-
-<p>相当于</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (!pred())</span><br><span class="line">&#123;</span><br><span class="line">	wait()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h4><p>通知线程可以使用 <code>notify_one()</code> 通知一个线程，或一次使用 <code>notify_all()</code> 通知所有线程。</p>
-<h4 id="简单例子"><a href="#简单例子" class="headerlink" title="简单例子"></a>简单例子</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;atomic&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;condition_variable&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::mutex mtx;</span><br><span class="line"><span class="built_in">std</span>::condition_variable cv;</span><br><span class="line"><span class="built_in">std</span>::atomic&lt;<span class="keyword">bool</span>&gt; ready;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wait</span><span class="params">(<span class="keyword">int</span> id)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"thread: "</span> &lt;&lt; <span class="built_in">std</span>::this_thread::get_id() &lt;&lt; <span class="string">" id: "</span> &lt;&lt; id &lt;&lt; <span class="string">" start.\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; lck(mtx);</span><br><span class="line">  cv.wait(lck, [] &#123; <span class="keyword">return</span> ready.load(); &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"thread: "</span> &lt;&lt; <span class="built_in">std</span>::this_thread::get_id() &lt;&lt; <span class="string">" id: "</span> &lt;&lt; id &lt;&lt; <span class="string">" done.\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set_ready</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"set_ready(): "</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  ready.store(<span class="literal">true</span>);</span><br><span class="line">  cv.notify_one();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ready.store(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> t_1 = <span class="built_in">std</span>::thread(wait, <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">auto</span> t_2 = <span class="built_in">std</span>::thread(wait, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">1</span>));</span><br><span class="line">  set_ready();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">1</span>));</span><br><span class="line">  set_ready();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"join...."</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  t_1.join();</span><br><span class="line">  t_2.join();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"all done"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">thread: 139827702187776 id: 1 start.</span><br><span class="line">thread: 139827693795072 id: 2 start.</span><br><span class="line">set_ready(): 1</span><br><span class="line">thread: 139827702187776 id: 1 done.</span><br><span class="line">set_ready(): 1</span><br><span class="line">join....</span><br><span class="line">thread: 139827693795072 id: 2 done.</span><br><span class="line">all done</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>c++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>async</tag>
-        <tag>并发编程</tag>
       </tags>
   </entry>
   <entry>
@@ -713,28 +676,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Debian添加最小化按钮</title>
-    <url>/debian_minimize_botton.html</url>
-    <content><![CDATA[<p>安装tweak和dconf</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install gnome-tweak-tool</span><br><span class="line">sudo apt install dconf-editor </span><br><span class="line">dconf-editor</span><br></pre></td></tr></table></figure><p>进入路径: <code>org/gnome/desktop/wm/preferences/button-layout</code></p><img src="/debian_minimize_botton/test.png" title="debian_minimize_botton"><p>取消选项 Use default value</p><a id="more"></a>
-
-
-
-
-
-
-
-
-<p>在 Custom value 填入 <code>appmemu:close,minimize,maximize,close</code></p>
-]]></content>
-      <categories>
-        <category>memo</category>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++ 类构造函数</title>
     <url>/constructor.html</url>
     <content><![CDATA[<h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><p>类的<strong>构造函数</strong>是类的一种特殊的成员函数，用于创建类的新对象和初始化自定义类成员。</p><ul>
@@ -863,26 +804,55 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux 解压缩rar包</title>
-    <url>/extract_from_rar.html</url>
-    <content><![CDATA[<h4 id="下载rar软件安装包"><a href="#下载rar软件安装包" class="headerlink" title="下载rar软件安装包"></a>下载rar软件安装包</h4><ol>
-<li><p>直接从 <a href="https://www.rarlab.com/download.htm" target="_blank" rel="noopener">rarlab</a> 下载安装包</p>
-</li>
-<li><p>通过命令行下载</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://www.rarlab.com/rar/rarlinux-x64-6.0.1.tar.gz  <span class="comment"># 64位</span></span><br><span class="line">wget https://www.rarlab.com/rar/rarlinux-3.8.0.tar.gz	   <span class="comment"># 32位</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar zxvf rarlinux-x64-6.0.1.tar.gz</span><br><span class="line"><span class="built_in">cd</span> rar</span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-
-<h4 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rar x xxx.rar  <span class="comment"># Extract files with full path</span></span><br><span class="line">rar e xxx.rar  <span class="comment"># Extract files without archived paths</span></span><br></pre></td></tr></table></figure>
-
+    <title>C++并发编程：条件变量std::condition_variable的使用</title>
+    <url>/condition-variable.html</url>
+    <content><![CDATA[<p><code>std::condition_variable</code> 是 C++11 多线程编程中的条件变量。</p>
+<p>一般用法: 线程 A <strong>等待</strong>某个条件并挂起，直到线程 B 设置了这个条件，并<strong>通知</strong>条件变量，然后线程 A 被唤醒。</p>
 <a id="more"></a>
 
 
 
-<h4 id="将xxx目录压缩为xxx-rar"><a href="#将xxx目录压缩为xxx-rar" class="headerlink" title="将xxx目录压缩为xxx.rar"></a>将xxx目录压缩为xxx.rar</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rar a xxx.rar xxx</span><br></pre></td></tr></table></figure>
+<h4 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h4><p>仅支持默认构造函数，拷贝、赋值和移动(move)均是被禁用的。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::condition_variable cv;</span><br></pre></td></tr></table></figure>
 
+<h4 id="等待"><a href="#等待" class="headerlink" title="等待"></a>等待</h4><h5 id="无条件等待"><a href="#无条件等待" class="headerlink" title="无条件等待"></a>无条件等待</h5><p>阻塞当前线程直到被其他线程通知唤醒。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wait</span> <span class="params">(unique_lock&lt;mutex&gt;&amp; lck)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="有条件等待"><a href="#有条件等待" class="headerlink" title="有条件等待"></a>有条件等待</h5><p>只有当 <code>pred</code> 条件为 <code>false</code> 时才会阻塞当前线程，并且在收到其他线程的通知后只有当 <code>pred</code> 为 <code>true</code> 时才会被解除阻塞。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">Predicate</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">wait</span> (<span class="title">unique_lock</span>&lt;mutex&gt;&amp; <span class="title">lck</span>, <span class="title">Predicate</span> <span class="title">pred</span>);</span></span><br></pre></td></tr></table></figure>
+
+<p>相当于</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (!pred())</span><br><span class="line">&#123;</span><br><span class="line">	wait()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h4><p>通知线程可以使用 <code>notify_one()</code> 通知一个线程，或一次使用 <code>notify_all()</code> 通知所有线程。</p>
+<h4 id="简单例子"><a href="#简单例子" class="headerlink" title="简单例子"></a>简单例子</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;atomic&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;condition_variable&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::mutex mtx;</span><br><span class="line"><span class="built_in">std</span>::condition_variable cv;</span><br><span class="line"><span class="built_in">std</span>::atomic&lt;<span class="keyword">bool</span>&gt; ready;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wait</span><span class="params">(<span class="keyword">int</span> id)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"thread: "</span> &lt;&lt; <span class="built_in">std</span>::this_thread::get_id() &lt;&lt; <span class="string">" id: "</span> &lt;&lt; id &lt;&lt; <span class="string">" start.\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; lck(mtx);</span><br><span class="line">  cv.wait(lck, [] &#123; <span class="keyword">return</span> ready.load(); &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"thread: "</span> &lt;&lt; <span class="built_in">std</span>::this_thread::get_id() &lt;&lt; <span class="string">" id: "</span> &lt;&lt; id &lt;&lt; <span class="string">" done.\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set_ready</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"set_ready(): "</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  ready.store(<span class="literal">true</span>);</span><br><span class="line">  cv.notify_one();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ready.store(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> t_1 = <span class="built_in">std</span>::thread(wait, <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">auto</span> t_2 = <span class="built_in">std</span>::thread(wait, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">1</span>));</span><br><span class="line">  set_ready();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">1</span>));</span><br><span class="line">  set_ready();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"join...."</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  t_1.join();</span><br><span class="line">  t_2.join();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"all done"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">thread: 139827702187776 id: 1 start.</span><br><span class="line">thread: 139827693795072 id: 2 start.</span><br><span class="line">set_ready(): 1</span><br><span class="line">thread: 139827702187776 id: 1 done.</span><br><span class="line">set_ready(): 1</span><br><span class="line">join....</span><br><span class="line">thread: 139827693795072 id: 2 done.</span><br><span class="line">all done</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>async</tag>
+        <tag>并发编程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Debian添加最小化按钮</title>
+    <url>/debian_minimize_botton.html</url>
+    <content><![CDATA[<p>安装tweak和dconf</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install gnome-tweak-tool</span><br><span class="line">sudo apt install dconf-editor </span><br><span class="line">dconf-editor</span><br></pre></td></tr></table></figure><p>进入路径: <code>org/gnome/desktop/wm/preferences/button-layout</code></p><img src="/debian_minimize_botton/test.png" title="debian_minimize_botton"><p>取消选项 Use default value</p><a id="more"></a>
+
+
+
+
+
+
+
+
+<p>在 Custom value 填入 <code>appmemu:close,minimize,maximize,close</code></p>
 ]]></content>
       <categories>
         <category>memo</category>
@@ -890,8 +860,6 @@
       </categories>
       <tags>
         <tag>linux</tag>
-        <tag>uncompress</tag>
-        <tag>rar</tag>
       </tags>
   </entry>
   <entry>
@@ -928,6 +896,38 @@
       </categories>
       <tags>
         <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 解压缩rar包</title>
+    <url>/extract_from_rar.html</url>
+    <content><![CDATA[<h4 id="下载rar软件安装包"><a href="#下载rar软件安装包" class="headerlink" title="下载rar软件安装包"></a>下载rar软件安装包</h4><ol>
+<li><p>直接从 <a href="https://www.rarlab.com/download.htm" target="_blank" rel="noopener">rarlab</a> 下载安装包</p>
+</li>
+<li><p>通过命令行下载</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://www.rarlab.com/rar/rarlinux-x64-6.0.1.tar.gz  <span class="comment"># 64位</span></span><br><span class="line">wget https://www.rarlab.com/rar/rarlinux-3.8.0.tar.gz	   <span class="comment"># 32位</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar zxvf rarlinux-x64-6.0.1.tar.gz</span><br><span class="line"><span class="built_in">cd</span> rar</span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<h4 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rar x xxx.rar  <span class="comment"># Extract files with full path</span></span><br><span class="line">rar e xxx.rar  <span class="comment"># Extract files without archived paths</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+
+
+<h4 id="将xxx目录压缩为xxx-rar"><a href="#将xxx目录压缩为xxx-rar" class="headerlink" title="将xxx目录压缩为xxx.rar"></a>将xxx目录压缩为xxx.rar</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rar a xxx.rar xxx</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>memo</category>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>uncompress</tag>
+        <tag>rar</tag>
       </tags>
   </entry>
   <entry>
@@ -1003,6 +1003,76 @@
       <tags>
         <tag>linux</tag>
         <tag>ftp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenCV图像处理1-使用高通滤波进行边缘检测</title>
+    <url>/image-processing-high-pass-filter.html</url>
+    <content><![CDATA[<h2 id="高通滤波-通常使用来检测边缘"><a href="#高通滤波-通常使用来检测边缘" class="headerlink" title="高通滤波: 通常使用来检测边缘"></a>高通滤波: 通常使用来检测边缘</h2><h3 id="常见算子"><a href="#常见算子" class="headerlink" title="常见算子"></a>常见算子</h3><h5 id="sobel算子"><a href="#sobel算子" class="headerlink" title="sobel算子"></a>sobel算子</h5><p><img src="image-processing-high-pass-filter/math-1.png" alt="math-1"></p><h5 id="Scharr算子-更敏感-细致"><a href="#Scharr算子-更敏感-细致" class="headerlink" title="Scharr算子 (更敏感/细致)"></a>Scharr算子 (更敏感/细致)</h5><p><img src="image-processing-high-pass-filter/math-2.png" alt="math-2"></p><h5 id="Laplacian-拉普拉斯-算子-对噪声较敏感，一般搭配其他操作"><a href="#Laplacian-拉普拉斯-算子-对噪声较敏感，一般搭配其他操作" class="headerlink" title="Laplacian(拉普拉斯)算子 (对噪声较敏感，一般搭配其他操作)"></a>Laplacian(拉普拉斯)算子 (对噪声较敏感，一般搭配其他操作)</h5><p><img src="image-processing-high-pass-filter/math-3.png" alt="math-3"></p><h3 id="具体代码例子"><a href="#具体代码例子" class="headerlink" title="具体代码例子"></a>具体代码例子</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> matplotlib.image <span class="keyword">as</span> mpimg</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read in the image</span></span><br><span class="line">image = cv2.imread(<span class="string">'images/curved_lane.jpg'</span>)</span><br><span class="line">image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)</span><br><span class="line"></span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'original img'</span>)</span><br><span class="line">p1.imshow(image)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'gray img'</span>)</span><br><span class="line">p2.imshow(gray, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+<p><img src="image-processing-high-pass-filter/1.png" alt="1"></p>
+<h5 id="自定义filter"><a href="#自定义filter" class="headerlink" title="自定义filter"></a>自定义filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Create a custom kernel</span></span><br><span class="line"><span class="comment"># 3x3 array for edge detection</span></span><br><span class="line"></span><br><span class="line">sobel_x= np.array([[<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">                   [<span class="number">-2</span>, <span class="number">0</span>, <span class="number">2</span>],</span><br><span class="line">                   [<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">sobel_y= np.array([[<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-1</span>],</span><br><span class="line">                   [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                   [<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># laplacian, edge filter</span></span><br><span class="line">laplacian=np.array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">                    [<span class="number">1</span>,<span class="number">-4</span>, <span class="number">1</span>],</span><br><span class="line">                    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]])</span><br></pre></td></tr></table></figure>
+
+<h5 id="单向filter"><a href="#单向filter" class="headerlink" title="单向filter"></a>单向filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Filter the image using filter2D, which has inputs: (grayscale image, bit-depth, kernel)  </span></span><br><span class="line">filtered_x_image = cv2.filter2D(gray, <span class="number">-1</span>, sobel_x)</span><br><span class="line">filtered_y_image = cv2.filter2D(gray, <span class="number">-1</span>, sobel_y)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'filtered x'</span>)</span><br><span class="line">p1.imshow(filtered_x_image, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'filtered y'</span>)</span><br><span class="line">p2.imshow(filtered_y_image, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-high-pass-filter/2.png" alt="2"></p>
+<h5 id="双向filter"><a href="#双向filter" class="headerlink" title="双向filter"></a>双向filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sobel_x_img = cv2.filter2D(gray, cv2.CV_64F, sobel_x) <span class="comment"># CV_64F 可含负数</span></span><br><span class="line">sobel_y_img = cv2.filter2D(gray, cv2.CV_64F, sobel_y)</span><br><span class="line"></span><br><span class="line">sobel_x_img = cv2.convertScaleAbs(sobel_x_img)   <span class="comment"># 将负数取绝对值</span></span><br><span class="line">sobel_y_img = cv2.convertScaleAbs(sobel_y_img)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'sobel_x_img'</span>)</span><br><span class="line">p1.imshow(sobel_x_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line">p2.set_title(<span class="string">'sobel_y_img'</span>)</span><br><span class="line">p2.imshow(sobel_y_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-high-pass-filter/7.png" alt="7"></p>
+<p>通过和上面的结果对比，可以发现，上面的结果是单向的，而下面的结果是双向的。这是由于直接使用算子滤波时会<strong>产生负数</strong>，而在超出 <code>0-255</code> 范围时<strong>被截取</strong>。这也是为什么在下面的处理过程中需要<strong>先转换成 <code>CV_64F</code> (含负数) 的格式后，再取绝对值</strong>。</p>
+<h5 id="使用现成的接口"><a href="#使用现成的接口" class="headerlink" title="使用现成的接口"></a>使用现成的接口</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 也可以直接使用 cv2.Sobel，效果一致</span></span><br><span class="line"><span class="comment"># dst = cv2.Sobel(src, ddepth, dx, dy, ksize)</span></span><br><span class="line"><span class="comment"># ddepth: depth of image</span></span><br><span class="line"><span class="comment"># dx, dy: 0/1, 指定方向 </span></span><br><span class="line"><span class="comment"># ksize: kernal size</span></span><br><span class="line"></span><br><span class="line">sobel_x_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>, ksize=<span class="number">3</span>) </span><br><span class="line">sobel_x_img = cv2.convertScaleAbs(sobel_x_img)</span><br><span class="line">sobel_y_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>, ksize=<span class="number">3</span>)</span><br><span class="line">sobel_y_img = cv2.convertScaleAbs(sobel_y_img)</span><br></pre></td></tr></table></figure>
+
+<h5 id="合并不同方向"><a href="#合并不同方向" class="headerlink" title="合并不同方向"></a>合并不同方向</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># combine x and y</span></span><br><span class="line">sobel_img = cv2.addWeighted(sobel_x_img, <span class="number">0.5</span>, sobel_y_img, <span class="number">0.5</span>, <span class="number">0</span>)</span><br><span class="line">plt.imshow(sobel_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-high-pass-filter/8.png" alt="8"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># not that good to compute xy together directly</span></span><br><span class="line">sobel_xy_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">1</span>, ksize=<span class="number">3</span>)</span><br><span class="line">sobel_xy_img = cv2.convertScaleAbs(sobel_xy_img)</span><br><span class="line">plt.imshow(sobel_xy_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-high-pass-filter/9.png" alt="9"></p>
+<p>很明显，<strong>分别计算 x 和 y 再求和的效果比一次性计算的效果要好很多</strong>。</p>
+<h5 id="不同算子的结果对比："><a href="#不同算子的结果对比：" class="headerlink" title="不同算子的结果对比："></a>不同算子的结果对比：</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">scharr_x_img = cv2.Scharr(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>)</span><br><span class="line">scharr_y_img = cv2.Scharr(gray, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">scharr_x_img = cv2.convertScaleAbs(scharr_x_img)</span><br><span class="line">scharr_y_img = cv2.convertScaleAbs(scharr_y_img)</span><br><span class="line">scharr_img = cv2.addWeighted(scharr_x_img, <span class="number">0.5</span>, scharr_y_img, <span class="number">0.5</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">laplacian_img = cv2.Laplacian(gray, cv2.CV_64F)</span><br><span class="line">laplacian_img = cv2.convertScaleAbs(laplacian_img)</span><br><span class="line"></span><br><span class="line">f, (p1, p2, p3) = plt.subplots(<span class="number">1</span>, <span class="number">3</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'sobel'</span>)</span><br><span class="line">p1.imshow(sobel_filtered_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'scharr'</span>)</span><br><span class="line">p2.imshow(scharr_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p3.set_title(<span class="string">'laplacian'</span>)</span><br><span class="line">p3.imshow(laplacian_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-high-pass-filter/10.png" alt="10"></p>
+]]></content>
+      <categories>
+        <category>cv</category>
+      </categories>
+      <tags>
+        <tag>图像处理</tag>
+        <tag>cv</tag>
+        <tag>opencv</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenCV图像处理2-使用低通滤波进行去噪</title>
+    <url>/image-processing-low-pass-filter.html</url>
+    <content><![CDATA[<h2 id="低通滤波-通常使用来去噪"><a href="#低通滤波-通常使用来去噪" class="headerlink" title="低通滤波: 通常使用来去噪"></a>低通滤波: 通常使用来去噪</h2><h3 id="常见滤波类型"><a href="#常见滤波类型" class="headerlink" title="常见滤波类型"></a>常见滤波类型</h3><h5 id="均值滤波"><a href="#均值滤波" class="headerlink" title="均值滤波"></a>均值滤波</h5><p><img src="image-processing-low-pass-filter/math-4.png" alt="math-4"></p><h5 id="高斯滤波-权重与距离相关"><a href="#高斯滤波-权重与距离相关" class="headerlink" title="高斯滤波 (权重与距离相关)"></a>高斯滤波 (权重与距离相关)</h5><p><img src="image-processing-low-pass-filter/math-5.png" alt="math-5"></p><h5 id="中值滤波"><a href="#中值滤波" class="headerlink" title="中值滤波"></a>中值滤波</h5><p>顾名思义取中值</p><h3 id="具体代码例子"><a href="#具体代码例子" class="headerlink" title="具体代码例子"></a>具体代码例子</h3><h5 id="高斯的模糊-去噪效果"><a href="#高斯的模糊-去噪效果" class="headerlink" title="高斯的模糊/去噪效果"></a>高斯的模糊/去噪效果</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Read in the image</span></span><br><span class="line">image = cv2.imread(<span class="string">'images/brain_MR.jpg'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert to grayscale for filtering</span></span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a Gaussian blurred image</span></span><br><span class="line">gray_blur = cv2.GaussianBlur(gray, (<span class="number">9</span>, <span class="number">9</span>), <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># use custom kernal</span></span><br><span class="line"><span class="comment"># gaussian = (1/16)*np.array([[1, 2, 1],</span></span><br><span class="line"><span class="comment">#                            [2, 4, 2],</span></span><br><span class="line"><span class="comment">#                            [1, 2, 1]])</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># gray_blur = cv2.filter2D(gray, -1, gaussian)</span></span><br><span class="line"></span><br><span class="line">f, (ax1, ax2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">ax1.set_title(<span class="string">'original gray'</span>),ax1.imshow(gray, cmap=<span class="string">'gray'</span>)</span><br><span class="line">ax2.set_title(<span class="string">'blurred image'</span>),ax2.imshow(gray_blur, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+<p><img src="image-processing-low-pass-filter/3.png" alt="3"></p>
+<h5 id="与高通滤波配合"><a href="#与高通滤波配合" class="headerlink" title="与高通滤波配合"></a>与高通滤波配合</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Filter the orginal and blurred grayscale images using filter2D</span></span><br><span class="line">filtered = cv2.filter2D(gray, <span class="number">-1</span>, sobel_y)</span><br><span class="line">filtered_blurred = cv2.filter2D(gray_blur, <span class="number">-1</span>, sobel_y)</span><br><span class="line"></span><br><span class="line">f, (ax1, ax2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">ax1.set_title(<span class="string">'original &amp; filtered imnage'</span>),ax1.imshow(filtered, cmap=<span class="string">'gray'</span>)</span><br><span class="line">ax2.set_title(<span class="string">'blurred &amp; filtered image'</span>),ax2.imshow(filtered_blurred, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-low-pass-filter/4.png" alt="4"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">retval, binary_image = cv2.threshold(filtered_blurred, <span class="number">50</span>, <span class="number">255</span>, cv2.THRESH_BINARY)</span><br><span class="line">plt.imshow(binary_image, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-low-pass-filter/5.png" alt="5"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">filtered_blurred = cv2.filter2D(gray_blur, <span class="number">-1</span>, laplacian)</span><br><span class="line">retval, binary_image = cv2.threshold(filtered_blurred, <span class="number">5</span>, <span class="number">255</span>, cv2.THRESH_BINARY)</span><br><span class="line">plt.imshow(binary_image, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-low-pass-filter/6.png" alt="6"></p>
+]]></content>
+      <categories>
+        <category>cv</category>
+      </categories>
+      <tags>
+        <tag>图像处理</tag>
+        <tag>cv</tag>
+        <tag>opencv</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -1082,47 +1152,6 @@
       </tags>
   </entry>
   <entry>
-    <title>OpenCV图像处理1-使用高通滤波进行边缘检测</title>
-    <url>/image-processing-high-pass-filter.html</url>
-    <content><![CDATA[<h2 id="高通滤波-通常使用来检测边缘"><a href="#高通滤波-通常使用来检测边缘" class="headerlink" title="高通滤波: 通常使用来检测边缘"></a>高通滤波: 通常使用来检测边缘</h2><h3 id="常见算子"><a href="#常见算子" class="headerlink" title="常见算子"></a>常见算子</h3><h5 id="sobel算子"><a href="#sobel算子" class="headerlink" title="sobel算子"></a>sobel算子</h5><p><img src="image-processing-high-pass-filter/math-1.png" alt="math-1"></p><h5 id="Scharr算子-更敏感-细致"><a href="#Scharr算子-更敏感-细致" class="headerlink" title="Scharr算子 (更敏感/细致)"></a>Scharr算子 (更敏感/细致)</h5><p><img src="image-processing-high-pass-filter/math-2.png" alt="math-2"></p><h5 id="Laplacian-拉普拉斯-算子-对噪声较敏感，一般搭配其他操作"><a href="#Laplacian-拉普拉斯-算子-对噪声较敏感，一般搭配其他操作" class="headerlink" title="Laplacian(拉普拉斯)算子 (对噪声较敏感，一般搭配其他操作)"></a>Laplacian(拉普拉斯)算子 (对噪声较敏感，一般搭配其他操作)</h5><p><img src="image-processing-high-pass-filter/math-3.png" alt="math-3"></p><h3 id="具体代码例子"><a href="#具体代码例子" class="headerlink" title="具体代码例子"></a>具体代码例子</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> matplotlib.image <span class="keyword">as</span> mpimg</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read in the image</span></span><br><span class="line">image = cv2.imread(<span class="string">'images/curved_lane.jpg'</span>)</span><br><span class="line">image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)</span><br><span class="line"></span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'original img'</span>)</span><br><span class="line">p1.imshow(image)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'gray img'</span>)</span><br><span class="line">p2.imshow(gray, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-
-<p><img src="image-processing-high-pass-filter/1.png" alt="1"></p>
-<h5 id="自定义filter"><a href="#自定义filter" class="headerlink" title="自定义filter"></a>自定义filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Create a custom kernel</span></span><br><span class="line"><span class="comment"># 3x3 array for edge detection</span></span><br><span class="line"></span><br><span class="line">sobel_x= np.array([[<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">                   [<span class="number">-2</span>, <span class="number">0</span>, <span class="number">2</span>],</span><br><span class="line">                   [<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">sobel_y= np.array([[<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-1</span>],</span><br><span class="line">                   [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                   [<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># laplacian, edge filter</span></span><br><span class="line">laplacian=np.array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">                    [<span class="number">1</span>,<span class="number">-4</span>, <span class="number">1</span>],</span><br><span class="line">                    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]])</span><br></pre></td></tr></table></figure>
-
-<h5 id="单向filter"><a href="#单向filter" class="headerlink" title="单向filter"></a>单向filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Filter the image using filter2D, which has inputs: (grayscale image, bit-depth, kernel)  </span></span><br><span class="line">filtered_x_image = cv2.filter2D(gray, <span class="number">-1</span>, sobel_x)</span><br><span class="line">filtered_y_image = cv2.filter2D(gray, <span class="number">-1</span>, sobel_y)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'filtered x'</span>)</span><br><span class="line">p1.imshow(filtered_x_image, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'filtered y'</span>)</span><br><span class="line">p2.imshow(filtered_y_image, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="image-processing-high-pass-filter/2.png" alt="2"></p>
-<h5 id="双向filter"><a href="#双向filter" class="headerlink" title="双向filter"></a>双向filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sobel_x_img = cv2.filter2D(gray, cv2.CV_64F, sobel_x) <span class="comment"># CV_64F 可含负数</span></span><br><span class="line">sobel_y_img = cv2.filter2D(gray, cv2.CV_64F, sobel_y)</span><br><span class="line"></span><br><span class="line">sobel_x_img = cv2.convertScaleAbs(sobel_x_img)   <span class="comment"># 将负数取绝对值</span></span><br><span class="line">sobel_y_img = cv2.convertScaleAbs(sobel_y_img)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'sobel_x_img'</span>)</span><br><span class="line">p1.imshow(sobel_x_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line">p2.set_title(<span class="string">'sobel_y_img'</span>)</span><br><span class="line">p2.imshow(sobel_y_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="image-processing-high-pass-filter/7.png" alt="7"></p>
-<p>通过和上面的结果对比，可以发现，上面的结果是单向的，而下面的结果是双向的。这是由于直接使用算子滤波时会<strong>产生负数</strong>，而在超出 <code>0-255</code> 范围时<strong>被截取</strong>。这也是为什么在下面的处理过程中需要<strong>先转换成 <code>CV_64F</code> (含负数) 的格式后，再取绝对值</strong>。</p>
-<h5 id="使用现成的接口"><a href="#使用现成的接口" class="headerlink" title="使用现成的接口"></a>使用现成的接口</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 也可以直接使用 cv2.Sobel，效果一致</span></span><br><span class="line"><span class="comment"># dst = cv2.Sobel(src, ddepth, dx, dy, ksize)</span></span><br><span class="line"><span class="comment"># ddepth: depth of image</span></span><br><span class="line"><span class="comment"># dx, dy: 0/1, 指定方向 </span></span><br><span class="line"><span class="comment"># ksize: kernal size</span></span><br><span class="line"></span><br><span class="line">sobel_x_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>, ksize=<span class="number">3</span>) </span><br><span class="line">sobel_x_img = cv2.convertScaleAbs(sobel_x_img)</span><br><span class="line">sobel_y_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>, ksize=<span class="number">3</span>)</span><br><span class="line">sobel_y_img = cv2.convertScaleAbs(sobel_y_img)</span><br></pre></td></tr></table></figure>
-
-<h5 id="合并不同方向"><a href="#合并不同方向" class="headerlink" title="合并不同方向"></a>合并不同方向</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># combine x and y</span></span><br><span class="line">sobel_img = cv2.addWeighted(sobel_x_img, <span class="number">0.5</span>, sobel_y_img, <span class="number">0.5</span>, <span class="number">0</span>)</span><br><span class="line">plt.imshow(sobel_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="image-processing-high-pass-filter/8.png" alt="8"></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># not that good to compute xy together directly</span></span><br><span class="line">sobel_xy_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">1</span>, ksize=<span class="number">3</span>)</span><br><span class="line">sobel_xy_img = cv2.convertScaleAbs(sobel_xy_img)</span><br><span class="line">plt.imshow(sobel_xy_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="image-processing-high-pass-filter/9.png" alt="9"></p>
-<p>很明显，<strong>分别计算 x 和 y 再求和的效果比一次性计算的效果要好很多</strong>。</p>
-<h5 id="不同算子的结果对比："><a href="#不同算子的结果对比：" class="headerlink" title="不同算子的结果对比："></a>不同算子的结果对比：</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">scharr_x_img = cv2.Scharr(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>)</span><br><span class="line">scharr_y_img = cv2.Scharr(gray, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">scharr_x_img = cv2.convertScaleAbs(scharr_x_img)</span><br><span class="line">scharr_y_img = cv2.convertScaleAbs(scharr_y_img)</span><br><span class="line">scharr_img = cv2.addWeighted(scharr_x_img, <span class="number">0.5</span>, scharr_y_img, <span class="number">0.5</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">laplacian_img = cv2.Laplacian(gray, cv2.CV_64F)</span><br><span class="line">laplacian_img = cv2.convertScaleAbs(laplacian_img)</span><br><span class="line"></span><br><span class="line">f, (p1, p2, p3) = plt.subplots(<span class="number">1</span>, <span class="number">3</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'sobel'</span>)</span><br><span class="line">p1.imshow(sobel_filtered_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'scharr'</span>)</span><br><span class="line">p2.imshow(scharr_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p3.set_title(<span class="string">'laplacian'</span>)</span><br><span class="line">p3.imshow(laplacian_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="image-processing-high-pass-filter/10.png" alt="10"></p>
-]]></content>
-      <categories>
-        <category>cv</category>
-      </categories>
-      <tags>
-        <tag>图像处理</tag>
-        <tag>cv</tag>
-        <tag>opencv</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Ubuntu环境下安装使用hexo</title>
     <url>/install-hexo.html</url>
     <content><![CDATA[<h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install git</span><br><span class="line">git config --global user.name <span class="string">"Your Name"</span></span><br><span class="line">git config --global user.email <span class="string">"youremail@domain.com"</span></span><br></pre></td></tr></table></figure><h2 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install ufw</span><br><span class="line">sudo ufw allow <span class="string">"OpenSSH"</span></span><br><span class="line">sudo ufw <span class="built_in">enable</span></span><br><span class="line">sudo ufw allow http</span><br><span class="line">sudo ufw allow https</span><br></pre></td></tr></table></figure><a id="more"></a>
@@ -1152,32 +1181,55 @@
       </tags>
   </entry>
   <entry>
-    <title>OpenCV图像处理2-使用低通滤波进行去噪</title>
-    <url>/image-processing-low-pass-filter.html</url>
-    <content><![CDATA[<h2 id="低通滤波-通常使用来去噪"><a href="#低通滤波-通常使用来去噪" class="headerlink" title="低通滤波: 通常使用来去噪"></a>低通滤波: 通常使用来去噪</h2><h3 id="常见滤波类型"><a href="#常见滤波类型" class="headerlink" title="常见滤波类型"></a>常见滤波类型</h3><h5 id="均值滤波"><a href="#均值滤波" class="headerlink" title="均值滤波"></a>均值滤波</h5><p><img src="image-processing-low-pass-filter/math-4.png" alt="math-4"></p><h5 id="高斯滤波-权重与距离相关"><a href="#高斯滤波-权重与距离相关" class="headerlink" title="高斯滤波 (权重与距离相关)"></a>高斯滤波 (权重与距离相关)</h5><p><img src="image-processing-low-pass-filter/math-5.png" alt="math-5"></p><h5 id="中值滤波"><a href="#中值滤波" class="headerlink" title="中值滤波"></a>中值滤波</h5><p>顾名思义取中值</p><h3 id="具体代码例子"><a href="#具体代码例子" class="headerlink" title="具体代码例子"></a>具体代码例子</h3><h5 id="高斯的模糊-去噪效果"><a href="#高斯的模糊-去噪效果" class="headerlink" title="高斯的模糊/去噪效果"></a>高斯的模糊/去噪效果</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Read in the image</span></span><br><span class="line">image = cv2.imread(<span class="string">'images/brain_MR.jpg'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert to grayscale for filtering</span></span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a Gaussian blurred image</span></span><br><span class="line">gray_blur = cv2.GaussianBlur(gray, (<span class="number">9</span>, <span class="number">9</span>), <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># use custom kernal</span></span><br><span class="line"><span class="comment"># gaussian = (1/16)*np.array([[1, 2, 1],</span></span><br><span class="line"><span class="comment">#                            [2, 4, 2],</span></span><br><span class="line"><span class="comment">#                            [1, 2, 1]])</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># gray_blur = cv2.filter2D(gray, -1, gaussian)</span></span><br><span class="line"></span><br><span class="line">f, (ax1, ax2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">ax1.set_title(<span class="string">'original gray'</span>),ax1.imshow(gray, cmap=<span class="string">'gray'</span>)</span><br><span class="line">ax2.set_title(<span class="string">'blurred image'</span>),ax2.imshow(gray_blur, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure><a id="more"></a>
+    <title>Open3D显示点云 一片空白</title>
+    <url>/open3d-vis-cloud-blank-screen.html</url>
+    <content><![CDATA[<p>第一次使用Open3D 0.18.0，发现pcd点云显示有问题</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> open3d <span class="keyword">as</span> o3d</span><br><span class="line"></span><br><span class="line">path = <span class="string">"xxxxxxxxxxxxx.pcd"</span></span><br><span class="line">pcd = o3d.io.read_point_cloud(path)</span><br><span class="line">o3d.visualization.draw_geometries([pcd])</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Jupyter environment detected. Enabling Open3D WebVisualizer.  </span><br><span class="line">[Open3D INFO] WebRTC GUI backend enabled.   </span><br><span class="line">[Open3D INFO] WebRTCWindowSystem: HTTP handshake server disabled.</span><br></pre></td></tr></table></figure>
 
+<p>弹出来的窗口一片空白，也没有任何报错<br><img src="./open3d-vis-cloud-blank-screen/image-1.png" alt="image-1"></p>
+<a id="more"></a>
 
+<h4 id="Debug-经过"><a href="#Debug-经过" class="headerlink" title="Debug 经过"></a>Debug 经过</h4><ul>
+<li><p>一开始以为是在jupyter上使用的原因，去找到了官网的文档 <a href="https://www.open3d.org/docs/release/tutorial/visualization/web_visualizer.html#jupyter-mode" target="_blank" rel="noopener">Web visualizer and Jupyter</a>以及对应的<a href="https://github.com/isl-org/Open3D/blob/main/docs/jupyter/visualization/jupyter_visualization.ipynb" target="_blank" rel="noopener">example code</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> open3d <span class="keyword">as</span> o3d</span><br><span class="line"><span class="keyword">from</span> open3d.web_visualizer <span class="keyword">import</span> draw</span><br><span class="line"></span><br><span class="line">cube_red = o3d.geometry.TriangleMesh.create_box(<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>)</span><br><span class="line">cube_red.compute_vertex_normals()</span><br><span class="line">cube_red.paint_uniform_color((<span class="number">1.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>))</span><br><span class="line">draw(cube_red)</span><br></pre></td></tr></table></figure>
 
-<p><img src="image-processing-low-pass-filter/3.png" alt="3"></p>
-<h5 id="与高通滤波配合"><a href="#与高通滤波配合" class="headerlink" title="与高通滤波配合"></a>与高通滤波配合</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Filter the orginal and blurred grayscale images using filter2D</span></span><br><span class="line">filtered = cv2.filter2D(gray, <span class="number">-1</span>, sobel_y)</span><br><span class="line">filtered_blurred = cv2.filter2D(gray_blur, <span class="number">-1</span>, sobel_y)</span><br><span class="line"></span><br><span class="line">f, (ax1, ax2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">ax1.set_title(<span class="string">'original &amp; filtered imnage'</span>),ax1.imshow(filtered, cmap=<span class="string">'gray'</span>)</span><br><span class="line">ax2.set_title(<span class="string">'blurred &amp; filtered image'</span>),ax2.imshow(filtered_blurred, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+<p>发现这个cube能显示，但是点云就怎么都不行，所以应该不是jupyter的原因。</p>
+</li>
+<li><p>多番测试无果之后，我在本机安装了Open3D，通过命令行运行，发现一样是一片空白。于是确认在本地运行和在jupyter上的结果是完全一致的。</p>
+</li>
+<li><p>查看 open3d visualization 相关的文档，找到了官方提供的点云sample，发现这个点云可以正常显示!!</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sample_ply_data = o3d.data.PLYPointCloud()</span><br><span class="line">cloud = o3d.io.read_point_cloud(sample_ply_data.path)</span><br><span class="line">o3d.visualization.draw_geometries([cloud])</span><br></pre></td></tr></table></figure>
 
-<p><img src="image-processing-low-pass-filter/4.png" alt="4"></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">retval, binary_image = cv2.threshold(filtered_blurred, <span class="number">50</span>, <span class="number">255</span>, cv2.THRESH_BINARY)</span><br><span class="line">plt.imshow(binary_image, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[Open3D INFO] Downloading https://github.com/isl-org/open3d_downloads/releases/download/20220201-data/fragment.ply  </span><br><span class="line">[Open3D INFO] Downloaded to /home/tt/open3d_data/download/PLYPointCloud/fragment.ply</span><br></pre></td></tr></table></figure>
 
-<p><img src="image-processing-low-pass-filter/5.png" alt="5"></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">filtered_blurred = cv2.filter2D(gray_blur, <span class="number">-1</span>, laplacian)</span><br><span class="line">retval, binary_image = cv2.threshold(filtered_blurred, <span class="number">5</span>, <span class="number">255</span>, cv2.THRESH_BINARY)</span><br><span class="line">plt.imshow(binary_image, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="./open3d-vis-cloud-blank-screen/image-2.png" alt="image-2"></p>
+</li>
+<li><p>于是我想办法将官方提供的点云和我本地的点云进行对比</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 官方点云</span></span><br><span class="line">cloud_colors = np.asarray(cloud.colors)</span><br><span class="line">cloud_points = np.asarray(cloud.points)</span><br><span class="line">print(<span class="string">'cloud colors'</span>)</span><br><span class="line">print(cloud_colors)</span><br><span class="line">print(<span class="string">'cloud points'</span>)</span><br><span class="line">print(cloud_points)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 我的点云</span></span><br><span class="line">pcd_colors = np.asarray(pcd.colors)</span><br><span class="line">pcd_points = np.asarray(pcd.points)</span><br><span class="line">print(<span class="string">'\npcd colors'</span>)</span><br><span class="line">print(pcd_colors)</span><br><span class="line">print(<span class="string">'pcd points'</span>)</span><br><span class="line">print(pcd_points)</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br><span class="line">print(pcd_colors[<span class="number">3453</span>])</span><br><span class="line">print(pcd_points[<span class="number">3453</span>])</span><br></pre></td></tr></table></figure>
 
-<p><img src="image-processing-low-pass-filter/6.png" alt="6"></p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cloud colors</span><br><span class="line">[[0. 0. 0. ]</span><br><span class="line">[0. 0. 0. ]</span><br><span class="line">[0. 0. 0. ]</span><br><span class="line">…</span><br><span class="line">[0.92941176 0.89019608 0.87058824]</span><br><span class="line">[0.87843137 0.81960784 0.79215686]</span><br><span class="line">[0.87843137 0.81960784 0.79215686]]</span><br><span class="line"></span><br><span class="line">cloud points</span><br><span class="line">[[0.65234375 0.84686458 2.37890625]</span><br><span class="line">[0.65234375 0.83984375 2.38430572]</span><br><span class="line">[0.66737998 0.83984375 2.37890625]</span><br><span class="line">…</span><br><span class="line">[2.00839925 2.39453125 1.88671875]</span><br><span class="line">[2.00390625 2.39488506 1.88671875]</span><br><span class="line">[2.00390625 2.39453125 1.88793314]]</span><br><span class="line"></span><br><span class="line">pcd colors</span><br><span class="line">[[0. 0. 0.]</span><br><span class="line"> [0. 0. 0.]</span><br><span class="line"> [0. 0. 0.]</span><br><span class="line"> …</span><br><span class="line"> [0. 0. 0.]</span><br><span class="line"> [0. 0. 0.]]</span><br><span class="line">pcd points</span><br><span class="line">[[nan nan nan]</span><br><span class="line"> [nan nan nan]</span><br><span class="line"> …</span><br><span class="line"> [nan nan nan]</span><br><span class="line"> [nan nan nan]]</span><br><span class="line"></span><br><span class="line">[0.16862745 0.17254902 0.18039216]</span><br><span class="line">[0.80449188 -1.60404837 4.2510004]</span><br></pre></td></tr></table></figure>
+
+<p>这样对比，两者的格式是一致的，而且里面数据的格式也是一致的，color也是 0-1。唯一不同的是，我的点云里有 <code>Nan</code>。</p>
+</li>
+<li><p>我尝试去掉Nan:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># pcd = o3d.io.read_point_cloud(path)</span></span><br><span class="line">pcd = o3d.io.read_point_cloud(path, remove_nan_points=<span class="literal">True</span>)</span><br><span class="line">o3d.visualization.draw_geometries([pcd])</span><br></pre></td></tr></table></figure>
+
+<p>就水灵灵地显示出来了！</p>
+</li>
+</ul>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>也就是说，Open3D 0.18.0里 (我没有测试别的版本)，带 <code>Nan</code> 的点云是无法显示的。在读点云的时候，带上 <code>remove_nan_points</code> 就可以显示了。</p>
 ]]></content>
       <categories>
-        <category>cv</category>
+        <category>python</category>
+        <category>Open3D</category>
       </categories>
       <tags>
-        <tag>图像处理</tag>
-        <tag>cv</tag>
-        <tag>opencv</tag>
-        <tag>python</tag>
+        <tag>open3d</tag>
+        <tag>visualization</tag>
+        <tag>pointcloud</tag>
+        <tag>cloud</tag>
       </tags>
   </entry>
   <entry>
@@ -1205,64 +1257,6 @@
       <tags>
         <tag>c++</tag>
         <tag>opencv</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Open3D显示点云 一片空白</title>
-    <url>/open3d-vis-cloud-blank-screen.html</url>
-    <content><![CDATA[<p>第一次使用Open3D 0.18.0，发现pcd点云显示有问题</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> open3d <span class="keyword">as</span> o3d</span><br><span class="line"></span><br><span class="line">path = <span class="string">"xxxxxxxxxxxxx.pcd"</span></span><br><span class="line">pcd = o3d.io.read_point_cloud(path)</span><br><span class="line">o3d.visualization.draw_geometries([pcd])</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Jupyter environment detected. Enabling Open3D WebVisualizer.  </span><br><span class="line">[Open3D INFO] WebRTC GUI backend enabled.   </span><br><span class="line">[Open3D INFO] WebRTCWindowSystem: HTTP handshake server disabled.</span><br></pre></td></tr></table></figure>
-
-<p>弹出来的窗口一片空白，也没有任何报错<br><img src="./open3d-vis-cloud-blank-screen/image-1.png" alt="image-1"></p>
-<a id="more"></a>
-
-<h4 id="Debug-经过"><a href="#Debug-经过" class="headerlink" title="Debug 经过"></a>Debug 经过</h4><ul>
-<li><p>一开始以为是因为在jupyter上使用的原因，找到了<a href="https://www.open3d.org/docs/release/tutorial/visualization/web_visualizer.html#jupyter-mode" target="_blank" rel="noopener">官网的文档</a>以及对应的<a href="https://github.com/isl-org/Open3D/blob/main/docs/jupyter/visualization/jupyter_visualization.ipynb" target="_blank" rel="noopener">example code</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> open3d <span class="keyword">as</span> o3d</span><br><span class="line"><span class="keyword">from</span> open3d.web_visualizer <span class="keyword">import</span> draw</span><br><span class="line"></span><br><span class="line">cube_red = o3d.geometry.TriangleMesh.create_box(<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>)</span><br><span class="line">cube_red.compute_vertex_normals()</span><br><span class="line">cube_red.paint_uniform_color((<span class="number">1.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>))</span><br><span class="line">draw(cube_red)</span><br></pre></td></tr></table></figure>
-
-<p>发现这个cube能显示，但是点云就怎么都不行</p>
-</li>
-<li><p>多番测试无果之后，我在本机安装了Open3D，通过命令行运行，发现一样是一片空白。于是确认在本地运行和在jupyter上的结果是完全一致的。</p>
-</li>
-<li><p>查看 open3d visualization 相关的文档，找到了官方提供的点云sample，发现可以下载且显示!!</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sample_ply_data = o3d.data.PLYPointCloud()</span><br><span class="line">cloud = o3d.io.read_point_cloud(sample_ply_data.path)</span><br><span class="line">o3d.visualization.draw_geometries([cloud])</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[Open3D INFO] Downloading https://github.com/isl-org/open3d_downloads/releases/download/20220201-data/fragment.ply</span><br><span class="line">[Open3D INFO] Downloaded to /home/ani/open3d_data/download/PLYPointCloud/fragment.ply</span><br></pre></td></tr></table></figure>
-
-<p>  <img src="./open3d-vis-cloud-blank-screen/image-2.png" alt="image-2"></p>
-<ul>
-<li><p>于是我想办法将官方提供的点云和我本地的点云进行对比</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 官方点云</span></span><br><span class="line">cloud_colors = np.asarray(cloud.colors)</span><br><span class="line">cloud_points = np.asarray(cloud.points)</span><br><span class="line">print(<span class="string">'cloud colors'</span>)</span><br><span class="line">print(cloud_colors)</span><br><span class="line">print(<span class="string">'cloud points'</span>)</span><br><span class="line">print(cloud_points)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 我的点云</span></span><br><span class="line">pcd_colors = np.asarray(pcd.colors)</span><br><span class="line">pcd_points = np.asarray(pcd.points)</span><br><span class="line">print(<span class="string">'\npcd colors'</span>)</span><br><span class="line">print(pcd_colors)</span><br><span class="line">print(<span class="string">'pcd points'</span>)</span><br><span class="line">print(pcd_points)</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br><span class="line">print(pcd_colors[<span class="number">3453</span>])</span><br><span class="line">print(pcd_points[<span class="number">3453</span>])</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cloud colors</span><br><span class="line">[[0.         0.         0.        ]</span><br><span class="line"> [0.         0.         0.        ]</span><br><span class="line"> [0.         0.         0.        ]</span><br><span class="line"> ...</span><br><span class="line"> [0.92941176 0.89019608 0.87058824]</span><br><span class="line"> [0.87843137 0.81960784 0.79215686]</span><br><span class="line"> [0.87843137 0.81960784 0.79215686]]</span><br><span class="line">cloud points</span><br><span class="line">[[0.65234375 0.84686458 2.37890625]</span><br><span class="line"> [0.65234375 0.83984375 2.38430572]</span><br><span class="line"> [0.66737998 0.83984375 2.37890625]</span><br><span class="line"> ...</span><br><span class="line"> [2.00839925 2.39453125 1.88671875]</span><br><span class="line"> [2.00390625 2.39488506 1.88671875]</span><br><span class="line"> [2.00390625 2.39453125 1.88793314]]</span><br><span class="line"></span><br><span class="line">pcd colors</span><br><span class="line">[[0. 0. 0.]</span><br><span class="line"> [0. 0. 0.]</span><br><span class="line"> [0. 0. 0.]</span><br><span class="line"> ...</span><br><span class="line"> [0. 0. 0.]</span><br><span class="line"> [0. 0. 0.]]</span><br><span class="line">pcd points</span><br><span class="line">[[nan nan nan]</span><br><span class="line"> [nan nan nan]</span><br><span class="line"> ...</span><br><span class="line"> [nan nan nan]</span><br><span class="line"> [nan nan nan]]</span><br><span class="line"> </span><br><span class="line">[0.16862745 0.17254902 0.18039216]</span><br><span class="line">[0.80449188 -1.60404837 4.2510004]</span><br></pre></td></tr></table></figure>
-
-<p>  这样对比，两者的格式是一致的，而且里面数据的格式也是一致的，color也是 0-1。唯一不同的是，我的点云里有 <code>Nan</code>。</p>
-<ul>
-<li><p>我尝试去掉Nan:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># pcd = o3d.io.read_point_cloud(path)</span></span><br><span class="line">pcd = o3d.io.read_point_cloud(path, remove_nan_points=<span class="literal">True</span>)</span><br><span class="line">o3d.visualization.draw_geometries([pcd])</span><br></pre></td></tr></table></figure>
-
-<p>就水灵灵地显示出来了！</p>
-</li>
-</ul>
-<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>也就是说，Open3D 0.18.0里 (我没有测试别的版本)，带 <code>Nan</code> 的点云是无法显示的。在读点云的时候，带上 <code>remove_nan_points</code> 就可以显示了。</p>
-]]></content>
-      <categories>
-        <category>python</category>
-        <category>Open3D</category>
-      </categories>
-      <tags>
-        <tag>open3d</tag>
-        <tag>visualization</tag>
-        <tag>pointcloud</tag>
-        <tag>cloud</tag>
       </tags>
   </entry>
   <entry>
@@ -1435,48 +1429,6 @@
       </tags>
   </entry>
   <entry>
-    <title>PCL类型转换</title>
-    <url>/pcl_type_transform.html</url>
-    <content><![CDATA[<h4 id="PCL相关类型-对象与指针互换"><a href="#PCL相关类型-对象与指针互换" class="headerlink" title="PCL相关类型 对象与指针互换"></a>PCL相关类型 对象与指针互换</h4><ol>
-<li>pcl::PointIndices -&gt; pcl::PointIndices::Ptr</li>
-</ol><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::<span class="function">Ptr <span class="title">inliers_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointIndices(inliers))</span></span>;</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-<ol start="2">
-<li>pcl::PointIndices::Ptr -&gt; pcl::PointIndices</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::Ptr inliers_ptr;</span><br><span class="line">inliers=*inliers_ptr;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>std::vector<int> -&gt; pcl::IndicesPtr</int></li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec_indices;</span><br><span class="line">pcl::IndicesPtr indices_ptr = boost::make_shared&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;(vec_indices);</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>pcl::PointCloud<pointt> -&gt; pcl::PointCloud<pointt>::Ptr</pointt></pointt></li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud=*cloud_ptr;</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>pcl::PointCloud<pointt>::Ptr -&gt; pcl::PointCloud<pointt></pointt></pointt></li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud_ptr=cloud.makeShared();</span><br></pre></td></tr></table></figure>
-
-<h4 id="不同数据类型的点云转换"><a href="#不同数据类型的点云转换" class="headerlink" title="不同数据类型的点云转换"></a>不同数据类型的点云转换</h4><ol>
-<li>pcl::PointCloud<a href="pcl::PointXYZRGB" target="_blank" rel="noopener">pcl::PointXYZRGB</a> -&gt; pcl::PointCloud<a href="pcl::PointXYZ" target="_blank" rel="noopener">pcl::PointXYZ</a>::Ptr</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::<span class="function">Ptr <span class="title">cloud_ori</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZRGB&gt;)</span></span>;</span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZ&gt;::<span class="function">Ptr <span class="title">cloud</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZ&gt;)</span></span>;</span><br><span class="line">pcl::copyPointCloud(*cloud_ori, *cloud);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>pcl</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>pcl</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PCL提速的一些小细节</title>
     <url>/pcl-speed-up-notes.html</url>
     <content><![CDATA[<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
@@ -1548,6 +1500,48 @@
         <tag>c++</tag>
         <tag>stl</tag>
         <tag>vector</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PCL类型转换</title>
+    <url>/pcl_type_transform.html</url>
+    <content><![CDATA[<h4 id="PCL相关类型-对象与指针互换"><a href="#PCL相关类型-对象与指针互换" class="headerlink" title="PCL相关类型 对象与指针互换"></a>PCL相关类型 对象与指针互换</h4><ol>
+<li>pcl::PointIndices -&gt; pcl::PointIndices::Ptr</li>
+</ol><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::<span class="function">Ptr <span class="title">inliers_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointIndices(inliers))</span></span>;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<ol start="2">
+<li>pcl::PointIndices::Ptr -&gt; pcl::PointIndices</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::Ptr inliers_ptr;</span><br><span class="line">inliers=*inliers_ptr;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>std::vector<int> -&gt; pcl::IndicesPtr</int></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec_indices;</span><br><span class="line">pcl::IndicesPtr indices_ptr = boost::make_shared&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;(vec_indices);</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>pcl::PointCloud<pointt> -&gt; pcl::PointCloud<pointt>::Ptr</pointt></pointt></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud=*cloud_ptr;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>pcl::PointCloud<pointt>::Ptr -&gt; pcl::PointCloud<pointt></pointt></pointt></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud_ptr=cloud.makeShared();</span><br></pre></td></tr></table></figure>
+
+<h4 id="不同数据类型的点云转换"><a href="#不同数据类型的点云转换" class="headerlink" title="不同数据类型的点云转换"></a>不同数据类型的点云转换</h4><ol>
+<li>pcl::PointCloud<a href="pcl::PointXYZRGB" target="_blank" rel="noopener">pcl::PointXYZRGB</a> -&gt; pcl::PointCloud<a href="pcl::PointXYZ" target="_blank" rel="noopener">pcl::PointXYZ</a>::Ptr</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::<span class="function">Ptr <span class="title">cloud_ori</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZRGB&gt;)</span></span>;</span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZ&gt;::<span class="function">Ptr <span class="title">cloud</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZ&gt;)</span></span>;</span><br><span class="line">pcl::copyPointCloud(*cloud_ori, *cloud);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>pcl</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>pcl</tag>
       </tags>
   </entry>
   <entry>
@@ -1898,6 +1892,69 @@
       </categories>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>通过miniconda安装使用jupyter</title>
+    <url>/use-miniconda-jupyter.html</url>
+    <content><![CDATA[<h2 id="安装-miniconda"><a href="#安装-miniconda" class="headerlink" title="安装 miniconda"></a>安装 <code>miniconda</code></h2><p>从 <a href="https://docs.anaconda.com/free/miniconda/" target="_blank" rel="noopener">https://docs.anaconda.com/free/miniconda/</a> 下载对应版本的安装脚本</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash xx.sh</span><br></pre></td></tr></table></figure><p>根据提示安装完成后，重新打开terminal窗口</p><h2 id="通过-miniconda-创建单独的环境且安装-jupyter-等需要的包"><a href="#通过-miniconda-创建单独的环境且安装-jupyter-等需要的包" class="headerlink" title="通过 miniconda 创建单独的环境且安装 jupyter 等需要的包"></a>通过 <code>miniconda</code> 创建单独的环境且安装 <code>jupyter</code> 等需要的包</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda env list</span><br><span class="line">conda create -n environment_name python numpy pandas jupyter</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda deactivate <span class="comment"># exit current environment</span></span><br><span class="line">conda activate environment_name <span class="comment"># activate the specific environment</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># can still install other packages</span></span><br><span class="line">conda install matplotlib</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行-jupyter"><a href="#运行-jupyter" class="headerlink" title="运行 jupyter"></a>运行 <code>jupyter</code></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>memo</category>
+        <category>linux</category>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>python</tag>
+        <tag>environment</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用vscode在docker容器里调试python代码</title>
+    <url>/use-vscode-to-debug-in-container.html</url>
+    <content><![CDATA[<p>使用vscode，可以使用插件连接docker container，并基于容器运行调试代码。</p><h3 id="在vscode内安装插件"><a href="#在vscode内安装插件" class="headerlink" title="在vscode内安装插件"></a>在vscode内安装插件</h3><ul>
+<li><p>Dev Containers</p>
+<p><img src="./use-vscode-to-debug-in-container/image-1.png#pic_left" alt="image-1"> </p>
+</li>
+<li><p>Docker<br><img src="./use-vscode-to-debug-in-container/image-2.png#pic_left" alt="image-2"> </p>
+</li>
+</ul><h3 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># create container from image</span></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="comment"># start container</span></span><br><span class="line">docker start container_xxx</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<h3 id="在vscode内连接容器"><a href="#在vscode内连接容器" class="headerlink" title="在vscode内连接容器"></a>在vscode内连接容器</h3><ul>
+<li><p>点击左下角的链接按钮</p>
+<p><img src="./use-vscode-to-debug-in-container/image-3.png#pic_left" alt="image-3"> </p>
+</li>
+</ul>
+<ul>
+<li><p>在弹出的选项中选择 <strong>Attach to Running Container</strong>，选择刚刚已经启动的容器 container_xxx</p>
+<p><img src="./use-vscode-to-debug-in-container/image-4.png#pic_left" alt="image-4"> </p>
+</li>
+</ul>
+<h3 id="调试代码"><a href="#调试代码" class="headerlink" title="调试代码"></a>调试代码</h3><p>在新打开的vscode窗口内打开对应的代码，添加断点，即可正常调试。</p>
+]]></content>
+      <categories>
+        <category>memo</category>
+        <category>python</category>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>coding</tag>
+        <tag>python</tag>
+        <tag>debug</tag>
+        <tag>vscode</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -2263,69 +2320,6 @@
       <tags>
         <tag>self-driving</tag>
         <tag>自动驾驶</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>通过miniconda安装使用jupyter</title>
-    <url>/use-miniconda-jupyter.html</url>
-    <content><![CDATA[<h2 id="安装-miniconda"><a href="#安装-miniconda" class="headerlink" title="安装 miniconda"></a>安装 <code>miniconda</code></h2><p>从 <a href="https://docs.anaconda.com/free/miniconda/" target="_blank" rel="noopener">https://docs.anaconda.com/free/miniconda/</a> 下载对应版本的安装脚本</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash xx.sh</span><br></pre></td></tr></table></figure><p>根据提示安装完成后，重新打开terminal窗口</p><h2 id="通过-miniconda-创建单独的环境且安装-jupyter-等需要的包"><a href="#通过-miniconda-创建单独的环境且安装-jupyter-等需要的包" class="headerlink" title="通过 miniconda 创建单独的环境且安装 jupyter 等需要的包"></a>通过 <code>miniconda</code> 创建单独的环境且安装 <code>jupyter</code> 等需要的包</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda env list</span><br><span class="line">conda create -n environment_name python numpy pandas jupyter</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda deactivate <span class="comment"># exit current environment</span></span><br><span class="line">conda activate environment_name <span class="comment"># activate the specific environment</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># can still install other packages</span></span><br><span class="line">conda install matplotlib</span><br></pre></td></tr></table></figure>
-
-<h2 id="运行-jupyter"><a href="#运行-jupyter" class="headerlink" title="运行 jupyter"></a>运行 <code>jupyter</code></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>memo</category>
-        <category>linux</category>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>python</tag>
-        <tag>environment</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用vscode在docker容器里调试python代码</title>
-    <url>/use-vscode-to-debug-in-container.html</url>
-    <content><![CDATA[<p>使用vscode，可以使用插件连接docker container，并基于容器运行调试代码。</p><h3 id="在vscode内安装插件"><a href="#在vscode内安装插件" class="headerlink" title="在vscode内安装插件"></a>在vscode内安装插件</h3><ul>
-<li><p>Dev Containers</p>
-<p><img src="./use-vscode-to-debug-in-container/image-1.png#pic_left" alt="image-1"> </p>
-</li>
-<li><p>Docker<br><img src="./use-vscode-to-debug-in-container/image-2.png#pic_left" alt="image-2"> </p>
-</li>
-</ul><h3 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># create container from image</span></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="comment"># start container</span></span><br><span class="line">docker start container_xxx</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-<h3 id="在vscode内连接容器"><a href="#在vscode内连接容器" class="headerlink" title="在vscode内连接容器"></a>在vscode内连接容器</h3><ul>
-<li><p>点击左下角的链接按钮</p>
-<p><img src="./use-vscode-to-debug-in-container/image-3.png#pic_left" alt="image-3"> </p>
-</li>
-</ul>
-<ul>
-<li><p>在弹出的选项中选择 <strong>Attach to Running Container</strong>，选择刚刚已经启动的容器 container_xxx</p>
-<p><img src="./use-vscode-to-debug-in-container/image-4.png#pic_left" alt="image-4"> </p>
-</li>
-</ul>
-<h3 id="调试代码"><a href="#调试代码" class="headerlink" title="调试代码"></a>调试代码</h3><p>在新打开的vscode窗口内打开对应的代码，添加断点，即可正常调试。</p>
-]]></content>
-      <categories>
-        <category>memo</category>
-        <category>python</category>
-        <category>docker</category>
-      </categories>
-      <tags>
-        <tag>coding</tag>
-        <tag>python</tag>
-        <tag>debug</tag>
-        <tag>vscode</tag>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
