@@ -38,7 +38,13 @@ similar issue: https://github.com/PointCloudLibrary/pcl/issues/5237
 
 
 
-### 卸载 `pcl-1.12.1`
+### 解决办法
+
+卸载 `pcl-1.12`，使用 `1.13` 版本，但这个版本我 (`Ubuntu 22.04.4`) 无法通过 `apt` 安装，只能通过源代码编译安装。
+
+
+
+#### 卸载 `pcl-1.12.1`
 
 ```bash
 # 确认版本
@@ -58,7 +64,7 @@ sudo autoremove
 
 
 
-### 在 github 上下载 `pcl` 源代码
+#### 在 github 上下载 `pcl` 源代码
 
 ```bash
 git clone https://github.com/PointCloudLibrary/pcl.git
@@ -71,7 +77,7 @@ git checkout pcl-1.13.1
 
 
 
-### 按照文档编译安装 `pcl-1.13.1`
+#### 按照文档编译安装 `pcl-1.13.1`
 
 https://pcl.readthedocs.io/projects/tutorials/en/latest/compiling_pcl_posix.html
 
@@ -90,7 +96,7 @@ ls
 
 
 
-### 安装 vtk
+#### 安装 vtk
 
 ```bash
 apt install vtk9 libvtk9-dev
@@ -98,6 +104,6 @@ apt install vtk9 libvtk9-dev
 
 
 
-### 测试是否可用
+#### 测试是否可用
 
 ![image-2](./pcl-12-viewer-segmentation-fault/image-20240327153842486.png)
