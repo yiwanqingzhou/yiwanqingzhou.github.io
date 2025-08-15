@@ -67,13 +67,22 @@ description:
 - 安装`black`
 
   ```bash
-  pip3 install black==20.8b1
+  pip3 install black
+  ```
+
+- 测试
+
+  ```bash
+  python -m black --version
   ```
 
 - 在需要格式化的路径下运行
 
-  ```
+  ```bash
   black .
+  
+  # 指定长度
+  python3 -m black --line-length 80 .
   ```
 
   
