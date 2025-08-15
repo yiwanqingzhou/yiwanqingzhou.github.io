@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://yiwanqingzhou.github.io/format-cmake-file.html</loc>
+    <lastmod>2025-08-15</lastmod>
+  </url>
+  <url>
+    <loc>https://yiwanqingzhou.github.io/image-processing-high-pass-filter.html</loc>
+    <lastmod>2024-12-11</lastmod>
+  </url>
+  <url>
     <loc>https://yiwanqingzhou.github.io/pcl-12-viewer-segmentation-fault.html</loc>
     <lastmod>2024-12-11</lastmod>
   </url>
@@ -130,10 +138,6 @@
   </url>
   <url>
     <loc>https://yiwanqingzhou.github.io/constructor.html</loc>
-    <lastmod>2024-03-29</lastmod>
-  </url>
-  <url>
-    <loc>https://yiwanqingzhou.github.io/image-processing-high-pass-filter.html</loc>
     <lastmod>2024-03-29</lastmod>
   </url>
 </urlset> 
