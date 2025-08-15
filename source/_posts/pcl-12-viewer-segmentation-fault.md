@@ -1,5 +1,5 @@
 ---
-title: PCL-1.12.1 显示点云时出现segfaults
+title: PCL-1.12.1 显示点云时出现 Segmentation Fault
 date: 2024-03-27 15:12:22
 tags:
 - pcl
