@@ -58,19 +58,19 @@
   };
 </script>
 
-  <meta name="description" content="209. 长度最小的子数组题目说明Leetcode题目链接给定一个含有 n 个正整数的数组和一个正整数 target 。找出该数组中满足其和 ≥ target 的长度最小的 连续子数组 [numsl, numsl+1, ..., numsr-1, numsr] ，并返回其长度。如果不存在符合条件的子数组，返回 0 。">
-<meta name="keywords" content="c++,coding,algorithm">
+  <meta name="description" content="ROS 中使用 sensor_msgs::msg::PointCloud2 传输点云数据。开发中会需要对它和其他类型的点云数据进行转换，大部分由 pcl_conversions 提供。pcl::PCLPointCloud2ros msg -&amp;gt; pcl::PCLPointCloud21234567891011#include &amp;lt;pcl/PCLPointCloud2.h&amp;gt;#inclu">
+<meta name="keywords" content="c++,linux,pointcloud,cloud,pcl,ros">
 <meta property="og:type" content="article">
-<meta property="og:title" content="长度最小的子数组">
-<meta property="og:url" content="https://yiwanqingzhou.github.io/algorithm-notes/problems/0209 长度最小的子数组.html">
+<meta property="og:title" content="ROS的PCL点云相关类型转换">
+<meta property="og:url" content="https://yiwanqingzhou.github.io/pointcloud-ros2-message.html">
 <meta property="og:site_name" content="一晚清粥">
-<meta property="og:description" content="209. 长度最小的子数组题目说明Leetcode题目链接给定一个含有 n 个正整数的数组和一个正整数 target 。找出该数组中满足其和 ≥ target 的长度最小的 连续子数组 [numsl, numsl+1, ..., numsr-1, numsr] ，并返回其长度。如果不存在符合条件的子数组，返回 0 。">
+<meta property="og:description" content="ROS 中使用 sensor_msgs::msg::PointCloud2 传输点云数据。开发中会需要对它和其他类型的点云数据进行转换，大部分由 pcl_conversions 提供。pcl::PCLPointCloud2ros msg -&amp;gt; pcl::PCLPointCloud21234567891011#include &amp;lt;pcl/PCLPointCloud2.h&amp;gt;#inclu">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2024-03-29T11:12:46.151Z">
+<meta property="og:updated_time" content="2025-08-18T03:55:45.880Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="长度最小的子数组">
-<meta name="twitter:description" content="209. 长度最小的子数组题目说明Leetcode题目链接给定一个含有 n 个正整数的数组和一个正整数 target 。找出该数组中满足其和 ≥ target 的长度最小的 连续子数组 [numsl, numsl+1, ..., numsr-1, numsr] ，并返回其长度。如果不存在符合条件的子数组，返回 0 。">
-  <link rel="canonical" href="https://yiwanqingzhou.github.io/algorithm-notes/problems/0209 长度最小的子数组">
+<meta name="twitter:title" content="ROS的PCL点云相关类型转换">
+<meta name="twitter:description" content="ROS 中使用 sensor_msgs::msg::PointCloud2 传输点云数据。开发中会需要对它和其他类型的点云数据进行转换，大部分由 pcl_conversions 提供。pcl::PCLPointCloud2ros msg -&amp;gt; pcl::PCLPointCloud21234567891011#include &amp;lt;pcl/PCLPointCloud2.h&amp;gt;#inclu">
+  <link rel="canonical" href="https://yiwanqingzhou.github.io/pointcloud-ros2-message">
 
 
 <script id="page-configurations">
@@ -84,7 +84,7 @@
   };
 </script>
 
-  <title>长度最小的子数组 | 一晚清粥</title>
+  <title>ROS的PCL点云相关类型转换 | 一晚清粥</title>
   
 
 
@@ -248,7 +248,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/algorithm-notes/problems/0209 长度最小的子数组.html">
+    <link itemprop="mainEntityOfPage" href="https://yiwanqingzhou.github.io/pointcloud-ros2-message.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="清粥">
@@ -260,7 +260,7 @@
       <meta itemprop="name" content="一晚清粥">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">长度最小的子数组
+        <h2 class="post-title" itemprop="name headline">ROS的PCL点云相关类型转换
 
           
         </h2>
@@ -276,7 +276,7 @@
                 
               
 
-              <time title="创建时间：2022-09-17 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-17T00:00:00+08:00">2022-09-17</time>
+              <time title="创建时间：2025-08-15 18:57:54" itemprop="dateCreated datePublished" datetime="2025-08-15T18:57:54+08:00">2025-08-15</time>
             </span>
           
             
@@ -287,7 +287,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-29 19:12:46" itemprop="dateModified" datetime="2024-03-29T19:12:46+08:00">2024-03-29</time>
+                <time title="修改时间：2025-08-18 11:55:45" itemprop="dateModified" datetime="2025-08-18T11:55:45+08:00">2025-08-18</time>
               </span>
             
           
@@ -297,7 +297,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/pcl/" itemprop="url" rel="index"><span itemprop="name">pcl</span></a></span>
 
                 
                 
@@ -316,41 +323,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="209-长度最小的子数组"><a href="#209-长度最小的子数组" class="headerlink" title="209. 长度最小的子数组"></a>209. 长度最小的子数组</h1><h2 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h2><p><a href="https://leetcode-cn.com/problems/minimum-size-subarray-sum/" target="_blank" rel="noopener">Leetcode题目链接</a></p><p>给定一个含有 <code>n</code> 个正整数的数组和一个正整数 <code>target</code> 。</p><p>找出该数组中满足其和 <code>≥ target</code> 的长度最小的 <strong>连续子数组</strong> <code>[numsl, numsl+1, ..., numsr-1, numsr]</code> ，并返回其长度。如果不存在符合条件的子数组，返回 <code>0</code> 。</p><a id="more"></a>
+        <p><code>ROS</code> 中使用 <a href="https://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html" target="_blank" rel="noopener">sensor_msgs::msg::PointCloud2</a> 传输点云数据。开发中会需要对它和其他类型的点云数据进行转换，大部分由 <a href="https://github.com/ros-perception/pcl_conversions" target="_blank" rel="noopener">pcl_conversions</a> 提供。</p><h3 id="pcl-PCLPointCloud2"><a href="#pcl-PCLPointCloud2" class="headerlink" title="pcl::PCLPointCloud2"></a>pcl::PCLPointCloud2</h3><p>ros msg -&gt; pcl::PCLPointCloud2</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/PCLPointCloud2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PCLPointCloud2 pcl_pc2;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl_conversions::toPCL(ros_cloud, pcl_pc2);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl_conversions::toPCL(*pc_msg.get(), pcl_pc2);</span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：s = 7, nums = [2,3,1,2,4,3]</span><br><span class="line">输出：2</span><br><span class="line">解释：子数组 [4,3] 是该条件下的长度最小的子数组。</span><br></pre></td></tr></table></figure>
 
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：target = 4, nums = [1,4,4]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+<p>ros msg &lt;- pcl::PCLPointCloud2</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/PCLPointCloud2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PCLPointCloud2 pcl_pc2;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl_conversions::fromPCL(pcl_pc2, ros_cloud);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl_conversions::fromPCL(pcl_pc2, *pc_msg);</span><br></pre></td></tr></table></figure>
 
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：target = 11, nums = [1,1,1,1,1,1,1,1]</span><br><span class="line">输出：0</span><br></pre></td></tr></table></figure>
+<h3 id="pcl-PointCloud"><a href="#pcl-PointCloud" class="headerlink" title="pcl::PointCloud"></a>pcl::PointCloud<t></t></h3><p>ros msg -&gt; pcl::PointCloud<t></t></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/pcl_base.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_cloud.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr cloud_ptr;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl::fromROSMsg(ros_cloud, *cloud_ptr);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl::fromROSMsg(*pc_msg.get(), *cloud_ptr);</span><br></pre></td></tr></table></figure>
 
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= target &lt;= 109</code></li>
-<li><code>1 &lt;= nums.length &lt;= 105</code></li>
-<li><code>1 &lt;= nums[i] &lt;= 105</code></li>
-</ul>
-<p><strong>进阶：</strong></p>
-<ul>
-<li>如果你已经实现 <code>O(n)</code> 时间复杂度的解法, 请尝试设计一个 <code>O(nlogn)</code> 时间复杂度的解法。</li>
-</ul>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="暴力枚举"><a href="#暴力枚举" class="headerlink" title="暴力枚举"></a>暴力枚举</h3><ul>
-<li>时间复杂度: O(n^2)</li>
-</ul>
-<h3 id="双指针：滑动窗口"><a href="#双指针：滑动窗口" class="headerlink" title="双指针：滑动窗口"></a>双指针：滑动窗口</h3><p>通过不断地调节子数组的起始位置和终止位置，（<code>&gt;= target</code> 时起始位置向前，<code>&lt; target</code> 时终止位置向前，）从而遍历所有满足需求的子数组，比较长度得出结果。</p>
-<ul>
-<li>时间复杂度: O(n)</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> target, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> result = nums.size() + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> length = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> right = <span class="number">0</span>; right &lt; nums.size(); right++) &#123;</span><br><span class="line">    sum += nums[right];</span><br><span class="line">    length++;</span><br><span class="line">    <span class="keyword">while</span> (sum &gt;= target) &#123;</span><br><span class="line">      result = <span class="built_in">std</span>::min(result, length);</span><br><span class="line"></span><br><span class="line">      sum = sum - nums[left++];</span><br><span class="line">      length--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> result &gt; nums.size() ? <span class="number">0</span> : result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ros msg &lt;- pcl::PointCloud<t></t></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/pcl_base.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_cloud.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr cloud_ptr;</span><br><span class="line"><span class="keyword">if</span> (!cloud_ptr || cloud_ptr-&gt;points.empty())</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl::toROSMsg(*cloud_ptr, ros_cloud);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl::toROSMsg(*cloud_ptr, *pc_msg);</span><br></pre></td></tr></table></figure>
 
-<h3 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h3><ul>
-<li>时间复杂度: O(nlogn)</li>
-</ul>
-<!-- flag of hidden posts -->
+
     </div>
 
     
@@ -367,15 +353,37 @@
             
               <a href="/tags/c/" rel="tag"># c++</a>
             
-              <a href="/tags/coding/" rel="tag"># coding</a>
+              <a href="/tags/linux/" rel="tag"># linux</a>
             
-              <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+              <a href="/tags/pointcloud/" rel="tag"># pointcloud</a>
+            
+              <a href="/tags/cloud/" rel="tag"># cloud</a>
+            
+              <a href="/tags/pcl/" rel="tag"># pcl</a>
+            
+              <a href="/tags/ros/" rel="tag"># ros</a>
             
           </div>
         
 
         
 
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/format-cmake-file.html" rel="next" title="对cmake文件自动格式化">
+                  <i class="fa fa-chevron-left"></i> 对cmake文件自动格式化
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
       </footer>
     
   </div>
@@ -420,7 +428,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#209-长度最小的子数组"><span class="nav-number">1.</span> <span class="nav-text">209. 长度最小的子数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目说明"><span class="nav-number">1.1.</span> <span class="nav-text">题目说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">1.2.</span> <span class="nav-text">解题思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力枚举"><span class="nav-number">1.2.1.</span> <span class="nav-text">暴力枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双指针：滑动窗口"><span class="nav-number">1.2.2.</span> <span class="nav-text">双指针：滑动窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分"><span class="nav-number">1.2.3.</span> <span class="nav-text">二分</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#pcl-PCLPointCloud2"><span class="nav-number">1.</span> <span class="nav-text">pcl::PCLPointCloud2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pcl-PointCloud"><span class="nav-number">2.</span> <span class="nav-text">pcl::PointCloud</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
