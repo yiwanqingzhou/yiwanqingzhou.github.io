@@ -6,9 +6,10 @@ tags:
   - 点云
   - TF
   - 可视化
+  - visualization
 date: 2025-08-18 12:39:00
 categories:
-  - [ROS]
+  - ROS
 keywords:
 description:
 ---

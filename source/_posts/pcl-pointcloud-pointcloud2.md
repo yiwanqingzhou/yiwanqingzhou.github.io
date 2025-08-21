@@ -3,22 +3,20 @@ title: PointCloud<PointT> 和 PCLPointCloud2 的区别
 date: 2024-04-08 16:16:43
 tags:
 - pcl
-- ros
+- ROS
 categories:
 - pcl
 keywords:
 - pcl
 - pointcloud
 - 点云
-- ros
+- ROS
 description:
 ---
 
 
 
 `PCL` 中有两种表示点云的数据结构，分别为 `PointCloud<PointT>` 和 `PCLPointCloud2`。官方注释中常称为 `a pcl::PointCloud<T> object` 以及 `a PCLPointCloud2 binary data blob`。
-
-
 
 两者的最大区别是**储存数据的方式**：
 
@@ -28,7 +26,7 @@ description:
   template <typename PointT>
   class PointCloud {
   public:
-  	std::vector<PointT, Eigen::aligned_allocator<PointT>> points;
+   std::vector<PointT, Eigen::aligned_allocator<PointT>> points;
       ...
   };
   ```
@@ -46,8 +44,6 @@ description:
 
 <!-- more -->
 
-
-
 `PCL` 中提供了两者互换的接口：
 
 ```C++
@@ -57,8 +53,6 @@ fromPCLPointCloud2 (const pcl::PCLPointCloud2& msg, pcl::PointCloud<PointT>& clo
 template<typename PointT> void
 toPCLPointCloud2 (const pcl::PointCloud<PointT>& cloud, pcl::PCLPointCloud2& msg);
 ```
-
-
 
 `ROS` 中使用 [sensor_msgs::msg::PointCloud2](https://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html) 传输点云数据，实际结构与 `PCLPointCloud2` 一致。在 `perception_pcl/pcl_conversions` 中提供了一些互换的接口：
 
@@ -85,4 +79,3 @@ void toROSMsg(const pcl::PointCloud<T> &pcl_cloud, sensor_msgs::msg::PointCloud2
     pcl_conversions::moveFromPCL(pcl_pc2, cloud);
 }
 ```
-

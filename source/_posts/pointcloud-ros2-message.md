@@ -5,12 +5,13 @@ tags:
 - pcl
 - c++
 - linux
-- ros
+- ROS
 - cloud
 - pointcloud
 categories:
 - [pcl]
 - [c++]
+- [ROS]
 keywords:
 description:
 ---
