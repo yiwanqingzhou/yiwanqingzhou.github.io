@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://yiwanqingzhou.github.io/rviz-cloud.html</loc>
+    <lastmod>2025-08-21</lastmod>
+  </url>
+  <url>
     <loc>https://yiwanqingzhou.github.io/pointcloud-ros2-message.html</loc>
     <lastmod>2025-08-18</lastmod>
   </url>
