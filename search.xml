@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>leetcode刷题记录</title>
+    <url>/algorithm-notes.html</url>
+    <content><![CDATA[<ul>
+<li><p><a href="./algorithm-notes/content/时间复杂度.html">时间复杂度</a></p>
+</li>
+<li><p><a href="./algorithm-notes/content/二分法.html">二分算法</a></p>
+</li>
+<li><p><a href="./algorithm-notes/content/双指针算法.html">双指针算法</a></p>
+</li>
+<li><p><a href="./algorithm-notes/content/排序.html">排序算法</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>c++</category>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>coding</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Effective C++ 笔记</title>
     <url>/Effective-Cpp.html</url>
     <content><![CDATA[<h2 id="让自己习惯C"><a href="#让自己习惯C" class="headerlink" title="让自己习惯C++"></a>让自己习惯C++</h2><h3 id="1-视C-为一个语言联邦"><a href="#1-视C-为一个语言联邦" class="headerlink" title="1. 视C++为一个语言联邦"></a>1. 视C++为一个语言联邦</h3><p>C++是从四个次语言组成的联邦政府，每个次语言都有自己的规则。</p><ul>
@@ -593,50 +616,6 @@
       </tags>
   </entry>
   <entry>
-    <title>leetcode刷题记录</title>
-    <url>/algorithm-notes.html</url>
-    <content><![CDATA[<ul>
-<li><p><a href="./algorithm-notes/content/时间复杂度.html">时间复杂度</a></p>
-</li>
-<li><p><a href="./algorithm-notes/content/二分法.html">二分算法</a></p>
-</li>
-<li><p><a href="./algorithm-notes/content/双指针算法.html">双指针算法</a></p>
-</li>
-<li><p><a href="./algorithm-notes/content/排序.html">排序算法</a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>c++</category>
-        <category>algorithm</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>coding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>clang-format格式文件存档</title>
-    <url>/clang_format.html</url>
-    <content><![CDATA[<p>常用 <code>.clang-format</code> <code>style</code> 文件存档</p>
-<a id="more"></a>
-
-<h5 id="Google-Style"><a href="#Google-Style" class="headerlink" title="Google Style"></a>Google Style</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BasedOnStyle: Google</span><br><span class="line">IndentWidth: 2</span><br><span class="line">ColumnLimit: 80</span><br><span class="line">DerivePointerAlignment: false</span><br><span class="line">PointerAlignment: Left</span><br></pre></td></tr></table></figure>
-
-<h5 id="LLVM-Style"><a href="#LLVM-Style" class="headerlink" title="LLVM Style"></a>LLVM Style</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BasedOnStyle:  LLVM</span><br><span class="line">ColumnLimit:    80</span><br><span class="line">AlignAfterOpenBracket: AlwaysBreak</span><br><span class="line">AlignEscapedNewlines: Left</span><br><span class="line">AllowShortFunctionsOnASingleLine: InlineOnly</span><br><span class="line">AlwaysBreakTemplateDeclarations: Yes</span><br><span class="line">BinPackArguments: false</span><br><span class="line">BinPackParameters: false</span><br><span class="line">BreakBeforeBraces: Allman</span><br><span class="line">ConstructorInitializerAllOnOneLineOrOnePerLine: true</span><br><span class="line">IncludeBlocks:   Preserve</span><br><span class="line">IndentCaseLabels: true</span><br><span class="line">NamespaceIndentation: All</span><br><span class="line">PointerAlignment: Left</span><br><span class="line">SortIncludes: false</span><br><span class="line">TabWidth:        2</span><br></pre></td></tr></table></figure>
-
-<p><a href="./format_code.html">使用参考</a></p>
-]]></content>
-      <categories>
-        <category>memo</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>clang</tag>
-        <tag>format</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++ 使用boost::program_options解析命令行选项</title>
     <url>/boost-options-description.html</url>
     <content><![CDATA[<p>Boost.ProgramOptions是Boost中一个专门用来解析命令行的库，其目标是轻松的解析命令行选项。</p>
@@ -673,6 +652,27 @@
       <tags>
         <tag>cmake</tag>
         <tag>编译</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>clang-format格式文件存档</title>
+    <url>/clang_format.html</url>
+    <content><![CDATA[<p>常用 <code>.clang-format</code> <code>style</code> 文件存档</p>
+<a id="more"></a>
+
+<h5 id="Google-Style"><a href="#Google-Style" class="headerlink" title="Google Style"></a>Google Style</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BasedOnStyle: Google</span><br><span class="line">IndentWidth: 2</span><br><span class="line">ColumnLimit: 80</span><br><span class="line">DerivePointerAlignment: false</span><br><span class="line">PointerAlignment: Left</span><br></pre></td></tr></table></figure>
+
+<h5 id="LLVM-Style"><a href="#LLVM-Style" class="headerlink" title="LLVM Style"></a>LLVM Style</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BasedOnStyle:  LLVM</span><br><span class="line">ColumnLimit:    80</span><br><span class="line">AlignAfterOpenBracket: AlwaysBreak</span><br><span class="line">AlignEscapedNewlines: Left</span><br><span class="line">AllowShortFunctionsOnASingleLine: InlineOnly</span><br><span class="line">AlwaysBreakTemplateDeclarations: Yes</span><br><span class="line">BinPackArguments: false</span><br><span class="line">BinPackParameters: false</span><br><span class="line">BreakBeforeBraces: Allman</span><br><span class="line">ConstructorInitializerAllOnOneLineOrOnePerLine: true</span><br><span class="line">IncludeBlocks:   Preserve</span><br><span class="line">IndentCaseLabels: true</span><br><span class="line">NamespaceIndentation: All</span><br><span class="line">PointerAlignment: Left</span><br><span class="line">SortIncludes: false</span><br><span class="line">TabWidth:        2</span><br></pre></td></tr></table></figure>
+
+<p><a href="./format_code.html">使用参考</a></p>
+]]></content>
+      <categories>
+        <category>memo</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>clang</tag>
+        <tag>format</tag>
       </tags>
   </entry>
   <entry>
@@ -899,6 +899,38 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux 解压缩rar包</title>
+    <url>/extract_from_rar.html</url>
+    <content><![CDATA[<h4 id="下载rar软件安装包"><a href="#下载rar软件安装包" class="headerlink" title="下载rar软件安装包"></a>下载rar软件安装包</h4><ol>
+<li><p>直接从 <a href="https://www.rarlab.com/download.htm" target="_blank" rel="noopener">rarlab</a> 下载安装包</p>
+</li>
+<li><p>通过命令行下载</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://www.rarlab.com/rar/rarlinux-x64-6.0.1.tar.gz  <span class="comment"># 64位</span></span><br><span class="line">wget https://www.rarlab.com/rar/rarlinux-3.8.0.tar.gz	   <span class="comment"># 32位</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar zxvf rarlinux-x64-6.0.1.tar.gz</span><br><span class="line"><span class="built_in">cd</span> rar</span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<h4 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rar x xxx.rar  <span class="comment"># Extract files with full path</span></span><br><span class="line">rar e xxx.rar  <span class="comment"># Extract files without archived paths</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+
+
+<h4 id="将xxx目录压缩为xxx-rar"><a href="#将xxx目录压缩为xxx-rar" class="headerlink" title="将xxx目录压缩为xxx.rar"></a>将xxx目录压缩为xxx.rar</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rar a xxx.rar xxx</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>memo</category>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>uncompress</tag>
+        <tag>rar</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>对cmake文件自动格式化</title>
     <url>/format-cmake-file.html</url>
     <content><![CDATA[<h2 id="使用-cmake-format-工具"><a href="#使用-cmake-format-工具" class="headerlink" title="使用 cmake-format 工具"></a>使用 cmake-format 工具</h2><h4 id="安装运行"><a href="#安装运行" class="headerlink" title="安装运行"></a>安装运行</h4><p>安装</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install cmake-format</span><br></pre></td></tr></table></figure><p>运行格式化</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cmake-format -i CMakeLists.txt</span><br></pre></td></tr></table></figure><h4 id="VSCode中安装对应的-cmake-format-插件"><a href="#VSCode中安装对应的-cmake-format-插件" class="headerlink" title="VSCode中安装对应的 cmake-format 插件"></a>VSCode中安装对应的 cmake-format 插件</h4><p><img src="format-cmake-file/1.png" alt="1"></p><p>安装后检查或设置一下 <code>cmake-foramt</code> 的路径</p><p><img src="format-cmake-file/2.png" alt="2"></p><h4 id="使用自定义配置文件"><a href="#使用自定义配置文件" class="headerlink" title="使用自定义配置文件"></a>使用自定义配置文件</h4><p><code>cmake-format</code> 支持自定义配置文件，支持<code>.cmake-format.py</code>和<code>.cmake-format.yaml</code>。</p><a id="more"></a>
@@ -918,8 +950,8 @@
         <category>linux</category>
       </categories>
       <tags>
-        <tag>format</tag>
         <tag>cmake</tag>
+        <tag>format</tag>
         <tag>linux</tag>
       </tags>
   </entry>
@@ -999,79 +1031,6 @@
       <tags>
         <tag>linux</tag>
         <tag>ftp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux 解压缩rar包</title>
-    <url>/extract_from_rar.html</url>
-    <content><![CDATA[<h4 id="下载rar软件安装包"><a href="#下载rar软件安装包" class="headerlink" title="下载rar软件安装包"></a>下载rar软件安装包</h4><ol>
-<li><p>直接从 <a href="https://www.rarlab.com/download.htm" target="_blank" rel="noopener">rarlab</a> 下载安装包</p>
-</li>
-<li><p>通过命令行下载</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://www.rarlab.com/rar/rarlinux-x64-6.0.1.tar.gz  <span class="comment"># 64位</span></span><br><span class="line">wget https://www.rarlab.com/rar/rarlinux-3.8.0.tar.gz	   <span class="comment"># 32位</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar zxvf rarlinux-x64-6.0.1.tar.gz</span><br><span class="line"><span class="built_in">cd</span> rar</span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-
-<h4 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rar x xxx.rar  <span class="comment"># Extract files with full path</span></span><br><span class="line">rar e xxx.rar  <span class="comment"># Extract files without archived paths</span></span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-
-
-<h4 id="将xxx目录压缩为xxx-rar"><a href="#将xxx目录压缩为xxx-rar" class="headerlink" title="将xxx目录压缩为xxx.rar"></a>将xxx目录压缩为xxx.rar</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rar a xxx.rar xxx</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>memo</category>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>uncompress</tag>
-        <tag>rar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OpenCV图像处理1-使用高通滤波进行边缘检测</title>
-    <url>/image-processing-high-pass-filter.html</url>
-    <content><![CDATA[<h2 id="高通滤波-通常使用来检测边缘"><a href="#高通滤波-通常使用来检测边缘" class="headerlink" title="高通滤波: 通常使用来检测边缘"></a>高通滤波: 通常使用来检测边缘</h2><h3 id="常见算子"><a href="#常见算子" class="headerlink" title="常见算子"></a>常见算子</h3><h5 id="sobel算子"><a href="#sobel算子" class="headerlink" title="sobel算子"></a>sobel算子</h5><p><img src="image-processing-high-pass-filter/math-1.png" alt="math-1"></p><h5 id="Scharr算子-更敏感-细致"><a href="#Scharr算子-更敏感-细致" class="headerlink" title="Scharr算子 (更敏感/细致)"></a>Scharr算子 (更敏感/细致)</h5><p><img src="image-processing-high-pass-filter/math-2.png" alt="math-2"></p><h5 id="Laplacian-拉普拉斯-算子-对噪声较敏感，一般搭配其他操作"><a href="#Laplacian-拉普拉斯-算子-对噪声较敏感，一般搭配其他操作" class="headerlink" title="Laplacian(拉普拉斯)算子 (对噪声较敏感，一般搭配其他操作)"></a>Laplacian(拉普拉斯)算子 (对噪声较敏感，一般搭配其他操作)</h5><p><img src="image-processing-high-pass-filter/math-3.png" alt="math-3"></p><h3 id="具体代码例子"><a href="#具体代码例子" class="headerlink" title="具体代码例子"></a>具体代码例子</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> matplotlib.image <span class="keyword">as</span> mpimg</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read in the image</span></span><br><span class="line">image = cv2.imread(<span class="string">'images/curved_lane.jpg'</span>)</span><br><span class="line">image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)</span><br><span class="line"></span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'original img'</span>)</span><br><span class="line">p1.imshow(image)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'gray img'</span>)</span><br><span class="line">p2.imshow(gray, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-
-<p><img src="image-processing-high-pass-filter/1.png" alt="1"></p>
-<h5 id="自定义filter"><a href="#自定义filter" class="headerlink" title="自定义filter"></a>自定义filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Create a custom kernel</span></span><br><span class="line"><span class="comment"># 3x3 array for edge detection</span></span><br><span class="line"></span><br><span class="line">sobel_x= np.array([[<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">                   [<span class="number">-2</span>, <span class="number">0</span>, <span class="number">2</span>],</span><br><span class="line">                   [<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">sobel_y= np.array([[<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-1</span>],</span><br><span class="line">                   [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                   [<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># laplacian, edge filter</span></span><br><span class="line">laplacian=np.array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">                    [<span class="number">1</span>,<span class="number">-4</span>, <span class="number">1</span>],</span><br><span class="line">                    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]])</span><br></pre></td></tr></table></figure>
-
-<h5 id="单向filter"><a href="#单向filter" class="headerlink" title="单向filter"></a>单向filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Filter the image using filter2D, which has inputs: (grayscale image, bit-depth, kernel)  </span></span><br><span class="line">filtered_x_image = cv2.filter2D(gray, <span class="number">-1</span>, sobel_x)</span><br><span class="line">filtered_y_image = cv2.filter2D(gray, <span class="number">-1</span>, sobel_y)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'filtered x'</span>)</span><br><span class="line">p1.imshow(filtered_x_image, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'filtered y'</span>)</span><br><span class="line">p2.imshow(filtered_y_image, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="image-processing-high-pass-filter/2.png" alt="2"></p>
-<h5 id="双向filter"><a href="#双向filter" class="headerlink" title="双向filter"></a>双向filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sobel_x_img = cv2.filter2D(gray, cv2.CV_64F, sobel_x) <span class="comment"># CV_64F 可含负数</span></span><br><span class="line">sobel_y_img = cv2.filter2D(gray, cv2.CV_64F, sobel_y)</span><br><span class="line"></span><br><span class="line">sobel_x_img = cv2.convertScaleAbs(sobel_x_img)   <span class="comment"># 将负数取绝对值</span></span><br><span class="line">sobel_y_img = cv2.convertScaleAbs(sobel_y_img)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'sobel_x_img'</span>)</span><br><span class="line">p1.imshow(sobel_x_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line">p2.set_title(<span class="string">'sobel_y_img'</span>)</span><br><span class="line">p2.imshow(sobel_y_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="image-processing-high-pass-filter/7.png" alt="7"></p>
-<p>通过和上面的结果对比，可以发现，上面的结果是单向的，而下面的结果是双向的。这是由于直接使用算子滤波时会<strong>产生负数</strong>，而在超出 <code>0-255</code> 范围时<strong>被截取</strong>。这也是为什么在下面的处理过程中需要<strong>先转换成 <code>CV_64F</code> (含负数) 的格式后，再取绝对值</strong>。</p>
-<h5 id="使用现成的接口"><a href="#使用现成的接口" class="headerlink" title="使用现成的接口"></a>使用现成的接口</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 也可以直接使用 cv2.Sobel，效果一致</span></span><br><span class="line"><span class="comment"># dst = cv2.Sobel(src, ddepth, dx, dy, ksize)</span></span><br><span class="line"><span class="comment"># ddepth: depth of image</span></span><br><span class="line"><span class="comment"># dx, dy: 0/1, 指定方向 </span></span><br><span class="line"><span class="comment"># ksize: kernal size</span></span><br><span class="line"></span><br><span class="line">sobel_x_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>, ksize=<span class="number">3</span>) </span><br><span class="line">sobel_x_img = cv2.convertScaleAbs(sobel_x_img)</span><br><span class="line">sobel_y_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>, ksize=<span class="number">3</span>)</span><br><span class="line">sobel_y_img = cv2.convertScaleAbs(sobel_y_img)</span><br></pre></td></tr></table></figure>
-
-<h5 id="合并不同方向"><a href="#合并不同方向" class="headerlink" title="合并不同方向"></a>合并不同方向</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># combine x and y</span></span><br><span class="line">sobel_img = cv2.addWeighted(sobel_x_img, <span class="number">0.5</span>, sobel_y_img, <span class="number">0.5</span>, <span class="number">0</span>)</span><br><span class="line">plt.imshow(sobel_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="image-processing-high-pass-filter/8.png" alt="8"></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># not that good to compute xy together directly</span></span><br><span class="line">sobel_xy_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">1</span>, ksize=<span class="number">3</span>)</span><br><span class="line">sobel_xy_img = cv2.convertScaleAbs(sobel_xy_img)</span><br><span class="line">plt.imshow(sobel_xy_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="image-processing-high-pass-filter/9.png" alt="9"></p>
-<p>很明显，<strong>分别计算 x 和 y 再求和的效果比一次性计算的效果要好很多</strong>。</p>
-<h5 id="不同算子的结果对比："><a href="#不同算子的结果对比：" class="headerlink" title="不同算子的结果对比："></a>不同算子的结果对比：</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">scharr_x_img = cv2.Scharr(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>)</span><br><span class="line">scharr_y_img = cv2.Scharr(gray, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">scharr_x_img = cv2.convertScaleAbs(scharr_x_img)</span><br><span class="line">scharr_y_img = cv2.convertScaleAbs(scharr_y_img)</span><br><span class="line">scharr_img = cv2.addWeighted(scharr_x_img, <span class="number">0.5</span>, scharr_y_img, <span class="number">0.5</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">laplacian_img = cv2.Laplacian(gray, cv2.CV_64F)</span><br><span class="line">laplacian_img = cv2.convertScaleAbs(laplacian_img)</span><br><span class="line"></span><br><span class="line">f, (p1, p2, p3) = plt.subplots(<span class="number">1</span>, <span class="number">3</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'sobel'</span>)</span><br><span class="line">p1.imshow(sobel_filtered_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'scharr'</span>)</span><br><span class="line">p2.imshow(scharr_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p3.set_title(<span class="string">'laplacian'</span>)</span><br><span class="line">p3.imshow(laplacian_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="image-processing-high-pass-filter/10.png" alt="10"></p>
-]]></content>
-      <categories>
-        <category>cv</category>
-      </categories>
-      <tags>
-        <tag>图像处理</tag>
-        <tag>cv</tag>
-        <tag>opencv</tag>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -1180,6 +1139,47 @@
       </tags>
   </entry>
   <entry>
+    <title>OpenCV图像处理1-使用高通滤波进行边缘检测</title>
+    <url>/image-processing-high-pass-filter.html</url>
+    <content><![CDATA[<h2 id="高通滤波-通常使用来检测边缘"><a href="#高通滤波-通常使用来检测边缘" class="headerlink" title="高通滤波: 通常使用来检测边缘"></a>高通滤波: 通常使用来检测边缘</h2><h3 id="常见算子"><a href="#常见算子" class="headerlink" title="常见算子"></a>常见算子</h3><h5 id="sobel算子"><a href="#sobel算子" class="headerlink" title="sobel算子"></a>sobel算子</h5><p><img src="image-processing-high-pass-filter/math-1.png" alt="math-1"></p><h5 id="Scharr算子-更敏感-细致"><a href="#Scharr算子-更敏感-细致" class="headerlink" title="Scharr算子 (更敏感/细致)"></a>Scharr算子 (更敏感/细致)</h5><p><img src="image-processing-high-pass-filter/math-2.png" alt="math-2"></p><h5 id="Laplacian-拉普拉斯-算子-对噪声较敏感，一般搭配其他操作"><a href="#Laplacian-拉普拉斯-算子-对噪声较敏感，一般搭配其他操作" class="headerlink" title="Laplacian(拉普拉斯)算子 (对噪声较敏感，一般搭配其他操作)"></a>Laplacian(拉普拉斯)算子 (对噪声较敏感，一般搭配其他操作)</h5><p><img src="image-processing-high-pass-filter/math-3.png" alt="math-3"></p><h3 id="具体代码例子"><a href="#具体代码例子" class="headerlink" title="具体代码例子"></a>具体代码例子</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> matplotlib.image <span class="keyword">as</span> mpimg</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read in the image</span></span><br><span class="line">image = cv2.imread(<span class="string">'images/curved_lane.jpg'</span>)</span><br><span class="line">image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)</span><br><span class="line"></span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'original img'</span>)</span><br><span class="line">p1.imshow(image)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'gray img'</span>)</span><br><span class="line">p2.imshow(gray, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+<p><img src="image-processing-high-pass-filter/1.png" alt="1"></p>
+<h5 id="自定义filter"><a href="#自定义filter" class="headerlink" title="自定义filter"></a>自定义filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Create a custom kernel</span></span><br><span class="line"><span class="comment"># 3x3 array for edge detection</span></span><br><span class="line"></span><br><span class="line">sobel_x= np.array([[<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">                   [<span class="number">-2</span>, <span class="number">0</span>, <span class="number">2</span>],</span><br><span class="line">                   [<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">sobel_y= np.array([[<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-1</span>],</span><br><span class="line">                   [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                   [<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># laplacian, edge filter</span></span><br><span class="line">laplacian=np.array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">                    [<span class="number">1</span>,<span class="number">-4</span>, <span class="number">1</span>],</span><br><span class="line">                    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]])</span><br></pre></td></tr></table></figure>
+
+<h5 id="单向filter"><a href="#单向filter" class="headerlink" title="单向filter"></a>单向filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Filter the image using filter2D, which has inputs: (grayscale image, bit-depth, kernel)  </span></span><br><span class="line">filtered_x_image = cv2.filter2D(gray, <span class="number">-1</span>, sobel_x)</span><br><span class="line">filtered_y_image = cv2.filter2D(gray, <span class="number">-1</span>, sobel_y)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'filtered x'</span>)</span><br><span class="line">p1.imshow(filtered_x_image, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'filtered y'</span>)</span><br><span class="line">p2.imshow(filtered_y_image, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-high-pass-filter/2.png" alt="2"></p>
+<h5 id="双向filter"><a href="#双向filter" class="headerlink" title="双向filter"></a>双向filter</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sobel_x_img = cv2.filter2D(gray, cv2.CV_64F, sobel_x) <span class="comment"># CV_64F 可含负数</span></span><br><span class="line">sobel_y_img = cv2.filter2D(gray, cv2.CV_64F, sobel_y)</span><br><span class="line"></span><br><span class="line">sobel_x_img = cv2.convertScaleAbs(sobel_x_img)   <span class="comment"># 将负数取绝对值</span></span><br><span class="line">sobel_y_img = cv2.convertScaleAbs(sobel_y_img)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'sobel_x_img'</span>)</span><br><span class="line">p1.imshow(sobel_x_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line">p2.set_title(<span class="string">'sobel_y_img'</span>)</span><br><span class="line">p2.imshow(sobel_y_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-high-pass-filter/7.png" alt="7"></p>
+<p>通过和上面的结果对比，可以发现，上面的结果是单向的，而下面的结果是双向的。这是由于直接使用算子滤波时会<strong>产生负数</strong>，而在超出 <code>0-255</code> 范围时<strong>被截取</strong>。这也是为什么在下面的处理过程中需要<strong>先转换成 <code>CV_64F</code> (含负数) 的格式后，再取绝对值</strong>。</p>
+<h5 id="使用现成的接口"><a href="#使用现成的接口" class="headerlink" title="使用现成的接口"></a>使用现成的接口</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 也可以直接使用 cv2.Sobel，效果一致</span></span><br><span class="line"><span class="comment"># dst = cv2.Sobel(src, ddepth, dx, dy, ksize)</span></span><br><span class="line"><span class="comment"># ddepth: depth of image</span></span><br><span class="line"><span class="comment"># dx, dy: 0/1, 指定方向 </span></span><br><span class="line"><span class="comment"># ksize: kernal size</span></span><br><span class="line"></span><br><span class="line">sobel_x_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>, ksize=<span class="number">3</span>) </span><br><span class="line">sobel_x_img = cv2.convertScaleAbs(sobel_x_img)</span><br><span class="line">sobel_y_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>, ksize=<span class="number">3</span>)</span><br><span class="line">sobel_y_img = cv2.convertScaleAbs(sobel_y_img)</span><br></pre></td></tr></table></figure>
+
+<h5 id="合并不同方向"><a href="#合并不同方向" class="headerlink" title="合并不同方向"></a>合并不同方向</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># combine x and y</span></span><br><span class="line">sobel_img = cv2.addWeighted(sobel_x_img, <span class="number">0.5</span>, sobel_y_img, <span class="number">0.5</span>, <span class="number">0</span>)</span><br><span class="line">plt.imshow(sobel_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-high-pass-filter/8.png" alt="8"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># not that good to compute xy together directly</span></span><br><span class="line">sobel_xy_img = cv2.Sobel(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">1</span>, ksize=<span class="number">3</span>)</span><br><span class="line">sobel_xy_img = cv2.convertScaleAbs(sobel_xy_img)</span><br><span class="line">plt.imshow(sobel_xy_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-high-pass-filter/9.png" alt="9"></p>
+<p>很明显，<strong>分别计算 x 和 y 再求和的效果比一次性计算的效果要好很多</strong>。</p>
+<h5 id="不同算子的结果对比："><a href="#不同算子的结果对比：" class="headerlink" title="不同算子的结果对比："></a>不同算子的结果对比：</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">scharr_x_img = cv2.Scharr(gray, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>)</span><br><span class="line">scharr_y_img = cv2.Scharr(gray, cv2.CV_64F, <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">scharr_x_img = cv2.convertScaleAbs(scharr_x_img)</span><br><span class="line">scharr_y_img = cv2.convertScaleAbs(scharr_y_img)</span><br><span class="line">scharr_img = cv2.addWeighted(scharr_x_img, <span class="number">0.5</span>, scharr_y_img, <span class="number">0.5</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">laplacian_img = cv2.Laplacian(gray, cv2.CV_64F)</span><br><span class="line">laplacian_img = cv2.convertScaleAbs(laplacian_img)</span><br><span class="line"></span><br><span class="line">f, (p1, p2, p3) = plt.subplots(<span class="number">1</span>, <span class="number">3</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'sobel'</span>)</span><br><span class="line">p1.imshow(sobel_filtered_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'scharr'</span>)</span><br><span class="line">p2.imshow(scharr_img, cmap=<span class="string">'gray'</span>)</span><br><span class="line"></span><br><span class="line">p3.set_title(<span class="string">'laplacian'</span>)</span><br><span class="line">p3.imshow(laplacian_img, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-processing-high-pass-filter/10.png" alt="10"></p>
+]]></content>
+      <categories>
+        <category>cv</category>
+      </categories>
+      <tags>
+        <tag>图像处理</tag>
+        <tag>cv</tag>
+        <tag>opencv</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ubuntu环境下安装使用hexo</title>
     <url>/install-hexo.html</url>
     <content><![CDATA[<h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install git</span><br><span class="line">git config --global user.name <span class="string">"Your Name"</span></span><br><span class="line">git config --global user.email <span class="string">"youremail@domain.com"</span></span><br></pre></td></tr></table></figure><h2 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install ufw</span><br><span class="line">sudo ufw allow <span class="string">"OpenSSH"</span></span><br><span class="line">sudo ufw <span class="built_in">enable</span></span><br><span class="line">sudo ufw allow http</span><br><span class="line">sudo ufw allow https</span><br></pre></td></tr></table></figure><a id="more"></a>
@@ -1206,6 +1206,33 @@
         <tag>linux</tag>
         <tag>environment</tag>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenCV Mat像素的遍历方法</title>
+    <url>/mat-traverse.html</url>
+    <content><![CDATA[<h2 id="OpenCV像素遍历常用的几种方法"><a href="#OpenCV像素遍历常用的几种方法" class="headerlink" title="OpenCV像素遍历常用的几种方法"></a>OpenCV像素遍历常用的几种方法</h2><p>以从 organized 的点云提取 RGB 信息为例</p><h3 id="动态地址at"><a href="#动态地址at" class="headerlink" title="动态地址at"></a>动态地址at</h3><p>基于Mat对象的随机像素访问 API 实现，通过行列索引方式遍历每个像素值。这种方法速度较慢，不太适合用于像素遍历。</p><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_1</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">0</span>] = pt.b;</span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">1</span>] = pt.g;</span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">2</span>] = pt.r;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<h3 id="行指针"><a href="#行指针" class="headerlink" title="行指针"></a>行指针</h3><p>基于Mat对象的行随机访问指针方式实现对每个像素的遍历。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_2</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    cv::Vec3b *ptr = image.ptr&lt;cv::Vec3b&gt;(row);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      cv::Vec3b &amp;pixel = ptr[col];</span><br><span class="line">      pixel[<span class="number">0</span>] = pt.b;</span><br><span class="line">      pixel[<span class="number">1</span>] = pt.g;</span><br><span class="line">      pixel[<span class="number">2</span>] = pt.r;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="uchar-行指针"><a href="#uchar-行指针" class="headerlink" title="uchar 行指针"></a>uchar 行指针</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_3</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    uchar *uc_pixel = image.ptr(row);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      uc_pixel[<span class="number">0</span>] = pt.b;</span><br><span class="line">      uc_pixel[<span class="number">1</span>] = pt.g;</span><br><span class="line">      uc_pixel[<span class="number">2</span>] = pt.r;</span><br><span class="line">      uc_pixel += <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="将图像完全展开"><a href="#将图像完全展开" class="headerlink" title="将图像完全展开"></a>将图像完全展开</h3><p>一般图像行与行之间往往存储是不连续的，但是有些图像可以是连续的，Mat提供了一个检测图像是否连续的函数<code>isContinuous()</code>。当图像连通时，我们就可以把图像完全展开，看成是一行进行处理。</p>
+<h3 id="速度比较"><a href="#速度比较" class="headerlink" title="速度比较"></a>速度比较</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> cloud_path = <span class="string">"test.pcd"</span></span><br><span class="line">  pcl::PointCloud&lt;PointT&gt;::Ptr cloud(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;);</span><br><span class="line">  pcl_utils::load_pcd(cloud_path, *cloud);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *cloud &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_1;</span><br><span class="line">  extract_1(cloud, img_1);</span><br><span class="line">  <span class="keyword">auto</span> end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  <span class="keyword">auto</span> elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_2;</span><br><span class="line">  extract_2(cloud, img_2);</span><br><span class="line">  end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_3;</span><br><span class="line">  extract_3(cloud, img_3);</span><br><span class="line">  end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"3 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出 :</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Load pcd file with 1228800 data points.</span><br><span class="line">header: seq: 0 stamp: 0 frame_id: </span><br><span class="line"></span><br><span class="line">points[]: 1228800</span><br><span class="line">width: 1280</span><br><span class="line">height: 960</span><br><span class="line">is_dense: 0</span><br><span class="line">sensor origin (xyz): [0, 0, 0] / orientation (xyzw): [0, 0, 0, 1]</span><br><span class="line"></span><br><span class="line">1 elapsed time: 0.0199077s</span><br><span class="line">2 elapsed time: 0.012727s</span><br><span class="line">3 elapsed time: 0.00880297s</span><br><span class="line">4 elapsed time: 0.00900436s</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>cv</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>opencv</tag>
       </tags>
   </entry>
   <entry>
@@ -1258,67 +1285,6 @@
         <tag>visualization</tag>
         <tag>pointcloud</tag>
         <tag>cloud</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OpenCV Mat像素的遍历方法</title>
-    <url>/mat-traverse.html</url>
-    <content><![CDATA[<h2 id="OpenCV像素遍历常用的几种方法"><a href="#OpenCV像素遍历常用的几种方法" class="headerlink" title="OpenCV像素遍历常用的几种方法"></a>OpenCV像素遍历常用的几种方法</h2><p>以从 organized 的点云提取 RGB 信息为例</p><h3 id="动态地址at"><a href="#动态地址at" class="headerlink" title="动态地址at"></a>动态地址at</h3><p>基于Mat对象的随机像素访问 API 实现，通过行列索引方式遍历每个像素值。这种方法速度较慢，不太适合用于像素遍历。</p><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_1</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">0</span>] = pt.b;</span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">1</span>] = pt.g;</span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">2</span>] = pt.r;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-<h3 id="行指针"><a href="#行指针" class="headerlink" title="行指针"></a>行指针</h3><p>基于Mat对象的行随机访问指针方式实现对每个像素的遍历。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_2</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    cv::Vec3b *ptr = image.ptr&lt;cv::Vec3b&gt;(row);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      cv::Vec3b &amp;pixel = ptr[col];</span><br><span class="line">      pixel[<span class="number">0</span>] = pt.b;</span><br><span class="line">      pixel[<span class="number">1</span>] = pt.g;</span><br><span class="line">      pixel[<span class="number">2</span>] = pt.r;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="uchar-行指针"><a href="#uchar-行指针" class="headerlink" title="uchar 行指针"></a>uchar 行指针</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_3</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    uchar *uc_pixel = image.ptr(row);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      uc_pixel[<span class="number">0</span>] = pt.b;</span><br><span class="line">      uc_pixel[<span class="number">1</span>] = pt.g;</span><br><span class="line">      uc_pixel[<span class="number">2</span>] = pt.r;</span><br><span class="line">      uc_pixel += <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="将图像完全展开"><a href="#将图像完全展开" class="headerlink" title="将图像完全展开"></a>将图像完全展开</h3><p>一般图像行与行之间往往存储是不连续的，但是有些图像可以是连续的，Mat提供了一个检测图像是否连续的函数<code>isContinuous()</code>。当图像连通时，我们就可以把图像完全展开，看成是一行进行处理。</p>
-<h3 id="速度比较"><a href="#速度比较" class="headerlink" title="速度比较"></a>速度比较</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> cloud_path = <span class="string">"test.pcd"</span></span><br><span class="line">  pcl::PointCloud&lt;PointT&gt;::Ptr cloud(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;);</span><br><span class="line">  pcl_utils::load_pcd(cloud_path, *cloud);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *cloud &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_1;</span><br><span class="line">  extract_1(cloud, img_1);</span><br><span class="line">  <span class="keyword">auto</span> end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  <span class="keyword">auto</span> elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_2;</span><br><span class="line">  extract_2(cloud, img_2);</span><br><span class="line">  end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_3;</span><br><span class="line">  extract_3(cloud, img_3);</span><br><span class="line">  end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"3 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出 :</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Load pcd file with 1228800 data points.</span><br><span class="line">header: seq: 0 stamp: 0 frame_id: </span><br><span class="line"></span><br><span class="line">points[]: 1228800</span><br><span class="line">width: 1280</span><br><span class="line">height: 960</span><br><span class="line">is_dense: 0</span><br><span class="line">sensor origin (xyz): [0, 0, 0] / orientation (xyzw): [0, 0, 0, 1]</span><br><span class="line"></span><br><span class="line">1 elapsed time: 0.0199077s</span><br><span class="line">2 elapsed time: 0.012727s</span><br><span class="line">3 elapsed time: 0.00880297s</span><br><span class="line">4 elapsed time: 0.00900436s</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>cv</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>opencv</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PCL-1.12.1 显示点云时出现 Segmentation Fault</title>
-    <url>/pcl-12-viewer-segmentation-fault.html</url>
-    <content><![CDATA[<p>使用 <code>pcl-tools 1.12.1</code> 显示点云后出现 <code>segmentation fault</code></p><p><img src="./pcl-12-viewer-segmentation-fault/image-20240327152051960.png" alt="image-1"></p><p>使用 <code>libpcl-dev-1.12.1</code> 显示点云后显示一大串关于 <code>vtk</code> 的警告且最后出现 <code>sgmentation fault</code></p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">2024-03-27 07:06:36.626 (   1.903s) [        1B11AC80]vtkOpenGLPolyDataMapper:328   WARN| vtkOpenGLPolyDataMapper::SetGeometryShaderCode was deprecated <span class="keyword">for</span> VTK 9.0 and will be removed <span class="keyword">in</span> a future version.  Use vtkOpenGLShaderProperty::SetGeometryShaderCode instead.</span><br><span class="line">2024-03-27 07:06:36.626 (   1.903s) [        1B11AC80]vtkOpenGLPolyDataMapper:321   WARN| vtkOpenGLPolyDataMapper::GetFragmentShaderCode was deprecated <span class="keyword">for</span> VTK 9.0 and will be removed <span class="keyword">in</span> a future version.  Use vtkOpenGLShaderProperty::GetFragmentShaderCode instead.</span><br><span class="line">2024-03-27 07:06:36.626 (   1.903s) [        1B11AC80]vtkOpenGLPolyDataMapper:313   WARN| vtkOpenGLPolyDataMapper::SetFragmentShaderCode was deprecated <span class="keyword">for</span> VTK 9.0 and will be removed <span class="keyword">in</span> a future version.  Use vtkOpenGLShaderProperty::SetFragmentShaderCode instead.</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-
-<p>similar issue: <a href="https://github.com/PointCloudLibrary/pcl/issues/5237" target="_blank" rel="noopener">https://github.com/PointCloudLibrary/pcl/issues/5237</a></p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>卸载 <code>pcl-1.12</code>，使用 <code>1.13</code> 版本，但这个版本我 (<code>Ubuntu 22.04.4</code>) 无法通过 <code>apt</code> 安装，只能通过源代码编译安装。</p>
-<h4 id="卸载-pcl-1-12-1"><a href="#卸载-pcl-1-12-1" class="headerlink" title="卸载 pcl-1.12.1"></a>卸载 <code>pcl-1.12.1</code></h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 确认版本</span></span><br><span class="line">apt search pcl | grep pcl</span><br><span class="line"></span><br><span class="line"><span class="comment"># 其中包含:</span></span><br><span class="line">libpcl-dev/jammy,now 1.12.1+dfsg-3build1 amd64 [installed]</span><br><span class="line">pcl-tools/jammy,now 1.12.1+dfsg-3build1 amd64 [installed]</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt remove libpcl-dev pcl-tools</span><br><span class="line">sudo autoremove</span><br></pre></td></tr></table></figure>
-
-<h4 id="在-github-上下载-pcl-源代码"><a href="#在-github-上下载-pcl-源代码" class="headerlink" title="在 github 上下载 pcl 源代码"></a>在 github 上下载 <code>pcl</code> 源代码</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/PointCloudLibrary/pcl.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># checkout to 1.13.1</span></span><br><span class="line"><span class="built_in">cd</span> pcl</span><br><span class="line">git tag</span><br><span class="line">git checkout pcl-1.13.1</span><br></pre></td></tr></table></figure>
-
-<h4 id="按照文档编译安装-pcl-1-13-1"><a href="#按照文档编译安装-pcl-1-13-1" class="headerlink" title="按照文档编译安装 pcl-1.13.1"></a>按照文档编译安装 <code>pcl-1.13.1</code></h4><p><a href="https://pcl.readthedocs.io/projects/tutorials/en/latest/compiling_pcl_posix.html" target="_blank" rel="noopener">https://pcl.readthedocs.io/projects/tutorials/en/latest/compiling_pcl_posix.html</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">cmake -DCMAKE_BUILD_TYPE=Release ..</span><br><span class="line">make -j2</span><br><span class="line">sudo make -j2 install</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 确认安装完成</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/include/</span><br><span class="line">ls</span><br><span class="line"><span class="comment"># 应该包含 pcl-1.13</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="安装-vtk"><a href="#安装-vtk" class="headerlink" title="安装 vtk"></a>安装 vtk</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install vtk9 libvtk9-dev</span><br></pre></td></tr></table></figure>
-
-<h4 id="测试是否可用"><a href="#测试是否可用" class="headerlink" title="测试是否可用"></a>测试是否可用</h4><p><img src="./pcl-12-viewer-segmentation-fault/image-20240327153842486.png" alt="image-2"></p>
-]]></content>
-      <categories>
-        <category>memo</category>
-        <category>pcl</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>environment</tag>
-        <tag>pcl</tag>
-        <tag>ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -1379,6 +1345,40 @@
       </tags>
   </entry>
   <entry>
+    <title>PCL-1.12.1 显示点云时出现 Segmentation Fault</title>
+    <url>/pcl-12-viewer-segmentation-fault.html</url>
+    <content><![CDATA[<p>使用 <code>pcl-tools 1.12.1</code> 显示点云后出现 <code>segmentation fault</code></p><p><img src="./pcl-12-viewer-segmentation-fault/image-20240327152051960.png" alt="image-1"></p><p>使用 <code>libpcl-dev-1.12.1</code> 显示点云后显示一大串关于 <code>vtk</code> 的警告且最后出现 <code>sgmentation fault</code></p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">2024-03-27 07:06:36.626 (   1.903s) [        1B11AC80]vtkOpenGLPolyDataMapper:328   WARN| vtkOpenGLPolyDataMapper::SetGeometryShaderCode was deprecated <span class="keyword">for</span> VTK 9.0 and will be removed <span class="keyword">in</span> a future version.  Use vtkOpenGLShaderProperty::SetGeometryShaderCode instead.</span><br><span class="line">2024-03-27 07:06:36.626 (   1.903s) [        1B11AC80]vtkOpenGLPolyDataMapper:321   WARN| vtkOpenGLPolyDataMapper::GetFragmentShaderCode was deprecated <span class="keyword">for</span> VTK 9.0 and will be removed <span class="keyword">in</span> a future version.  Use vtkOpenGLShaderProperty::GetFragmentShaderCode instead.</span><br><span class="line">2024-03-27 07:06:36.626 (   1.903s) [        1B11AC80]vtkOpenGLPolyDataMapper:313   WARN| vtkOpenGLPolyDataMapper::SetFragmentShaderCode was deprecated <span class="keyword">for</span> VTK 9.0 and will be removed <span class="keyword">in</span> a future version.  Use vtkOpenGLShaderProperty::SetFragmentShaderCode instead.</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+<p>similar issue: <a href="https://github.com/PointCloudLibrary/pcl/issues/5237" target="_blank" rel="noopener">https://github.com/PointCloudLibrary/pcl/issues/5237</a></p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>卸载 <code>pcl-1.12</code>，使用 <code>1.13</code> 版本，但这个版本我 (<code>Ubuntu 22.04.4</code>) 无法通过 <code>apt</code> 安装，只能通过源代码编译安装。</p>
+<h4 id="卸载-pcl-1-12-1"><a href="#卸载-pcl-1-12-1" class="headerlink" title="卸载 pcl-1.12.1"></a>卸载 <code>pcl-1.12.1</code></h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 确认版本</span></span><br><span class="line">apt search pcl | grep pcl</span><br><span class="line"></span><br><span class="line"><span class="comment"># 其中包含:</span></span><br><span class="line">libpcl-dev/jammy,now 1.12.1+dfsg-3build1 amd64 [installed]</span><br><span class="line">pcl-tools/jammy,now 1.12.1+dfsg-3build1 amd64 [installed]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt remove libpcl-dev pcl-tools</span><br><span class="line">sudo autoremove</span><br></pre></td></tr></table></figure>
+
+<h4 id="在-github-上下载-pcl-源代码"><a href="#在-github-上下载-pcl-源代码" class="headerlink" title="在 github 上下载 pcl 源代码"></a>在 github 上下载 <code>pcl</code> 源代码</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/PointCloudLibrary/pcl.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># checkout to 1.13.1</span></span><br><span class="line"><span class="built_in">cd</span> pcl</span><br><span class="line">git tag</span><br><span class="line">git checkout pcl-1.13.1</span><br></pre></td></tr></table></figure>
+
+<h4 id="按照文档编译安装-pcl-1-13-1"><a href="#按照文档编译安装-pcl-1-13-1" class="headerlink" title="按照文档编译安装 pcl-1.13.1"></a>按照文档编译安装 <code>pcl-1.13.1</code></h4><p><a href="https://pcl.readthedocs.io/projects/tutorials/en/latest/compiling_pcl_posix.html" target="_blank" rel="noopener">https://pcl.readthedocs.io/projects/tutorials/en/latest/compiling_pcl_posix.html</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">cmake -DCMAKE_BUILD_TYPE=Release ..</span><br><span class="line">make -j2</span><br><span class="line">sudo make -j2 install</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 确认安装完成</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/include/</span><br><span class="line">ls</span><br><span class="line"><span class="comment"># 应该包含 pcl-1.13</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="安装-vtk"><a href="#安装-vtk" class="headerlink" title="安装 vtk"></a>安装 vtk</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install vtk9 libvtk9-dev</span><br></pre></td></tr></table></figure>
+
+<h4 id="测试是否可用"><a href="#测试是否可用" class="headerlink" title="测试是否可用"></a>测试是否可用</h4><p><img src="./pcl-12-viewer-segmentation-fault/image-20240327153842486.png" alt="image-2"></p>
+]]></content>
+      <categories>
+        <category>memo</category>
+        <category>pcl</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>environment</tag>
+        <tag>pcl</tag>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用PCL的滤波时遇到 double free or corruption</title>
     <url>/pcl-double-free.html</url>
     <content><![CDATA[<p>在调用 <code>StatisticalOutlierRemoval</code> 时遇到 <code>double free or corruption</code></p><p>我在 <code>PCL</code> 源代码中加入了一些log，具体如下：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">2: [INFO]1712543988.313661216: filter - CropBox</span><br><span class="line">2: --- FilterIndices h - filter indices - start ---</span><br><span class="line">2: --- PCLBase - initCompute - indices size:1228800 ---</span><br><span class="line">2: --- FilterIndices h - call applyFilter(indices)</span><br><span class="line">2: ----- CropBox hpp - applyFilter indices - start -------</span><br><span class="line">2: ----- CropBox hpp - applyFilter indices - finish -------</span><br><span class="line">2: --- FilterIndices h - call deinitCompute()</span><br><span class="line">2: --- PCLBase hpp - deinitCompute ---</span><br><span class="line">2: --- FilterIndices h - filter indices - finish ---</span><br><span class="line"></span><br><span class="line">2: [INFO]1712543988.372619178: filter - StatisticalOutlierRemoval</span><br><span class="line">2: --- FilterIndices h - filter indices - start ---</span><br><span class="line">2: --- PCLBase - initCompute - indices size:2568 ---</span><br><span class="line">2: --- FilterIndices h - call applyFilter(indices)</span><br><span class="line">2: --- StatisticalOutlierRemoval h - applyFilter indices ---</span><br><span class="line">2: ----- StatisticalOutlierRemoval hpp - applyFilterIndices - start -------</span><br><span class="line">2: ----- StatisticalOutlierRemoval hpp - applyFilterIndices - finish -------</span><br><span class="line">2: --- FilterIndices h - call deinitCompute()</span><br><span class="line">2: double free or corruption (out)</span><br></pre></td></tr></table></figure><a id="more"></a>
@@ -1405,8 +1405,8 @@
 </ul>
 ]]></content>
       <categories>
-        <category>memo</category>
         <category>cmake</category>
+        <category>memo</category>
         <category>pcl</category>
       </categories>
       <tags>
@@ -1451,37 +1451,6 @@
         <category>pcl</category>
       </categories>
       <tags>
-        <tag>pcl</tag>
-        <tag>ROS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ROS的PCL点云相关类型转换</title>
-    <url>/pointcloud-ros2-message.html</url>
-    <content><![CDATA[<p><code>ROS</code> 中使用 <a href="https://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html" target="_blank" rel="noopener">sensor_msgs::msg::PointCloud2</a> 传输点云数据。开发中会需要对它和其他类型的点云数据进行转换，大部分由 <a href="https://github.com/ros-perception/pcl_conversions" target="_blank" rel="noopener">pcl_conversions</a> 提供。</p><h3 id="pcl-PCLPointCloud2"><a href="#pcl-PCLPointCloud2" class="headerlink" title="pcl::PCLPointCloud2"></a>pcl::PCLPointCloud2</h3><p>ros msg -&gt; pcl::PCLPointCloud2</p><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/PCLPointCloud2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PCLPointCloud2 pcl_pc2;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl_conversions::toPCL(ros_cloud, pcl_pc2);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl_conversions::toPCL(*pc_msg.get(), pcl_pc2);</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-<p>ros msg &lt;- pcl::PCLPointCloud2</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/PCLPointCloud2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PCLPointCloud2 pcl_pc2;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl_conversions::fromPCL(pcl_pc2, ros_cloud);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl_conversions::fromPCL(pcl_pc2, *pc_msg);</span><br></pre></td></tr></table></figure>
-
-<h3 id="pcl-PointCloud"><a href="#pcl-PointCloud" class="headerlink" title="pcl::PointCloud"></a>pcl::PointCloud<t></t></h3><p>ros msg -&gt; pcl::PointCloud<t></t></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/pcl_base.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_cloud.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr cloud_ptr;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl::fromROSMsg(ros_cloud, *cloud_ptr);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl::fromROSMsg(*pc_msg.get(), *cloud_ptr);</span><br></pre></td></tr></table></figure>
-
-<p>ros msg &lt;- pcl::PointCloud<t></t></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/pcl_base.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_cloud.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr cloud_ptr;</span><br><span class="line"><span class="keyword">if</span> (!cloud_ptr || cloud_ptr-&gt;points.empty())</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl::toROSMsg(*cloud_ptr, ros_cloud);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl::toROSMsg(*cloud_ptr, *pc_msg);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>c++</category>
-        <category>pcl</category>
-        <category>ROS</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>linux</tag>
-        <tag>pointcloud</tag>
-        <tag>cloud</tag>
         <tag>pcl</tag>
         <tag>ROS</tag>
       </tags>
@@ -1603,6 +1572,109 @@
       </tags>
   </entry>
   <entry>
+    <title>ROS的PCL点云相关类型转换</title>
+    <url>/pointcloud-ros2-message.html</url>
+    <content><![CDATA[<p><code>ROS</code> 中使用 <a href="https://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html" target="_blank" rel="noopener">sensor_msgs::msg::PointCloud2</a> 传输点云数据。开发中会需要对它和其他类型的点云数据进行转换，大部分由 <a href="https://github.com/ros-perception/pcl_conversions" target="_blank" rel="noopener">pcl_conversions</a> 提供。</p><h3 id="pcl-PCLPointCloud2"><a href="#pcl-PCLPointCloud2" class="headerlink" title="pcl::PCLPointCloud2"></a>pcl::PCLPointCloud2</h3><p>ros msg -&gt; pcl::PCLPointCloud2</p><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/PCLPointCloud2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PCLPointCloud2 pcl_pc2;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl_conversions::toPCL(ros_cloud, pcl_pc2);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl_conversions::toPCL(*pc_msg.get(), pcl_pc2);</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<p>ros msg &lt;- pcl::PCLPointCloud2</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/PCLPointCloud2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PCLPointCloud2 pcl_pc2;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl_conversions::fromPCL(pcl_pc2, ros_cloud);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl_conversions::fromPCL(pcl_pc2, *pc_msg);</span><br></pre></td></tr></table></figure>
+
+<h3 id="pcl-PointCloud"><a href="#pcl-PointCloud" class="headerlink" title="pcl::PointCloud"></a>pcl::PointCloud<t></t></h3><p>ros msg -&gt; pcl::PointCloud<t></t></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/pcl_base.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_cloud.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr cloud_ptr;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl::fromROSMsg(ros_cloud, *cloud_ptr);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl::fromROSMsg(*pc_msg.get(), *cloud_ptr);</span><br></pre></td></tr></table></figure>
+
+<p>ros msg &lt;- pcl::PointCloud<t></t></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/pcl_base.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_cloud.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr cloud_ptr;</span><br><span class="line"><span class="keyword">if</span> (!cloud_ptr || cloud_ptr-&gt;points.empty())</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl::toROSMsg(*cloud_ptr, ros_cloud);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl::toROSMsg(*cloud_ptr, *pc_msg);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>c++</category>
+        <category>pcl</category>
+        <category>ROS</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>linux</tag>
+        <tag>pointcloud</tag>
+        <tag>cloud</tag>
+        <tag>pcl</tag>
+        <tag>ROS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 RViz 里显示已经转换到世界坐标系的点云</title>
+    <url>/rviz-cloud.html</url>
+    <content><![CDATA[<h1 id="在-RViz-里显示已经转换到世界坐标系的点云"><a href="#在-RViz-里显示已经转换到世界坐标系的点云" class="headerlink" title="在 RViz 里显示已经转换到世界坐标系的点云"></a>在 RViz 里显示已经转换到世界坐标系的点云</h1><p>假设相机一直向外发送点云（PointCloud2）消息，点云数据是相机坐标系下的。已知相机的外参（即相机坐标系到世界坐标系的变换），想在 RViz 里显示已经转换到世界坐标系的点云。</p><hr><h2 id="方案概述"><a href="#方案概述" class="headerlink" title="方案概述"></a>方案概述</h2><p>RViz 显示点云时，会根据消息的 <code>header.frame_id</code> 和 TF 树中的坐标变换，把点云变换到 RViz 选定的固定坐标系（通常是 <code>world_frame</code> ）下显示。</p><a id="more"></a>
+
+
+<p>关键点：</p>
+<ul>
+<li>确保 TF 树中有相机坐标系到世界坐标系的变换（外参）</li>
+<li>点云消息的 <code>header.frame_id</code> 设置为相机坐标系</li>
+<li>RViz 选择的固定坐标系为世界坐标系</li>
+</ul>
+<p>这样 RViz 会自动根据 TF 变换把点云从相机坐标系变换到世界坐标系显示。</p>
+<hr>
+<h2 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h2><h3 id="1-发布-TF-变换"><a href="#1-发布-TF-变换" class="headerlink" title="1. 发布 TF 变换"></a>1. 发布 TF 变换</h3><p>发布一个静态或动态的 TF 变换，将相机坐标系（如 <code>camera_frame</code>）和世界坐标系（如 <code>world_frame</code>）关联起来。</p>
+<p>如果外参是固定的，可以用 <code>static_transform_publisher</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ros2 run tf2_ros static_transform_publisher [--x X] [--y Y] [--z Z] [--qx QX] [--qy QY] [--qz QZ] [--qw QW] [--roll ROLL] [--pitch PITCH] [--yaw YAW] --frame-id FRAME_ID --child-frame-id CHILD_FRAME_ID</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li><p><code>--frame-id FRAME_ID</code> 和 <code>--child-frame-id</code> 是必填的参数</p>
+</li>
+<li><p><code>x y z qx qy qz qw</code>：相机坐标系相对于世界坐标系的四元数旋转，可选填</p>
+</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ros2 run tf2_ros static_transform_publisher --z 2.0 --frame-id world_frame --child-frame-id camera_frame</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-点云消息的-header-frame-id"><a href="#2-点云消息的-header-frame-id" class="headerlink" title="2. 点云消息的 header.frame_id"></a>2. 点云消息的 header.frame_id</h3><p>确保相机发布的点云消息的 <code>header.frame_id</code> 是相机坐标系名（如 <code>camera_frame</code>），这样 RViz 才知道点云是在哪个坐标系下的。</p>
+<h3 id="3-RViz-设置"><a href="#3-RViz-设置" class="headerlink" title="3. RViz 设置"></a>3. RViz 设置</h3><ul>
+<li>固定坐标系（<code>Fixed Frame</code>）设置为 <code>world_frame</code></li>
+<li>添加 <code>PointCloud2</code> 显示，订阅相机发布的点云 topic</li>
+</ul>
+<p>RViz 会自动根据 TF 树把点云从 <code>camera_frame</code> 坐标系变换到 <code>world_frame</code> 坐标系显示</p>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>发布 TF 变换</td>
+<td>用 <code>static_transform_publisher</code> 发布相机到世界的外参</td>
+</tr>
+<tr>
+<td>点云消息 <code>frame_id</code></td>
+<td>设置为相机坐标系名</td>
+</tr>
+<tr>
+<td>RViz 固定坐标系</td>
+<td>设置为世界坐标系名</td>
+</tr>
+<tr>
+<td>RViz 订阅点云 topic</td>
+<td>添加点云显示，选择相机点云 topic</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>ROS</category>
+      </categories>
+      <tags>
+        <tag>visualization</tag>
+        <tag>ROS</tag>
+        <tag>RViz</tag>
+        <tag>点云</tag>
+        <tag>TF</tag>
+        <tag>可视化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux 使用SCP远程拷贝文件</title>
     <url>/scp.html</url>
     <content><![CDATA[<p> 使用scp(secure copy)命令可以实现本地服务器和远程服务器之间的文件传输复制</p>
@@ -1708,129 +1780,6 @@
       </tags>
   </entry>
   <entry>
-    <title>在 RViz 里显示已经转换到世界坐标系的点云</title>
-    <url>/rviz-cloud.html</url>
-    <content><![CDATA[<h1 id="在-RViz-里显示已经转换到世界坐标系的点云"><a href="#在-RViz-里显示已经转换到世界坐标系的点云" class="headerlink" title="在 RViz 里显示已经转换到世界坐标系的点云"></a>在 RViz 里显示已经转换到世界坐标系的点云</h1><p>假设相机一直向外发送点云（PointCloud2）消息，点云数据是相机坐标系下的。已知相机的外参（即相机坐标系到世界坐标系的变换），想在 RViz 里显示已经转换到世界坐标系的点云。</p><hr><h2 id="方案概述"><a href="#方案概述" class="headerlink" title="方案概述"></a>方案概述</h2><p>RViz 显示点云时，会根据消息的 <code>header.frame_id</code> 和 TF 树中的坐标变换，把点云变换到 RViz 选定的固定坐标系（通常是 <code>world_frame</code> ）下显示。</p><a id="more"></a>
-
-
-<p>关键点：</p>
-<ul>
-<li>确保 TF 树中有相机坐标系到世界坐标系的变换（外参）</li>
-<li>点云消息的 <code>header.frame_id</code> 设置为相机坐标系</li>
-<li>RViz 选择的固定坐标系为世界坐标系</li>
-</ul>
-<p>这样 RViz 会自动根据 TF 变换把点云从相机坐标系变换到世界坐标系显示。</p>
-<hr>
-<h2 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h2><h3 id="1-发布-TF-变换"><a href="#1-发布-TF-变换" class="headerlink" title="1. 发布 TF 变换"></a>1. 发布 TF 变换</h3><p>发布一个静态或动态的 TF 变换，将相机坐标系（如 <code>camera_frame</code>）和世界坐标系（如 <code>world_frame</code>）关联起来。</p>
-<p>如果外参是固定的，可以用 <code>static_transform_publisher</code>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ros2 run tf2_ros static_transform_publisher [--x X] [--y Y] [--z Z] [--qx QX] [--qy QY] [--qz QZ] [--qw QW] [--roll ROLL] [--pitch PITCH] [--yaw YAW] --frame-id FRAME_ID --child-frame-id CHILD_FRAME_ID</span><br></pre></td></tr></table></figure>
-
-<p>参数说明：</p>
-<ul>
-<li><p><code>--frame-id FRAME_ID</code> 和 <code>--child-frame-id</code> 是必填的参数</p>
-</li>
-<li><p><code>x y z qx qy qz qw</code>：相机坐标系相对于世界坐标系的四元数旋转，可选填</p>
-</li>
-</ul>
-<p>示例：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ros2 run tf2_ros static_transform_publisher --z 2.0 --frame-id world_frame --child-frame-id camera_frame</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-点云消息的-header-frame-id"><a href="#2-点云消息的-header-frame-id" class="headerlink" title="2. 点云消息的 header.frame_id"></a>2. 点云消息的 header.frame_id</h3><p>确保相机发布的点云消息的 <code>header.frame_id</code> 是相机坐标系名（如 <code>camera_frame</code>），这样 RViz 才知道点云是在哪个坐标系下的。</p>
-<h3 id="3-RViz-设置"><a href="#3-RViz-设置" class="headerlink" title="3. RViz 设置"></a>3. RViz 设置</h3><ul>
-<li>固定坐标系（<code>Fixed Frame</code>）设置为 <code>world_frame</code></li>
-<li>添加 <code>PointCloud2</code> 显示，订阅相机发布的点云 topic</li>
-</ul>
-<p>RViz 会自动根据 TF 树把点云从 <code>camera_frame</code> 坐标系变换到 <code>world_frame</code> 坐标系显示</p>
-<hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
-<thead>
-<tr>
-<th>步骤</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>发布 TF 变换</td>
-<td>用 <code>static_transform_publisher</code> 发布相机到世界的外参</td>
-</tr>
-<tr>
-<td>点云消息 <code>frame_id</code></td>
-<td>设置为相机坐标系名</td>
-</tr>
-<tr>
-<td>RViz 固定坐标系</td>
-<td>设置为世界坐标系名</td>
-</tr>
-<tr>
-<td>RViz 订阅点云 topic</td>
-<td>添加点云显示，选择相机点云 topic</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>ROS</category>
-      </categories>
-      <tags>
-        <tag>visualization</tag>
-        <tag>ROS</tag>
-        <tag>RViz</tag>
-        <tag>点云</tag>
-        <tag>TF</tag>
-        <tag>可视化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>std::enable_if的使用</title>
-    <url>/std-enable-if.html</url>
-    <content><![CDATA[<p><code>std::enable_if</code> 是 <code>C++</code> 中的一种 <code>SFINAE</code>（Substitution Failure Is Not An Error）工具，用于在模板中启用或禁用某些函数或类的特化。它通常用于条件编译，允许我们根据模板参数的某些特性（如类型是否满足某些条件）来选择性地启用或禁用某些代码。</p><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><a id="more"></a>
-<ol>
-<li><p><code>std::enable_if</code> 定义在 <code>&lt;type_traits&gt;</code> 中，其基本形式如下：</p>
- <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">bool</span> B, <span class="class"><span class="keyword">class</span> <span class="title">T</span> = <span class="title">void</span>&gt;  </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">enable_if</span> &#123;</span>&#125;;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果 <code>B</code> 为 <code>true</code>，<code>std::enable_if</code> 定义一个类型 <code>T</code>（默认为 <code>void</code>）。</li>
-<li>如果 <code>B</code> 为 <code>false</code>，<code>std::enable_if</code> 不定义任何类型，从而导致模板匹配失败（<code>SFINAE</code>）。</li>
-</ul>
-</li>
-<li><p>可以使用 <code>std::enable_if_t</code> 简化代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">bool</span> B, <span class="class"><span class="keyword">class</span> <span class="title">T</span> = <span class="title">void</span>&gt;  </span></span><br><span class="line"><span class="class"><span class="title">using</span> <span class="title">enable_if_t</span> = <span class="title">typename</span> <span class="title">enable_if</span>&lt;B, T&gt;:</span>:type;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><h3 id="函数模板的启用-禁用"><a href="#函数模板的启用-禁用" class="headerlink" title="函数模板的启用/禁用"></a>函数模板的启用/禁用</h3><p>通过 <code>std::enable_if</code>，我们可以根据模板参数的某些条件，选择性地启用或禁用某些函数模板。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;type_traits&gt;  </span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当T是整数类型时启用此函数  </span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="keyword">typename</span> <span class="built_in">std</span>::enable_if&lt;<span class="built_in">std</span>::is_integral&lt;T&gt;::value, <span class="keyword">void</span>&gt;::type  </span><br><span class="line">print(T value) &#123;  </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Integer: "</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 当T不是整数类型时启用此函数  </span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="keyword">typename</span> <span class="built_in">std</span>::enable_if&lt;!<span class="built_in">std</span>::is_integral&lt;T&gt;::value, <span class="keyword">void</span>&gt;::type  </span><br><span class="line">print(T value) &#123;  </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Not an integer: "</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    print(<span class="number">42</span>);          <span class="comment">// 调用第一个函数，输出 "Integer: 42"  </span></span><br><span class="line">    print(<span class="number">3.14</span>);        <span class="comment">// 调用第二个函数，输出 "Not an integer: 3.14"  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>std::is_integral&lt;T&gt;::value</code> 是一个类型特性，用于判断 <code>T</code> 是否是整数类型。</li>
-<li><code>std::enable_if</code> 根据这个条件启用或禁用对应的函数模板。</li>
-</ul>
-<h3 id="使用-enable-if-t-简化代码"><a href="#使用-enable-if-t-简化代码" class="headerlink" title="使用 enable_if_t 简化代码"></a>使用 <code>enable_if_t</code> 简化代码</h3><p>在 C++14 中，可以使用 <code>std::enable_if_t</code> 简化代码，避免显式写 <code>typename</code>。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;type_traits&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 仅当 T 是整数类型时启用此函数</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="built_in">std</span>::<span class="keyword">enable_if_t</span>&lt;<span class="built_in">std</span>::is_integral&lt;T&gt;::value, <span class="keyword">void</span>&gt;</span><br><span class="line">print(T value) &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Integer: "</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 仅当 T 不是整数类型时启用此函数</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="built_in">std</span>::<span class="keyword">enable_if_t</span>&lt;!<span class="built_in">std</span>::is_integral&lt;T&gt;::value, <span class="keyword">void</span>&gt;</span><br><span class="line">print(T value) &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Not an integer: "</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    print(<span class="number">42</span>);          <span class="comment">// 调用第一个函数，输出 "Integer: 42"</span></span><br><span class="line">    print(<span class="number">3.14</span>);        <span class="comment">// 调用第二个函数，输出 "Not an integer: 3.14"</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="构造函数的启用-禁用"><a href="#构造函数的启用-禁用" class="headerlink" title="构造函数的启用/禁用"></a>构造函数的启用/禁用</h3><p><code>std::enable_if</code> 也可以用于类的构造函数中，选择性地启用某些构造函数。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;type_traits&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 当T是整数类型时启用此构造函数</span></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> = <span class="built_in">std</span>::<span class="keyword">enable_if_t</span>&lt;<span class="built_in">std</span>::is_integral&lt;T&gt;::value&gt;&gt;</span><br><span class="line">    MyClass(T value) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Constructed with integer: "</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当T不是整数类型时启用此构造函数</span></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> = <span class="built_in">std</span>::<span class="keyword">enable_if_t</span>&lt;!<span class="built_in">std</span>::is_integral&lt;T&gt;::value&gt;&gt;</span><br><span class="line">    MyClass(T value) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Constructed with non-integer: "</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">MyClass <span class="title">obj1</span><span class="params">(<span class="number">42</span>)</span></span>;      <span class="comment">// 调用第一个构造函数，输出 "Constructed with integer: 42"</span></span><br><span class="line">    <span class="function">MyClass <span class="title">obj2</span><span class="params">(<span class="number">3.14</span>)</span></span>;    <span class="comment">// 调用第二个构造函数，输出 "Constructed with non-integer: 3.14"</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>通过模板参数 <code>typename = std::enable_if_t&lt;...&gt;</code>，我们可以根据类型特性选择性地启用某些构造函数。</li>
-<li><code>std::enable_if_t</code> 的默认模板参数（<code>typename = ...</code>）不会影响函数签名，因此可以用于构造函数的重载。</li>
-</ul>
-<h3 id="类模板的部分特化"><a href="#类模板的部分特化" class="headerlink" title="类模板的部分特化"></a>类模板的部分特化</h3><p><code>std::enable_if</code> 也可以用于类模板的部分特化，选择性地启用某些类模板。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;type_traits&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 主模板</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Enable = <span class="keyword">void</span>&gt;</span><br><span class="line">class MyClass;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 特化：当T是整数类型时启用</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span>&lt;T, std::enable_if_t&lt;std::is_integral&lt;T&gt;::value&gt;&gt; &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Integer specialization"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 特化：当T不是整数类型时启用</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span>&lt;T, std::enable_if_t&lt;!std::is_integral&lt;T&gt;::value&gt;&gt; &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Non-integer specialization"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    MyClass&lt;<span class="keyword">int</span>&gt; obj1;      <span class="comment">// 匹配整数特化</span></span><br><span class="line">    obj1.print();           <span class="comment">// 输出 "Integer specialization"</span></span><br><span class="line"></span><br><span class="line">    MyClass&lt;<span class="keyword">double</span>&gt; obj2;   <span class="comment">// 匹配非整数特化</span></span><br><span class="line">    obj2.print();           <span class="comment">// 输出 "Non-integer specialization"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>主模板 <code>MyClass</code> 是一个空模板，只有在特化时才会启用。</li>
-<li>使用 <code>std::enable_if_t</code> 根据类型特性选择性地启用某些特化。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>c++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>std</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++并发编程：std::future的使用</title>
     <url>/std-future.html</url>
     <content><![CDATA[<p><code>std::future</code> 是C++11 的一个模板类，<strong>提供了一种用于访问异步操作结果的机制</strong>。可以用来获取异步任务的结果，因此可以把它当成一种简单的线程间同步的手段。</p>
@@ -1925,6 +1874,57 @@
         <tag>c++</tag>
         <tag>async</tag>
         <tag>并发编程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>std::enable_if的使用</title>
+    <url>/std-enable-if.html</url>
+    <content><![CDATA[<p><code>std::enable_if</code> 是 <code>C++</code> 中的一种 <code>SFINAE</code>（Substitution Failure Is Not An Error）工具，用于在模板中启用或禁用某些函数或类的特化。它通常用于条件编译，允许我们根据模板参数的某些特性（如类型是否满足某些条件）来选择性地启用或禁用某些代码。</p><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><a id="more"></a>
+<ol>
+<li><p><code>std::enable_if</code> 定义在 <code>&lt;type_traits&gt;</code> 中，其基本形式如下：</p>
+ <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">bool</span> B, <span class="class"><span class="keyword">class</span> <span class="title">T</span> = <span class="title">void</span>&gt;  </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">enable_if</span> &#123;</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果 <code>B</code> 为 <code>true</code>，<code>std::enable_if</code> 定义一个类型 <code>T</code>（默认为 <code>void</code>）。</li>
+<li>如果 <code>B</code> 为 <code>false</code>，<code>std::enable_if</code> 不定义任何类型，从而导致模板匹配失败（<code>SFINAE</code>）。</li>
+</ul>
+</li>
+<li><p>可以使用 <code>std::enable_if_t</code> 简化代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">bool</span> B, <span class="class"><span class="keyword">class</span> <span class="title">T</span> = <span class="title">void</span>&gt;  </span></span><br><span class="line"><span class="class"><span class="title">using</span> <span class="title">enable_if_t</span> = <span class="title">typename</span> <span class="title">enable_if</span>&lt;B, T&gt;:</span>:type;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><h3 id="函数模板的启用-禁用"><a href="#函数模板的启用-禁用" class="headerlink" title="函数模板的启用/禁用"></a>函数模板的启用/禁用</h3><p>通过 <code>std::enable_if</code>，我们可以根据模板参数的某些条件，选择性地启用或禁用某些函数模板。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;type_traits&gt;  </span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当T是整数类型时启用此函数  </span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="keyword">typename</span> <span class="built_in">std</span>::enable_if&lt;<span class="built_in">std</span>::is_integral&lt;T&gt;::value, <span class="keyword">void</span>&gt;::type  </span><br><span class="line">print(T value) &#123;  </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Integer: "</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 当T不是整数类型时启用此函数  </span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="keyword">typename</span> <span class="built_in">std</span>::enable_if&lt;!<span class="built_in">std</span>::is_integral&lt;T&gt;::value, <span class="keyword">void</span>&gt;::type  </span><br><span class="line">print(T value) &#123;  </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Not an integer: "</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    print(<span class="number">42</span>);          <span class="comment">// 调用第一个函数，输出 "Integer: 42"  </span></span><br><span class="line">    print(<span class="number">3.14</span>);        <span class="comment">// 调用第二个函数，输出 "Not an integer: 3.14"  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>std::is_integral&lt;T&gt;::value</code> 是一个类型特性，用于判断 <code>T</code> 是否是整数类型。</li>
+<li><code>std::enable_if</code> 根据这个条件启用或禁用对应的函数模板。</li>
+</ul>
+<h3 id="使用-enable-if-t-简化代码"><a href="#使用-enable-if-t-简化代码" class="headerlink" title="使用 enable_if_t 简化代码"></a>使用 <code>enable_if_t</code> 简化代码</h3><p>在 C++14 中，可以使用 <code>std::enable_if_t</code> 简化代码，避免显式写 <code>typename</code>。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;type_traits&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 仅当 T 是整数类型时启用此函数</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="built_in">std</span>::<span class="keyword">enable_if_t</span>&lt;<span class="built_in">std</span>::is_integral&lt;T&gt;::value, <span class="keyword">void</span>&gt;</span><br><span class="line">print(T value) &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Integer: "</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 仅当 T 不是整数类型时启用此函数</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="built_in">std</span>::<span class="keyword">enable_if_t</span>&lt;!<span class="built_in">std</span>::is_integral&lt;T&gt;::value, <span class="keyword">void</span>&gt;</span><br><span class="line">print(T value) &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Not an integer: "</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    print(<span class="number">42</span>);          <span class="comment">// 调用第一个函数，输出 "Integer: 42"</span></span><br><span class="line">    print(<span class="number">3.14</span>);        <span class="comment">// 调用第二个函数，输出 "Not an integer: 3.14"</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="构造函数的启用-禁用"><a href="#构造函数的启用-禁用" class="headerlink" title="构造函数的启用/禁用"></a>构造函数的启用/禁用</h3><p><code>std::enable_if</code> 也可以用于类的构造函数中，选择性地启用某些构造函数。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;type_traits&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 当T是整数类型时启用此构造函数</span></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> = <span class="built_in">std</span>::<span class="keyword">enable_if_t</span>&lt;<span class="built_in">std</span>::is_integral&lt;T&gt;::value&gt;&gt;</span><br><span class="line">    MyClass(T value) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Constructed with integer: "</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当T不是整数类型时启用此构造函数</span></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> = <span class="built_in">std</span>::<span class="keyword">enable_if_t</span>&lt;!<span class="built_in">std</span>::is_integral&lt;T&gt;::value&gt;&gt;</span><br><span class="line">    MyClass(T value) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Constructed with non-integer: "</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">MyClass <span class="title">obj1</span><span class="params">(<span class="number">42</span>)</span></span>;      <span class="comment">// 调用第一个构造函数，输出 "Constructed with integer: 42"</span></span><br><span class="line">    <span class="function">MyClass <span class="title">obj2</span><span class="params">(<span class="number">3.14</span>)</span></span>;    <span class="comment">// 调用第二个构造函数，输出 "Constructed with non-integer: 3.14"</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>通过模板参数 <code>typename = std::enable_if_t&lt;...&gt;</code>，我们可以根据类型特性选择性地启用某些构造函数。</li>
+<li><code>std::enable_if_t</code> 的默认模板参数（<code>typename = ...</code>）不会影响函数签名，因此可以用于构造函数的重载。</li>
+</ul>
+<h3 id="类模板的部分特化"><a href="#类模板的部分特化" class="headerlink" title="类模板的部分特化"></a>类模板的部分特化</h3><p><code>std::enable_if</code> 也可以用于类模板的部分特化，选择性地启用某些类模板。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;type_traits&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 主模板</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Enable = <span class="keyword">void</span>&gt;</span><br><span class="line">class MyClass;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 特化：当T是整数类型时启用</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span>&lt;T, std::enable_if_t&lt;std::is_integral&lt;T&gt;::value&gt;&gt; &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Integer specialization"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 特化：当T不是整数类型时启用</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span>&lt;T, std::enable_if_t&lt;!std::is_integral&lt;T&gt;::value&gt;&gt; &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Non-integer specialization"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    MyClass&lt;<span class="keyword">int</span>&gt; obj1;      <span class="comment">// 匹配整数特化</span></span><br><span class="line">    obj1.print();           <span class="comment">// 输出 "Integer specialization"</span></span><br><span class="line"></span><br><span class="line">    MyClass&lt;<span class="keyword">double</span>&gt; obj2;   <span class="comment">// 匹配非整数特化</span></span><br><span class="line">    obj2.print();           <span class="comment">// 输出 "Non-integer specialization"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>主模板 <code>MyClass</code> 是一个空模板，只有在特化时才会启用。</li>
+<li>使用 <code>std::enable_if_t</code> 根据类型特性选择性地启用某些特化。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>std</tag>
       </tags>
   </entry>
   <entry>
