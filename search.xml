@@ -1,111 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>leetcode刷题记录</title>
-    <url>/algorithm-notes.html</url>
-    <content><![CDATA[<ul>
-<li><p><a href="./algorithm-notes/content/时间复杂度.html">时间复杂度</a></p>
-</li>
-<li><p><a href="./algorithm-notes/content/二分法.html">二分算法</a></p>
-</li>
-<li><p><a href="./algorithm-notes/content/双指针算法.html">双指针算法</a></p>
-</li>
-<li><p><a href="./algorithm-notes/content/排序.html">排序算法</a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>c++</category>
-        <category>algorithm</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>coding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++ 使用boost::program_options解析命令行选项</title>
-    <url>/boost-options-description.html</url>
-    <content><![CDATA[<p>Boost.ProgramOptions是Boost中一个专门用来解析命令行的库，其目标是轻松的解析命令行选项。</p>
-<a id="more"></a>
-
-
-
-<h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/program_options.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">on_notifier</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"On notifier: "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">namespace</span> po = boost::program_options;</span><br><span class="line">    po::<span class="function">options_description <span class="title">desc</span><span class="params">(<span class="string">"Options"</span>)</span></span>;</span><br><span class="line">    desc.add_options()</span><br><span class="line">        (<span class="string">"enable_something,e"</span>, <span class="string">"Enable Something"</span>)</span><br><span class="line">        (<span class="string">"test_string,s"</span>, po::value&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;(), <span class="string">"Test String"</span>)</span><br><span class="line">        (<span class="string">"test_int,p"</span>, po::value&lt;<span class="keyword">int</span>&gt;(), <span class="string">"Test Int"</span>)</span><br><span class="line">        (<span class="string">"test_default_value,d"</span>,po::value&lt;<span class="keyword">int</span>&gt;()-&gt;default_value(<span class="number">1</span>), <span class="string">"Test Default Value"</span>)</span><br><span class="line">        (<span class="string">"test_notifier"</span>, value&lt;<span class="keyword">int</span>&gt;()-&gt;notifier(on_notifier), <span class="string">"Test Notifier"</span>);</span><br><span class="line">    po::variables_map vm;</span><br><span class="line">  	po::store(po::parse_command_line(argc, argv, desc), vm);</span><br><span class="line">  	po::notify(vm);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// no options set</span></span><br><span class="line">    <span class="comment">// print all options</span></span><br><span class="line">    <span class="keyword">if</span> (argc == <span class="number">1</span> || !vm.count(<span class="string">"sensor_id"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; desc &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">bool</span> enable_something = vm.count(<span class="string">"enable_something"</span>);</span><br><span class="line">    <span class="keyword">int</span> value = vm[<span class="string">"test_default_value"</span>].as&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">    <span class="keyword">if</span> (vm.count(<span class="string">"test_string"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> ss = vm[<span class="string">"test_string"</span>].as&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;();</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test_string was set to: "</span>  &lt;&lt; ss &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (vm.count(<span class="string">"test_int"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> dd = vm[<span class="string">"test_int"</span>].as&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test_int was set to: "</span>  &lt;&lt; dd &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="CMake里引入依赖"><a href="#CMake里引入依赖" class="headerlink" title="CMake里引入依赖"></a>CMake里引入依赖</h4><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">find_package</span>(Boost COMPONENTS program_options REQUIRED)</span><br><span class="line"><span class="keyword">target_include_directories</span>(myTarget PRIVATE <span class="variable">$&#123;Boost_INCLUDE_DIR&#125;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(myTarget <span class="variable">$&#123;Boost_LIBRARIES&#125;</span> )</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://www.boost.org/doc/libs/1_63_0/doc/html/program_options/tutorial.html#idp523371328" target="_blank" rel="noopener">官方Tutorial参考</a></p>
-]]></content>
-      <categories>
-        <category>c++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>clang-format格式文件存档</title>
-    <url>/clang_format.html</url>
-    <content><![CDATA[<p>常用 <code>.clang-format</code> <code>style</code> 文件存档</p>
-<a id="more"></a>
-
-<h5 id="Google-Style"><a href="#Google-Style" class="headerlink" title="Google Style"></a>Google Style</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BasedOnStyle: Google</span><br><span class="line">IndentWidth: 2</span><br><span class="line">ColumnLimit: 80</span><br><span class="line">DerivePointerAlignment: false</span><br><span class="line">PointerAlignment: Left</span><br></pre></td></tr></table></figure>
-
-<h5 id="LLVM-Style"><a href="#LLVM-Style" class="headerlink" title="LLVM Style"></a>LLVM Style</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BasedOnStyle:  LLVM</span><br><span class="line">ColumnLimit:    80</span><br><span class="line">AlignAfterOpenBracket: AlwaysBreak</span><br><span class="line">AlignEscapedNewlines: Left</span><br><span class="line">AllowShortFunctionsOnASingleLine: InlineOnly</span><br><span class="line">AlwaysBreakTemplateDeclarations: Yes</span><br><span class="line">BinPackArguments: false</span><br><span class="line">BinPackParameters: false</span><br><span class="line">BreakBeforeBraces: Allman</span><br><span class="line">ConstructorInitializerAllOnOneLineOrOnePerLine: true</span><br><span class="line">IncludeBlocks:   Preserve</span><br><span class="line">IndentCaseLabels: true</span><br><span class="line">NamespaceIndentation: All</span><br><span class="line">PointerAlignment: Left</span><br><span class="line">SortIncludes: false</span><br><span class="line">TabWidth:        2</span><br></pre></td></tr></table></figure>
-
-<p><a href="./format_code.html">使用参考</a></p>
-]]></content>
-      <categories>
-        <category>memo</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>clang</tag>
-        <tag>format</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Debian添加最小化按钮</title>
-    <url>/debian_minimize_botton.html</url>
-    <content><![CDATA[<p>安装tweak和dconf</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install gnome-tweak-tool</span><br><span class="line">sudo apt install dconf-editor </span><br><span class="line">dconf-editor</span><br></pre></td></tr></table></figure><p>进入路径: <code>org/gnome/desktop/wm/preferences/button-layout</code></p><img src="/debian_minimize_botton/test.png" title="debian_minimize_botton"><p>取消选项 Use default value</p><a id="more"></a>
-
-
-
-
-
-
-
-
-<p>在 Custom value 填入 <code>appmemu:close,minimize,maximize,close</code></p>
-]]></content>
-      <categories>
-        <category>memo</category>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CMake设置编译选项</title>
-    <url>/cmake-set-flag.html</url>
-    <content><![CDATA[<h4 id="CMake中设置编译选项"><a href="#CMake中设置编译选项" class="headerlink" title="CMake中设置编译选项"></a>CMake中设置编译选项</h4><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">option</span>(BUILD_VISUALIZATIONS <span class="string">"Build visualization, default OFF"</span> <span class="keyword">OFF</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">"BUILD_VISUALIZATIONS is $&#123;BUILD_VISUALIZATIONS&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以跟build type关联</span></span><br><span class="line"><span class="comment"># if(CMAKE_BUILD_TYPE MATCHES Debug OR CMAKE_BUILD_TYPE MATCHES DEBUG)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(BUILD_VISUALIZATIONS)</span><br><span class="line"><span class="keyword">add_definitions</span>(-DBUILD_VISUALIZATIONS)</span><br><span class="line"><span class="comment"># target_compile_definitions($&#123;project_name&#125; PRIVATE BUILD_VISUALIZATIONS)</span></span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-<h4 id="代码中作为宏"><a href="#代码中作为宏" class="headerlink" title="代码中作为宏"></a>代码中作为宏</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> BUILD_VISUALIZATIONS</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(<span class="keyword">const</span> <span class="keyword">cloud_ptr_t</span>&amp; cloud_ptr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"visualizations on"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// visualize cloud</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(Args...)</span> </span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"pass visualizations"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-<h4 id="编译时传入参数"><a href="#编译时传入参数" class="headerlink" title="编译时传入参数"></a>编译时传入参数</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--cmake-args -DBUILD_VISUALIZATIONS=ON</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>cmake</category>
-      </categories>
-      <tags>
-        <tag>cmake</tag>
-        <tag>编译</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Effective C++ 笔记</title>
     <url>/Effective-Cpp.html</url>
     <content><![CDATA[<h2 id="让自己习惯C"><a href="#让自己习惯C" class="headerlink" title="让自己习惯C++"></a>让自己习惯C++</h2><h3 id="1-视C-为一个语言联邦"><a href="#1-视C-为一个语言联邦" class="headerlink" title="1. 视C++为一个语言联邦"></a>1. 视C++为一个语言联邦</h3><p>C++是从四个次语言组成的联邦政府，每个次语言都有自己的规则。</p><ul>
@@ -698,6 +593,89 @@
       </tags>
   </entry>
   <entry>
+    <title>leetcode刷题记录</title>
+    <url>/algorithm-notes.html</url>
+    <content><![CDATA[<ul>
+<li><p><a href="./algorithm-notes/content/时间复杂度.html">时间复杂度</a></p>
+</li>
+<li><p><a href="./algorithm-notes/content/二分法.html">二分算法</a></p>
+</li>
+<li><p><a href="./algorithm-notes/content/双指针算法.html">双指针算法</a></p>
+</li>
+<li><p><a href="./algorithm-notes/content/排序.html">排序算法</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>c++</category>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>coding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>clang-format格式文件存档</title>
+    <url>/clang_format.html</url>
+    <content><![CDATA[<p>常用 <code>.clang-format</code> <code>style</code> 文件存档</p>
+<a id="more"></a>
+
+<h5 id="Google-Style"><a href="#Google-Style" class="headerlink" title="Google Style"></a>Google Style</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BasedOnStyle: Google</span><br><span class="line">IndentWidth: 2</span><br><span class="line">ColumnLimit: 80</span><br><span class="line">DerivePointerAlignment: false</span><br><span class="line">PointerAlignment: Left</span><br></pre></td></tr></table></figure>
+
+<h5 id="LLVM-Style"><a href="#LLVM-Style" class="headerlink" title="LLVM Style"></a>LLVM Style</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BasedOnStyle:  LLVM</span><br><span class="line">ColumnLimit:    80</span><br><span class="line">AlignAfterOpenBracket: AlwaysBreak</span><br><span class="line">AlignEscapedNewlines: Left</span><br><span class="line">AllowShortFunctionsOnASingleLine: InlineOnly</span><br><span class="line">AlwaysBreakTemplateDeclarations: Yes</span><br><span class="line">BinPackArguments: false</span><br><span class="line">BinPackParameters: false</span><br><span class="line">BreakBeforeBraces: Allman</span><br><span class="line">ConstructorInitializerAllOnOneLineOrOnePerLine: true</span><br><span class="line">IncludeBlocks:   Preserve</span><br><span class="line">IndentCaseLabels: true</span><br><span class="line">NamespaceIndentation: All</span><br><span class="line">PointerAlignment: Left</span><br><span class="line">SortIncludes: false</span><br><span class="line">TabWidth:        2</span><br></pre></td></tr></table></figure>
+
+<p><a href="./format_code.html">使用参考</a></p>
+]]></content>
+      <categories>
+        <category>memo</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>clang</tag>
+        <tag>format</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++ 使用boost::program_options解析命令行选项</title>
+    <url>/boost-options-description.html</url>
+    <content><![CDATA[<p>Boost.ProgramOptions是Boost中一个专门用来解析命令行的库，其目标是轻松的解析命令行选项。</p>
+<a id="more"></a>
+
+
+
+<h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/program_options.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">on_notifier</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"On notifier: "</span> &lt;&lt; a &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">namespace</span> po = boost::program_options;</span><br><span class="line">    po::<span class="function">options_description <span class="title">desc</span><span class="params">(<span class="string">"Options"</span>)</span></span>;</span><br><span class="line">    desc.add_options()</span><br><span class="line">        (<span class="string">"enable_something,e"</span>, <span class="string">"Enable Something"</span>)</span><br><span class="line">        (<span class="string">"test_string,s"</span>, po::value&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;(), <span class="string">"Test String"</span>)</span><br><span class="line">        (<span class="string">"test_int,p"</span>, po::value&lt;<span class="keyword">int</span>&gt;(), <span class="string">"Test Int"</span>)</span><br><span class="line">        (<span class="string">"test_default_value,d"</span>,po::value&lt;<span class="keyword">int</span>&gt;()-&gt;default_value(<span class="number">1</span>), <span class="string">"Test Default Value"</span>)</span><br><span class="line">        (<span class="string">"test_notifier"</span>, value&lt;<span class="keyword">int</span>&gt;()-&gt;notifier(on_notifier), <span class="string">"Test Notifier"</span>);</span><br><span class="line">    po::variables_map vm;</span><br><span class="line">  	po::store(po::parse_command_line(argc, argv, desc), vm);</span><br><span class="line">  	po::notify(vm);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// no options set</span></span><br><span class="line">    <span class="comment">// print all options</span></span><br><span class="line">    <span class="keyword">if</span> (argc == <span class="number">1</span> || !vm.count(<span class="string">"sensor_id"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; desc &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">bool</span> enable_something = vm.count(<span class="string">"enable_something"</span>);</span><br><span class="line">    <span class="keyword">int</span> value = vm[<span class="string">"test_default_value"</span>].as&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">    <span class="keyword">if</span> (vm.count(<span class="string">"test_string"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> ss = vm[<span class="string">"test_string"</span>].as&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;();</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test_string was set to: "</span>  &lt;&lt; ss &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (vm.count(<span class="string">"test_int"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> dd = vm[<span class="string">"test_int"</span>].as&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test_int was set to: "</span>  &lt;&lt; dd &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="CMake里引入依赖"><a href="#CMake里引入依赖" class="headerlink" title="CMake里引入依赖"></a>CMake里引入依赖</h4><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">find_package</span>(Boost COMPONENTS program_options REQUIRED)</span><br><span class="line"><span class="keyword">target_include_directories</span>(myTarget PRIVATE <span class="variable">$&#123;Boost_INCLUDE_DIR&#125;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(myTarget <span class="variable">$&#123;Boost_LIBRARIES&#125;</span> )</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.boost.org/doc/libs/1_63_0/doc/html/program_options/tutorial.html#idp523371328" target="_blank" rel="noopener">官方Tutorial参考</a></p>
+]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CMake设置编译选项</title>
+    <url>/cmake-set-flag.html</url>
+    <content><![CDATA[<h4 id="CMake中设置编译选项"><a href="#CMake中设置编译选项" class="headerlink" title="CMake中设置编译选项"></a>CMake中设置编译选项</h4><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">option</span>(BUILD_VISUALIZATIONS <span class="string">"Build visualization, default OFF"</span> <span class="keyword">OFF</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">"BUILD_VISUALIZATIONS is $&#123;BUILD_VISUALIZATIONS&#125;"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以跟build type关联</span></span><br><span class="line"><span class="comment"># if(CMAKE_BUILD_TYPE MATCHES Debug OR CMAKE_BUILD_TYPE MATCHES DEBUG)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(BUILD_VISUALIZATIONS)</span><br><span class="line"><span class="keyword">add_definitions</span>(-DBUILD_VISUALIZATIONS)</span><br><span class="line"><span class="comment"># target_compile_definitions($&#123;project_name&#125; PRIVATE BUILD_VISUALIZATIONS)</span></span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+<h4 id="代码中作为宏"><a href="#代码中作为宏" class="headerlink" title="代码中作为宏"></a>代码中作为宏</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> BUILD_VISUALIZATIONS</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(<span class="keyword">const</span> <span class="keyword">cloud_ptr_t</span>&amp; cloud_ptr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"visualizations on"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// visualize cloud</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visualize_cloud</span><span class="params">(Args...)</span> </span>&#123;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"pass visualizations"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="编译时传入参数"><a href="#编译时传入参数" class="headerlink" title="编译时传入参数"></a>编译时传入参数</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--cmake-args -DBUILD_VISUALIZATIONS=ON</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>cmake</category>
+      </categories>
+      <tags>
+        <tag>cmake</tag>
+        <tag>编译</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++并发编程：条件变量std::condition_variable的使用</title>
     <url>/condition-variable.html</url>
     <content><![CDATA[<p><code>std::condition_variable</code> 是 C++11 多线程编程中的条件变量。</p>
@@ -732,152 +710,6 @@
         <tag>c++</tag>
         <tag>async</tag>
         <tag>并发编程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux 比较两个目录的区别</title>
-    <url>/diff-of-two-folders.html</url>
-    <content><![CDATA[<h3 id="查看两个目录的结构"><a href="#查看两个目录的结构" class="headerlink" title="查看两个目录的结构"></a>查看两个目录的结构</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tree test_a/ test_b/</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">test_a/</span><br><span class="line">└── test.txt</span><br><span class="line">test_b/</span><br><span class="line">├── test_b.txt</span><br><span class="line">└── test.txt</span><br></pre></td></tr></table></figure><h3 id="使用-diff-逐行比较"><a href="#使用-diff-逐行比较" class="headerlink" title="使用 diff 逐行比较"></a>使用 diff 逐行比较</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ diff -aur test_a/ test_b/</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Only <span class="keyword">in</span> test_b/: test_b.txt</span><br><span class="line">diff -aur test_a/test.txt test_b/test.txt</span><br><span class="line">--- test_a/test.txt	2024-04-01 19:29:35.024777745 +0800</span><br><span class="line">+++ test_b/test.txt	2024-04-01 19:36:22.759553212 +0800</span><br><span class="line">@@ -1 +1 @@</span><br><span class="line">-test_a</span><br><span class="line">+test_b</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-
-
-
-
-<p>上面结果可以看到两个文件夹里相同文件名 <code>test.txt</code> 里的细节区别，而对于 test_b 文件夹里的 test_b.txt，只显示 <code>Only in test_b/: test_b.txt</code></p>
-<p>使用 <code>-N</code> 则可以同时打印新文件的内容</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ diff -Naur test_a/ test_b/</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">diff -Naur test_a/test_b.txt test_b/test_b.txt</span><br><span class="line">--- test_a/test_b.txt	1970-01-01 08:00:00.000000000 +0800</span><br><span class="line">+++ test_b/test_b.txt	2024-04-01 19:29:48.008986470 +0800</span><br><span class="line">@@ -0,0 +1 @@</span><br><span class="line">+extra_test_b</span><br><span class="line">diff -Naur test_a/test.txt test_b/test.txt</span><br><span class="line">--- test_a/test.txt	2024-04-01 19:29:35.024777745 +0800</span><br><span class="line">+++ test_b/test.txt	2024-04-01 19:36:22.759553212 +0800</span><br><span class="line">@@ -1 +1 @@</span><br><span class="line">-test_a</span><br><span class="line">+test_b</span><br></pre></td></tr></table></figure>
-
-<h3 id="只显示有区别的文件名"><a href="#只显示有区别的文件名" class="headerlink" title="只显示有区别的文件名"></a>只显示有区别的文件名</h3><p>使用 <code>-q</code> 可以快速显示有区别的文件名而非具体内容</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ diff -rq test_a/ test_b/</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Only <span class="keyword">in</span> test_b/: test_b.txt</span><br><span class="line">Files test_a/test.txt and test_b/test.txt differ</span><br></pre></td></tr></table></figure>
-
-<p>加上 <code>-N</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ diff -Naurq test_a/ test_b/</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Files test_a/test_b.txt and test_b/test_b.txt differ</span><br><span class="line">Files test_a/test.txt and test_b/test.txt differ</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>memo</category>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用clang和black 对C++、Python代码自动格式化</title>
-    <url>/format_code.html</url>
-    <content><![CDATA[<h4 id="使用clang对C-进行格式化"><a href="#使用clang对C-进行格式化" class="headerlink" title="使用clang对C++进行格式化"></a>使用<code>clang</code>对C++进行格式化</h4><ul>
-<li><p>安装<code>clang-format</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y clang-format</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>简单使用</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">clang-format -i &lt;file_to_format&gt;</span><br><span class="line"><span class="comment"># clang-format -i test.cc</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>指定 <code>style</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">clang-format -i --stlye=<span class="string">"&#123;key: value, ...&#125;"</span></span><br><span class="line"><span class="comment"># clang-format -i --stlye="&#123;BasedOnStyle: Google, IndentWidth: 2&#125;"</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>指定 <a href="./clang_format.html">style 文件</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">clang-format -i --stlye=file:&lt;style_file&gt;</span><br><span class="line"><span class="comment"># clang-format -i --style=file:.clang-format</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写脚本 <code>clang_format.bash</code> 对文件夹下所有c++代码格式化</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find . -regextype egrep -regex <span class="string">".*\.(c|cc|h|hh)$"</span> | xargs clang-format -i</span><br><span class="line"></span><br><span class="line"><span class="comment"># skip some paths</span></span><br><span class="line"><span class="comment"># find . -regextype egrep -regex ".*\.(c|cc|h|hh)$" -not -path '*/install/*' -not -path '*/build/*' -not -path '*/log/*' -not -path '*/deps/*'| xargs clang-format -i</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在需要格式化的路径下运行脚本</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./clang_format.bash</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-</li>
-</ul><a id="more"></a>
-<h4 id="使用black对python进行格式化"><a href="#使用black对python进行格式化" class="headerlink" title="使用black对python进行格式化"></a>使用<code>black</code>对python进行格式化</h4><ul>
-<li><p>安装<code>black</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip3 install black</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>测试</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m black --version</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在需要格式化的路径下运行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">black .</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定长度</span></span><br><span class="line">python3 -m black --line-length 80 .</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>memo</category>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>clang</tag>
-        <tag>format</tag>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux 解压缩rar包</title>
-    <url>/extract_from_rar.html</url>
-    <content><![CDATA[<h4 id="下载rar软件安装包"><a href="#下载rar软件安装包" class="headerlink" title="下载rar软件安装包"></a>下载rar软件安装包</h4><ol>
-<li><p>直接从 <a href="https://www.rarlab.com/download.htm" target="_blank" rel="noopener">rarlab</a> 下载安装包</p>
-</li>
-<li><p>通过命令行下载</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://www.rarlab.com/rar/rarlinux-x64-6.0.1.tar.gz  <span class="comment"># 64位</span></span><br><span class="line">wget https://www.rarlab.com/rar/rarlinux-3.8.0.tar.gz	   <span class="comment"># 32位</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar zxvf rarlinux-x64-6.0.1.tar.gz</span><br><span class="line"><span class="built_in">cd</span> rar</span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-
-<h4 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rar x xxx.rar  <span class="comment"># Extract files with full path</span></span><br><span class="line">rar e xxx.rar  <span class="comment"># Extract files without archived paths</span></span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-
-
-<h4 id="将xxx目录压缩为xxx-rar"><a href="#将xxx目录压缩为xxx-rar" class="headerlink" title="将xxx目录压缩为xxx.rar"></a>将xxx目录压缩为xxx.rar</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rar a xxx.rar xxx</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>memo</category>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>uncompress</tag>
-        <tag>rar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux 搭建FTP服务器</title>
-    <url>/ftp_server.html</url>
-    <content><![CDATA[<h4 id="安装ftp和vsftpd"><a href="#安装ftp和vsftpd" class="headerlink" title="安装ftp和vsftpd"></a>安装ftp和vsftpd</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install ftp</span><br><span class="line">sudo apt-get install vsftpd</span><br></pre></td></tr></table></figure><h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用vsftpd软件，主要包括如下几个命令：</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动ftp</span></span><br><span class="line">service vsftpd start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止ftp</span></span><br><span class="line">service vsftpd stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启ftp</span></span><br><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-<h4 id="配置vsftpd"><a href="#配置vsftpd" class="headerlink" title="配置vsftpd"></a>配置vsftpd</h4><p>打开配置文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/vsftpd.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># vi /etc/vsftpd/vsftpd.conf</span></span><br></pre></td></tr></table></figure>
-
-<p>按照需求修改为以下内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">listen=NO</span><br><span class="line">listen_ipv6=YES</span><br><span class="line">anonymous_enable=NO</span><br><span class="line">local_enable=YES</span><br><span class="line">write_enable=YES</span><br><span class="line">dirmessage_enable=YES</span><br><span class="line">use_localtime=YES</span><br><span class="line">xferlog_enable=YES</span><br><span class="line">connect_from_port_20=YES</span><br><span class="line">secure_chroot_dir=/var/run/vsftpd/empty</span><br><span class="line">pam_service_name=vsftpd</span><br><span class="line">rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem</span><br><span class="line">rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key</span><br><span class="line">ssl_enable=NO</span><br><span class="line"></span><br><span class="line"># local root</span><br><span class="line">local_root=/home/bot/dev/moma_app/scanner_images</span><br></pre></td></tr></table></figure>
-
-<h4 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure>
-
-<h4 id="登录测试"><a href="#登录测试" class="headerlink" title="登录测试"></a>登录测试</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 登录本地ftp</span></span><br><span class="line">ftp 127.0.0.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入用户名和密码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前路径是否设置的local root</span></span><br><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>memo</category>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>ftp</tag>
       </tags>
   </entry>
   <entry>
@@ -1009,6 +841,199 @@
       </tags>
   </entry>
   <entry>
+    <title>Debian添加最小化按钮</title>
+    <url>/debian_minimize_botton.html</url>
+    <content><![CDATA[<p>安装tweak和dconf</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install gnome-tweak-tool</span><br><span class="line">sudo apt install dconf-editor </span><br><span class="line">dconf-editor</span><br></pre></td></tr></table></figure><p>进入路径: <code>org/gnome/desktop/wm/preferences/button-layout</code></p><img src="/debian_minimize_botton/test.png" title="debian_minimize_botton"><p>取消选项 Use default value</p><a id="more"></a>
+
+
+
+
+
+
+
+
+<p>在 Custom value 填入 <code>appmemu:close,minimize,maximize,close</code></p>
+]]></content>
+      <categories>
+        <category>memo</category>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux 比较两个目录的区别</title>
+    <url>/diff-of-two-folders.html</url>
+    <content><![CDATA[<h3 id="查看两个目录的结构"><a href="#查看两个目录的结构" class="headerlink" title="查看两个目录的结构"></a>查看两个目录的结构</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tree test_a/ test_b/</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">test_a/</span><br><span class="line">└── test.txt</span><br><span class="line">test_b/</span><br><span class="line">├── test_b.txt</span><br><span class="line">└── test.txt</span><br></pre></td></tr></table></figure><h3 id="使用-diff-逐行比较"><a href="#使用-diff-逐行比较" class="headerlink" title="使用 diff 逐行比较"></a>使用 diff 逐行比较</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ diff -aur test_a/ test_b/</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Only <span class="keyword">in</span> test_b/: test_b.txt</span><br><span class="line">diff -aur test_a/test.txt test_b/test.txt</span><br><span class="line">--- test_a/test.txt	2024-04-01 19:29:35.024777745 +0800</span><br><span class="line">+++ test_b/test.txt	2024-04-01 19:36:22.759553212 +0800</span><br><span class="line">@@ -1 +1 @@</span><br><span class="line">-test_a</span><br><span class="line">+test_b</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+
+
+
+<p>上面结果可以看到两个文件夹里相同文件名 <code>test.txt</code> 里的细节区别，而对于 test_b 文件夹里的 test_b.txt，只显示 <code>Only in test_b/: test_b.txt</code></p>
+<p>使用 <code>-N</code> 则可以同时打印新文件的内容</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ diff -Naur test_a/ test_b/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">diff -Naur test_a/test_b.txt test_b/test_b.txt</span><br><span class="line">--- test_a/test_b.txt	1970-01-01 08:00:00.000000000 +0800</span><br><span class="line">+++ test_b/test_b.txt	2024-04-01 19:29:48.008986470 +0800</span><br><span class="line">@@ -0,0 +1 @@</span><br><span class="line">+extra_test_b</span><br><span class="line">diff -Naur test_a/test.txt test_b/test.txt</span><br><span class="line">--- test_a/test.txt	2024-04-01 19:29:35.024777745 +0800</span><br><span class="line">+++ test_b/test.txt	2024-04-01 19:36:22.759553212 +0800</span><br><span class="line">@@ -1 +1 @@</span><br><span class="line">-test_a</span><br><span class="line">+test_b</span><br></pre></td></tr></table></figure>
+
+<h3 id="只显示有区别的文件名"><a href="#只显示有区别的文件名" class="headerlink" title="只显示有区别的文件名"></a>只显示有区别的文件名</h3><p>使用 <code>-q</code> 可以快速显示有区别的文件名而非具体内容</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ diff -rq test_a/ test_b/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Only <span class="keyword">in</span> test_b/: test_b.txt</span><br><span class="line">Files test_a/test.txt and test_b/test.txt differ</span><br></pre></td></tr></table></figure>
+
+<p>加上 <code>-N</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ diff -Naurq test_a/ test_b/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Files test_a/test_b.txt and test_b/test_b.txt differ</span><br><span class="line">Files test_a/test.txt and test_b/test.txt differ</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>memo</category>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>对cmake文件自动格式化</title>
+    <url>/format-cmake-file.html</url>
+    <content><![CDATA[<h2 id="使用-cmake-format-工具"><a href="#使用-cmake-format-工具" class="headerlink" title="使用 cmake-format 工具"></a>使用 cmake-format 工具</h2><h4 id="安装运行"><a href="#安装运行" class="headerlink" title="安装运行"></a>安装运行</h4><p>安装</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install cmake-format</span><br></pre></td></tr></table></figure><p>运行格式化</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cmake-format -i CMakeLists.txt</span><br></pre></td></tr></table></figure><h4 id="VSCode中安装对应的-cmake-format-插件"><a href="#VSCode中安装对应的-cmake-format-插件" class="headerlink" title="VSCode中安装对应的 cmake-format 插件"></a>VSCode中安装对应的 cmake-format 插件</h4><p><img src="format-cmake-file/1.png" alt="1"></p><p>安装后检查或设置一下 <code>cmake-foramt</code> 的路径</p><p><img src="format-cmake-file/2.png" alt="2"></p><h4 id="使用自定义配置文件"><a href="#使用自定义配置文件" class="headerlink" title="使用自定义配置文件"></a>使用自定义配置文件</h4><p><code>cmake-format</code> 支持自定义配置文件，支持<code>.cmake-format.py</code>和<code>.cmake-format.yaml</code>。</p><a id="more"></a>
+
+
+
+
+
+
+
+
+
+<p>配置文件放在项目根目录，<code>cmake-format</code> 会自动加载。如果放在别的地方，也可以通过命令行参数 <code>-c &lt;config_file&gt;</code> 指定配置文件，或在插件设置中填写。</p>
+<h4 id="配置文件示例"><a href="#配置文件示例" class="headerlink" title="配置文件示例"></a>配置文件示例</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -----------------------------</span></span><br><span class="line"><span class="comment"># Options effecting formatting.</span></span><br><span class="line"><span class="comment"># -----------------------------</span></span><br><span class="line"><span class="keyword">with</span> section(<span class="string">"format"</span>):</span><br><span class="line"></span><br><span class="line">  line_width = <span class="number">80</span></span><br><span class="line"></span><br><span class="line">  tab_size = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">  separate_ctrl_name_with_space = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">  separate_fn_name_with_space = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">  dangle_parens = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">  align_args = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">  space_before_paren = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">  separate_args = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">  split_before_named_args = <span class="literal">False</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>memo</category>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>format</tag>
+        <tag>cmake</tag>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用clang和black 对C++、Python代码自动格式化</title>
+    <url>/format_code.html</url>
+    <content><![CDATA[<h4 id="使用clang对C-进行格式化"><a href="#使用clang对C-进行格式化" class="headerlink" title="使用clang对C++进行格式化"></a>使用<code>clang</code>对C++进行格式化</h4><ul>
+<li><p>安装<code>clang-format</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y clang-format</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简单使用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">clang-format -i &lt;file_to_format&gt;</span><br><span class="line"><span class="comment"># clang-format -i test.cc</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定 <code>style</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">clang-format -i --stlye=<span class="string">"&#123;key: value, ...&#125;"</span></span><br><span class="line"><span class="comment"># clang-format -i --stlye="&#123;BasedOnStyle: Google, IndentWidth: 2&#125;"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定 <a href="./clang_format.html">style 文件</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">clang-format -i --stlye=file:&lt;style_file&gt;</span><br><span class="line"><span class="comment"># clang-format -i --style=file:.clang-format</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写脚本 <code>clang_format.bash</code> 对文件夹下所有c++代码格式化</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find . -regextype egrep -regex <span class="string">".*\.(c|cc|h|hh)$"</span> | xargs clang-format -i</span><br><span class="line"></span><br><span class="line"><span class="comment"># skip some paths</span></span><br><span class="line"><span class="comment"># find . -regextype egrep -regex ".*\.(c|cc|h|hh)$" -not -path '*/install/*' -not -path '*/build/*' -not -path '*/log/*' -not -path '*/deps/*'| xargs clang-format -i</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在需要格式化的路径下运行脚本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./clang_format.bash</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ul><a id="more"></a>
+<h4 id="使用black对python进行格式化"><a href="#使用black对python进行格式化" class="headerlink" title="使用black对python进行格式化"></a>使用<code>black</code>对python进行格式化</h4><ul>
+<li><p>安装<code>black</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip3 install black</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m black --version</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在需要格式化的路径下运行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">black .</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定长度</span></span><br><span class="line">python3 -m black --line-length 80 .</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>memo</category>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>clang</tag>
+        <tag>format</tag>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux 搭建FTP服务器</title>
+    <url>/ftp_server.html</url>
+    <content><![CDATA[<h4 id="安装ftp和vsftpd"><a href="#安装ftp和vsftpd" class="headerlink" title="安装ftp和vsftpd"></a>安装ftp和vsftpd</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install ftp</span><br><span class="line">sudo apt-get install vsftpd</span><br></pre></td></tr></table></figure><h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用vsftpd软件，主要包括如下几个命令：</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动ftp</span></span><br><span class="line">service vsftpd start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止ftp</span></span><br><span class="line">service vsftpd stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启ftp</span></span><br><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<h4 id="配置vsftpd"><a href="#配置vsftpd" class="headerlink" title="配置vsftpd"></a>配置vsftpd</h4><p>打开配置文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/vsftpd.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># vi /etc/vsftpd/vsftpd.conf</span></span><br></pre></td></tr></table></figure>
+
+<p>按照需求修改为以下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">listen=NO</span><br><span class="line">listen_ipv6=YES</span><br><span class="line">anonymous_enable=NO</span><br><span class="line">local_enable=YES</span><br><span class="line">write_enable=YES</span><br><span class="line">dirmessage_enable=YES</span><br><span class="line">use_localtime=YES</span><br><span class="line">xferlog_enable=YES</span><br><span class="line">connect_from_port_20=YES</span><br><span class="line">secure_chroot_dir=/var/run/vsftpd/empty</span><br><span class="line">pam_service_name=vsftpd</span><br><span class="line">rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem</span><br><span class="line">rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key</span><br><span class="line">ssl_enable=NO</span><br><span class="line"></span><br><span class="line"># local root</span><br><span class="line">local_root=/home/bot/dev/moma_app/scanner_images</span><br></pre></td></tr></table></figure>
+
+<h4 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure>
+
+<h4 id="登录测试"><a href="#登录测试" class="headerlink" title="登录测试"></a>登录测试</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 登录本地ftp</span></span><br><span class="line">ftp 127.0.0.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入用户名和密码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前路径是否设置的local root</span></span><br><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>memo</category>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>ftp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 解压缩rar包</title>
+    <url>/extract_from_rar.html</url>
+    <content><![CDATA[<h4 id="下载rar软件安装包"><a href="#下载rar软件安装包" class="headerlink" title="下载rar软件安装包"></a>下载rar软件安装包</h4><ol>
+<li><p>直接从 <a href="https://www.rarlab.com/download.htm" target="_blank" rel="noopener">rarlab</a> 下载安装包</p>
+</li>
+<li><p>通过命令行下载</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://www.rarlab.com/rar/rarlinux-x64-6.0.1.tar.gz  <span class="comment"># 64位</span></span><br><span class="line">wget https://www.rarlab.com/rar/rarlinux-3.8.0.tar.gz	   <span class="comment"># 32位</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar zxvf rarlinux-x64-6.0.1.tar.gz</span><br><span class="line"><span class="built_in">cd</span> rar</span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<h4 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rar x xxx.rar  <span class="comment"># Extract files with full path</span></span><br><span class="line">rar e xxx.rar  <span class="comment"># Extract files without archived paths</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+
+
+<h4 id="将xxx目录压缩为xxx-rar"><a href="#将xxx目录压缩为xxx-rar" class="headerlink" title="将xxx目录压缩为xxx.rar"></a>将xxx目录压缩为xxx.rar</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rar a xxx.rar xxx</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>memo</category>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>uncompress</tag>
+        <tag>rar</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OpenCV图像处理1-使用高通滤波进行边缘检测</title>
     <url>/image-processing-high-pass-filter.html</url>
     <content><![CDATA[<h2 id="高通滤波-通常使用来检测边缘"><a href="#高通滤波-通常使用来检测边缘" class="headerlink" title="高通滤波: 通常使用来检测边缘"></a>高通滤波: 通常使用来检测边缘</h2><h3 id="常见算子"><a href="#常见算子" class="headerlink" title="常见算子"></a>常见算子</h3><h5 id="sobel算子"><a href="#sobel算子" class="headerlink" title="sobel算子"></a>sobel算子</h5><p><img src="image-processing-high-pass-filter/math-1.png" alt="math-1"></p><h5 id="Scharr算子-更敏感-细致"><a href="#Scharr算子-更敏感-细致" class="headerlink" title="Scharr算子 (更敏感/细致)"></a>Scharr算子 (更敏感/细致)</h5><p><img src="image-processing-high-pass-filter/math-2.png" alt="math-2"></p><h5 id="Laplacian-拉普拉斯-算子-对噪声较敏感，一般搭配其他操作"><a href="#Laplacian-拉普拉斯-算子-对噪声较敏感，一般搭配其他操作" class="headerlink" title="Laplacian(拉普拉斯)算子 (对噪声较敏感，一般搭配其他操作)"></a>Laplacian(拉普拉斯)算子 (对噪声较敏感，一般搭配其他操作)</h5><p><img src="image-processing-high-pass-filter/math-3.png" alt="math-3"></p><h3 id="具体代码例子"><a href="#具体代码例子" class="headerlink" title="具体代码例子"></a>具体代码例子</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> matplotlib.image <span class="keyword">as</span> mpimg</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read in the image</span></span><br><span class="line">image = cv2.imread(<span class="string">'images/curved_lane.jpg'</span>)</span><br><span class="line">image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)</span><br><span class="line"></span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)</span><br><span class="line"></span><br><span class="line">f, (p1, p2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">p1.set_title(<span class="string">'original img'</span>)</span><br><span class="line">p1.imshow(image)</span><br><span class="line"></span><br><span class="line">p2.set_title(<span class="string">'gray img'</span>)</span><br><span class="line">p2.imshow(gray, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure><a id="more"></a>
@@ -1126,60 +1151,6 @@
       </tags>
   </entry>
   <entry>
-    <title>对cmake文件自动格式化</title>
-    <url>/format-cmake-file.html</url>
-    <content><![CDATA[<h2 id="使用-cmake-format-工具"><a href="#使用-cmake-format-工具" class="headerlink" title="使用 cmake-format 工具"></a>使用 cmake-format 工具</h2><h4 id="安装运行"><a href="#安装运行" class="headerlink" title="安装运行"></a>安装运行</h4><p>安装</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install cmake-format</span><br></pre></td></tr></table></figure><p>运行格式化</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cmake-format -i CMakeLists.txt</span><br></pre></td></tr></table></figure><h4 id="VSCode中安装对应的-cmake-format-插件"><a href="#VSCode中安装对应的-cmake-format-插件" class="headerlink" title="VSCode中安装对应的 cmake-format 插件"></a>VSCode中安装对应的 cmake-format 插件</h4><p><img src="format-cmake-file/1.png" alt="1"></p><p>安装后检查或设置一下 <code>cmake-foramt</code> 的路径</p><p><img src="format-cmake-file/2.png" alt="2"></p><h4 id="使用自定义配置文件"><a href="#使用自定义配置文件" class="headerlink" title="使用自定义配置文件"></a>使用自定义配置文件</h4><p><code>cmake-format</code> 支持自定义配置文件，支持<code>.cmake-format.py</code>和<code>.cmake-format.yaml</code>。</p><a id="more"></a>
-
-
-
-
-
-
-
-
-
-<p>配置文件放在项目根目录，<code>cmake-format</code> 会自动加载。如果放在别的地方，也可以通过命令行参数 <code>-c &lt;config_file&gt;</code> 指定配置文件，或在插件设置中填写。</p>
-<h4 id="配置文件示例"><a href="#配置文件示例" class="headerlink" title="配置文件示例"></a>配置文件示例</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -----------------------------</span></span><br><span class="line"><span class="comment"># Options effecting formatting.</span></span><br><span class="line"><span class="comment"># -----------------------------</span></span><br><span class="line"><span class="keyword">with</span> section(<span class="string">"format"</span>):</span><br><span class="line"></span><br><span class="line">  line_width = <span class="number">80</span></span><br><span class="line"></span><br><span class="line">  tab_size = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">  separate_ctrl_name_with_space = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">  separate_fn_name_with_space = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">  dangle_parens = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">  align_args = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">  space_before_paren = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">  separate_args = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">  split_before_named_args = <span class="literal">False</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>memo</category>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>format</tag>
-        <tag>linux</tag>
-        <tag>cmake</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu环境下安装使用hexo</title>
-    <url>/install-hexo.html</url>
-    <content><![CDATA[<h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install git</span><br><span class="line">git config --global user.name <span class="string">"Your Name"</span></span><br><span class="line">git config --global user.email <span class="string">"youremail@domain.com"</span></span><br></pre></td></tr></table></figure><h2 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install ufw</span><br><span class="line">sudo ufw allow <span class="string">"OpenSSH"</span></span><br><span class="line">sudo ufw <span class="built_in">enable</span></span><br><span class="line">sudo ufw allow http</span><br><span class="line">sudo ufw allow https</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-<p>Check the firewall status.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo ufw status</span><br><span class="line">Status: active</span><br><span class="line"></span><br><span class="line">To                         Action      From</span><br><span class="line">-                          --          --</span><br><span class="line">OpenSSH                    ALLOW       Anywhere                  </span><br><span class="line">4000                       ALLOW       Anywhere                  </span><br><span class="line">80/tcp                     ALLOW       Anywhere                  </span><br><span class="line">443                        ALLOW       Anywhere                  </span><br><span class="line">OpenSSH (v6)               ALLOW       Anywhere (v6)             </span><br><span class="line">4000 (v6)                  ALLOW       Anywhere (v6)             </span><br><span class="line">80/tcp (v6)                ALLOW       Anywhere (v6)             </span><br><span class="line">443 (v6)                   ALLOW       Anywhere (v6)</span><br></pre></td></tr></table></figure>
-
-<h2 id="通过-nvm-安装-nodejs"><a href="#通过-nvm-安装-nodejs" class="headerlink" title="通过 nvm 安装 nodejs"></a>通过 <code>nvm</code> 安装 <code>nodejs</code></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># installs NVM (Node Version Manager)</span></span><br><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash</span><br><span class="line"><span class="comment"># download and install Node.js</span></span><br><span class="line">nvm install 20</span><br><span class="line"><span class="comment"># verifies the right Node.js version is in the environment</span></span><br><span class="line">node -v <span class="comment"># should print `v20.11.1`</span></span><br><span class="line"><span class="comment"># verifies the right NPM version is in the environment</span></span><br><span class="line">npm -v <span class="comment"># should print `10.2.4`</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># change version</span></span><br><span class="line"><span class="comment"># nvm install 12</span></span><br><span class="line"><span class="comment"># nvm use 12</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装-hexo"><a href="#安装-hexo" class="headerlink" title="安装 hexo"></a>安装 <code>hexo</code></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-
-<h2 id="初始化博客"><a href="#初始化博客" class="headerlink" title="初始化博客"></a>初始化博客</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir blog  <span class="comment"># create the blog folder</span></span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-
-<h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo n <span class="string">"first post"</span></span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>memo</category>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>environment</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OpenCV图像处理2-使用低通滤波进行去噪</title>
     <url>/image-processing-low-pass-filter.html</url>
     <content><![CDATA[<h2 id="低通滤波-通常使用来去噪"><a href="#低通滤波-通常使用来去噪" class="headerlink" title="低通滤波: 通常使用来去噪"></a>低通滤波: 通常使用来去噪</h2><h3 id="常见滤波类型"><a href="#常见滤波类型" class="headerlink" title="常见滤波类型"></a>常见滤波类型</h3><h5 id="均值滤波"><a href="#均值滤波" class="headerlink" title="均值滤波"></a>均值滤波</h5><p><img src="image-processing-low-pass-filter/math-4.png" alt="math-4"></p><h5 id="高斯滤波-权重与距离相关"><a href="#高斯滤波-权重与距离相关" class="headerlink" title="高斯滤波 (权重与距离相关)"></a>高斯滤波 (权重与距离相关)</h5><p><img src="image-processing-low-pass-filter/math-5.png" alt="math-5"></p><h5 id="中值滤波"><a href="#中值滤波" class="headerlink" title="中值滤波"></a>中值滤波</h5><p>顾名思义取中值</p><h3 id="具体代码例子"><a href="#具体代码例子" class="headerlink" title="具体代码例子"></a>具体代码例子</h3><h5 id="高斯的模糊-去噪效果"><a href="#高斯的模糊-去噪效果" class="headerlink" title="高斯的模糊/去噪效果"></a>高斯的模糊/去噪效果</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Read in the image</span></span><br><span class="line">image = cv2.imread(<span class="string">'images/brain_MR.jpg'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert to grayscale for filtering</span></span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a Gaussian blurred image</span></span><br><span class="line">gray_blur = cv2.GaussianBlur(gray, (<span class="number">9</span>, <span class="number">9</span>), <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># use custom kernal</span></span><br><span class="line"><span class="comment"># gaussian = (1/16)*np.array([[1, 2, 1],</span></span><br><span class="line"><span class="comment">#                            [2, 4, 2],</span></span><br><span class="line"><span class="comment">#                            [1, 2, 1]])</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># gray_blur = cv2.filter2D(gray, -1, gaussian)</span></span><br><span class="line"></span><br><span class="line">f, (ax1, ax2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>,<span class="number">10</span>))</span><br><span class="line">ax1.set_title(<span class="string">'original gray'</span>),ax1.imshow(gray, cmap=<span class="string">'gray'</span>)</span><br><span class="line">ax2.set_title(<span class="string">'blurred image'</span>),ax2.imshow(gray_blur, cmap=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure><a id="more"></a>
@@ -1209,30 +1180,32 @@
       </tags>
   </entry>
   <entry>
-    <title>OpenCV Mat像素的遍历方法</title>
-    <url>/mat-traverse.html</url>
-    <content><![CDATA[<h2 id="OpenCV像素遍历常用的几种方法"><a href="#OpenCV像素遍历常用的几种方法" class="headerlink" title="OpenCV像素遍历常用的几种方法"></a>OpenCV像素遍历常用的几种方法</h2><p>以从 organized 的点云提取 RGB 信息为例</p><h3 id="动态地址at"><a href="#动态地址at" class="headerlink" title="动态地址at"></a>动态地址at</h3><p>基于Mat对象的随机像素访问 API 实现，通过行列索引方式遍历每个像素值。这种方法速度较慢，不太适合用于像素遍历。</p><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_1</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">0</span>] = pt.b;</span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">1</span>] = pt.g;</span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">2</span>] = pt.r;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
+    <title>Ubuntu环境下安装使用hexo</title>
+    <url>/install-hexo.html</url>
+    <content><![CDATA[<h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install git</span><br><span class="line">git config --global user.name <span class="string">"Your Name"</span></span><br><span class="line">git config --global user.email <span class="string">"youremail@domain.com"</span></span><br></pre></td></tr></table></figure><h2 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install ufw</span><br><span class="line">sudo ufw allow <span class="string">"OpenSSH"</span></span><br><span class="line">sudo ufw <span class="built_in">enable</span></span><br><span class="line">sudo ufw allow http</span><br><span class="line">sudo ufw allow https</span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
 
-<h3 id="行指针"><a href="#行指针" class="headerlink" title="行指针"></a>行指针</h3><p>基于Mat对象的行随机访问指针方式实现对每个像素的遍历。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_2</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    cv::Vec3b *ptr = image.ptr&lt;cv::Vec3b&gt;(row);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      cv::Vec3b &amp;pixel = ptr[col];</span><br><span class="line">      pixel[<span class="number">0</span>] = pt.b;</span><br><span class="line">      pixel[<span class="number">1</span>] = pt.g;</span><br><span class="line">      pixel[<span class="number">2</span>] = pt.r;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Check the firewall status.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo ufw status</span><br><span class="line">Status: active</span><br><span class="line"></span><br><span class="line">To                         Action      From</span><br><span class="line">-                          --          --</span><br><span class="line">OpenSSH                    ALLOW       Anywhere                  </span><br><span class="line">4000                       ALLOW       Anywhere                  </span><br><span class="line">80/tcp                     ALLOW       Anywhere                  </span><br><span class="line">443                        ALLOW       Anywhere                  </span><br><span class="line">OpenSSH (v6)               ALLOW       Anywhere (v6)             </span><br><span class="line">4000 (v6)                  ALLOW       Anywhere (v6)             </span><br><span class="line">80/tcp (v6)                ALLOW       Anywhere (v6)             </span><br><span class="line">443 (v6)                   ALLOW       Anywhere (v6)</span><br></pre></td></tr></table></figure>
 
-<h3 id="uchar-行指针"><a href="#uchar-行指针" class="headerlink" title="uchar 行指针"></a>uchar 行指针</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_3</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    uchar *uc_pixel = image.ptr(row);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      uc_pixel[<span class="number">0</span>] = pt.b;</span><br><span class="line">      uc_pixel[<span class="number">1</span>] = pt.g;</span><br><span class="line">      uc_pixel[<span class="number">2</span>] = pt.r;</span><br><span class="line">      uc_pixel += <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="通过-nvm-安装-nodejs"><a href="#通过-nvm-安装-nodejs" class="headerlink" title="通过 nvm 安装 nodejs"></a>通过 <code>nvm</code> 安装 <code>nodejs</code></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># installs NVM (Node Version Manager)</span></span><br><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash</span><br><span class="line"><span class="comment"># download and install Node.js</span></span><br><span class="line">nvm install 20</span><br><span class="line"><span class="comment"># verifies the right Node.js version is in the environment</span></span><br><span class="line">node -v <span class="comment"># should print `v20.11.1`</span></span><br><span class="line"><span class="comment"># verifies the right NPM version is in the environment</span></span><br><span class="line">npm -v <span class="comment"># should print `10.2.4`</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># change version</span></span><br><span class="line"><span class="comment"># nvm install 12</span></span><br><span class="line"><span class="comment"># nvm use 12</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="将图像完全展开"><a href="#将图像完全展开" class="headerlink" title="将图像完全展开"></a>将图像完全展开</h3><p>一般图像行与行之间往往存储是不连续的，但是有些图像可以是连续的，Mat提供了一个检测图像是否连续的函数<code>isContinuous()</code>。当图像连通时，我们就可以把图像完全展开，看成是一行进行处理。</p>
-<h3 id="速度比较"><a href="#速度比较" class="headerlink" title="速度比较"></a>速度比较</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> cloud_path = <span class="string">"test.pcd"</span></span><br><span class="line">  pcl::PointCloud&lt;PointT&gt;::Ptr cloud(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;);</span><br><span class="line">  pcl_utils::load_pcd(cloud_path, *cloud);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *cloud &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_1;</span><br><span class="line">  extract_1(cloud, img_1);</span><br><span class="line">  <span class="keyword">auto</span> end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  <span class="keyword">auto</span> elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_2;</span><br><span class="line">  extract_2(cloud, img_2);</span><br><span class="line">  end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_3;</span><br><span class="line">  extract_3(cloud, img_3);</span><br><span class="line">  end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"3 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="安装-hexo"><a href="#安装-hexo" class="headerlink" title="安装 hexo"></a>安装 <code>hexo</code></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
 
-<p>输出 :</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Load pcd file with 1228800 data points.</span><br><span class="line">header: seq: 0 stamp: 0 frame_id: </span><br><span class="line"></span><br><span class="line">points[]: 1228800</span><br><span class="line">width: 1280</span><br><span class="line">height: 960</span><br><span class="line">is_dense: 0</span><br><span class="line">sensor origin (xyz): [0, 0, 0] / orientation (xyzw): [0, 0, 0, 1]</span><br><span class="line"></span><br><span class="line">1 elapsed time: 0.0199077s</span><br><span class="line">2 elapsed time: 0.012727s</span><br><span class="line">3 elapsed time: 0.00880297s</span><br><span class="line">4 elapsed time: 0.00900436s</span><br></pre></td></tr></table></figure>
+<h2 id="初始化博客"><a href="#初始化博客" class="headerlink" title="初始化博客"></a>初始化博客</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir blog  <span class="comment"># create the blog folder</span></span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo n <span class="string">"first post"</span></span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
-        <category>cv</category>
+        <category>memo</category>
+        <category>linux</category>
       </categories>
       <tags>
-        <tag>c++</tag>
-        <tag>opencv</tag>
+        <tag>linux</tag>
+        <tag>environment</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1288,6 +1261,33 @@
       </tags>
   </entry>
   <entry>
+    <title>OpenCV Mat像素的遍历方法</title>
+    <url>/mat-traverse.html</url>
+    <content><![CDATA[<h2 id="OpenCV像素遍历常用的几种方法"><a href="#OpenCV像素遍历常用的几种方法" class="headerlink" title="OpenCV像素遍历常用的几种方法"></a>OpenCV像素遍历常用的几种方法</h2><p>以从 organized 的点云提取 RGB 信息为例</p><h3 id="动态地址at"><a href="#动态地址at" class="headerlink" title="动态地址at"></a>动态地址at</h3><p>基于Mat对象的随机像素访问 API 实现，通过行列索引方式遍历每个像素值。这种方法速度较慢，不太适合用于像素遍历。</p><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_1</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">0</span>] = pt.b;</span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">1</span>] = pt.g;</span><br><span class="line">      image.at&lt;cv::Vec3b&gt;(row, col)[<span class="number">2</span>] = pt.r;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<h3 id="行指针"><a href="#行指针" class="headerlink" title="行指针"></a>行指针</h3><p>基于Mat对象的行随机访问指针方式实现对每个像素的遍历。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_2</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    cv::Vec3b *ptr = image.ptr&lt;cv::Vec3b&gt;(row);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      cv::Vec3b &amp;pixel = ptr[col];</span><br><span class="line">      pixel[<span class="number">0</span>] = pt.b;</span><br><span class="line">      pixel[<span class="number">1</span>] = pt.g;</span><br><span class="line">      pixel[<span class="number">2</span>] = pt.r;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="uchar-行指针"><a href="#uchar-行指针" class="headerlink" title="uchar 行指针"></a>uchar 行指针</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extract_3</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;::Ptr cloud, cv::Mat &amp;image)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_height = cloud-&gt;height;</span><br><span class="line">  <span class="keyword">auto</span> &amp;cloud_width = cloud-&gt;width;</span><br><span class="line"></span><br><span class="line">  image = cv::Mat(cv::Size(cloud_width, cloud_height), CV_8UC3);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">size_t</span> row = <span class="number">0</span>; row &lt; cloud_height; row++)</span><br><span class="line">  &#123;</span><br><span class="line">    uchar *uc_pixel = image.ptr(row);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> col = <span class="number">0</span>; col &lt; cloud_width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">auto</span> index = row * cloud_width + col;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pt = cloud-&gt;points[index];</span><br><span class="line"></span><br><span class="line">      uc_pixel[<span class="number">0</span>] = pt.b;</span><br><span class="line">      uc_pixel[<span class="number">1</span>] = pt.g;</span><br><span class="line">      uc_pixel[<span class="number">2</span>] = pt.r;</span><br><span class="line">      uc_pixel += <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="将图像完全展开"><a href="#将图像完全展开" class="headerlink" title="将图像完全展开"></a>将图像完全展开</h3><p>一般图像行与行之间往往存储是不连续的，但是有些图像可以是连续的，Mat提供了一个检测图像是否连续的函数<code>isContinuous()</code>。当图像连通时，我们就可以把图像完全展开，看成是一行进行处理。</p>
+<h3 id="速度比较"><a href="#速度比较" class="headerlink" title="速度比较"></a>速度比较</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> cloud_path = <span class="string">"test.pcd"</span></span><br><span class="line">  pcl::PointCloud&lt;PointT&gt;::Ptr cloud(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;);</span><br><span class="line">  pcl_utils::load_pcd(cloud_path, *cloud);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *cloud &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">auto</span> start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_1;</span><br><span class="line">  extract_1(cloud, img_1);</span><br><span class="line">  <span class="keyword">auto</span> end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  <span class="keyword">auto</span> elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_2;</span><br><span class="line">  extract_2(cloud, img_2);</span><br><span class="line">  end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  start = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  cv::Mat img_3;</span><br><span class="line">  extract_3(cloud, img_3);</span><br><span class="line">  end = <span class="built_in">std</span>::chrono::steady_clock::now();</span><br><span class="line">  elapsed_seconds = <span class="keyword">static_cast</span>&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(end - start);</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"3 elapsed time: "</span> &lt;&lt; elapsed_seconds.count() &lt;&lt; <span class="string">"s\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出 :</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Load pcd file with 1228800 data points.</span><br><span class="line">header: seq: 0 stamp: 0 frame_id: </span><br><span class="line"></span><br><span class="line">points[]: 1228800</span><br><span class="line">width: 1280</span><br><span class="line">height: 960</span><br><span class="line">is_dense: 0</span><br><span class="line">sensor origin (xyz): [0, 0, 0] / orientation (xyzw): [0, 0, 0, 1]</span><br><span class="line"></span><br><span class="line">1 elapsed time: 0.0199077s</span><br><span class="line">2 elapsed time: 0.012727s</span><br><span class="line">3 elapsed time: 0.00880297s</span><br><span class="line">4 elapsed time: 0.00900436s</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>cv</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>opencv</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PCL-1.12.1 显示点云时出现 Segmentation Fault</title>
     <url>/pcl-12-viewer-segmentation-fault.html</url>
     <content><![CDATA[<p>使用 <code>pcl-tools 1.12.1</code> 显示点云后出现 <code>segmentation fault</code></p><p><img src="./pcl-12-viewer-segmentation-fault/image-20240327152051960.png" alt="image-1"></p><p>使用 <code>libpcl-dev-1.12.1</code> 显示点云后显示一大串关于 <code>vtk</code> 的警告且最后出现 <code>sgmentation fault</code></p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">2024-03-27 07:06:36.626 (   1.903s) [        1B11AC80]vtkOpenGLPolyDataMapper:328   WARN| vtkOpenGLPolyDataMapper::SetGeometryShaderCode was deprecated <span class="keyword">for</span> VTK 9.0 and will be removed <span class="keyword">in</span> a future version.  Use vtkOpenGLShaderProperty::SetGeometryShaderCode instead.</span><br><span class="line">2024-03-27 07:06:36.626 (   1.903s) [        1B11AC80]vtkOpenGLPolyDataMapper:321   WARN| vtkOpenGLPolyDataMapper::GetFragmentShaderCode was deprecated <span class="keyword">for</span> VTK 9.0 and will be removed <span class="keyword">in</span> a future version.  Use vtkOpenGLShaderProperty::GetFragmentShaderCode instead.</span><br><span class="line">2024-03-27 07:06:36.626 (   1.903s) [        1B11AC80]vtkOpenGLPolyDataMapper:313   WARN| vtkOpenGLPolyDataMapper::SetFragmentShaderCode was deprecated <span class="keyword">for</span> VTK 9.0 and will be removed <span class="keyword">in</span> a future version.  Use vtkOpenGLShaderProperty::SetFragmentShaderCode instead.</span><br></pre></td></tr></table></figure><a id="more"></a>
@@ -1319,46 +1319,6 @@
         <tag>environment</tag>
         <tag>pcl</tag>
         <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PointCloud&lt;PointT&gt; 和 PCLPointCloud2 的区别</title>
-    <url>/pcl-pointcloud-pointcloud2.html</url>
-    <content><![CDATA[<p><code>PCL</code> 中有两种表示点云的数据结构，分别为 <code>PointCloud&lt;PointT&gt;</code> 和 <code>PCLPointCloud2</code>。官方注释中常称为 <code>a pcl::PointCloud&lt;T&gt; object</code> 以及 <code>a PCLPointCloud2 binary data blob</code>。</p>
-<p>两者的最大区别是<strong>储存数据的方式</strong>：</p>
-<ul>
-<li><p><code>PointCloud&lt;PointT&gt;</code> 为模板类，其中指定了每个点的数据类型 <code>PointT</code>， <strong>独立储存每个点的数据</strong>。这种存储方式使得数据非常清晰，可以很方便地对某一个点或是某个点的某一字段进行访问，但无法选择存储或删除某一字段。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> PointT&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PointCloud</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;PointT, Eigen::aligned_allocator&lt;PointT&gt;&gt; points;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<ul>
-<li><p><code>PCLPointCloud2</code> 则没有指定点的数据类型，而是在 <code>fields</code> 里记录每个点中有哪些字段（比如 <code>rgba</code> , <code>x</code> , <code>normal_x</code> 等），并以 <code>std::uint8_t</code> 将它们按顺序<strong>连续存储</strong>。这种存储方式理论上更通用，能够存储各种类型的点云数据，而不仅是 <code>PCL</code>中定义好的常见格式；可以灵活地对数据进行直接处理，选择存储或删除某一字段；当然也使得数据变得不太直观。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PCLPointCloud2</span>&#123;</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;::pcl::PCLPointField&gt;  fields;</span><br><span class="line">    <span class="keyword">uindex_t</span> point_step = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="keyword">uint8_t</span>&gt; data;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<a id="more"></a>
-
-
-
-<p><code>PCL</code> 中提供了两者互换的接口：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> PointT&gt; <span class="keyword">void</span></span><br><span class="line">fromPCLPointCloud2 (<span class="keyword">const</span> pcl::PCLPointCloud2&amp; msg, pcl::PointCloud&lt;PointT&gt;&amp; cloud);</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> PointT&gt; <span class="keyword">void</span></span><br><span class="line">toPCLPointCloud2 (<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;&amp; cloud, pcl::PCLPointCloud2&amp; msg);</span><br></pre></td></tr></table></figure>
-
-<p><code>ROS</code> 中使用 <a href="https://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html" target="_blank" rel="noopener">sensor_msgs::msg::PointCloud2</a> 传输点云数据，实际结构与 <code>PCLPointCloud2</code> 一致。在 <code>perception_pcl/pcl_conversions</code> 中提供了一些互换的接口：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// sensor_msgs::msg::PointCloud2 &lt;-&gt; pcl::PCLPointCloud2</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">toPCL</span><span class="params">(<span class="keyword">const</span> sensor_msgs::msg::PointCloud2 &amp;pc2, pcl::PCLPointCloud2 &amp;pcl_pc2)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">moveToPCL</span><span class="params">(sensor_msgs::msg::PointCloud2 &amp;pc2, pcl::PCLPointCloud2 &amp;pcl_pc2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// sensor_msgs::msg::PointCloud2 &lt;-&gt; pcl::PointCloud&lt;T&gt;</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fromROSMsg</span><span class="params">(<span class="keyword">const</span> sensor_msgs::msg::PointCloud2 &amp;cloud, pcl::PointCloud&lt;T&gt; &amp;pcl_cloud)</span></span>;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">toROSMsg</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;T&gt; &amp;pcl_cloud, sensor_msgs::msg::PointCloud2 &amp;cloud)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>实际上 <code>sensor_msgs::msg::PointCloud2</code> 与 <code>PointCloud&lt;T&gt;</code> <a href="https://github.com/ros-perception/perception_pcl/blob/ros2/pcl_conversions/include/pcl_conversions/pcl_conversions.h#L559-L565" target="_blank" rel="noopener">互换的过程</a>中，也是先与 <code>PCLPointCloud2</code> 进行转换。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">toROSMsg</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;T&gt; &amp;pcl_cloud, sensor_msgs::msg::PointCloud2 &amp;cloud)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    pcl::PCLPointCloud2 pcl_pc2;</span><br><span class="line">    pcl::toPCLPointCloud2(pcl_cloud, pcl_pc2);</span><br><span class="line">    pcl_conversions::moveFromPCL(pcl_pc2, cloud);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>pcl</category>
-      </categories>
-      <tags>
-        <tag>pcl</tag>
-        <tag>ros</tag>
       </tags>
   </entry>
   <entry>
@@ -1458,74 +1418,142 @@
       </tags>
   </entry>
   <entry>
-    <title>在 RViz 里显示已经转换到世界坐标系的点云</title>
-    <url>/rviz-cloud.html</url>
-    <content><![CDATA[<h1 id="在-RViz-里显示已经转换到世界坐标系的点云"><a href="#在-RViz-里显示已经转换到世界坐标系的点云" class="headerlink" title="在 RViz 里显示已经转换到世界坐标系的点云"></a>在 RViz 里显示已经转换到世界坐标系的点云</h1><p>假设相机一直向外发送点云（PointCloud2）消息，点云数据是相机坐标系下的。已知相机的外参（即相机坐标系到世界坐标系的变换），想在 RViz 里显示已经转换到世界坐标系的点云。</p><hr><h2 id="方案概述"><a href="#方案概述" class="headerlink" title="方案概述"></a>方案概述</h2><p>RViz 显示点云时，会根据消息的 <code>header.frame_id</code> 和 TF 树中的坐标变换，把点云变换到 RViz 选定的固定坐标系（通常是 <code>world_frame</code> ）下显示。</p><a id="more"></a>
-
-
-<p>关键点：</p>
+    <title>PointCloud&lt;PointT&gt; 和 PCLPointCloud2 的区别</title>
+    <url>/pcl-pointcloud-pointcloud2.html</url>
+    <content><![CDATA[<p><code>PCL</code> 中有两种表示点云的数据结构，分别为 <code>PointCloud&lt;PointT&gt;</code> 和 <code>PCLPointCloud2</code>。官方注释中常称为 <code>a pcl::PointCloud&lt;T&gt; object</code> 以及 <code>a PCLPointCloud2 binary data blob</code>。</p>
+<p>两者的最大区别是<strong>储存数据的方式</strong>：</p>
 <ul>
-<li>确保 TF 树中有相机坐标系到世界坐标系的变换（外参）</li>
-<li>点云消息的 <code>header.frame_id</code> 设置为相机坐标系</li>
-<li>RViz 选择的固定坐标系为世界坐标系</li>
-</ul>
-<p>这样 RViz 会自动根据 TF 变换把点云从相机坐标系变换到世界坐标系显示。</p>
-<hr>
-<h2 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h2><h3 id="1-发布-TF-变换"><a href="#1-发布-TF-变换" class="headerlink" title="1. 发布 TF 变换"></a>1. 发布 TF 变换</h3><p>发布一个静态或动态的 TF 变换，将相机坐标系（如 <code>camera_frame</code>）和世界坐标系（如 <code>world_frame</code>）关联起来。</p>
-<p>如果外参是固定的，可以用 <code>static_transform_publisher</code>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ros2 run tf2_ros static_transform_publisher [--x X] [--y Y] [--z Z] [--qx QX] [--qy QY] [--qz QZ] [--qw QW] [--roll ROLL] [--pitch PITCH] [--yaw YAW] --frame-id FRAME_ID --child-frame-id CHILD_FRAME_ID</span><br></pre></td></tr></table></figure>
+<li><p><code>PointCloud&lt;PointT&gt;</code> 为模板类，其中指定了每个点的数据类型 <code>PointT</code>， <strong>独立储存每个点的数据</strong>。这种存储方式使得数据非常清晰，可以很方便地对某一个点或是某个点的某一字段进行访问，但无法选择存储或删除某一字段。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> PointT&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PointCloud</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;PointT, Eigen::aligned_allocator&lt;PointT&gt;&gt; points;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>参数说明：</p>
-<ul>
-<li><p><code>--frame-id FRAME_ID</code> 和 <code>--child-frame-id</code> 是必填的参数</p>
-</li>
-<li><p><code>x y z qx qy qz qw</code>：相机坐标系相对于世界坐标系的四元数旋转，可选填</p>
+
 </li>
 </ul>
-<p>示例：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ros2 run tf2_ros static_transform_publisher --z 2.0 --frame-id world_frame --child-frame-id camera_frame</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>PCLPointCloud2</code> 则没有指定点的数据类型，而是在 <code>fields</code> 里记录每个点中有哪些字段（比如 <code>rgba</code> , <code>x</code> , <code>normal_x</code> 等），并以 <code>std::uint8_t</code> 将它们按顺序<strong>连续存储</strong>。这种存储方式理论上更通用，能够存储各种类型的点云数据，而不仅是 <code>PCL</code>中定义好的常见格式；可以灵活地对数据进行直接处理，选择存储或删除某一字段；当然也使得数据变得不太直观。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PCLPointCloud2</span>&#123;</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;::pcl::PCLPointField&gt;  fields;</span><br><span class="line">    <span class="keyword">uindex_t</span> point_step = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="keyword">uint8_t</span>&gt; data;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-点云消息的-header-frame-id"><a href="#2-点云消息的-header-frame-id" class="headerlink" title="2. 点云消息的 header.frame_id"></a>2. 点云消息的 header.frame_id</h3><p>确保相机发布的点云消息的 <code>header.frame_id</code> 是相机坐标系名（如 <code>camera_frame</code>），这样 RViz 才知道点云是在哪个坐标系下的。</p>
-<h3 id="3-RViz-设置"><a href="#3-RViz-设置" class="headerlink" title="3. RViz 设置"></a>3. RViz 设置</h3><ul>
-<li>固定坐标系（<code>Fixed Frame</code>）设置为 <code>world_frame</code></li>
-<li>添加 <code>PointCloud2</code> 显示，订阅相机发布的点云 topic</li>
+</li>
 </ul>
-<p>RViz 会自动根据 TF 树把点云从 <code>camera_frame</code> 坐标系变换到 <code>world_frame</code> 坐标系显示</p>
-<hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
-<thead>
-<tr>
-<th>步骤</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>发布 TF 变换</td>
-<td>用 <code>static_transform_publisher</code> 发布相机到世界的外参</td>
-</tr>
-<tr>
-<td>点云消息 <code>frame_id</code></td>
-<td>设置为相机坐标系名</td>
-</tr>
-<tr>
-<td>RViz 固定坐标系</td>
-<td>设置为世界坐标系名</td>
-</tr>
-<tr>
-<td>RViz 订阅点云 topic</td>
-<td>添加点云显示，选择相机点云 topic</td>
-</tr>
-</tbody></table>
+<a id="more"></a>
+
+<p><code>PCL</code> 中提供了两者互换的接口：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> PointT&gt; <span class="keyword">void</span></span><br><span class="line">fromPCLPointCloud2 (<span class="keyword">const</span> pcl::PCLPointCloud2&amp; msg, pcl::PointCloud&lt;PointT&gt;&amp; cloud);</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> PointT&gt; <span class="keyword">void</span></span><br><span class="line">toPCLPointCloud2 (<span class="keyword">const</span> pcl::PointCloud&lt;PointT&gt;&amp; cloud, pcl::PCLPointCloud2&amp; msg);</span><br></pre></td></tr></table></figure>
+
+<p><code>ROS</code> 中使用 <a href="https://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html" target="_blank" rel="noopener">sensor_msgs::msg::PointCloud2</a> 传输点云数据，实际结构与 <code>PCLPointCloud2</code> 一致。在 <code>perception_pcl/pcl_conversions</code> 中提供了一些互换的接口：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// sensor_msgs::msg::PointCloud2 &lt;-&gt; pcl::PCLPointCloud2</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">toPCL</span><span class="params">(<span class="keyword">const</span> sensor_msgs::msg::PointCloud2 &amp;pc2, pcl::PCLPointCloud2 &amp;pcl_pc2)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">moveToPCL</span><span class="params">(sensor_msgs::msg::PointCloud2 &amp;pc2, pcl::PCLPointCloud2 &amp;pcl_pc2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// sensor_msgs::msg::PointCloud2 &lt;-&gt; pcl::PointCloud&lt;T&gt;</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fromROSMsg</span><span class="params">(<span class="keyword">const</span> sensor_msgs::msg::PointCloud2 &amp;cloud, pcl::PointCloud&lt;T&gt; &amp;pcl_cloud)</span></span>;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">toROSMsg</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;T&gt; &amp;pcl_cloud, sensor_msgs::msg::PointCloud2 &amp;cloud)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>实际上 <code>sensor_msgs::msg::PointCloud2</code> 与 <code>PointCloud&lt;T&gt;</code> <a href="https://github.com/ros-perception/perception_pcl/blob/ros2/pcl_conversions/include/pcl_conversions/pcl_conversions.h#L559-L565" target="_blank" rel="noopener">互换的过程</a>中，也是先与 <code>PCLPointCloud2</code> 进行转换。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">toROSMsg</span><span class="params">(<span class="keyword">const</span> pcl::PointCloud&lt;T&gt; &amp;pcl_cloud, sensor_msgs::msg::PointCloud2 &amp;cloud)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    pcl::PCLPointCloud2 pcl_pc2;</span><br><span class="line">    pcl::toPCLPointCloud2(pcl_cloud, pcl_pc2);</span><br><span class="line">    pcl_conversions::moveFromPCL(pcl_pc2, cloud);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
+        <category>pcl</category>
+      </categories>
+      <tags>
+        <tag>pcl</tag>
+        <tag>ROS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ROS的PCL点云相关类型转换</title>
+    <url>/pointcloud-ros2-message.html</url>
+    <content><![CDATA[<p><code>ROS</code> 中使用 <a href="https://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html" target="_blank" rel="noopener">sensor_msgs::msg::PointCloud2</a> 传输点云数据。开发中会需要对它和其他类型的点云数据进行转换，大部分由 <a href="https://github.com/ros-perception/pcl_conversions" target="_blank" rel="noopener">pcl_conversions</a> 提供。</p><h3 id="pcl-PCLPointCloud2"><a href="#pcl-PCLPointCloud2" class="headerlink" title="pcl::PCLPointCloud2"></a>pcl::PCLPointCloud2</h3><p>ros msg -&gt; pcl::PCLPointCloud2</p><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/PCLPointCloud2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PCLPointCloud2 pcl_pc2;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl_conversions::toPCL(ros_cloud, pcl_pc2);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl_conversions::toPCL(*pc_msg.get(), pcl_pc2);</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<p>ros msg &lt;- pcl::PCLPointCloud2</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/PCLPointCloud2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PCLPointCloud2 pcl_pc2;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl_conversions::fromPCL(pcl_pc2, ros_cloud);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl_conversions::fromPCL(pcl_pc2, *pc_msg);</span><br></pre></td></tr></table></figure>
+
+<h3 id="pcl-PointCloud"><a href="#pcl-PointCloud" class="headerlink" title="pcl::PointCloud"></a>pcl::PointCloud<t></t></h3><p>ros msg -&gt; pcl::PointCloud<t></t></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/pcl_base.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_cloud.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr cloud_ptr;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl::fromROSMsg(ros_cloud, *cloud_ptr);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl::fromROSMsg(*pc_msg.get(), *cloud_ptr);</span><br></pre></td></tr></table></figure>
+
+<p>ros msg &lt;- pcl::PointCloud<t></t></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/pcl_base.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_cloud.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr cloud_ptr;</span><br><span class="line"><span class="keyword">if</span> (!cloud_ptr || cloud_ptr-&gt;points.empty())</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl::toROSMsg(*cloud_ptr, ros_cloud);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl::toROSMsg(*cloud_ptr, *pc_msg);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>c++</category>
+        <category>pcl</category>
         <category>ROS</category>
       </categories>
       <tags>
+        <tag>c++</tag>
+        <tag>linux</tag>
+        <tag>pointcloud</tag>
+        <tag>cloud</tag>
+        <tag>pcl</tag>
         <tag>ROS</tag>
-        <tag>RViz</tag>
-        <tag>点云</tag>
-        <tag>TF</tag>
-        <tag>可视化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PCL类型转换</title>
+    <url>/pcl_type_transform.html</url>
+    <content><![CDATA[<h4 id="PCL相关类型-对象与指针互换"><a href="#PCL相关类型-对象与指针互换" class="headerlink" title="PCL相关类型 对象与指针互换"></a>PCL相关类型 对象与指针互换</h4><ol>
+<li>pcl::PointIndices -&gt; pcl::PointIndices::Ptr</li>
+</ol><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::<span class="function">Ptr <span class="title">inliers_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointIndices(inliers))</span></span>;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<ol start="2">
+<li>pcl::PointIndices::Ptr -&gt; pcl::PointIndices</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::Ptr inliers_ptr;</span><br><span class="line">inliers=*inliers_ptr;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>std::vector<int> -&gt; pcl::IndicesPtr</int></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec_indices;</span><br><span class="line">pcl::IndicesPtr indices_ptr = boost::make_shared&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;(vec_indices);</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>pcl::PointCloud<pointt> -&gt; pcl::PointCloud<pointt>::Ptr</pointt></pointt></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud=*cloud_ptr;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>pcl::PointCloud<pointt>::Ptr -&gt; pcl::PointCloud<pointt></pointt></pointt></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud_ptr=cloud.makeShared();</span><br></pre></td></tr></table></figure>
+
+<h4 id="不同数据类型的点云转换"><a href="#不同数据类型的点云转换" class="headerlink" title="不同数据类型的点云转换"></a>不同数据类型的点云转换</h4><ol>
+<li>pcl::PointCloud<a href="pcl::PointXYZRGB" target="_blank" rel="noopener">pcl::PointXYZRGB</a> -&gt; pcl::PointCloud<a href="pcl::PointXYZ" target="_blank" rel="noopener">pcl::PointXYZ</a>::Ptr</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::<span class="function">Ptr <span class="title">cloud_ori</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZRGB&gt;)</span></span>;</span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZ&gt;::<span class="function">Ptr <span class="title">cloud</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZ&gt;)</span></span>;</span><br><span class="line">pcl::copyPointCloud(*cloud_ori, *cloud);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>pcl</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>pcl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++ push_back和emplace_back的区别</title>
+    <url>/push_back-emplace_back.html</url>
+    <content><![CDATA[<blockquote>
+<p><code>push_back()</code>向容器尾部添加元素时，首先会创建这个元素，然后再将这个元素拷贝或者移动到容器中(如果是拷贝的话，事后会自行销毁先前创建的这个元素)。</p>
+<p>而 <code>emplace_back()</code> 在实现时，则是直接在容器尾部创建这个元素，省去了拷贝或移动元素的过程。</p>
+</blockquote><p>事实上，大多数情况下二者没有区别，只有在少数情况下 <code>emplace_back()</code> 效率更高。主要是 <code>emplace_back()</code> 支持 <code>in-place construction</code> 。</p><a id="more"></a>
+
+<p>直接看下代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClass</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">int</span> a_;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> b_;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  TestClass(<span class="keyword">const</span> <span class="keyword">int</span> &amp;a, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;b) : a_(a), b_(b)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"default constructor"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">  TestClass(<span class="keyword">const</span> TestClass &amp;other) : a_(other.a_), b_(other.b_)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"copy constructor"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  TestClass(TestClass &amp;&amp;other) : a_(other.a_), b_(<span class="built_in">std</span>::move(other.b_))</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"move constructor"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  ~TestClass() &#123; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"destructor"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;TestClass&gt; vec;</span><br><span class="line">  vec.reserve(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">  <span class="function">TestClass <span class="title">t1</span><span class="params">(<span class="number">1</span>, <span class="string">"1"</span>)</span></span>;</span><br><span class="line">  <span class="function">TestClass <span class="title">t2</span><span class="params">(<span class="number">2</span>, <span class="string">"2"</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"\n-----------------0---------------\n"</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(t1);</span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">  vec.emplace_back(t1);</span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"-----------------1---------------\n"</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(<span class="built_in">std</span>::move(t1));</span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">  vec.push_back(<span class="built_in">std</span>::move(t2));</span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"----------------2----------------\n"</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(TestClass(<span class="number">3</span>, <span class="string">"3"</span>));</span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">  vec.emplace_back(TestClass(<span class="number">3</span>, <span class="string">"3"</span>));</span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"----------------3----------------\n"</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(&#123;<span class="number">4</span>, <span class="string">"4"</span>&#125;);</span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">  vec.emplace_back(<span class="number">4</span>, <span class="string">"4"</span>); <span class="comment">// in-place construction</span></span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"----------------4----------------\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">default constructor</span><br><span class="line">default constructor</span><br><span class="line"></span><br><span class="line">-----------------0---------------</span><br><span class="line">copy constructor</span><br><span class="line">destructor</span><br><span class="line"></span><br><span class="line">copy constructor</span><br><span class="line">destructor</span><br><span class="line">-----------------1---------------</span><br><span class="line">move constructor</span><br><span class="line">destructor</span><br><span class="line"></span><br><span class="line">move constructor</span><br><span class="line">destructor</span><br><span class="line">----------------2----------------</span><br><span class="line">default constructor</span><br><span class="line">move constructor</span><br><span class="line">destructor</span><br><span class="line">destructor</span><br><span class="line"></span><br><span class="line">default constructor</span><br><span class="line">move constructor</span><br><span class="line">destructor</span><br><span class="line">destructor</span><br><span class="line">----------------3----------------</span><br><span class="line">default constructor</span><br><span class="line">move constructor</span><br><span class="line">destructor</span><br><span class="line">destructor</span><br><span class="line"></span><br><span class="line">default constructor</span><br><span class="line">destructor</span><br><span class="line">----------------4----------------</span><br><span class="line"></span><br><span class="line">destructor</span><br><span class="line">destructor</span><br></pre></td></tr></table></figure>
+
+<p>从结果来看，只有直接调用构造有区别</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.push_back(&#123;<span class="number">4</span>, <span class="string">"4"</span>&#125;);</span><br><span class="line">vec.emplace_back(<span class="number">4</span>, <span class="string">"4"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>在这种情况下，<code>push_back()</code> 会调用默认构造和移动构造，对应两次析构；而 <code>emplace_back()</code> 只调用一次默认构造一次析构， 效率更高。</p>
+]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>stl</tag>
+        <tag>vector</tag>
       </tags>
   </entry>
   <entry>
@@ -1598,106 +1626,6 @@
       <tags>
         <tag>linux</tag>
         <tag>scp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PCL类型转换</title>
-    <url>/pcl_type_transform.html</url>
-    <content><![CDATA[<h4 id="PCL相关类型-对象与指针互换"><a href="#PCL相关类型-对象与指针互换" class="headerlink" title="PCL相关类型 对象与指针互换"></a>PCL相关类型 对象与指针互换</h4><ol>
-<li>pcl::PointIndices -&gt; pcl::PointIndices::Ptr</li>
-</ol><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::<span class="function">Ptr <span class="title">inliers_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointIndices(inliers))</span></span>;</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-<ol start="2">
-<li>pcl::PointIndices::Ptr -&gt; pcl::PointIndices</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointIndices inliers;</span><br><span class="line">pcl::PointIndices::Ptr inliers_ptr;</span><br><span class="line">inliers=*inliers_ptr;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>std::vector<int> -&gt; pcl::IndicesPtr</int></li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec_indices;</span><br><span class="line">pcl::IndicesPtr indices_ptr = boost::make_shared&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;(vec_indices);</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>pcl::PointCloud<pointt> -&gt; pcl::PointCloud<pointt>::Ptr</pointt></pointt></li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud=*cloud_ptr;</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>pcl::PointCloud<pointt>::Ptr -&gt; pcl::PointCloud<pointt></pointt></pointt></li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">PointCloud&lt;PointT&gt;::<span class="function">Ptr <span class="title">cloud_ptr</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;PointT&gt;)</span></span>;</span><br><span class="line">PointCloud&lt;PointT&gt; cloud;</span><br><span class="line">cloud_ptr=cloud.makeShared();</span><br></pre></td></tr></table></figure>
-
-<h4 id="不同数据类型的点云转换"><a href="#不同数据类型的点云转换" class="headerlink" title="不同数据类型的点云转换"></a>不同数据类型的点云转换</h4><ol>
-<li>pcl::PointCloud<a href="pcl::PointXYZRGB" target="_blank" rel="noopener">pcl::PointXYZRGB</a> -&gt; pcl::PointCloud<a href="pcl::PointXYZ" target="_blank" rel="noopener">pcl::PointXYZ</a>::Ptr</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::<span class="function">Ptr <span class="title">cloud_ori</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZRGB&gt;)</span></span>;</span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZ&gt;::<span class="function">Ptr <span class="title">cloud</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZ&gt;)</span></span>;</span><br><span class="line">pcl::copyPointCloud(*cloud_ori, *cloud);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>pcl</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>pcl</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ROS的PCL点云相关类型转换</title>
-    <url>/pointcloud-ros2-message.html</url>
-    <content><![CDATA[<p><code>ROS</code> 中使用 <a href="https://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/PointCloud2.html" target="_blank" rel="noopener">sensor_msgs::msg::PointCloud2</a> 传输点云数据。开发中会需要对它和其他类型的点云数据进行转换，大部分由 <a href="https://github.com/ros-perception/pcl_conversions" target="_blank" rel="noopener">pcl_conversions</a> 提供。</p><h3 id="pcl-PCLPointCloud2"><a href="#pcl-PCLPointCloud2" class="headerlink" title="pcl::PCLPointCloud2"></a>pcl::PCLPointCloud2</h3><p>ros msg -&gt; pcl::PCLPointCloud2</p><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/PCLPointCloud2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PCLPointCloud2 pcl_pc2;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl_conversions::toPCL(ros_cloud, pcl_pc2);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl_conversions::toPCL(*pc_msg.get(), pcl_pc2);</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-<p>ros msg &lt;- pcl::PCLPointCloud2</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/PCLPointCloud2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PCLPointCloud2 pcl_pc2;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl_conversions::fromPCL(pcl_pc2, ros_cloud);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl_conversions::fromPCL(pcl_pc2, *pc_msg);</span><br></pre></td></tr></table></figure>
-
-<h3 id="pcl-PointCloud"><a href="#pcl-PointCloud" class="headerlink" title="pcl::PointCloud"></a>pcl::PointCloud<t></t></h3><p>ros msg -&gt; pcl::PointCloud<t></t></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/pcl_base.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_cloud.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr cloud_ptr;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl::fromROSMsg(ros_cloud, *cloud_ptr);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl::fromROSMsg(*pc_msg.get(), *cloud_ptr);</span><br></pre></td></tr></table></figure>
-
-<p>ros msg &lt;- pcl::PointCloud<t></t></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/pcl_base.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_cloud.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl/point_types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pcl_conversions/pcl_conversions.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">pcl::PointCloud&lt;pcl::PointXYZRGB&gt;::Ptr cloud_ptr;</span><br><span class="line"><span class="keyword">if</span> (!cloud_ptr || cloud_ptr-&gt;points.empty())</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2 ros_cloud;</span><br><span class="line">pcl::toROSMsg(*cloud_ptr, ros_cloud);</span><br><span class="line"></span><br><span class="line">sensor_msgs::msg::PointCloud2::SharedPtr pc_msg;</span><br><span class="line">pcl::toROSMsg(*cloud_ptr, *pc_msg);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>c++</category>
-        <category>pcl</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>linux</tag>
-        <tag>pointcloud</tag>
-        <tag>cloud</tag>
-        <tag>pcl</tag>
-        <tag>ros</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++ push_back和emplace_back的区别</title>
-    <url>/push_back-emplace_back.html</url>
-    <content><![CDATA[<blockquote>
-<p><code>push_back()</code>向容器尾部添加元素时，首先会创建这个元素，然后再将这个元素拷贝或者移动到容器中(如果是拷贝的话，事后会自行销毁先前创建的这个元素)。</p>
-<p>而 <code>emplace_back()</code> 在实现时，则是直接在容器尾部创建这个元素，省去了拷贝或移动元素的过程。</p>
-</blockquote><p>事实上，大多数情况下二者没有区别，只有在少数情况下 <code>emplace_back()</code> 效率更高。主要是 <code>emplace_back()</code> 支持 <code>in-place construction</code> 。</p><a id="more"></a>
-
-<p>直接看下代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClass</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">int</span> a_;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> b_;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  TestClass(<span class="keyword">const</span> <span class="keyword">int</span> &amp;a, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;b) : a_(a), b_(b)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"default constructor"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">  TestClass(<span class="keyword">const</span> TestClass &amp;other) : a_(other.a_), b_(other.b_)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"copy constructor"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  TestClass(TestClass &amp;&amp;other) : a_(other.a_), b_(<span class="built_in">std</span>::move(other.b_))</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"move constructor"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  ~TestClass() &#123; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"destructor"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;TestClass&gt; vec;</span><br><span class="line">  vec.reserve(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">  <span class="function">TestClass <span class="title">t1</span><span class="params">(<span class="number">1</span>, <span class="string">"1"</span>)</span></span>;</span><br><span class="line">  <span class="function">TestClass <span class="title">t2</span><span class="params">(<span class="number">2</span>, <span class="string">"2"</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"\n-----------------0---------------\n"</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(t1);</span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">  vec.emplace_back(t1);</span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"-----------------1---------------\n"</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(<span class="built_in">std</span>::move(t1));</span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">  vec.push_back(<span class="built_in">std</span>::move(t2));</span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"----------------2----------------\n"</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(TestClass(<span class="number">3</span>, <span class="string">"3"</span>));</span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">  vec.emplace_back(TestClass(<span class="number">3</span>, <span class="string">"3"</span>));</span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"----------------3----------------\n"</span>;</span><br><span class="line"></span><br><span class="line">  vec.push_back(&#123;<span class="number">4</span>, <span class="string">"4"</span>&#125;);</span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">  vec.emplace_back(<span class="number">4</span>, <span class="string">"4"</span>); <span class="comment">// in-place construction</span></span><br><span class="line">  vec.clear();</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"----------------4----------------\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">default constructor</span><br><span class="line">default constructor</span><br><span class="line"></span><br><span class="line">-----------------0---------------</span><br><span class="line">copy constructor</span><br><span class="line">destructor</span><br><span class="line"></span><br><span class="line">copy constructor</span><br><span class="line">destructor</span><br><span class="line">-----------------1---------------</span><br><span class="line">move constructor</span><br><span class="line">destructor</span><br><span class="line"></span><br><span class="line">move constructor</span><br><span class="line">destructor</span><br><span class="line">----------------2----------------</span><br><span class="line">default constructor</span><br><span class="line">move constructor</span><br><span class="line">destructor</span><br><span class="line">destructor</span><br><span class="line"></span><br><span class="line">default constructor</span><br><span class="line">move constructor</span><br><span class="line">destructor</span><br><span class="line">destructor</span><br><span class="line">----------------3----------------</span><br><span class="line">default constructor</span><br><span class="line">move constructor</span><br><span class="line">destructor</span><br><span class="line">destructor</span><br><span class="line"></span><br><span class="line">default constructor</span><br><span class="line">destructor</span><br><span class="line">----------------4----------------</span><br><span class="line"></span><br><span class="line">destructor</span><br><span class="line">destructor</span><br></pre></td></tr></table></figure>
-
-<p>从结果来看，只有直接调用构造有区别</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.push_back(&#123;<span class="number">4</span>, <span class="string">"4"</span>&#125;);</span><br><span class="line">vec.emplace_back(<span class="number">4</span>, <span class="string">"4"</span>);</span><br></pre></td></tr></table></figure>
-
-<p>在这种情况下，<code>push_back()</code> 会调用默认构造和移动构造，对应两次析构；而 <code>emplace_back()</code> 只调用一次默认构造一次析构， 效率更高。</p>
-]]></content>
-      <categories>
-        <category>c++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>stl</tag>
-        <tag>vector</tag>
       </tags>
   </entry>
   <entry>
@@ -1777,6 +1705,78 @@
       </categories>
       <tags>
         <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 RViz 里显示已经转换到世界坐标系的点云</title>
+    <url>/rviz-cloud.html</url>
+    <content><![CDATA[<h1 id="在-RViz-里显示已经转换到世界坐标系的点云"><a href="#在-RViz-里显示已经转换到世界坐标系的点云" class="headerlink" title="在 RViz 里显示已经转换到世界坐标系的点云"></a>在 RViz 里显示已经转换到世界坐标系的点云</h1><p>假设相机一直向外发送点云（PointCloud2）消息，点云数据是相机坐标系下的。已知相机的外参（即相机坐标系到世界坐标系的变换），想在 RViz 里显示已经转换到世界坐标系的点云。</p><hr><h2 id="方案概述"><a href="#方案概述" class="headerlink" title="方案概述"></a>方案概述</h2><p>RViz 显示点云时，会根据消息的 <code>header.frame_id</code> 和 TF 树中的坐标变换，把点云变换到 RViz 选定的固定坐标系（通常是 <code>world_frame</code> ）下显示。</p><a id="more"></a>
+
+
+<p>关键点：</p>
+<ul>
+<li>确保 TF 树中有相机坐标系到世界坐标系的变换（外参）</li>
+<li>点云消息的 <code>header.frame_id</code> 设置为相机坐标系</li>
+<li>RViz 选择的固定坐标系为世界坐标系</li>
+</ul>
+<p>这样 RViz 会自动根据 TF 变换把点云从相机坐标系变换到世界坐标系显示。</p>
+<hr>
+<h2 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h2><h3 id="1-发布-TF-变换"><a href="#1-发布-TF-变换" class="headerlink" title="1. 发布 TF 变换"></a>1. 发布 TF 变换</h3><p>发布一个静态或动态的 TF 变换，将相机坐标系（如 <code>camera_frame</code>）和世界坐标系（如 <code>world_frame</code>）关联起来。</p>
+<p>如果外参是固定的，可以用 <code>static_transform_publisher</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ros2 run tf2_ros static_transform_publisher [--x X] [--y Y] [--z Z] [--qx QX] [--qy QY] [--qz QZ] [--qw QW] [--roll ROLL] [--pitch PITCH] [--yaw YAW] --frame-id FRAME_ID --child-frame-id CHILD_FRAME_ID</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li><p><code>--frame-id FRAME_ID</code> 和 <code>--child-frame-id</code> 是必填的参数</p>
+</li>
+<li><p><code>x y z qx qy qz qw</code>：相机坐标系相对于世界坐标系的四元数旋转，可选填</p>
+</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ros2 run tf2_ros static_transform_publisher --z 2.0 --frame-id world_frame --child-frame-id camera_frame</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-点云消息的-header-frame-id"><a href="#2-点云消息的-header-frame-id" class="headerlink" title="2. 点云消息的 header.frame_id"></a>2. 点云消息的 header.frame_id</h3><p>确保相机发布的点云消息的 <code>header.frame_id</code> 是相机坐标系名（如 <code>camera_frame</code>），这样 RViz 才知道点云是在哪个坐标系下的。</p>
+<h3 id="3-RViz-设置"><a href="#3-RViz-设置" class="headerlink" title="3. RViz 设置"></a>3. RViz 设置</h3><ul>
+<li>固定坐标系（<code>Fixed Frame</code>）设置为 <code>world_frame</code></li>
+<li>添加 <code>PointCloud2</code> 显示，订阅相机发布的点云 topic</li>
+</ul>
+<p>RViz 会自动根据 TF 树把点云从 <code>camera_frame</code> 坐标系变换到 <code>world_frame</code> 坐标系显示</p>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>发布 TF 变换</td>
+<td>用 <code>static_transform_publisher</code> 发布相机到世界的外参</td>
+</tr>
+<tr>
+<td>点云消息 <code>frame_id</code></td>
+<td>设置为相机坐标系名</td>
+</tr>
+<tr>
+<td>RViz 固定坐标系</td>
+<td>设置为世界坐标系名</td>
+</tr>
+<tr>
+<td>RViz 订阅点云 topic</td>
+<td>添加点云显示，选择相机点云 topic</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>ROS</category>
+      </categories>
+      <tags>
+        <tag>visualization</tag>
+        <tag>ROS</tag>
+        <tag>RViz</tag>
+        <tag>点云</tag>
+        <tag>TF</tag>
+        <tag>可视化</tag>
       </tags>
   </entry>
   <entry>
@@ -2098,6 +2098,44 @@
         <tag>linux</tag>
         <tag>python</tag>
         <tag>environment</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用vscode在docker容器里调试python代码</title>
+    <url>/use-vscode-to-debug-in-container.html</url>
+    <content><![CDATA[<p>使用vscode，可以使用插件连接docker container，并基于容器运行调试代码。</p><h3 id="在vscode内安装插件"><a href="#在vscode内安装插件" class="headerlink" title="在vscode内安装插件"></a>在vscode内安装插件</h3><ul>
+<li><p>Dev Containers</p>
+<p><img src="./use-vscode-to-debug-in-container/image-1.png#pic_left" alt="image-1"> </p>
+</li>
+<li><p>Docker<br><img src="./use-vscode-to-debug-in-container/image-2.png#pic_left" alt="image-2"> </p>
+</li>
+</ul><h3 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># create container from image</span></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="comment"># start container</span></span><br><span class="line">docker start container_xxx</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<h3 id="在vscode内连接容器"><a href="#在vscode内连接容器" class="headerlink" title="在vscode内连接容器"></a>在vscode内连接容器</h3><ul>
+<li><p>点击左下角的链接按钮</p>
+<p><img src="./use-vscode-to-debug-in-container/image-3.png#pic_left" alt="image-3"> </p>
+</li>
+</ul>
+<ul>
+<li><p>在弹出的选项中选择 <strong>Attach to Running Container</strong>，选择刚刚已经启动的容器 container_xxx</p>
+<p><img src="./use-vscode-to-debug-in-container/image-4.png#pic_left" alt="image-4"> </p>
+</li>
+</ul>
+<h3 id="调试代码"><a href="#调试代码" class="headerlink" title="调试代码"></a>调试代码</h3><p>在新打开的vscode窗口内打开对应的代码，添加断点，即可正常调试。</p>
+]]></content>
+      <categories>
+        <category>memo</category>
+        <category>python</category>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>coding</tag>
+        <tag>python</tag>
+        <tag>debug</tag>
+        <tag>vscode</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -2463,44 +2501,6 @@
       <tags>
         <tag>self-driving</tag>
         <tag>自动驾驶</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用vscode在docker容器里调试python代码</title>
-    <url>/use-vscode-to-debug-in-container.html</url>
-    <content><![CDATA[<p>使用vscode，可以使用插件连接docker container，并基于容器运行调试代码。</p><h3 id="在vscode内安装插件"><a href="#在vscode内安装插件" class="headerlink" title="在vscode内安装插件"></a>在vscode内安装插件</h3><ul>
-<li><p>Dev Containers</p>
-<p><img src="./use-vscode-to-debug-in-container/image-1.png#pic_left" alt="image-1"> </p>
-</li>
-<li><p>Docker<br><img src="./use-vscode-to-debug-in-container/image-2.png#pic_left" alt="image-2"> </p>
-</li>
-</ul><h3 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># create container from image</span></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="comment"># start container</span></span><br><span class="line">docker start container_xxx</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-<h3 id="在vscode内连接容器"><a href="#在vscode内连接容器" class="headerlink" title="在vscode内连接容器"></a>在vscode内连接容器</h3><ul>
-<li><p>点击左下角的链接按钮</p>
-<p><img src="./use-vscode-to-debug-in-container/image-3.png#pic_left" alt="image-3"> </p>
-</li>
-</ul>
-<ul>
-<li><p>在弹出的选项中选择 <strong>Attach to Running Container</strong>，选择刚刚已经启动的容器 container_xxx</p>
-<p><img src="./use-vscode-to-debug-in-container/image-4.png#pic_left" alt="image-4"> </p>
-</li>
-</ul>
-<h3 id="调试代码"><a href="#调试代码" class="headerlink" title="调试代码"></a>调试代码</h3><p>在新打开的vscode窗口内打开对应的代码，添加断点，即可正常调试。</p>
-]]></content>
-      <categories>
-        <category>memo</category>
-        <category>python</category>
-        <category>docker</category>
-      </categories>
-      <tags>
-        <tag>coding</tag>
-        <tag>python</tag>
-        <tag>debug</tag>
-        <tag>vscode</tag>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
