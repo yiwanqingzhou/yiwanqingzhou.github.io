@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://yiwanqingzhou.github.io/install-deb-file.html</loc>
+    <lastmod>2025-09-02</lastmod>
+  </url>
+  <url>
     <loc>https://yiwanqingzhou.github.io/pcl-pointcloud-pointcloud2.html</loc>
     <lastmod>2025-08-21</lastmod>
   </url>
@@ -125,19 +129,19 @@
     <lastmod>2024-03-29</lastmod>
   </url>
   <url>
-    <loc>https://yiwanqingzhou.github.io/type-cast.html</loc>
-    <lastmod>2024-03-29</lastmod>
-  </url>
-  <url>
     <loc>https://yiwanqingzhou.github.io/udacity-self-driving-apollo.html</loc>
     <lastmod>2024-03-29</lastmod>
   </url>
   <url>
-    <loc>https://yiwanqingzhou.github.io/boost-options-description.html</loc>
+    <loc>https://yiwanqingzhou.github.io/type-cast.html</loc>
     <lastmod>2024-03-29</lastmod>
   </url>
   <url>
     <loc>https://yiwanqingzhou.github.io/cmake-set-flag.html</loc>
+    <lastmod>2024-03-29</lastmod>
+  </url>
+  <url>
+    <loc>https://yiwanqingzhou.github.io/boost-options-description.html</loc>
     <lastmod>2024-03-29</lastmod>
   </url>
   <url>
