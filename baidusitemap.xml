@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://yiwanqingzhou.github.io/constexpr.html</loc>
+    <lastmod>2025-11-04</lastmod>
+  </url>
+  <url>
     <loc>https://yiwanqingzhou.github.io/install-deb-file.html</loc>
     <lastmod>2025-09-02</lastmod>
   </url>
@@ -109,11 +113,11 @@
     <lastmod>2024-03-29</lastmod>
   </url>
   <url>
-    <loc>https://yiwanqingzhou.github.io/image-processing-low-pass-filter.html</loc>
+    <loc>https://yiwanqingzhou.github.io/mat-traverse.html</loc>
     <lastmod>2024-03-29</lastmod>
   </url>
   <url>
-    <loc>https://yiwanqingzhou.github.io/mat-traverse.html</loc>
+    <loc>https://yiwanqingzhou.github.io/image-processing-low-pass-filter.html</loc>
     <lastmod>2024-03-29</lastmod>
   </url>
   <url>
@@ -137,11 +141,11 @@
     <lastmod>2024-03-29</lastmod>
   </url>
   <url>
-    <loc>https://yiwanqingzhou.github.io/cmake-set-flag.html</loc>
+    <loc>https://yiwanqingzhou.github.io/boost-options-description.html</loc>
     <lastmod>2024-03-29</lastmod>
   </url>
   <url>
-    <loc>https://yiwanqingzhou.github.io/boost-options-description.html</loc>
+    <loc>https://yiwanqingzhou.github.io/cmake-set-flag.html</loc>
     <lastmod>2024-03-29</lastmod>
   </url>
   <url>
