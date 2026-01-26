@@ -102,7 +102,7 @@ void wait(int id)
 
 void set_ready()
 {
-  std::cout << "set_ready(): " << std::endl;
+  std::cout << "set_ready()" << std::endl;
   ready.store(true);
   cv.notify_one();
 }
@@ -137,9 +137,9 @@ int main(int argc, char **argv)
 ```
 thread: 139827702187776 id: 1 start.
 thread: 139827693795072 id: 2 start.
-set_ready(): 1
+set_ready()
 thread: 139827702187776 id: 1 done.
-set_ready(): 1
+set_ready()
 join....
 thread: 139827693795072 id: 2 done.
 all done
@@ -147,3 +147,6 @@ all done
 
 
 
+因为用的是`notify_one`，此处是两个线程逐个被唤醒的过程。  如果使用 `notify_all()` ，则在第一次调用时，两个线程都会被唤醒。
+
+（`thread: 139827693795072 id: 2 done.` 打印有可能在 `join` 之前，两者时间几乎同时）
